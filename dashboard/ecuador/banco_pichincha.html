@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Pichincha | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">Bank Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item active">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v2.0 • Feb 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="../index.html" class="back-link">← Back to Dashboard</a>
+        
+        <div class="bank-header">
+            <div class="bank-title">
+                <h1>🏦 Banco Pichincha</h1>
+                <p class="subtitle">Private Commercial Bank • Quito, Ecuador</p>
+            </div>
+            <div class="bank-badges">
+                <span class="badge high">🟢 HIGH OPPORTUNITY</span>
+                <span class="badge tier">TIER 1</span>
+            </div>
+        </div>
+
+        <section class="section-card">
+            <h2>📊 Key Financial Metrics</h2>
+            <div class="key-metrics">
+                <div class="metric-item">
+                    <div class="value">$14.2B</div>
+                    <div class="label">Total Assets</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">+18%</div>
+                    <div class="label">3Y Growth</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">12.5%</div>
+                    <div class="label">ROE</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">52%</div>
+                    <div class="label">CIR</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">3.2%</div>
+                    <div class="label">NPL Ratio</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🏢 Bank Profile</h2>
+            <ul>
+                <li><strong>Type:</strong> Private Commercial Bank (Family-controlled, professionally managed)</li>
+                <li><strong>Founded:</strong> 1906</li>
+                <li><strong>Market Position:</strong> #1 in Ecuador (41% market share)</li>
+                <li><strong>Employees:</strong> ~7,000</li>
+                <li><strong>Branches:</strong> 300+ nationwide</li>
+                <li><strong>International:</strong> Colombia, Spain, Peru, Panama</li>
+                <li><strong>Digital Maturity:</strong> 🟡 MEDIUM-HIGH — Mobile app with 2M+ active users, Banco del Barrio network</li>
+            </ul>
+        </section>
+
+        <section class="section-card">
+            <h2>💡 Investment Appetite Assessment</h2>
+            <p><strong>Rating: HIGH</strong></p>
+            <ul>
+                <li>Financial strength supports investment (healthy ROE at 12.5%)</li>
+                <li>Growth trajectory (+18%) creates infrastructure pressure</li>
+                <li>Improving CIR (from 55% to 52%) suggests active optimization programs</li>
+                <li>Largest bank = largest infrastructure footprint = big deals</li>
+                <li>Scale and complexity justify enterprise-grade solutions</li>
+            </ul>
+        </section>
+
+        <!-- NEW: Infrastructure with Specific Brands -->
+        <section class="section-card">
+            <h2>🔧 Infrastructure Stack — Known & Estimated</h2>
+            <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                <span style="color: var(--accent-green);">●</span> Confirmed &nbsp;
+                <span style="color: var(--accent-yellow);">●</span> Likely/Estimated &nbsp;
+                <span style="color: var(--accent);">●</span> To verify
+            </p>
+            
+            <div class="infra-stack">
+                <!-- Compute -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💻</span>
+                        <span class="infra-layer-name">Processing & Compute</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">IBM Power Systems</span>
+                        <span class="brand-tag likely">Dell PowerEdge</span>
+                        <span class="brand-tag likely">VMware vSphere</span>
+                        <span class="brand-tag">HPE ProLiant</span>
+                    </div>
+                    <p class="infra-notes">Main DC in Quito. Legacy IBM environment for core banking (AS/400 heritage). VMware virtualization estate. Hybrid cloud discussions active — AWS/Azure evaluation likely in progress.</p>
+                </div>
+
+                <!-- Storage -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💾</span>
+                        <span class="infra-layer-name">Enterprise Storage</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Hitachi VSP</span>
+                        <span class="brand-tag likely">Dell EMC Unity/PowerStore</span>
+                        <span class="brand-tag">NetApp</span>
+                        <span class="brand-tag">Pure Storage</span>
+                    </div>
+                    <p class="infra-notes">Enterprise SAN for core systems. Hitachi presence likely given historical market position in LATAM banking. Data growth creating performance pressure. All-flash upgrade cycle probable.</p>
+                </div>
+
+                <!-- Networking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🌐</span>
+                        <span class="infra-layer-name">Network Infrastructure</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">Cisco</span>
+                        <span class="brand-tag likely">Cisco MPLS WAN</span>
+                        <span class="brand-tag">Fortinet</span>
+                        <span class="brand-tag">Palo Alto</span>
+                    </div>
+                    <p class="infra-notes">300+ branch network on MPLS. Cisco core networking. SD-WAN opportunity for branch modernization. Security stack includes perimeter firewalls and likely separate security vendors.</p>
+                </div>
+
+                <!-- Core Banking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🏛️</span>
+                        <span class="infra-layer-name">Core Banking</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Custom/In-house</span>
+                        <span class="brand-tag likely">IBM AS/400 Base</span>
+                        <span class="brand-tag">Temenos T24</span>
+                        <span class="brand-tag">SAP Banking</span>
+                    </div>
+                    <p class="infra-notes">Legacy custom core with AS/400 heritage. Highly customized over decades. API layer being developed for digital channels. Full replacement unlikely; componentization/modernization approach more probable.</p>
+                </div>
+
+                <!-- Digital Platform -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📱</span>
+                        <span class="infra-layer-name">Digital Banking Platform</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Backbase</span>
+                        <span class="brand-tag likely">Temenos Infinity</span>
+                        <span class="brand-tag">Custom Development</span>
+                        <span class="brand-tag">AWS/Container Platform</span>
+                    </div>
+                    <p class="infra-notes">2M+ mobile users. Modern front-end with API integration to legacy backend. Continuous feature releases. Infrastructure scaling for digital growth is pain point. Kubernetes/container adoption likely.</p>
+                </div>
+
+                <!-- Data & Analytics -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📊</span>
+                        <span class="infra-layer-name">Data, Analytics & AI</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">IBM Cognos</span>
+                        <span class="brand-tag likely">Tableau</span>
+                        <span class="brand-tag likely">Oracle Database</span>
+                        <span class="brand-tag">Teradata</span>
+                        <span class="brand-tag">Cloudera/Hadoop</span>
+                        <span class="brand-tag">Snowflake</span>
+                    </div>
+                    <p class="infra-notes">Traditional BI with Cognos/Tableau. Oracle-based data warehouse. Data lake discussions in progress. Real-time analytics gap. AI/ML pilots for credit scoring, fraud detection. Major opportunity area.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🎯 Best Infrastructure Plays</h2>
+            <div class="priority-list">
+                <div class="priority-item high">
+                    <span class="priority-num">1</span>
+                    <div class="priority-content">
+                        <h4>Data & Analytics Modernization</h4>
+                        <p>"Unlock customer intelligence from your data." Real-time analytics, data lake, AI/ML platform. Gap vs competitors is visible.</p>
+                    </div>
+                </div>
+                <div class="priority-item high">
+                    <span class="priority-num">2</span>
+                    <div class="priority-content">
+                        <h4>Compute / Hybrid Cloud</h4>
+                        <p>"Scale for digital growth without replacing everything." VMware modernization, cloud-adjacent infrastructure, container platform.</p>
+                    </div>
+                </div>
+                <div class="priority-item high">
+                    <span class="priority-num">3</span>
+                    <div class="priority-content">
+                        <h4>Enterprise Storage Refresh</h4>
+                        <p>"Performance and economics for data-intensive banking." All-flash upgrade, storage consolidation, data protection modernization.</p>
+                    </div>
+                </div>
+                <div class="priority-item medium">
+                    <span class="priority-num">4</span>
+                    <div class="priority-content">
+                        <h4>Digital Platform Infrastructure</h4>
+                        <p>"Backend performance for 2M+ digital users." Container orchestration, API management, cloud-native infrastructure.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="commercial-box">
+                <h4>💬 Recommended Engagement Narrative</h4>
+                <p>"Pichincha's digital leadership creates infrastructure pressure that legacy systems struggle to handle. We help banks like you scale digital operations without wholesale core replacement — improving performance, reducing operational cost, and enabling the analytics that drive personalization."</p>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>⚠️ Key Objection to Prepare For</h2>
+            <p><strong>"We're already investing heavily internally."</strong></p>
+            <p>Response: Position as acceleration/augmentation, not replacement of internal efforts. "We complement your internal capabilities, not compete with them. Your internal team focuses on business logic; we help with infrastructure scalability."</p>
+        </section>
+
+        <!-- Executive Intelligence with Link -->
+        <section class="section-card">
+            <h2>👔 Executive Intelligence</h2>
+            
+            <div class="exec-grid" style="margin-top: 1rem;">
+                <a href="../executives/antonio_acosta_espinosa.html" class="exec-card ceo">
+                    <div class="exec-avatar">AA</div>
+                    <div class="exec-info">
+                        <h3>Antonio Acosta Espinosa</h3>
+                        <p class="exec-title">Presidente Ejecutivo / CEO</p>
+                        <div class="exec-tags">
+                            <span class="tag influence-high">Strategic Direction</span>
+                        </div>
+                    </div>
+                    <span class="exec-arrow">→</span>
+                </a>
+            </div>
+
+            <h3 style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--accent);">Key Roles to Engage</h3>
+            <ul>
+                <li><strong>CIO / Chief Information Officer</strong> — Primary technology decision maker (profile needed)</li>
+                <li><strong>VP/Director of Infrastructure</strong> — Technical validation, RFP influence</li>
+                <li><strong>COO</strong> — Operational efficiency mandate</li>
+                <li><strong>VP/Director of Digital Banking</strong> — Digital platform investments</li>
+            </ul>
+            
+            <p style="margin-top: 1rem;"><strong>Engagement Strategy:</strong> Multi-threaded approach. CIO for strategic alignment, Infrastructure Director for technical validation, COO for operational efficiency angle. CEO engagement for large strategic deals only.</p>
+        </section>
+
+        <div class="exec-navigation">
+            <a href="../index.html" class="btn-secondary">← Back to Dashboard</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+</body>
+</html>

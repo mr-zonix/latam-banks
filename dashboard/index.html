@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LATAM Bank Intelligence | Zuni</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item active" data-page="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" data-page="ecuador">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='peru/bcp.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v3.0 • Feb 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Dashboard Page -->
+        <div id="page-dashboard" class="page active">
+            <header class="page-header">
+                <h1>🏦 LATAM Bank Intelligence Dashboard</h1>
+                <p class="subtitle">Strategic infrastructure sales intelligence for Zuni</p>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-icon">🏦</span>
+                    <div class="stat-content">
+                        <h3>6</h3>
+                        <p>Banks Analyzed</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🌎</span>
+                    <div class="stat-content">
+                        <h3>2</h3>
+                        <p>Countries</p>
+                    </div>
+                </div>
+                <div class="stat-card highlight">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-content">
+                        <h3>3</h3>
+                        <p>High Priority</p>
+                    </div>
+                </div>
+                <div class="stat-card" onclick="window.location.href='executives/index.html'" style="cursor: pointer;">
+                    <span class="stat-icon">👔</span>
+                    <div class="stat-content">
+                        <h3>6</h3>
+                        <p>Executive Profiles</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="priority-section">
+                <h2>🎯 Priority Targets</h2>
+                <div class="priority-grid">
+                    <div class="priority-card tier1" style="border-color: var(--accent-green); background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(16, 185, 129, 0.05) 100%);">
+                        <div class="priority-header">
+                            <span class="tier-badge" style="background: var(--accent-green);">🔥 MEETING</span>
+                            <span class="country-flag">🇵🇪</span>
+                        </div>
+                        <h3>BCP — Banco de Crédito del Perú</h3>
+                        <p class="priority-reason">Active meeting prep. César Casabonne + David Sáenz + Diego Cavero</p>
+                        <div class="priority-metrics">
+                            <span class="metric">~$55B Assets</span>
+                            <span class="metric">#1 Peru</span>
+                        </div>
+                        <a href="peru/bcp.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇪🇨</span>
+                        </div>
+                        <h3>Banco Guayaquil</h3>
+                        <p class="priority-reason">Fastest growth (+22%), best ROE (14.8%), digital-first culture</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$6.1B Assets</span>
+                            <span class="metric">48% CIR</span>
+                        </div>
+                        <a href="ecuador/banco_guayaquil.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇪🇨</span>
+                        </div>
+                        <h3>Banco Pichincha</h3>
+                        <p class="priority-reason">Largest bank (41% market share), complex infrastructure needs</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$14.2B Assets</span>
+                            <span class="metric">52% CIR</span>
+                        </div>
+                        <a href="ecuador/banco_pichincha.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quick-access">
+                <h2>👔 Executive Intelligence</h2>
+                <div class="country-grid" style="margin-bottom: 2rem;">
+                    <a href="executives/index.html" class="country-card">
+                        <span class="country-flag-large">👔</span>
+                        <h3>Executive Hub</h3>
+                        <p>5 CEOs profiled</p>
+                        <span class="status-badge active">Live</span>
+                    </a>
+                    <a href="executives/antonio_acosta_espinosa.html" class="country-card">
+                        <span class="country-flag-large">🏦</span>
+                        <h3>Pichincha CEO</h3>
+                        <p>Antonio Acosta</p>
+                        <span class="status-badge" style="background: var(--accent-green); color: white;">TIER 1</span>
+                    </a>
+                    <a href="executives/guillermo_lasso_mendoza.html" class="country-card">
+                        <span class="country-flag-large">⭐</span>
+                        <h3>Guayaquil Chairman</h3>
+                        <p>Guillermo Lasso</p>
+                        <span class="status-badge" style="background: var(--accent-green); color: white;">TIER 1</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="quick-access">
+                <h2>🗺️ Countries</h2>
+                <div class="country-grid">
+                    <a href="#" class="country-card" onclick="switchPage('ecuador'); return false;">
+                        <span class="country-flag-large">🇪🇨</span>
+                        <h3>Ecuador</h3>
+                        <p>5 banks • $35B market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
+                    <div class="country-card coming-soon">
+                        <span class="country-flag-large">🇨🇴</span>
+                        <h3>Colombia</h3>
+                        <p>Coming soon</p>
+                        <span class="status-badge">Planned</span>
+                    </div>
+                    <a href="peru/bcp.html" class="country-card">
+                        <span class="country-flag-large">🇵🇪</span>
+                        <h3>Peru</h3>
+                        <p>1 bank • $68B+ market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <!-- Ecuador Page -->
+        <div id="page-ecuador" class="page">
+            <header class="page-header">
+                <a href="#" onclick="switchPage('dashboard'); return false;" class="back-link">← Back to Dashboard</a>
+                <h1>🇪🇨 Ecuador Banking Sector</h1>
+                <p class="subtitle">Top 5 banks by total assets • Dollarized economy (USD)</p>
+            </header>
+            
+            <div class="info-banner">
+                <strong>Market Overview:</strong> ~$35B total banking assets • 75% concentrated in Top 5 • Conservative regulatory environment • Digital banking growing rapidly
+            </div>
+
+            <section class="bank-table-section">
+                <h2>📊 Bank Comparison</h2>
+                <div class="table-container">
+                    <table class="bank-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Bank</th>
+                                <th>Assets</th>
+                                <th>3Y Growth</th>
+                                <th>ROE</th>
+                                <th>CIR</th>
+                                <th>NPL</th>
+                                <th>Opportunity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tier1-row">
+                                <td>1</td>
+                                <td><strong>Banco Pichincha</strong></td>
+                                <td>$14.2B</td>
+                                <td>+18%</td>
+                                <td>12.5%</td>
+                                <td>52%</td>
+                                <td>3.2%</td>
+                                <td><span class="opportunity high">🟢 HIGH</span></td>
+                                <td><a href="ecuador/banco_pichincha.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr class="tier1-row">
+                                <td>2</td>
+                                <td><strong>Banco Guayaquil</strong></td>
+                                <td>$6.1B</td>
+                                <td>+22%</td>
+                                <td>14.8%</td>
+                                <td>48%</td>
+                                <td>2.8%</td>
+                                <td><span class="opportunity high">🟢 HIGH</span></td>
+                                <td><a href="ecuador/banco_guayaquil.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Produbanco</td>
+                                <td>$5.4B</td>
+                                <td>+15%</td>
+                                <td>13.2%</td>
+                                <td>51%</td>
+                                <td>2.5%</td>
+                                <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                                <td><a href="ecuador/produbanco.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Banco del Pacífico</td>
+                                <td>$5.2B</td>
+                                <td>+8%</td>
+                                <td>8.5%</td>
+                                <td>58%</td>
+                                <td>4.1%</td>
+                                <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                                <td><a href="ecuador/banco_pacifico.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>Banco Internacional</td>
+                                <td>$4.1B</td>
+                                <td>+12%</td>
+                                <td>11.8%</td>
+                                <td>54%</td>
+                                <td>3.0%</td>
+                                <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                                <td><a href="ecuador/banco_internacional.html" class="btn-small">Details</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="infra-matrix">
+                <h2>🔥 Infrastructure Opportunity Matrix</h2>
+                <div class="table-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Bank</th>
+                                <th>Compute</th>
+                                <th>Storage</th>
+                                <th>Network</th>
+                                <th>Core Banking</th>
+                                <th>Digital Platform</th>
+                                <th>Data/AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Pichincha</strong></td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Guayaquil</strong></td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                            </tr>
+                            <tr>
+                                <td>Produbanco</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                            </tr>
+                            <tr>
+                                <td>Pacífico</td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                                <td>🔴</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                            </tr>
+                            <tr>
+                                <td>Internacional</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🔴</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="legend">🟢 Active opportunity | 🟡 Latent need | 🔴 Low priority / blocked</p>
+            </section>
+
+            <section class="engagement-section">
+                <h2>🚀 Recommended Engagement Sequence</h2>
+                <div class="engagement-list">
+                    <div class="engagement-item priority-1">
+                        <span class="eng-number">1</span>
+                        <div class="eng-content">
+                            <h4>Banco Guayaquil</h4>
+                            <p>CIO/CTO outreach on digital infrastructure scaling</p>
+                            <span class="eng-timing">Immediate</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item priority-1">
+                        <span class="eng-number">2</span>
+                        <div class="eng-content">
+                            <h4>Banco Pichincha</h4>
+                            <p>Multi-threaded approach (CIO + Infrastructure Director)</p>
+                            <span class="eng-timing">Immediate</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="eng-number">3</span>
+                        <div class="eng-content">
+                            <h4>Banco Internacional</h4>
+                            <p>CFO/COO angle on operational efficiency</p>
+                            <span class="eng-timing">30 days</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="eng-number">4</span>
+                        <div class="eng-content">
+                            <h4>Produbanco</h4>
+                            <p>Check Grupo Promerica regional relationship first</p>
+                            <span class="eng-timing">30-60 days</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item low">
+                        <span class="eng-number">5</span>
+                        <div class="eng-content">
+                            <h4>Banco del Pacífico</h4>
+                            <p>Public sector procurement process - opportunistic</p>
+                            <span class="eng-timing">When RFP opens</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
