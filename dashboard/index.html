@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LATAM LATAM Intelligence | Zuni</title>
+    <title>LATAM Bank Intelligence | Zuni</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
             </li>
-            <li class="nav-item" onclick="window.location.href='peru/bcp.html'">
+            <li class="nav-item" data-page="peru">
                 <span class="nav-icon">🇵🇪</span>
                 <span>Peru</span>
             </li>
@@ -34,7 +34,7 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix</p>
-            <p class="version">v4.1 • 12:10 UTC</p>
+            <p class="version">v3.1 • Feb 2025</p>
         </div>
     </nav>
 
@@ -42,7 +42,7 @@
         <!-- Dashboard Page -->
         <div id="page-dashboard" class="page active">
             <header class="page-header">
-                <h1>🏦 LATAM LATAM Intelligence Dashboard</h1>
+                <h1>🏦 LATAM Bank Intelligence Dashboard</h1>
                 <p class="subtitle">Strategic infrastructure sales intelligence for Zuni</p>
             </header>
 
@@ -50,7 +50,7 @@
                 <div class="stat-card">
                     <span class="stat-icon">🏦</span>
                     <div class="stat-content">
-                        <h3>6</h3>
+                        <h3>10</h3>
                         <p>Banks Analyzed</p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="stat-card" onclick="window.location.href='executives/index.html'" style="cursor: pointer;">
                     <span class="stat-icon">👔</span>
                     <div class="stat-content">
-                        <h3>6</h3>
+                        <h3>7</h3>
                         <p>Executive Profiles</p>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <h3>BCP — Banco de Crédito del Perú</h3>
                         <p class="priority-reason">Active meeting prep. César Casabonne + David Sáenz + Diego Cavero</p>
                         <div class="priority-metrics">
-                            <span class="metric">~$55B Assets</span>
+                            <span class="metric">S/240B+ Assets</span>
                             <span class="metric">#1 Peru</span>
                         </div>
                         <a href="peru/bcp.html" class="btn-primary">View Analysis →</a>
@@ -128,19 +128,19 @@
                     <a href="executives/index.html" class="country-card">
                         <span class="country-flag-large">👔</span>
                         <h3>Executive Hub</h3>
-                        <p>5 CEOs profiled</p>
+                        <p>7 executives profiled</p>
                         <span class="status-badge active">Live</span>
                     </a>
+                    <a href="executives/cesar_casabonne_gutierrez.html" class="country-card">
+                        <span class="country-flag-large">🇵🇪</span>
+                        <h3>BCP - Meeting Contact</h3>
+                        <p>César Casabonne</p>
+                        <span class="status-badge" style="background: var(--accent-green); color: white;">🔥 MEETING</span>
+                    </a>
                     <a href="executives/antonio_acosta_espinosa.html" class="country-card">
-                        <span class="country-flag-large">🏦</span>
+                        <span class="country-flag-large">🇪🇨</span>
                         <h3>Pichincha CEO</h3>
                         <p>Antonio Acosta</p>
-                        <span class="status-badge" style="background: var(--accent-green); color: white;">TIER 1</span>
-                    </a>
-                    <a href="executives/guillermo_lasso_mendoza.html" class="country-card">
-                        <span class="country-flag-large">⭐</span>
-                        <h3>Guayaquil Chairman</h3>
-                        <p>Guillermo Lasso</p>
                         <span class="status-badge" style="background: var(--accent-green); color: white;">TIER 1</span>
                     </a>
                 </div>
@@ -155,18 +155,18 @@
                         <p>5 banks • $35B market</p>
                         <span class="status-badge active">Active</span>
                     </a>
+                    <a href="#" class="country-card" onclick="switchPage('peru'); return false;">
+                        <span class="country-flag-large">🇵🇪</span>
+                        <h3>Peru</h3>
+                        <p>5 banks • S/550B+ market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
                     <div class="country-card coming-soon">
                         <span class="country-flag-large">🇨🇴</span>
                         <h3>Colombia</h3>
                         <p>Coming soon</p>
                         <span class="status-badge">Planned</span>
                     </div>
-                    <a href="peru/bcp.html" class="country-card">
-                        <span class="country-flag-large">🇵🇪</span>
-                        <h3>Peru</h3>
-                        <p>1 bank • $68B+ market</p>
-                        <span class="status-badge active">Active</span>
-                    </a>
                 </div>
             </section>
         </div>
@@ -372,6 +372,204 @@
                         </div>
                     </div>
                 </div>
+            </section>
+        </div>
+
+        <!-- Peru Page -->
+        <div id="page-peru" class="page">
+            <header class="page-header">
+                <a href="#" onclick="switchPage('dashboard'); return false;" class="back-link">← Back to Dashboard</a>
+                <h1>🇵🇪 Peru Banking Sector</h1>
+                <p class="subtitle">Top 5 banks by total assets • Currency: Soles (PEN)</p>
+            </header>
+            
+            <div class="info-banner">
+                <strong>Market Overview:</strong> ~S/550B total banking assets • Highly concentrated (BCP ~33%) • Strong digital adoption • Yape phenomenon (15M+ users) • SBS regulated
+            </div>
+
+            <section class="bank-table-section">
+                <h2>📊 Bank Comparison (Top 5 por Activos)</h2>
+                <div class="table-container">
+                    <table class="bank-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Bank</th>
+                                <th>Assets (est.)</th>
+                                <th>Market Share</th>
+                                <th>Holding</th>
+                                <th>Opportunity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tier1-row">
+                                <td>1</td>
+                                <td><strong>BCP</strong></td>
+                                <td>S/240B+</td>
+                                <td>~33%</td>
+                                <td>Credicorp</td>
+                                <td><span class="opportunity high">🟢 HIGH</span></td>
+                                <td><a href="peru/bcp.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>BBVA Perú</td>
+                                <td>S/95B+</td>
+                                <td>~17%</td>
+                                <td>BBVA Group</td>
+                                <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                                <td><span class="btn-small disabled">Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Scotiabank Perú</td>
+                                <td>S/75B+</td>
+                                <td>~13%</td>
+                                <td>Scotiabank</td>
+                                <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                                <td><span class="btn-small disabled">Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Interbank</td>
+                                <td>S/65B+</td>
+                                <td>~12%</td>
+                                <td>Intercorp</td>
+                                <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                                <td><span class="btn-small disabled">Soon</span></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td>BanBif</td>
+                                <td>S/30B+</td>
+                                <td>~5%</td>
+                                <td>IFH Perú</td>
+                                <td><span class="opportunity low">⚪ LOW</span></td>
+                                <td><span class="btn-small disabled">Soon</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 0.5rem;">
+                    📊 Fuente: Estimaciones basadas en reportes SBS y memorias anuales. Assets subject to verification.
+                </p>
+            </section>
+
+            <section class="infra-matrix">
+                <h2>🔥 Infrastructure Opportunity Matrix</h2>
+                <div class="table-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Bank</th>
+                                <th>Compute</th>
+                                <th>Storage</th>
+                                <th>Network</th>
+                                <th>Core Banking</th>
+                                <th>Digital Platform</th>
+                                <th>Data/AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>BCP</strong></td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                            </tr>
+                            <tr>
+                                <td>BBVA Perú</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                            </tr>
+                            <tr>
+                                <td>Scotiabank</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                            </tr>
+                            <tr>
+                                <td>Interbank</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                            </tr>
+                            <tr>
+                                <td>BanBif</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🔴</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="legend">🟢 Active opportunity | 🟡 Latent need / To verify | 🔴 Low priority</p>
+            </section>
+
+            <section class="engagement-section">
+                <h2>🚀 Recommended Engagement Sequence</h2>
+                <div class="engagement-list">
+                    <div class="engagement-item priority-1" style="border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1);">
+                        <span class="eng-number" style="background: var(--accent-green);">🔥</span>
+                        <div class="eng-content">
+                            <h4>BCP — Meeting Scheduled</h4>
+                            <p>César Casabonne + David Sáenz + Diego Cavero. Focus on Banca Personas infrastructure.</p>
+                            <span class="eng-timing">ACTIVE</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="eng-number">2</span>
+                        <div class="eng-content">
+                            <h4>Interbank</h4>
+                            <p>Strong digital focus (Tunki). Local decision-making. Intercorp ecosystem.</p>
+                            <span class="eng-timing">Next wave</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="eng-number">3</span>
+                        <div class="eng-content">
+                            <h4>BBVA Perú</h4>
+                            <p>Global BBVA standards. Local autonomy varies. Verify decision authority.</p>
+                            <span class="eng-timing">30-60 days</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item low">
+                        <span class="eng-number">4</span>
+                        <div class="eng-content">
+                            <h4>Scotiabank Perú</h4>
+                            <p>Canadian parent decisions. Limited local autonomy. Check regional deals.</p>
+                            <span class="eng-timing">Opportunistic</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section-card" style="margin-top: 2rem;">
+                <h2>📝 Market Notes</h2>
+                <ul>
+                    <li><strong>Digital leaders:</strong> BCP (Yape) + Interbank (Tunki) dominan pagos digitales</li>
+                    <li><strong>Concentration:</strong> Top 4 bancos controlan ~75% del mercado</li>
+                    <li><strong>Foreign ownership:</strong> BBVA (España), Scotiabank (Canadá) — procurement decisions may be regional/global</li>
+                    <li><strong>Regulatory:</strong> SBS (Superintendencia de Banca y Seguros) — estable, pro-digital</li>
+                    <li><strong>Currency:</strong> Sol peruano (PEN) — tipo de cambio ~3.7 PEN/USD</li>
+                </ul>
             </section>
         </div>
     </main>
