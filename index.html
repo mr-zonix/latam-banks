@@ -23,7 +23,7 @@
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
             </li>
-            <li class="nav-item" onclick="window.location.href='peru/bcp.html'">
+            <li class="nav-item" data-page="peru">
                 <span class="nav-icon">🇵🇪</span>
                 <span>Peru</span>
             </li>
@@ -34,7 +34,7 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix 🏦</p>
-            <p class="version">v4.1 • 12:10 UTC</p>
+            <p class="version">v4.2 • 06:23 UTC</p>
         </div>
     </nav>
 
@@ -50,7 +50,7 @@
                 <div class="stat-card">
                     <span class="stat-icon">🏦</span>
                     <div class="stat-content">
-                        <h3>6</h3>
+                        <h3>9</h3>
                         <p>Banks Analyzed</p>
                     </div>
                 </div>
@@ -71,7 +71,7 @@
                 <div class="stat-card" onclick="window.location.href='executives/index.html'" style="cursor: pointer;">
                     <span class="stat-icon">👔</span>
                     <div class="stat-content">
-                        <h3>6</h3>
+                        <h3>9</h3>
                         <p>Executive Profiles</p>
                     </div>
                 </div>
@@ -161,10 +161,10 @@
                         <p>Coming soon</p>
                         <span class="status-badge">Planned</span>
                     </div>
-                    <a href="peru/bcp.html" class="country-card">
+                    <a href="#" class="country-card" onclick="switchPage('peru'); return false;">
                         <span class="country-flag-large">🇵🇪</span>
                         <h3>Peru</h3>
-                        <p>1 bank • $68B+ market</p>
+                        <p>4 banks • $150B+ market</p>
                         <span class="status-badge active">Active</span>
                     </a>
                 </div>
@@ -369,6 +369,176 @@
                             <h4>Banco del Pacífico</h4>
                             <p>Public sector procurement process - opportunistic</p>
                             <span class="eng-timing">When RFP opens</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- Peru Page -->
+        <div id="page-peru" class="page">
+            <header class="page-header">
+                <a href="#" onclick="switchPage('dashboard'); return false;" class="back-link">← Back to Dashboard</a>
+                <h1>🇵🇪 Peru Banking Sector</h1>
+                <p class="subtitle">Top 4 banks by total assets • Currency: Peruvian Sol (PEN)</p>
+            </header>
+            
+            <div class="info-banner">
+                <strong>Market Overview:</strong> ~$150B total banking assets • 4 major banks control 85%+ • Strong economic growth • Aggressive digital transformation underway
+            </div>
+
+            <section class="bank-table-section">
+                <h2>📊 Bank Comparison</h2>
+                <div class="table-container">
+                    <table class="bank-table">
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Bank</th>
+                                <th>Assets</th>
+                                <th>Market Share</th>
+                                <th>ROE</th>
+                                <th>Digital Users</th>
+                                <th>Opportunity</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="tier1-row">
+                                <td>1</td>
+                                <td><strong>BCP (Credicorp)</strong></td>
+                                <td>~$55B</td>
+                                <td>33.8%</td>
+                                <td>21.3%</td>
+                                <td>11.4M</td>
+                                <td><span class="opportunity high">🟢 HIGH</span></td>
+                                <td><a href="peru/bcp.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr class="tier1-row">
+                                <td>2</td>
+                                <td><strong>BBVA Perú</strong></td>
+                                <td>~$25B</td>
+                                <td>22.1%</td>
+                                <td>18.5%</td>
+                                <td>4.5M</td>
+                                <td><span class="opportunity high">🟢 HIGH</span></td>
+                                <td><a href="peru/bbva_peru.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr class="tier1-row">
+                                <td>3</td>
+                                <td><strong>Interbank</strong></td>
+                                <td>~$18B</td>
+                                <td>14.2%</td>
+                                <td>19.8%</td>
+                                <td>4.2M</td>
+                                <td><span class="opportunity high">🟢 HIGH</span></td>
+                                <td><a href="peru/interbank.html" class="btn-small">Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>Scotiabank Perú</td>
+                                <td>~$16B</td>
+                                <td>13.8%</td>
+                                <td>14.2%</td>
+                                <td>3.1M</td>
+                                <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                                <td><a href="peru/scotiabank_peru.html" class="btn-small">Details</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="infra-matrix">
+                <h2>🔥 Infrastructure Opportunity Matrix</h2>
+                <div class="table-container">
+                    <table class="matrix-table">
+                        <thead>
+                            <tr>
+                                <th>Bank</th>
+                                <th>Compute</th>
+                                <th>Storage</th>
+                                <th>Network</th>
+                                <th>Core Banking</th>
+                                <th>Digital Platform</th>
+                                <th>Data/AI</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>BCP</strong></td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                            </tr>
+                            <tr>
+                                <td><strong>BBVA Perú</strong></td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Interbank</strong></td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟢</td>
+                                <td>🟡</td>
+                            </tr>
+                            <tr>
+                                <td>Scotiabank</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                                <td>🟡</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="legend">🟢 Active opportunity | 🟡 Latent need | 🔴 Low priority / blocked</p>
+            </section>
+
+            <section class="engagement-section">
+                <h2>🚀 Recommended Engagement Sequence</h2>
+                <div class="engagement-list">
+                    <div class="engagement-item priority-1" style="border-left: 4px solid var(--accent-green);">
+                        <span class="eng-number">1</span>
+                        <div class="eng-content">
+                            <h4>🔥 BCP (Credicorp)</h4>
+                            <p>Meeting scheduled. Multi-threaded: César Casabonne, David Sáenz, Diego Cavero</p>
+                            <span class="eng-timing">ACTIVE</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item priority-1">
+                        <span class="eng-number">2</span>
+                        <div class="eng-content">
+                            <h4>Interbank</h4>
+                            <p>Tech-forward culture, aggressive digital transformation. CIO/CTO angle.</p>
+                            <span class="eng-timing">Immediate</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item priority-1">
+                        <span class="eng-number">3</span>
+                        <div class="eng-content">
+                            <h4>BBVA Perú</h4>
+                            <p>Global BBVA tech standards, local execution. CFO/Operations angle.</p>
+                            <span class="eng-timing">Immediate</span>
+                        </div>
+                    </div>
+                    <div class="engagement-item">
+                        <span class="eng-number">4</span>
+                        <div class="eng-content">
+                            <h4>Scotiabank Perú</h4>
+                            <p>Global procurement constraints. Check regional relationship first.</p>
+                            <span class="eng-timing">30-60 days</span>
                         </div>
                     </div>
                 </div>
