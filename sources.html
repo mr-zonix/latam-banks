@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sources & Methodology | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+            <li class="nav-item active">
+                <span class="nav-icon">📚</span>
+                <span>Sources</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v3.5</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <header class="page-header">
+            <h1>📚 Sources & Methodology</h1>
+            <p class="subtitle">Data sources, citations, and methodology for all intelligence in this dashboard</p>
+        </header>
+
+        <!-- Methodology -->
+        <section class="section-card">
+            <h2>🎯 Methodology</h2>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                All data in this dashboard comes from <strong>official public sources</strong>: regulatory filings, annual reports, 
+                investor presentations, and official press releases. Financial metrics are sourced from audited financial statements.
+                Executive information comes from official company announcements and verified news sources.
+            </p>
+            <div style="margin-top: 1rem; padding: 1rem; background: rgba(16, 185, 129, 0.1); border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                <strong>Currency Note:</strong> All values converted to USD using exchange rates noted on each page. 
+                PEN/USD: 3.72 | COP/USD: 4,100 | As of Q4 2024.
+            </div>
+        </section>
+
+        <!-- Peru Sources -->
+        <section class="section-card">
+            <h2>🇵🇪 Peru — Official Sources</h2>
+            
+            <h3 style="margin-top: 1.5rem; color: var(--accent-primary);">Regulatory Bodies</h3>
+            <ul style="color: var(--text-secondary); line-height: 2;">
+                <li><a href="https://www.sbs.gob.pe/" target="_blank" style="color: var(--info);">SBS — Superintendencia de Banca, Seguros y AFP</a> — Banking statistics, financial ratios, market share</li>
+                <li><a href="https://www.asbanc.com.pe/" target="_blank" style="color: var(--info);">ASBANC — Asociación de Bancos del Perú</a> — Industry reports, banking trends</li>
+                <li><a href="https://www.bvl.com.pe/" target="_blank" style="color: var(--info);">BVL — Bolsa de Valores de Lima</a> — Listed bank filings</li>
+            </ul>
+
+            <h3 style="margin-top: 1.5rem; color: var(--accent-primary);">BCP / Credicorp Specific</h3>
+            <ul style="color: var(--text-secondary); line-height: 2;">
+                <li><a href="https://credicorp.gcs-web.com/financial-information/quarterly-results" target="_blank" style="color: var(--info);">Credicorp Investor Relations — Quarterly Results</a> — Earnings releases, efficiency ratio, financial metrics</li>
+                <li><a href="https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0001001290" target="_blank" style="color: var(--info);">SEC EDGAR — Credicorp (BAP)</a> — 20-F annual reports, 6-K quarterly filings</li>
+                <li><a href="https://www.viabcp.com/memoria-integrada" target="_blank" style="color: var(--info);">BCP Memoria Integrada 2024</a> — Annual integrated report</li>
+            </ul>
+
+            <div style="margin-top: 1.5rem; padding: 1rem; background: var(--bg-card); border-radius: 8px;">
+                <h4 style="color: var(--text-primary);">📊 Key Metric: Efficiency Ratio (CIR)</h4>
+                <p style="color: var(--text-secondary); margin-top: 0.5rem;">
+                    <strong>Source:</strong> Credicorp Earnings Release, "BCP Stand-alone" section<br>
+                    <strong>Definition:</strong> Operating Expenses / Total Operating Income<br>
+                    <strong>Historical Range:</strong> 41-44% (2022-2024)<br>
+                    <strong>Q3 2022 Reference:</strong> 43.9% (Seeking Alpha, citing Credicorp filings)
+                </p>
+            </div>
+        </section>
+
+        <!-- Ecuador Sources -->
+        <section class="section-card">
+            <h2>🇪🇨 Ecuador — Official Sources</h2>
+            <ul style="color: var(--text-secondary); line-height: 2;">
+                <li><a href="https://www.superbancos.gob.ec/" target="_blank" style="color: var(--info);">Superintendencia de Bancos Ecuador</a> — Bank rankings, financial data</li>
+                <li><a href="https://www.asobanca.org.ec/" target="_blank" style="color: var(--info);">ASOBANCA — Asociación de Bancos del Ecuador</a> — Industry statistics</li>
+                <li><a href="https://www.bolsadequito.com/" target="_blank" style="color: var(--info);">Bolsa de Valores de Quito</a> — Listed company filings</li>
+            </ul>
+        </section>
+
+        <!-- Colombia Sources -->
+        <section class="section-card">
+            <h2>🇨🇴 Colombia — Official Sources</h2>
+            <ul style="color: var(--text-secondary); line-height: 2;">
+                <li><a href="https://www.superfinanciera.gov.co/" target="_blank" style="color: var(--info);">Superintendencia Financiera de Colombia</a> — Banking statistics, regulatory filings</li>
+                <li><a href="https://www.asobancaria.com/" target="_blank" style="color: var(--info);">ASOBANCARIA — Asociación Bancaria de Colombia</a> — Industry reports</li>
+                <li><a href="https://www.bvc.com.co/" target="_blank" style="color: var(--info);">BVC — Bolsa de Valores de Colombia</a> — Listed bank filings</li>
+            </ul>
+        </section>
+
+        <!-- Executive Sources -->
+        <section class="section-card">
+            <h2>👔 Executive Information Sources</h2>
+            <ul style="color: var(--text-secondary); line-height: 2;">
+                <li>Official company press releases and announcements</li>
+                <li>LinkedIn profiles (verified company accounts)</li>
+                <li>Annual reports — Board of Directors sections</li>
+                <li>News sources: Infomercado, Gestión, El Comercio, Semana Económica</li>
+                <li>Conference presentations and earnings calls</li>
+            </ul>
+        </section>
+
+        <!-- Data Verification -->
+        <section class="section-card">
+            <h2>✅ Data Verification</h2>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Data Type</th>
+                            <th>Primary Source</th>
+                            <th>Verification</th>
+                            <th>Last Updated</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Financial Metrics (Assets, Revenue)</td>
+                            <td>Audited Annual Reports</td>
+                            <td>Cross-checked with regulatory filings</td>
+                            <td>Q4 2024</td>
+                        </tr>
+                        <tr>
+                            <td>Market Share</td>
+                            <td>Banking Regulators (SBS, SFC, SB)</td>
+                            <td>Official statistics</td>
+                            <td>Nov 2024</td>
+                        </tr>
+                        <tr>
+                            <td>Efficiency Ratios</td>
+                            <td>Investor Presentations</td>
+                            <td>Earnings releases</td>
+                            <td>Q3 2024</td>
+                        </tr>
+                        <tr>
+                            <td>Executive Roles</td>
+                            <td>Company Announcements</td>
+                            <td>Press releases</td>
+                            <td>Feb 2026</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Disclaimer -->
+        <section class="section-card" style="border-left: 4px solid var(--warning);">
+            <h2>⚠️ Disclaimer</h2>
+            <p style="color: var(--text-secondary); line-height: 1.8;">
+                This dashboard is for <strong>internal commercial intelligence purposes only</strong>. 
+                All information is sourced from public records and official filings. 
+                While we strive for accuracy, financial data should be verified against primary sources before use in formal presentations.
+                This is not investment advice.
+            </p>
+            <p style="color: var(--text-muted); margin-top: 1rem; font-size: 0.9rem;">
+                Last dashboard update: February 2026 | Contact: Zuni | Built by Mr Zonix
+            </p>
+        </section>
+
+    </main>
+</body>
+</html>
