@@ -33,7 +33,7 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix</p>
-            <p class="version">v3.4 • 05/02 20:36 ECT</p>
+            <p class="version">v3.6 • BCP Ratios Update</p>
         </div>
     </nav>
 
@@ -176,93 +176,368 @@
             </div>
         </section>
 
-        <!-- 3-Year Financial Trend -->
-        <section class="section-card">
-            <h2>📈 Credicorp Financial Trend (3 Years)</h2>
+        <!-- KEY FINANCIAL RATIOS - BCP Stand-Alone -->
+        <section class="section-card" style="border: 2px solid var(--accent-green);">
+            <h2>📊 Ratios Financieros Clave — BCP Stand-Alone</h2>
             <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-                Source: NYSE (BAP) financial filings. BCP represents ~75% of Credicorp revenue.
+                Fuente: SBS Perú, Credicorp Earnings Release (BCP segment), Memoria Integrada BCP | PEN/USD: 3.72
+            </p>
+            <div class="key-metrics" style="margin-bottom: 1.5rem;">
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">$55B</div>
+                    <div class="label">Total Assets</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">33%</div>
+                    <div class="label">Market Share</div>
+                </div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">18.5%</div>
+                    <div class="label">ROE</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">42%</div>
+                    <div class="label">CIR (Efficiency)</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">4.8%</div>
+                    <div class="label">NPL Ratio</div>
+                </div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">+11%</div>
+                    <div class="label">CAGR 3Y</div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Ratio</th>
+                            <th>BCP 2024</th>
+                            <th>Industria Perú</th>
+                            <th>Benchmark</th>
+                            <th>Interpretación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ROE (Return on Equity)</strong></td>
+                            <td style="color: var(--accent-green);"><strong>18.5%</strong></td>
+                            <td>14.2%</td>
+                            <td>15%+</td>
+                            <td>🟢 Superior — Banco más rentable de Perú</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ROAE (Avg Equity)</strong></td>
+                            <td style="color: var(--accent-green);"><strong>21.3%</strong></td>
+                            <td>~16%</td>
+                            <td>18%+</td>
+                            <td>🟢 Excelente capacidad de generar valor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CIR (Cost-to-Income)</strong></td>
+                            <td><strong>42%</strong></td>
+                            <td>48%</td>
+                            <td>&lt;45%</td>
+                            <td>🟢 Eficiente — Mejor que promedio LATAM</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NPL (Non-Performing Loans)</strong></td>
+                            <td><strong>4.8%</strong></td>
+                            <td>4.5%</td>
+                            <td>&lt;3%</td>
+                            <td>🟡 Aceptable — Monitorear microfinanzas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coverage Ratio</strong></td>
+                            <td style="color: var(--accent-green);"><strong>135%</strong></td>
+                            <td>120%</td>
+                            <td>100%+</td>
+                            <td>🟢 Bien provisionado para pérdidas</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NIM (Net Interest Margin)</strong></td>
+                            <td><strong>5.7%</strong></td>
+                            <td>5.2%</td>
+                            <td>5%+</td>
+                            <td>🟢 Spread saludable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CAR (Capital Adequacy)</strong></td>
+                            <td style="color: var(--accent-green);"><strong>14.8%</strong></td>
+                            <td>14.2%</td>
+                            <td>10%+ (SBS)</td>
+                            <td>🟢 Bien capitalizado</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Loans/Deposits</strong></td>
+                            <td><strong>94%</strong></td>
+                            <td>92%</td>
+                            <td>80-100%</td>
+                            <td>🟢 Liquidez adecuada</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3-Year Trend BCP Stand-Alone -->
+        <section class="section-card">
+            <h2>📈 Tendencia Financiera 3 Años — BCP Stand-Alone</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                Fuente: Credicorp Quarterly Results (BCP segment) | SBS Estadísticas
             </p>
             <div class="table-container">
                 <table class="bank-table" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Metric</th>
+                            <th>Métrica</th>
                             <th>2022</th>
                             <th>2023</th>
                             <th>2024</th>
                             <th>Δ 3Y</th>
-                            <th>Signal</th>
+                            <th>Señal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Total Assets</strong></td>
-                            <td>$61.7B</td>
-                            <td>$64.5B</td>
-                            <td>$68.2B</td>
-                            <td style="color: var(--accent-green);">+10.5%</td>
-                            <td>📈 Growing</td>
+                            <td><strong>Activos Totales</strong></td>
+                            <td>$49B</td>
+                            <td>$52B</td>
+                            <td>$55B</td>
+                            <td style="color: var(--accent-green);">+12.2%</td>
+                            <td>📈 Crecimiento sólido</td>
                         </tr>
                         <tr>
-                            <td><strong>Revenue</strong></td>
-                            <td>$5.49B</td>
-                            <td>$6.93B</td>
-                            <td>$7.31B</td>
-                            <td style="color: var(--accent-green);">+33.2%</td>
-                            <td>📈 Strong Growth</td>
+                            <td><strong>Cartera de Créditos</strong></td>
+                            <td>$35B</td>
+                            <td>$38B</td>
+                            <td>$41B</td>
+                            <td style="color: var(--accent-green);">+17.1%</td>
+                            <td>📈 Expansión agresiva</td>
                         </tr>
                         <tr>
-                            <td><strong>Net Income</strong></td>
+                            <td><strong>Depósitos</strong></td>
+                            <td>$38B</td>
+                            <td>$41B</td>
+                            <td>$44B</td>
+                            <td style="color: var(--accent-green);">+15.8%</td>
+                            <td>📈 Base funding fuerte</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ingresos Financieros</strong></td>
+                            <td>$3.8B</td>
+                            <td>$4.1B</td>
+                            <td>$4.3B</td>
+                            <td style="color: var(--accent-green);">+13.2%</td>
+                            <td>📈 Revenue growth</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Utilidad Neta</strong></td>
+                            <td>$1.1B</td>
                             <td>$1.25B</td>
-                            <td>$1.34B</td>
-                            <td>$1.50B</td>
-                            <td style="color: var(--accent-green);">+20.0%</td>
-                            <td>📈 Healthy</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Total Equity</strong></td>
-                            <td>$7.61B</td>
-                            <td>$8.77B</td>
-                            <td>$9.14B</td>
-                            <td style="color: var(--accent-green);">+20.2%</td>
-                            <td>📈 Solid</td>
+                            <td>$1.4B</td>
+                            <td style="color: var(--accent-green);">+27.3%</td>
+                            <td>📈 Muy fuerte</td>
                         </tr>
                         <tr>
                             <td><strong>ROE</strong></td>
-                            <td>16.4%</td>
-                            <td>15.3%</td>
-                            <td>16.4%</td>
-                            <td>—</td>
-                            <td>➡️ Stable (Strong)</td>
+                            <td>16.2%</td>
+                            <td>17.8%</td>
+                            <td>18.5%</td>
+                            <td style="color: var(--accent-green);">+2.3pp</td>
+                            <td>📈 Mejorando</td>
                         </tr>
                         <tr>
-                            <td><strong>Profit Margin</strong></td>
-                            <td>22.8%</td>
-                            <td>19.3%</td>
-                            <td>20.5%</td>
-                            <td style="color: var(--accent-yellow);">-2.3pp</td>
-                            <td>➡️ Normalized</td>
+                            <td><strong>CIR (Efficiency Ratio)</strong></td>
+                            <td>44.5%</td>
+                            <td>43.2%</td>
+                            <td>42.0%</td>
+                            <td style="color: var(--accent-green);">-2.5pp</td>
+                            <td>📈 Más eficiente</td>
                         </tr>
                         <tr>
-                            <td><strong>CIR (SG&A/Rev)</strong></td>
-                            <td>36.7%</td>
-                            <td>33.5%</td>
-                            <td>35.1%</td>
-                            <td style="color: var(--accent-green);">-1.6pp</td>
-                            <td>📈 Improving</td>
+                            <td><strong>NPL Ratio</strong></td>
+                            <td>4.2%</td>
+                            <td>4.5%</td>
+                            <td>4.8%</td>
+                            <td style="color: var(--accent-yellow);">+0.6pp</td>
+                            <td>🟡 Leve deterioro</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Market Share</strong></td>
+                            <td>31%</td>
+                            <td>32%</td>
+                            <td>33%</td>
+                            <td style="color: var(--accent-green);">+2pp</td>
+                            <td>📈 Ganando share</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             
             <div class="alert-box" style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">🎯 Commercial Insight</h4>
-                <p style="margin: 0;"><strong>Growth trajectory confirmed.</strong> Assets +10%, Revenue +33%, Net Income +20% in 2 years. ROE stable at 16%+ indicates strong capacity to invest in infrastructure. This is a bank that's growing AND profitable — they have budget for strategic investments.</p>
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">🎯 Análisis Comercial</h4>
+                <p style="margin: 0;"><strong>Trifecta perfecta:</strong> Creciendo activos (+12%), mejorando rentabilidad (ROE +2.3pp), y ganando eficiencia (CIR -2.5pp). BCP está en su mejor momento financiero. El único flag es el leve aumento en NPL (4.8%) que refleja expansión en microfinanzas. Tienen capacidad y apetito para invertir en infraestructura que soporte este crecimiento.</p>
+            </div>
+        </section>
+
+        <!-- Peer Comparison -->
+        <section class="section-card">
+            <h2>⚔️ BCP vs Competencia — Perú Top 4</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                Fuente: SBS Perú Nov 2024 | Elaboración propia
+            </p>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Banco</th>
+                            <th>Assets</th>
+                            <th>Mkt Share</th>
+                            <th>ROE</th>
+                            <th>CIR</th>
+                            <th>NPL</th>
+                            <th>NIM</th>
+                            <th>Ventaja BCP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: rgba(16, 185, 129, 0.15);">
+                            <td><strong>🥇 BCP</strong></td>
+                            <td><strong>$55B</strong></td>
+                            <td><strong>33%</strong></td>
+                            <td style="color: var(--accent-green);"><strong>18.5%</strong></td>
+                            <td style="color: var(--accent-green);"><strong>42%</strong></td>
+                            <td>4.8%</td>
+                            <td><strong>5.7%</strong></td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>🥈 BBVA Perú</td>
+                            <td>$25B</td>
+                            <td>21%</td>
+                            <td>15.2%</td>
+                            <td>45%</td>
+                            <td style="color: var(--accent-green);">4.2%</td>
+                            <td>5.1%</td>
+                            <td>BCP +3.3pp ROE</td>
+                        </tr>
+                        <tr>
+                            <td>🥉 Interbank</td>
+                            <td>$18B</td>
+                            <td>15%</td>
+                            <td>16.8%</td>
+                            <td>48%</td>
+                            <td style="color: var(--accent-green);">3.9%</td>
+                            <td>5.4%</td>
+                            <td>BCP -6pp CIR</td>
+                        </tr>
+                        <tr>
+                            <td>4. Scotiabank</td>
+                            <td>$17B</td>
+                            <td>14%</td>
+                            <td>12.1%</td>
+                            <td>52%</td>
+                            <td>5.2%</td>
+                            <td>4.8%</td>
+                            <td>BCP +6.4pp ROE</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Ángulo para la Reunión</h4>
+                <p style="margin: 0;">"BCP tiene el mejor CIR del mercado (42% vs 48% industria) y el mejor ROE (18.5%). ¿Cómo mantienen esta ventaja mientras escalan a 16M+ clientes? La infraestructura correcta es diferenciador competitivo."</p>
+            </div>
+        </section>
+
+        <!-- Investment Capacity Analysis -->
+        <section class="section-card">
+            <h2>💰 Capacidad de Inversión — Análisis</h2>
+            <div class="key-metrics" style="margin-bottom: 1.5rem;">
+                <div class="metric-item">
+                    <div class="value">$1.4B</div>
+                    <div class="label">Utilidad Neta 2024</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">~$200M</div>
+                    <div class="label">Est. CAPEX Tecnología</div>
+                </div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">14.8%</div>
+                    <div class="label">Capital Adequacy</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">AAA</div>
+                    <div class="label">Rating Local (Apoyo)</div>
+                </div>
+            </div>
+            
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Indicador</th>
+                            <th>Valor</th>
+                            <th>Implicancia para Inversión Tech</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Utilidad Neta</strong></td>
+                            <td>$1.4B (+12% YoY)</td>
+                            <td>Generación de caja para inversiones discrecionales</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Capital Tier 1</strong></td>
+                            <td>14.8% (vs 10% mínimo)</td>
+                            <td>Buffer de 4.8pp = capacidad para invertir sin stress</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CIR 42%</strong></td>
+                            <td>Mejor del mercado</td>
+                            <td>No hay presión de cortar costos — pueden invertir</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ROAE 21.3%</strong></td>
+                            <td>Top de la industria</td>
+                            <td>Accionistas satisfechos = management tiene libertad</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Credicorp Backing</strong></td>
+                            <td>NYSE: BAP ($29B mkt cap)</td>
+                            <td>Acceso a capital internacional si necesitan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">✅ Conclusión: Alta Capacidad de Inversión</h4>
+                <p style="margin: 0;">BCP tiene <strong>todas las señales verdes</strong> para inversión en tecnología: utilidades récord, capital excedente, mejor eficiencia del mercado, y respaldo de Credicorp. El presupuesto de tecnología se decide por valor estratégico, no por limitaciones financieras.</p>
+            </div>
+        </section>
+
+        <!-- Original section continues with insights -->
+        <section class="section-card">
+            <h2>🎯 Insights Comerciales Clave</h2>
+            
+            <div class="alert-box" style="margin-top: 1rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">💰 El Número que Importa: CIR 42%</h4>
+                <p style="margin: 0;">BCP opera con el mejor CIR del mercado peruano. Esto significa que <strong>no están en modo recorte</strong> — están en modo optimización. La conversación no es "reducir costos" sino "invertir donde genera más valor". Infraestructura que mejore eficiencia sin subir CIR es atractiva.</p>
             </div>
             
             <div class="alert-box" style="margin-top: 1rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Meeting Angle</h4>
-                <p style="margin: 0;">"With 33% revenue growth and stable profitability, the question isn't whether BCP can invest — it's where to invest for maximum impact. We help growing institutions like BCP allocate technology budget where it drives the most value."</p>
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">📈 El Story que Vender</h4>
+                <p style="margin: 0;">"BCP creció utilidades 27% en 3 años mientras mejoraba CIR 2.5 puntos. Eso no pasa por accidente — requiere infraestructura que escale. Con 16M de clientes y Yape creciendo exponencialmente, ¿cómo mantienen esa ecuación? La respuesta está en la plataforma tecnológica."</p>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--accent-red); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);">⚠️ El Riesgo que Conocen (y Tú Debes Mencionar)</h4>
+                <p style="margin: 0;">NPL subió de 4.2% a 4.8% en 3 años. No es crisis, pero es tendencia. BCP está expandiendo en microfinanzas (Mibanco) donde el riesgo es mayor. <strong>Esto crea apetito por</strong>: analytics de riesgo crediticio, AI para scoring, plataformas de cobranza inteligente.</p>
             </div>
         </section>
 
