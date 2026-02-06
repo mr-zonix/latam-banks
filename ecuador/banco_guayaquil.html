@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco Guayaquil | LATAM Bank Intelligence</title>
+    <title>Banco Guayaquil | LATAM LATAM Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -11,16 +11,24 @@
     <nav class="sidebar">
         <div class="logo">
             <span class="logo-icon">🏦</span>
-            <span class="logo-text">Bank Intel</span>
+            <span class="logo-text">LATAM Intel</span>
         </div>
         <ul class="nav-menu">
             <li class="nav-item" onclick="window.location.href='../index.html'">
                 <span class="nav-icon">📊</span>
                 <span>Dashboard</span>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active" onclick="window.location.href='../ecuador/index.html'">
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
             </li>
             <li class="nav-item" onclick="window.location.href='../executives/index.html'">
                 <span class="nav-icon">👔</span>
@@ -29,12 +37,12 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix</p>
-            <p class="version">v2.0 • Feb 2025</p>
+            <p class="version">v3.7 • 06/02 08:54 UTC</p>
         </div>
     </nav>
 
     <main class="main-content">
-        <a href="../index.html" class="back-link">← Back to Dashboard</a>
+        <a href="index.html" class="back-link">← Back to Ecuador</a>
         
         <div class="bank-header">
             <div class="bank-title">
@@ -67,10 +75,6 @@
                     <div class="value" style="color: var(--accent-green);">48%</div>
                     <div class="label">CIR (Best)</div>
                 </div>
-                <div class="metric-item">
-                    <div class="value">2.8%</div>
-                    <div class="label">NPL Ratio</div>
-                </div>
             </div>
         </section>
 
@@ -80,132 +84,8 @@
                 <li><strong>Type:</strong> Private Commercial Bank (Founder-controlled, Guillermo Lasso)</li>
                 <li><strong>Founded:</strong> 1923</li>
                 <li><strong>Market Position:</strong> #2 in Ecuador — Aggressive challenger</li>
-                <li><strong>Employees:</strong> ~4,000</li>
-                <li><strong>Branches:</strong> 200+ nationwide</li>
-                <li><strong>Key Differentiator:</strong> Digital-first culture, aggressive innovation</li>
-                <li><strong>Digital Maturity:</strong> 🟢 HIGH — Leading digital bank, mobile-first strategy</li>
+                <li><strong>Digital Maturity:</strong> 🟢 HIGH — Leading digital bank</li>
             </ul>
-        </section>
-
-        <section class="section-card">
-            <h2>💡 Investment Appetite Assessment</h2>
-            <p><strong>Rating: VERY HIGH</strong></p>
-            <ul>
-                <li><strong>Exceptional financial performance</strong> — Best ROE (14.8%) and CIR (48%) in market</li>
-                <li><strong>Fastest growth</strong> — +22% creates urgent infrastructure scaling needs</li>
-                <li><strong>Digital-first DNA</strong> — Technology is strategic differentiator, not cost center</li>
-                <li><strong>Competitive ambition</strong> — Wants to challenge Pichincha for #1</li>
-                <li><strong>Agile decision-making</strong> — Smaller than Pichincha, can move faster</li>
-            </ul>
-        </section>
-
-        <!-- Infrastructure with Specific Brands -->
-        <section class="section-card">
-            <h2>🔧 Infrastructure Stack — Known & Estimated</h2>
-            <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-                <span style="color: var(--accent-green);">●</span> Confirmed &nbsp;
-                <span style="color: var(--accent-yellow);">●</span> Likely/Estimated &nbsp;
-                <span style="color: var(--accent);">●</span> To verify
-            </p>
-            
-            <div class="infra-stack">
-                <!-- Compute -->
-                <div class="infra-layer">
-                    <div class="infra-layer-header">
-                        <span class="infra-layer-icon">💻</span>
-                        <span class="infra-layer-name">Processing & Compute</span>
-                        <span class="infra-layer-opp high">HIGH OPP</span>
-                    </div>
-                    <div class="infra-brands">
-                        <span class="brand-tag likely">Dell PowerEdge</span>
-                        <span class="brand-tag likely">VMware vSphere</span>
-                        <span class="brand-tag">HPE ProLiant</span>
-                        <span class="brand-tag likely">AWS</span>
-                    </div>
-                    <p class="infra-notes">More modern infrastructure than Pichincha (less legacy debt). VMware-based virtualization. Active cloud adoption — likely AWS given digital-first culture. Kubernetes/container workloads probable.</p>
-                </div>
-
-                <!-- Storage -->
-                <div class="infra-layer">
-                    <div class="infra-layer-header">
-                        <span class="infra-layer-icon">💾</span>
-                        <span class="infra-layer-name">Enterprise Storage</span>
-                        <span class="infra-layer-opp medium">MED OPP</span>
-                    </div>
-                    <div class="infra-brands">
-                        <span class="brand-tag likely">Dell EMC PowerStore</span>
-                        <span class="brand-tag likely">Pure Storage</span>
-                        <span class="brand-tag">NetApp</span>
-                        <span class="brand-tag">AWS S3/EBS</span>
-                    </div>
-                    <p class="infra-notes">Likely more modern storage estate — digital-first banks often leapfrog to all-flash earlier. Hybrid storage strategy with cloud tier. Less legacy SAN debt than Pichincha.</p>
-                </div>
-
-                <!-- Networking -->
-                <div class="infra-layer">
-                    <div class="infra-layer-header">
-                        <span class="infra-layer-icon">🌐</span>
-                        <span class="infra-layer-name">Network Infrastructure</span>
-                        <span class="infra-layer-opp medium">MED OPP</span>
-                    </div>
-                    <div class="infra-brands">
-                        <span class="brand-tag confirmed">Cisco</span>
-                        <span class="brand-tag likely">SD-WAN</span>
-                        <span class="brand-tag likely">Fortinet</span>
-                        <span class="brand-tag">Palo Alto</span>
-                    </div>
-                    <p class="infra-notes">200+ branches — smaller footprint than Pichincha but still significant. More likely to have adopted SD-WAN earlier given digital focus. Modern security stack.</p>
-                </div>
-
-                <!-- Core Banking -->
-                <div class="infra-layer">
-                    <div class="infra-layer-header">
-                        <span class="infra-layer-icon">🏛️</span>
-                        <span class="infra-layer-name">Core Banking</span>
-                        <span class="infra-layer-opp high">HIGH OPP</span>
-                    </div>
-                    <div class="infra-brands">
-                        <span class="brand-tag likely">Temenos T24</span>
-                        <span class="brand-tag">Mambu</span>
-                        <span class="brand-tag">Thought Machine</span>
-                        <span class="brand-tag">Custom APIs</span>
-                    </div>
-                    <p class="infra-notes">More likely to have modernized core or be actively evaluating. Digital-first strategy requires flexible core. API-first architecture probable. Possible next-gen core evaluation (Mambu, Thought Machine).</p>
-                </div>
-
-                <!-- Digital Platform -->
-                <div class="infra-layer">
-                    <div class="infra-layer-header">
-                        <span class="infra-layer-icon">📱</span>
-                        <span class="infra-layer-name">Digital Banking Platform</span>
-                        <span class="infra-layer-opp high">HIGH OPP</span>
-                    </div>
-                    <div class="infra-brands">
-                        <span class="brand-tag likely">Backbase</span>
-                        <span class="brand-tag likely">AWS Native</span>
-                        <span class="brand-tag likely">Kubernetes</span>
-                        <span class="brand-tag">React/Node.js</span>
-                    </div>
-                    <p class="infra-notes">Digital flagship bank. Modern microservices architecture likely. Cloud-native approach. Continuous deployment pipeline. Platform scaling for aggressive growth is key requirement.</p>
-                </div>
-
-                <!-- Data & Analytics -->
-                <div class="infra-layer">
-                    <div class="infra-layer-header">
-                        <span class="infra-layer-icon">📊</span>
-                        <span class="infra-layer-name">Data, Analytics & AI</span>
-                        <span class="infra-layer-opp medium">MED OPP</span>
-                    </div>
-                    <div class="infra-brands">
-                        <span class="brand-tag likely">Tableau/Power BI</span>
-                        <span class="brand-tag likely">AWS Redshift</span>
-                        <span class="brand-tag">Snowflake</span>
-                        <span class="brand-tag">Databricks</span>
-                        <span class="brand-tag likely">Python/ML</span>
-                    </div>
-                    <p class="infra-notes">More advanced than industry average given digital focus. Cloud data warehouse likely. Active analytics team. AI/ML for customer personalization and risk. Less legacy BI debt than Pichincha.</p>
-                </div>
-            </div>
         </section>
 
         <section class="section-card">
@@ -215,80 +95,35 @@
                     <span class="priority-num">1</span>
                     <div class="priority-content">
                         <h4>Digital Platform Scaling</h4>
-                        <p>"Infrastructure that keeps pace with your growth." Container platform, auto-scaling, cloud optimization. Growth is creating urgent scaling needs.</p>
+                        <p>Container platform, auto-scaling, cloud optimization.</p>
                     </div>
                 </div>
                 <div class="priority-item high">
                     <span class="priority-num">2</span>
                     <div class="priority-content">
                         <h4>Core Banking Modernization</h4>
-                        <p>"Next-gen core for next-gen banking." API-first core, cloud-native options. Digital strategy may require more flexible core.</p>
-                    </div>
-                </div>
-                <div class="priority-item high">
-                    <span class="priority-num">3</span>
-                    <div class="priority-content">
-                        <h4>Compute / Cloud Optimization</h4>
-                        <p>"Get more from your cloud investment." FinOps, multi-cloud strategy, cloud-native infrastructure.</p>
-                    </div>
-                </div>
-                <div class="priority-item medium">
-                    <span class="priority-num">4</span>
-                    <div class="priority-content">
-                        <h4>Advanced Analytics / AI</h4>
-                        <p>"Turn data into competitive advantage." Real-time personalization, AI-powered decisioning.</p>
+                        <p>API-first core, cloud-native options.</p>
                     </div>
                 </div>
             </div>
-            
-            <div class="commercial-box">
-                <h4>💬 Recommended Engagement Narrative</h4>
-                <p>"Guayaquil's growth trajectory is impressive — but 22% growth creates infrastructure challenges. The question isn't whether to invest in infrastructure, it's whether your current platform can scale fast enough. We help digital-first banks like you stay ahead of the growth curve."</p>
-            </div>
         </section>
 
-        <section class="section-card">
-            <h2>⚠️ Key Objection to Prepare For</h2>
-            <p><strong>"We're already cloud-native and modern."</strong></p>
-            <p>Response: Validate their progress, then focus on optimization and scale. "You've made great choices — now it's about getting more from those investments. How do you optimize cloud spend while scaling 22% per year?"</p>
-        </section>
-
-        <!-- Executive Intelligence with Link -->
         <section class="section-card">
             <h2>👔 Executive Intelligence</h2>
-            
-            <div class="alert-box info" style="margin-bottom: 1rem;">
-                <p style="margin: 0;"><strong>Note:</strong> Guillermo Lasso (Chairman/Founder) is former President of Ecuador. Day-to-day technology decisions handled by professional management. See profile for engagement guidance.</p>
-            </div>
-            
             <div class="exec-grid" style="margin-top: 1rem;">
-                <a href="../executives/guillermo_lasso_mendoza.html" class="exec-card ceo">
-                    <div class="exec-avatar special">GL</div>
+                <a href="../executives/guillermo_lasso_mendoza.html" class="exec-card">
+                    <div class="exec-avatar">GL</div>
                     <div class="exec-info">
                         <h3>Guillermo Lasso Mendoza</h3>
-                        <p class="exec-title">Presidente del Directorio / Chairman</p>
-                        <div class="exec-tags">
-                            <span class="tag influence-high">Founder/Owner</span>
-                            <span class="tag govt">Ex-President</span>
-                        </div>
+                        <p class="exec-title">Chairman (Ex-President Ecuador)</p>
                     </div>
                     <span class="exec-arrow">→</span>
                 </a>
             </div>
-
-            <h3 style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--accent);">Key Roles to Engage (Professional Management)</h3>
-            <ul>
-                <li><strong>CEO / Gerente General</strong> — Operational leadership (profile needed)</li>
-                <li><strong>CIO / Chief Information Officer</strong> — Technology strategy (profile needed)</li>
-                <li><strong>VP Digital Banking</strong> — Digital platform decisions</li>
-                <li><strong>VP Infrastructure / Cloud</strong> — Technical validation</li>
-            </ul>
-            
-            <p style="margin-top: 1rem;"><strong>Engagement Strategy:</strong> Start with professional management (CEO, CIO). Chairman-level engagement only for large strategic deals with proper introduction. Emphasize competitive advantage and growth enablement.</p>
         </section>
 
         <div class="exec-navigation">
-            <a href="../index.html" class="btn-secondary">← Back to Dashboard</a>
+            <a href="index.html" class="btn-secondary">← Back to Ecuador</a>
             <a href="../executives/index.html" class="btn-primary">All Executives →</a>
         </div>
     </main>

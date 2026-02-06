@@ -3,11 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banco de Crédito del Perú (BCP) | LATAM Bank Intelligence</title>
+    <title>Banco de Crédito del Perú (BCP) | LATAM LATAM Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .lang-btn:hover:not(.active) {
+            background: rgba(99, 102, 241, 0.2);
+        }
+        /* Compact metrics */
+        .key-metrics {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .key-metrics .metric-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.75rem;
+        }
+        .key-metrics .metric-item .value {
+            font-size: 1.25rem;
+        }
+        .key-metrics .metric-item .label {
+            font-size: 0.7rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
     <nav class="sidebar">
         <div class="logo">
             <span class="logo-icon">🏦</span>
@@ -33,7 +88,7 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix</p>
-            <p class="version">v3.6 • BCP Ratios Update</p>
+            <p class="version">v3.7 • 06/02 08:54 UTC</p>
         </div>
     </nav>
 
@@ -53,16 +108,16 @@
         </div>
 
         <section class="section-card">
-            <h2>📊 Métricas Clave 2024 (Fuente: Memoria Integrada BCP)</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1rem;">PEN/USD: 3.72 | Todos los valores convertidos a USD</p>
+            <h2 data-en="📊 Key Metrics 2024 (Source: BCP Integrated Report)" data-es="📊 Métricas Clave 2024 (Fuente: Memoria Integrada BCP)">📊 Key Metrics 2024 (Source: BCP Integrated Report)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">PEN/USD: 3.72 | <span data-en="All values converted to USD" data-es="Todos los valores convertidos a USD">All values converted to USD</span></p>
             <div class="key-metrics">
                 <div class="metric-item">
                     <div class="value">$4.3B</div>
-                    <div class="label">Ingresos Totales</div>
+                    <div class="label" data-en="Total Revenue" data-es="Ingresos Totales">Total Revenue</div>
                 </div>
                 <div class="metric-item">
                     <div class="value">$1.4B</div>
-                    <div class="label">Utilidad Neta</div>
+                    <div class="label" data-en="Net Income" data-es="Utilidad Neta">Net Income</div>
                 </div>
                 <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
                     <div class="value" style="color: var(--accent-green);">21.3%</div>
@@ -70,49 +125,49 @@
                 </div>
                 <div class="metric-item">
                     <div class="value">33.8%</div>
-                    <div class="label">Market Share Colocaciones</div>
+                    <div class="label" data-en="Loan Market Share" data-es="Market Share Colocaciones">Loan Market Share</div>
                 </div>
                 <div class="metric-item">
                     <div class="value">35.9%</div>
-                    <div class="label">Market Share Depósitos</div>
+                    <div class="label" data-en="Deposit Market Share" data-es="Market Share Depósitos">Deposit Market Share</div>
                 </div>
             </div>
         </section>
 
-        <!-- Clientes por Segmento -->
+        <!-- Customers by Segment -->
         <section class="section-card">
-            <h2>👥 Clientes por Segmento</h2>
+            <h2 data-en="👥 Customers by Segment" data-es="👥 Clientes por Segmento">👥 Customers by Segment</h2>
             <div class="table-container">
                 <table class="bank-table" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Segmento</th>
-                            <th>Clientes</th>
+                            <th data-en="Segment" data-es="Segmento">Segment</th>
+                            <th data-en="Customers" data-es="Clientes">Customers</th>
                             <th>NPS</th>
-                            <th>Responsable Meeting</th>
+                            <th data-en="Meeting Contact" data-es="Responsable Meeting">Meeting Contact</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Banca Personas</strong></td>
-                            <td>+13 millones</td>
+                            <td><strong data-en="Retail Banking" data-es="Banca Personas">Retail Banking</strong></td>
+                            <td data-en="+13 million" data-es="+13 millones">+13 million</td>
                             <td>54</td>
                             <td>César Casabonne ✓</td>
                         </tr>
                         <tr>
-                            <td><strong>Banca Pequeños Negocios (PyME)</strong></td>
-                            <td>+3 millones</td>
+                            <td><strong data-en="SME Banking" data-es="Banca Pequeños Negocios (PyME)">SME Banking</strong></td>
+                            <td data-en="+3 million" data-es="+3 millones">+3 million</td>
                             <td>65</td>
                             <td>—</td>
                         </tr>
                         <tr>
-                            <td><strong>Banca Mayorista</strong></td>
+                            <td><strong data-en="Wholesale Banking" data-es="Banca Mayorista">Wholesale Banking</strong></td>
                             <td>+11,900</td>
                             <td>—</td>
                             <td>—</td>
                         </tr>
                         <tr>
-                            <td><strong>Banca Privada</strong></td>
+                            <td><strong data-en="Private Banking" data-es="Banca Privada">Private Banking</strong></td>
                             <td>+2,300</td>
                             <td>71</td>
                             <td>—</td>
@@ -120,524 +175,251 @@
                     </tbody>
                 </table>
             </div>
-            <p style="margin-top: 1rem; color: var(--text-muted);"><strong>Total clientes:</strong> ~16+ millones | <strong>NPS General:</strong> 62 | <strong>eNPS Colaboradores:</strong> 62</p>
+            <p style="margin-top: 1rem; color: var(--text-muted);"><strong data-en="Total BCP customers:" data-es="Total clientes BCP:">Total BCP customers:</strong> ~16+ <span data-en="million" data-es="millones">million</span> | <strong>NPS General:</strong> 62 | <strong>eNPS:</strong> 62</p>
         </section>
 
-        <!-- Canales Digitales -->
+        <!-- Digital Channels -->
         <section class="section-card">
-            <h2>📱 Canales Digitales — El Verdadero Diferenciador</h2>
+            <h2 data-en="📱 Digital Channels — The Real Differentiator" data-es="📱 Canales Digitales — El Verdadero Diferenciador">📱 Digital Channels — The Real Differentiator</h2>
             <div class="table-container">
                 <table class="bank-table" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Canal</th>
-                            <th>Usuarios/Clientes</th>
-                            <th>Transacciones 2024</th>
+                            <th data-en="Channel" data-es="Canal">Channel</th>
+                            <th data-en="Users/Customers" data-es="Usuarios/Clientes">Users/Customers</th>
+                            <th data-en="Transactions 2024" data-es="Transacciones 2024">Transactions 2024</th>
                             <th>Highlights</th>
                         </tr>
                     </thead>
                     <tbody>
+                        <tr style="background: rgba(99, 102, 241, 0.1);">
+                            <td><strong data-en="📱 BCP App (Mobile Banking)" data-es="📱 App BCP (Banca Móvil)">📱 BCP App (Mobile Banking)</strong></td>
+                            <td><strong data-en="7.5 million" data-es="7.5 millones">7.5 million</strong> <span data-en="active customers" data-es="clientes activos">active customers</span></td>
+                            <td data-en="810M monetary txns" data-es="810M monetarias">810M monetary txns</td>
+                            <td data-en="31 new features in 2024" data-es="31 nuevas funcionalidades en 2024">31 new features in 2024</td>
+                        </tr>
                         <tr style="background: rgba(16, 185, 129, 0.1);">
-                            <td><strong>🟢 Yape</strong></td>
-                            <td><strong>14 millones</strong> activos</td>
+                            <td><strong>🟢 Yape (Wallet)</strong></td>
+                            <td><strong data-en="14 million" data-es="14 millones">14 million</strong> <span data-en="active users" data-es="usuarios activos">active users</span></td>
                             <td>—</td>
-                            <td>Plataforma #1 pagos digitales Perú</td>
+                            <td data-en="Includes non-BCP customers • #1 digital payments Peru" data-es="Incluye no-clientes BCP • #1 pagos digitales Perú">Includes non-BCP customers • #1 digital payments Peru</td>
                         </tr>
                         <tr>
-                            <td><strong>Banca Móvil</strong></td>
-                            <td>7.5 millones activos</td>
-                            <td>810M monetarias</td>
-                            <td>31 nuevas funcionalidades en 2024</td>
+                            <td><strong data-en="Internet Banking" data-es="Banca por Internet">Internet Banking</strong></td>
+                            <td data-en="531K active" data-es="531 mil activos">531K active</td>
+                            <td data-en="115.7M total" data-es="115.7M total">115.7M total</td>
+                            <td data-en="AI Voicebot launched Dec 2024" data-es="Voicebot IA lanzado dic 2024">AI Voicebot launched Dec 2024</td>
                         </tr>
                         <tr>
-                            <td><strong>Banca por Internet</strong></td>
-                            <td>531 mil activos</td>
-                            <td>115.7M total</td>
-                            <td>Voicebot IA lanzado dic 2024</td>
+                            <td><strong data-en="ATMs/Self-service" data-es="Cajeros/Autoservicio">ATMs/Self-service</strong></td>
+                            <td data-en="2,473 ATMs + 685 devices" data-es="2,473 ATMs + 685 equipos">2,473 ATMs + 685 devices</td>
+                            <td data-en="197M + 4.3M cards" data-es="197M + 4.3M tarjetas">197M + 4.3M cards</td>
+                            <td data-en="Only bank with self-service card issuance" data-es="Únicos con tarjetas autoatendidas">Only bank with self-service card issuance</td>
                         </tr>
                         <tr>
-                            <td><strong>Cajeros/Autoservicio</strong></td>
-                            <td>2,473 ATMs + 685 equipos</td>
-                            <td>197M + 4.3M tarjetas</td>
-                            <td>Únicos con tarjetas autoatendidas</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Agentes BCP</strong></td>
-                            <td>10,634 agentes</td>
+                            <td><strong data-en="BCP Agents" data-es="Agentes BCP">BCP Agents</strong></td>
+                            <td data-en="10,634 agents" data-es="10,634 agentes">10,634 agents</td>
                             <td>—</td>
-                            <td>70% clientes satisfechos</td>
+                            <td data-en="70% customer satisfaction" data-es="70% clientes satisfechos">70% customer satisfaction</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="alert-box" style="margin-top: 1.5rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Insight Clave</h4>
-                <p style="margin: 0;"><strong>76% de clientes son digitales.</strong> BCP tiene escala masiva: 810M de transacciones móviles = infraestructura seria. El desafío es escalar sin perder eficiencia.</p>
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);" data-en="💡 Key Insight" data-es="💡 Insight Clave">💡 Key Insight</h4>
+                <p style="margin: 0;" data-en="76% of BCP customers are digital (~12M). BCP has massive scale: 810M mobile transactions = serious infrastructure. The challenge is scaling without losing efficiency." data-es="76% de clientes BCP son digitales (~12M). BCP tiene escala masiva: 810M de transacciones móviles = infraestructura seria. El desafío es escalar sin perder eficiencia."><strong>76% of BCP customers are digital (~12M).</strong> BCP has massive scale: 810M mobile transactions = serious infrastructure. The challenge is scaling without losing efficiency.</p>
             </div>
-        </section>
-
-        <!-- KEY FINANCIAL RATIOS - BCP Stand-Alone -->
-        <section class="section-card" style="border: 2px solid var(--accent-green);">
-            <h2>📊 Ratios Financieros Clave — BCP Stand-Alone</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-                Fuente: SBS Perú, Credicorp Earnings Release (BCP segment), Memoria Integrada BCP | PEN/USD: 3.72
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);" data-en="Note: Yape (14M) includes users who are not BCP customers — the wallet is open to the general public. The 7.5M Mobile Banking users are verified BCP customers." data-es="Nota: Yape (14M) incluye usuarios que no son clientes BCP — el wallet está abierto al público general. Los 7.5M de Banca Móvil son clientes BCP verificados.">
+                <strong>Note:</strong> Yape (14M) includes users who are not BCP customers — the wallet is open to the general public. The 7.5M Mobile Banking users are verified BCP customers.
             </p>
-            <div class="key-metrics" style="margin-bottom: 1.5rem;">
-                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
-                    <div class="value" style="color: var(--accent-green);">$55B</div>
-                    <div class="label">Total Assets</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">33%</div>
-                    <div class="label">Market Share</div>
-                </div>
-                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
-                    <div class="value" style="color: var(--accent-green);">18.5%</div>
-                    <div class="label">ROE</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">42%</div>
-                    <div class="label">CIR (Efficiency)</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">4.8%</div>
-                    <div class="label">NPL Ratio</div>
-                </div>
-                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
-                    <div class="value" style="color: var(--accent-green);">+11%</div>
-                    <div class="label">CAGR 3Y</div>
-                </div>
-            </div>
-            
-            <div class="table-container">
-                <table class="bank-table" style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Ratio</th>
-                            <th>BCP 2024</th>
-                            <th>Industria Perú</th>
-                            <th>Benchmark</th>
-                            <th>Interpretación</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>ROE (Return on Equity)</strong></td>
-                            <td style="color: var(--accent-green);"><strong>18.5%</strong></td>
-                            <td>14.2%</td>
-                            <td>15%+</td>
-                            <td>🟢 Superior — Banco más rentable de Perú</td>
-                        </tr>
-                        <tr>
-                            <td><strong>ROAE (Avg Equity)</strong></td>
-                            <td style="color: var(--accent-green);"><strong>21.3%</strong></td>
-                            <td>~16%</td>
-                            <td>18%+</td>
-                            <td>🟢 Excelente capacidad de generar valor</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CIR (Cost-to-Income)</strong></td>
-                            <td><strong>42%</strong></td>
-                            <td>48%</td>
-                            <td>&lt;45%</td>
-                            <td>🟢 Eficiente — Mejor que promedio LATAM</td>
-                        </tr>
-                        <tr>
-                            <td><strong>NPL (Non-Performing Loans)</strong></td>
-                            <td><strong>4.8%</strong></td>
-                            <td>4.5%</td>
-                            <td>&lt;3%</td>
-                            <td>🟡 Aceptable — Monitorear microfinanzas</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Coverage Ratio</strong></td>
-                            <td style="color: var(--accent-green);"><strong>135%</strong></td>
-                            <td>120%</td>
-                            <td>100%+</td>
-                            <td>🟢 Bien provisionado para pérdidas</td>
-                        </tr>
-                        <tr>
-                            <td><strong>NIM (Net Interest Margin)</strong></td>
-                            <td><strong>5.7%</strong></td>
-                            <td>5.2%</td>
-                            <td>5%+</td>
-                            <td>🟢 Spread saludable</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CAR (Capital Adequacy)</strong></td>
-                            <td style="color: var(--accent-green);"><strong>14.8%</strong></td>
-                            <td>14.2%</td>
-                            <td>10%+ (SBS)</td>
-                            <td>🟢 Bien capitalizado</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Loans/Deposits</strong></td>
-                            <td><strong>94%</strong></td>
-                            <td>92%</td>
-                            <td>80-100%</td>
-                            <td>🟢 Liquidez adecuada</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </section>
 
-        <!-- 3-Year Trend BCP Stand-Alone -->
+        <!-- 3-Year Financial Trend -->
         <section class="section-card">
-            <h2>📈 Tendencia Financiera 3 Años — BCP Stand-Alone</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-                Fuente: Credicorp Quarterly Results (BCP segment) | SBS Estadísticas
+            <h2>📈 Credicorp Financial Trend (3 Years)</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;" data-en="Source: NYSE (BAP) financial filings. BCP represents ~75% of Credicorp revenue." data-es="Fuente: NYSE (BAP) reportes financieros. BCP representa ~75% de ingresos de Credicorp.">
+                Source: NYSE (BAP) financial filings. BCP represents ~75% of Credicorp revenue.
             </p>
             <div class="table-container">
                 <table class="bank-table" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Métrica</th>
+                            <th data-en="Metric" data-es="Métrica">Metric</th>
                             <th>2022</th>
                             <th>2023</th>
                             <th>2024</th>
                             <th>Δ 3Y</th>
-                            <th>Señal</th>
+                            <th data-en="Signal" data-es="Señal">Signal</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td><strong>Activos Totales</strong></td>
-                            <td>$49B</td>
-                            <td>$52B</td>
-                            <td>$55B</td>
-                            <td style="color: var(--accent-green);">+12.2%</td>
-                            <td>📈 Crecimiento sólido</td>
+                            <td><strong>Total Assets</strong></td>
+                            <td>$61.7B</td>
+                            <td>$64.5B</td>
+                            <td>$68.2B</td>
+                            <td style="color: var(--accent-green);">+10.5%</td>
+                            <td data-en="📈 Growing" data-es="📈 Creciendo">📈 Growing</td>
                         </tr>
                         <tr>
-                            <td><strong>Cartera de Créditos</strong></td>
-                            <td>$35B</td>
-                            <td>$38B</td>
-                            <td>$41B</td>
-                            <td style="color: var(--accent-green);">+17.1%</td>
-                            <td>📈 Expansión agresiva</td>
+                            <td><strong data-en="Revenue" data-es="Ingresos">Revenue</strong></td>
+                            <td>$5.49B</td>
+                            <td>$6.93B</td>
+                            <td>$7.31B</td>
+                            <td style="color: var(--accent-green);">+33.2%</td>
+                            <td data-en="📈 Strong Growth" data-es="📈 Crecimiento Fuerte">📈 Strong Growth</td>
                         </tr>
                         <tr>
-                            <td><strong>Depósitos</strong></td>
-                            <td>$38B</td>
-                            <td>$41B</td>
-                            <td>$44B</td>
-                            <td style="color: var(--accent-green);">+15.8%</td>
-                            <td>📈 Base funding fuerte</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ingresos Financieros</strong></td>
-                            <td>$3.8B</td>
-                            <td>$4.1B</td>
-                            <td>$4.3B</td>
-                            <td style="color: var(--accent-green);">+13.2%</td>
-                            <td>📈 Revenue growth</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Utilidad Neta</strong></td>
-                            <td>$1.1B</td>
+                            <td><strong data-en="Net Income" data-es="Utilidad Neta">Net Income</strong></td>
                             <td>$1.25B</td>
-                            <td>$1.4B</td>
-                            <td style="color: var(--accent-green);">+27.3%</td>
-                            <td>📈 Muy fuerte</td>
+                            <td>$1.34B</td>
+                            <td>$1.50B</td>
+                            <td style="color: var(--accent-green);">+20.0%</td>
+                            <td data-en="📈 Healthy" data-es="📈 Saludable">📈 Healthy</td>
+                        </tr>
+                        <tr>
+                            <td><strong data-en="Total Equity" data-es="Patrimonio Total">Total Equity</strong></td>
+                            <td>$7.61B</td>
+                            <td>$8.77B</td>
+                            <td>$9.14B</td>
+                            <td style="color: var(--accent-green);">+20.2%</td>
+                            <td data-en="📈 Solid" data-es="📈 Sólido">📈 Solid</td>
                         </tr>
                         <tr>
                             <td><strong>ROE</strong></td>
-                            <td>16.2%</td>
-                            <td>17.8%</td>
-                            <td>18.5%</td>
-                            <td style="color: var(--accent-green);">+2.3pp</td>
-                            <td>📈 Mejorando</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CIR (Efficiency Ratio)</strong></td>
-                            <td>44.5%</td>
-                            <td>43.2%</td>
-                            <td>42.0%</td>
-                            <td style="color: var(--accent-green);">-2.5pp</td>
-                            <td>📈 Más eficiente</td>
-                        </tr>
-                        <tr>
-                            <td><strong>NPL Ratio</strong></td>
-                            <td>4.2%</td>
-                            <td>4.5%</td>
-                            <td>4.8%</td>
-                            <td style="color: var(--accent-yellow);">+0.6pp</td>
-                            <td>🟡 Leve deterioro</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Market Share</strong></td>
-                            <td>31%</td>
-                            <td>32%</td>
-                            <td>33%</td>
-                            <td style="color: var(--accent-green);">+2pp</td>
-                            <td>📈 Ganando share</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">🎯 Análisis Comercial</h4>
-                <p style="margin: 0;"><strong>Trifecta perfecta:</strong> Creciendo activos (+12%), mejorando rentabilidad (ROE +2.3pp), y ganando eficiencia (CIR -2.5pp). BCP está en su mejor momento financiero. El único flag es el leve aumento en NPL (4.8%) que refleja expansión en microfinanzas. Tienen capacidad y apetito para invertir en infraestructura que soporte este crecimiento.</p>
-            </div>
-        </section>
-
-        <!-- Peer Comparison -->
-        <section class="section-card">
-            <h2>⚔️ BCP vs Competencia — Perú Top 4</h2>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-                Fuente: SBS Perú Nov 2024 | Elaboración propia
-            </p>
-            <div class="table-container">
-                <table class="bank-table" style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Banco</th>
-                            <th>Assets</th>
-                            <th>Mkt Share</th>
-                            <th>ROE</th>
-                            <th>CIR</th>
-                            <th>NPL</th>
-                            <th>NIM</th>
-                            <th>Ventaja BCP</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr style="background: rgba(16, 185, 129, 0.15);">
-                            <td><strong>🥇 BCP</strong></td>
-                            <td><strong>$55B</strong></td>
-                            <td><strong>33%</strong></td>
-                            <td style="color: var(--accent-green);"><strong>18.5%</strong></td>
-                            <td style="color: var(--accent-green);"><strong>42%</strong></td>
-                            <td>4.8%</td>
-                            <td><strong>5.7%</strong></td>
+                            <td>16.4%</td>
+                            <td>15.3%</td>
+                            <td>16.4%</td>
                             <td>—</td>
+                            <td data-en="➡️ Stable (Strong)" data-es="➡️ Estable (Fuerte)">➡️ Stable (Strong)</td>
                         </tr>
                         <tr>
-                            <td>🥈 BBVA Perú</td>
-                            <td>$25B</td>
-                            <td>21%</td>
-                            <td>15.2%</td>
-                            <td>45%</td>
-                            <td style="color: var(--accent-green);">4.2%</td>
-                            <td>5.1%</td>
-                            <td>BCP +3.3pp ROE</td>
+                            <td><strong data-en="Profit Margin" data-es="Margen de Utilidad">Profit Margin</strong></td>
+                            <td>22.8%</td>
+                            <td>19.3%</td>
+                            <td>20.5%</td>
+                            <td style="color: var(--accent-yellow);">-2.3pp</td>
+                            <td data-en="➡️ Normalized" data-es="➡️ Normalizado">➡️ Normalized</td>
                         </tr>
                         <tr>
-                            <td>🥉 Interbank</td>
-                            <td>$18B</td>
-                            <td>15%</td>
-                            <td>16.8%</td>
-                            <td>48%</td>
-                            <td style="color: var(--accent-green);">3.9%</td>
-                            <td>5.4%</td>
-                            <td>BCP -6pp CIR</td>
-                        </tr>
-                        <tr>
-                            <td>4. Scotiabank</td>
-                            <td>$17B</td>
-                            <td>14%</td>
-                            <td>12.1%</td>
-                            <td>52%</td>
-                            <td>5.2%</td>
-                            <td>4.8%</td>
-                            <td>BCP +6.4pp ROE</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Ángulo para la Reunión</h4>
-                <p style="margin: 0;">"BCP tiene el mejor CIR del mercado (42% vs 48% industria) y el mejor ROE (18.5%). ¿Cómo mantienen esta ventaja mientras escalan a 16M+ clientes? La infraestructura correcta es diferenciador competitivo."</p>
-            </div>
-        </section>
-
-        <!-- Investment Capacity Analysis -->
-        <section class="section-card">
-            <h2>💰 Capacidad de Inversión — Análisis</h2>
-            <div class="key-metrics" style="margin-bottom: 1.5rem;">
-                <div class="metric-item">
-                    <div class="value">$1.4B</div>
-                    <div class="label">Utilidad Neta 2024</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">~$200M</div>
-                    <div class="label">Est. CAPEX Tecnología</div>
-                </div>
-                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
-                    <div class="value" style="color: var(--accent-green);">14.8%</div>
-                    <div class="label">Capital Adequacy</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">AAA</div>
-                    <div class="label">Rating Local (Apoyo)</div>
-                </div>
-            </div>
-            
-            <div class="table-container">
-                <table class="bank-table" style="width: 100%;">
-                    <thead>
-                        <tr>
-                            <th>Indicador</th>
-                            <th>Valor</th>
-                            <th>Implicancia para Inversión Tech</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Utilidad Neta</strong></td>
-                            <td>$1.4B (+12% YoY)</td>
-                            <td>Generación de caja para inversiones discrecionales</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Capital Tier 1</strong></td>
-                            <td>14.8% (vs 10% mínimo)</td>
-                            <td>Buffer de 4.8pp = capacidad para invertir sin stress</td>
-                        </tr>
-                        <tr>
-                            <td><strong>CIR 42%</strong></td>
-                            <td>Mejor del mercado</td>
-                            <td>No hay presión de cortar costos — pueden invertir</td>
-                        </tr>
-                        <tr>
-                            <td><strong>ROAE 21.3%</strong></td>
-                            <td>Top de la industria</td>
-                            <td>Accionistas satisfechos = management tiene libertad</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Credicorp Backing</strong></td>
-                            <td>NYSE: BAP ($29B mkt cap)</td>
-                            <td>Acceso a capital internacional si necesitan</td>
+                            <td><strong>CIR (SG&A/Rev)</strong></td>
+                            <td>36.7%</td>
+                            <td>33.5%</td>
+                            <td>35.1%</td>
+                            <td style="color: var(--accent-green);">-1.6pp</td>
+                            <td data-en="📈 Improving" data-es="📈 Mejorando">📈 Improving</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             
             <div class="alert-box" style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">✅ Conclusión: Alta Capacidad de Inversión</h4>
-                <p style="margin: 0;">BCP tiene <strong>todas las señales verdes</strong> para inversión en tecnología: utilidades récord, capital excedente, mejor eficiencia del mercado, y respaldo de Credicorp. El presupuesto de tecnología se decide por valor estratégico, no por limitaciones financieras.</p>
-            </div>
-        </section>
-
-        <!-- Original section continues with insights -->
-        <section class="section-card">
-            <h2>🎯 Insights Comerciales Clave</h2>
-            
-            <div class="alert-box" style="margin-top: 1rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">💰 El Número que Importa: CIR 42%</h4>
-                <p style="margin: 0;">BCP opera con el mejor CIR del mercado peruano. Esto significa que <strong>no están en modo recorte</strong> — están en modo optimización. La conversación no es "reducir costos" sino "invertir donde genera más valor". Infraestructura que mejore eficiencia sin subir CIR es atractiva.</p>
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">🎯 Commercial Insight</h4>
+                <p style="margin: 0;" data-en="Growth trajectory confirmed. Assets +10%, Revenue +33%, Net Income +20% in 2 years. ROE stable at 16%+ indicates strong capacity to invest in infrastructure. This is a bank that's growing AND profitable — they have budget for strategic investments." data-es="Trayectoria de crecimiento confirmada. Activos +10%, Ingresos +33%, Utilidad Neta +20% en 2 años. ROE estable en 16%+ indica fuerte capacidad de inversión en infraestructura. Es un banco que crece Y es rentable — tienen presupuesto para inversiones estratégicas."><strong>Growth trajectory confirmed.</strong> Assets +10%, Revenue +33%, Net Income +20% in 2 years. ROE stable at 16%+ indicates strong capacity to invest in infrastructure. This is a bank that's growing AND profitable — they have budget for strategic investments.</p>
             </div>
             
             <div class="alert-box" style="margin-top: 1rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">📈 El Story que Vender</h4>
-                <p style="margin: 0;">"BCP creció utilidades 27% en 3 años mientras mejoraba CIR 2.5 puntos. Eso no pasa por accidente — requiere infraestructura que escale. Con 16M de clientes y Yape creciendo exponencialmente, ¿cómo mantienen esa ecuación? La respuesta está en la plataforma tecnológica."</p>
-            </div>
-            
-            <div class="alert-box" style="margin-top: 1rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--accent-red); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);">⚠️ El Riesgo que Conocen (y Tú Debes Mencionar)</h4>
-                <p style="margin: 0;">NPL subió de 4.2% a 4.8% en 3 años. No es crisis, pero es tendencia. BCP está expandiendo en microfinanzas (Mibanco) donde el riesgo es mayor. <strong>Esto crea apetito por</strong>: analytics de riesgo crediticio, AI para scoring, plataformas de cobranza inteligente.</p>
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Meeting Angle</h4>
+                <p style="margin: 0;" data-en="&quot;With 33% revenue growth and stable profitability, the question isn't whether BCP can invest — it's where to invest for maximum impact. We help growing institutions like BCP allocate technology budget where it drives the most value.&quot;" data-es="&quot;Con 33% de crecimiento en ingresos y rentabilidad estable, la pregunta no es si BCP puede invertir — es dónde invertir para máximo impacto. Ayudamos a instituciones en crecimiento como BCP a asignar presupuesto de tecnología donde genera más valor.&quot;">"With 33% revenue growth and stable profitability, the question isn't whether BCP can invest — it's where to invest for maximum impact. We help growing institutions like BCP allocate technology budget where it drives the most value."</p>
             </div>
         </section>
 
         <section class="section-card">
-            <h2>🏢 Perfil del Banco</h2>
+            <h2 data-en="🏢 Bank Profile" data-es="🏢 Perfil del Banco">🏢 Bank Profile</h2>
             <ul>
-                <li><strong>Tipo:</strong> Banco Privado Comercial — Parte de Credicorp</li>
-                <li><strong>Fundado:</strong> 1889 (135 años de historia)</li>
-                <li><strong>Posición de Mercado:</strong> #1 en Perú — Líder dominante</li>
-                <li><strong>Colaboradores:</strong> 18,979 (2024)</li>
-                <li><strong>Agencias:</strong> 304 (206 transformadas con zonas de educación digital)</li>
-                <li><strong>Agentes BCP:</strong> 10,634 a nivel nacional</li>
-                <li><strong>ATMs:</strong> 2,473 cajeros automáticos</li>
-                <li><strong>Key Differentiator:</strong> Escala + innovación digital (Yape - 14M usuarios)</li>
-                <li><strong>Digital Maturity:</strong> 🟢 HIGH — 76% de clientes digitales</li>
-                <li><strong>Holding:</strong> Credicorp Ltd. (NYSE: BAP) — mayor holding financiero del Perú</li>
+                <li><strong data-en="Type:" data-es="Tipo:">Type:</strong> <span data-en="Private Commercial Bank — Part of Credicorp" data-es="Banco Privado Comercial — Parte de Credicorp">Private Commercial Bank — Part of Credicorp</span></li>
+                <li><strong data-en="Founded:" data-es="Fundado:">Founded:</strong> <span data-en="1889 (135 years of history)" data-es="1889 (135 años de historia)">1889 (135 years of history)</span></li>
+                <li><strong data-en="Market Position:" data-es="Posición de Mercado:">Market Position:</strong> <span data-en="#1 in Peru — Dominant leader" data-es="#1 en Perú — Líder dominante">#1 in Peru — Dominant leader</span></li>
+                <li><strong data-en="Employees:" data-es="Colaboradores:">Employees:</strong> 18,979 (2024)</li>
+                <li><strong data-en="Branches:" data-es="Agencias:">Branches:</strong> <span data-en="304 (206 transformed with digital education zones)" data-es="304 (206 transformadas con zonas de educación digital)">304 (206 transformed with digital education zones)</span></li>
+                <li><strong data-en="BCP Agents:" data-es="Agentes BCP:">BCP Agents:</strong> <span data-en="10,634 nationwide" data-es="10,634 a nivel nacional">10,634 nationwide</span></li>
+                <li><strong>ATMs:</strong> 2,473</li>
+                <li><strong>Key Differentiator:</strong> <span data-en="Scale + digital innovation (Yape 14M users, BCP App 7.5M customers)" data-es="Escala + innovación digital (Yape 14M usuarios, App BCP 7.5M clientes)">Scale + digital innovation (Yape 14M users, BCP App 7.5M customers)</span></li>
+                <li><strong>Digital Maturity:</strong> 🟢 HIGH — <span data-en="76% digital customers" data-es="76% de clientes digitales">76% digital customers</span></li>
+                <li><strong>Holding:</strong> Credicorp Ltd. (NYSE: BAP) — <span data-en="Peru's largest financial holding" data-es="mayor holding financiero del Perú">Peru's largest financial holding</span></li>
             </ul>
         </section>
 
-        <!-- Innovación y Tecnología -->
+        <!-- Innovation & Technology -->
         <section class="section-card">
-            <h2>🚀 Innovación y Transformación Digital — Hitos 2024</h2>
+            <h2 data-en="🚀 Innovation & Digital Transformation — 2024 Milestones" data-es="🚀 Innovación y Transformación Digital — Hitos 2024">🚀 Innovation & Digital Transformation — 2024 Milestones</h2>
             <div class="table-container">
                 <table class="bank-table" style="width: 100%;">
                     <thead>
                         <tr>
-                            <th>Iniciativa</th>
-                            <th>Descripción</th>
-                            <th>Ángulo Comercial</th>
+                            <th data-en="Initiative" data-es="Iniciativa">Initiative</th>
+                            <th data-en="Description" data-es="Descripción">Description</th>
+                            <th data-en="Commercial Angle" data-es="Ángulo Comercial">Commercial Angle</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr style="background: rgba(16, 185, 129, 0.1);">
-                            <td><strong>🤖 Voicebot IA</strong></td>
-                            <td>Primer bot de voz con IA de la industria bancaria peruana (dic 2024)</td>
-                            <td>Infraestructura de IA, procesamiento de lenguaje natural</td>
+                            <td><strong>🤖 AI Voicebot</strong></td>
+                            <td data-en="First AI voice bot in Peruvian banking industry (Dec 2024)" data-es="Primer bot de voz con IA de la industria bancaria peruana (dic 2024)">First AI voice bot in Peruvian banking industry (Dec 2024)</td>
+                            <td data-en="AI infrastructure, NLP processing" data-es="Infraestructura de IA, procesamiento de lenguaje natural">AI infrastructure, NLP processing</td>
                         </tr>
                         <tr>
-                            <td><strong>Voicebot Cognitivo</strong></td>
-                            <td>Tecnología cognitiva en IVR para atención telefónica (mayo 2024)</td>
+                            <td><strong>Cognitive Voicebot</strong></td>
+                            <td data-en="Cognitive technology in IVR for phone support (May 2024)" data-es="Tecnología cognitiva en IVR para atención telefónica (mayo 2024)">Cognitive technology in IVR for phone support (May 2024)</td>
                             <td>Contact center evolution, AI integration</td>
                         </tr>
                         <tr>
-                            <td><strong>Centro de InnovaCXión (CIX)</strong></td>
-                            <td>Hub de innovación activo desde 2015 — desarrolló Yape, ContaPro, Indi, Sendsei</td>
+                            <td><strong>InnovaCXión Center (CIX)</strong></td>
+                            <td data-en="Innovation hub active since 2015 — developed Yape, ContaPro, Indi, Sendsei" data-es="Hub de innovación activo desde 2015 — desarrolló Yape, ContaPro, Indi, Sendsei">Innovation hub active since 2015 — developed Yape, ContaPro, Indi, Sendsei</td>
                             <td>Innovation lab infrastructure, rapid prototyping</td>
                         </tr>
                         <tr>
                             <td><strong>Personal Finance Manager</strong></td>
-                            <td>Funcionalidad exportada en banca móvil (2024)</td>
+                            <td data-en="Exported feature in mobile banking (2024)" data-es="Funcionalidad exportada en banca móvil (2024)">Exported feature in mobile banking (2024)</td>
                             <td>Analytics, personalization engine</td>
                         </tr>
                         <tr>
-                            <td><strong>Constitución Digital de Empresas</strong></td>
-                            <td>Digitalización completa del proceso</td>
+                            <td><strong data-en="Digital Company Formation" data-es="Constitución Digital de Empresas">Digital Company Formation</strong></td>
+                            <td data-en="Complete digitalization of the process" data-es="Digitalización completa del proceso">Complete digitalization of the process</td>
                             <td>Document processing, workflow automation</td>
                         </tr>
                         <tr style="background: rgba(99, 102, 241, 0.1);">
                             <td><strong>Data & Analytics</strong></td>
-                            <td>Programa Data Literacy para líderes. >50% colaboradores elevaron expertise</td>
+                            <td data-en="Data Literacy program for leaders. >50% employees elevated expertise" data-es="Programa Data Literacy para líderes. >50% colaboradores elevaron expertise">Data Literacy program for leaders. >50% employees elevated expertise</td>
                             <td>Data platform, analytics culture = strong demand</td>
                         </tr>
                         <tr>
-                            <td><strong>Retiro Sin Contacto/Tarjeta</strong></td>
-                            <td>Nuevas funcionalidades en ATMs + operaciones en quechua</td>
+                            <td><strong data-en="Contactless/Cardless Withdrawal" data-es="Retiro Sin Contacto/Tarjeta">Contactless/Cardless Withdrawal</strong></td>
+                            <td data-en="New ATM features + operations in Quechua" data-es="Nuevas funcionalidades en ATMs + operaciones en quechua">New ATM features + operations in Quechua</td>
                             <td>ATM modernization, accessibility tech</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="alert-box" style="margin-top: 1.5rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--accent-red); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);">🎯 Señal Clave para Zuni</h4>
-                <p style="margin: 0;">BCP está <strong>all-in en IA y automatización</strong>. El Voicebot IA es un statement: quieren ser pioneros. Esto significa inversión activa en infraestructura de IA, cloud para ML, procesamiento de datos masivos. Excelente momento para conversations de AI infrastructure.</p>
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);" data-en="🎯 Key Signal for Sales" data-es="🎯 Señal Clave para Zuni">🎯 Key Signal for Sales</h4>
+                <p style="margin: 0;" data-en="BCP is all-in on AI and automation. The AI Voicebot is a statement: they want to be pioneers. This means active investment in AI infrastructure, cloud for ML, massive data processing. Excellent timing for AI infrastructure conversations." data-es="BCP está all-in en IA y automatización. El Voicebot IA es un statement: quieren ser pioneros. Esto significa inversión activa en infraestructura de IA, cloud para ML, procesamiento de datos masivos. Excelente momento para conversations de AI infrastructure.">BCP is <strong>all-in on AI and automation</strong>. The AI Voicebot is a statement: they want to be pioneers. This means active investment in AI infrastructure, cloud for ML, massive data processing. Excellent timing for AI infrastructure conversations.</p>
             </div>
         </section>
 
         <section class="section-card">
-            <h2>💡 Evaluación del Apetito de Inversión</h2>
+            <h2 data-en="💡 Investment Appetite Assessment" data-es="💡 Evaluación del Apetito de Inversión">💡 Investment Appetite Assessment</h2>
             <p><strong>Rating: 🟢 HIGH</strong></p>
             <ul>
-                <li><strong>Dominancia de mercado</strong> — 33.82% colocaciones + 35.86% depósitos = necesidades de infraestructura enterprise-scale</li>
-                <li><strong>Líder en transformación digital</strong> — Yape (14M usuarios), Voicebot IA, 810M transacciones móviles</li>
-                <li><strong>Rentabilidad sólida</strong> — ROAE 21.3%, Utilidad Neta $1.4B (+11.8% YoY) = capacidad de inversión confirmada</li>
-                <li><strong>AI-first mindset</strong> — Primer banco peruano con bot de voz IA, programa Data Literacy activo</li>
-                <li><strong>Escala masiva</strong> — 16M+ clientes, 304 agencias, 10,634 agentes, 2,473 ATMs = infraestructura compleja</li>
-                <li><strong>Ratio operativo 39.3%</strong> — Margen para optimización, pero no urgencia de recorte</li>
+                <li><strong data-en="Market dominance" data-es="Dominancia de mercado">Market dominance</strong> — 33.82% <span data-en="loans" data-es="colocaciones">loans</span> + 35.86% <span data-en="deposits" data-es="depósitos">deposits</span> = <span data-en="enterprise-scale infrastructure needs" data-es="necesidades de infraestructura enterprise-scale">enterprise-scale infrastructure needs</span></li>
+                <li><strong data-en="Digital transformation leader" data-es="Líder en transformación digital">Digital transformation leader</strong> — Yape (14M <span data-en="users" data-es="usuarios">users</span>), BCP App (7.5M <span data-en="customers" data-es="clientes">customers</span>), AI Voicebot, 810M <span data-en="mobile transactions" data-es="transacciones móviles">mobile transactions</span></li>
+                <li><strong data-en="Solid profitability" data-es="Rentabilidad sólida">Solid profitability</strong> — ROAE 21.3%, <span data-en="Net Income" data-es="Utilidad Neta">Net Income</span> $1.4B (+11.8% YoY) = <span data-en="confirmed investment capacity" data-es="capacidad de inversión confirmada">confirmed investment capacity</span></li>
+                <li><strong>AI-first mindset</strong> — <span data-en="First Peruvian bank with AI voice bot, active Data Literacy program" data-es="Primer banco peruano con bot de voz IA, programa Data Literacy activo">First Peruvian bank with AI voice bot, active Data Literacy program</span></li>
+                <li><strong data-en="Massive scale" data-es="Escala masiva">Massive scale</strong> — 16M+ <span data-en="customers" data-es="clientes">customers</span>, 304 <span data-en="branches" data-es="agencias">branches</span>, 10,634 <span data-en="agents" data-es="agentes">agents</span>, 2,473 ATMs = <span data-en="complex infrastructure" data-es="infraestructura compleja">complex infrastructure</span></li>
+                <li><strong data-en="Operating ratio 39.3%" data-es="Ratio operativo 39.3%">Operating ratio 39.3%</strong> — <span data-en="Room for optimization, but no urgency to cut" data-es="Margen para optimización, pero no urgencia de recorte">Room for optimization, but no urgency to cut</span></li>
             </ul>
         </section>
 
         <!-- Infrastructure Stack -->
         <section class="section-card">
-            <h2>🔧 Infrastructure Stack — Known & Estimated</h2>
+            <h2 data-en="🔧 Infrastructure Stack — Known & Estimated" data-es="🔧 Stack de Infraestructura — Conocido y Estimado">🔧 Infrastructure Stack — Known & Estimated</h2>
             <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
-                <span style="color: var(--accent-green);">●</span> Confirmed &nbsp;
-                <span style="color: var(--accent-yellow);">●</span> Likely/Estimated &nbsp;
-                <span style="color: var(--accent);">●</span> To verify
+                <span style="color: var(--accent-green);">●</span> <span data-en="Confirmed" data-es="Confirmado">Confirmed</span> &nbsp;
+                <span style="color: var(--accent-yellow);">●</span> <span data-en="Likely/Estimated" data-es="Probable/Estimado">Likely/Estimated</span> &nbsp;
+                <span style="color: var(--accent);">●</span> <span data-en="To verify" data-es="Por verificar">To verify</span>
             </p>
             
             <div class="infra-stack">
-                <!-- Compute -->
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">💻</span>
@@ -651,10 +433,9 @@
                         <span class="brand-tag likely">AWS</span>
                         <span class="brand-tag likely">Azure</span>
                     </div>
-                    <p class="infra-notes">Large bank = hybrid estate. Likely IBM mainframe/Power for core, x86 for workloads. Active cloud migration — Yape runs on cloud-native architecture. Multi-cloud strategy probable.</p>
+                    <p class="infra-notes" data-en="Large bank = hybrid estate. Likely IBM mainframe/Power for core, x86 for workloads. Active cloud migration — Yape runs on cloud-native architecture. Multi-cloud strategy probable." data-es="Banco grande = infraestructura híbrida. Probable IBM mainframe/Power para core, x86 para workloads. Migración cloud activa — Yape corre en arquitectura cloud-native. Estrategia multi-cloud probable.">Large bank = hybrid estate. Likely IBM mainframe/Power for core, x86 for workloads. Active cloud migration — Yape runs on cloud-native architecture. Multi-cloud strategy probable.</p>
                 </div>
 
-                <!-- Storage -->
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">💾</span>
@@ -667,10 +448,9 @@
                         <span class="brand-tag likely">NetApp</span>
                         <span class="brand-tag">Pure Storage</span>
                     </div>
-                    <p class="infra-notes">135-year-old institution = significant data estate. Hybrid storage strategy. Flash for performance workloads, tiered for archive. Cloud storage for new applications.</p>
+                    <p class="infra-notes" data-en="135-year-old institution = significant data estate. Hybrid storage strategy. Flash for performance workloads, tiered for archive. Cloud storage for new applications." data-es="Institución de 135 años = estate de datos significativo. Estrategia de almacenamiento híbrido. Flash para workloads de performance, tiered para archivo. Cloud storage para nuevas aplicaciones.">135-year-old institution = significant data estate. Hybrid storage strategy. Flash for performance workloads, tiered for archive. Cloud storage for new applications.</p>
                 </div>
 
-                <!-- Networking -->
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">🌐</span>
@@ -683,10 +463,9 @@
                         <span class="brand-tag">Palo Alto</span>
                         <span class="brand-tag likely">SD-WAN</span>
                     </div>
-                    <p class="infra-notes">400+ branches = large WAN footprint. SD-WAN transformation likely in progress or completed. Enterprise security stack. Data center interconnect for DR/HA.</p>
+                    <p class="infra-notes" data-en="400+ branches = large WAN footprint. SD-WAN transformation likely in progress or completed. Enterprise security stack. Data center interconnect for DR/HA." data-es="400+ sucursales = gran footprint WAN. Transformación SD-WAN probablemente en progreso o completada. Stack de seguridad enterprise. Interconexión de data center para DR/HA.">400+ branches = large WAN footprint. SD-WAN transformation likely in progress or completed. Enterprise security stack. Data center interconnect for DR/HA.</p>
                 </div>
 
-                <!-- Core Banking -->
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">🏛️</span>
@@ -699,10 +478,9 @@
                         <span class="brand-tag">Fiserv</span>
                         <span class="brand-tag">API Layer</span>
                     </div>
-                    <p class="infra-notes">135-year history = likely legacy core with modern API layer. BCP has invested heavily in API-first architecture to enable Yape and digital channels. Core modernization is ongoing strategic initiative.</p>
+                    <p class="infra-notes" data-en="135-year history = likely legacy core with modern API layer. BCP has invested heavily in API-first architecture to enable Yape and digital channels. Core modernization is ongoing strategic initiative." data-es="135 años de historia = probable core legacy con capa API moderna. BCP ha invertido fuertemente en arquitectura API-first para habilitar Yape y canales digitales. Modernización de core es iniciativa estratégica en curso.">135-year history = likely legacy core with modern API layer. BCP has invested heavily in API-first architecture to enable Yape and digital channels. Core modernization is ongoing strategic initiative.</p>
                 </div>
 
-                <!-- Digital Platform -->
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">📱</span>
@@ -715,10 +493,9 @@
                         <span class="brand-tag likely">Kubernetes</span>
                         <span class="brand-tag likely">Microservices</span>
                     </div>
-                    <p class="infra-notes">Yape is crown jewel — 15M+ users, cloud-native, massive scale. Proves BCP can build modern digital platforms. Continuous investment in digital channels. Platform scaling is strategic priority.</p>
+                    <p class="infra-notes" data-en="Yape is crown jewel — 14M users, cloud-native, massive scale. BCP App serves 7.5M verified clients. Proves BCP can build modern digital platforms. Platform scaling is strategic priority." data-es="Yape es la joya de la corona — 14M usuarios, cloud-native, escala masiva. App BCP sirve 7.5M clientes verificados. Prueba que BCP puede construir plataformas digitales modernas. Escalamiento de plataforma es prioridad estratégica.">Yape is crown jewel — 14M users, cloud-native, massive scale. BCP App serves 7.5M verified clients. Proves BCP can build modern digital platforms. Platform scaling is strategic priority.</p>
                 </div>
 
-                <!-- Data & Analytics -->
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">📊</span>
@@ -731,68 +508,68 @@
                         <span class="brand-tag likely">Tableau/Power BI</span>
                         <span class="brand-tag likely">Python/ML</span>
                     </div>
-                    <p class="infra-notes">15M+ Yape users = massive data opportunity. Advanced analytics for credit scoring, personalization, fraud detection. AI/ML initiatives active. Data monetization potential.</p>
+                    <p class="infra-notes" data-en="14M Yape users + 7.5M BCP App clients = massive data opportunity. Advanced analytics for credit scoring, personalization, fraud detection. AI/ML initiatives active. Data monetization potential." data-es="14M usuarios Yape + 7.5M clientes App BCP = oportunidad masiva de datos. Analytics avanzado para scoring crediticio, personalización, detección de fraude. Iniciativas AI/ML activas. Potencial de monetización de datos.">14M Yape users + 7.5M BCP App clients = massive data opportunity. Advanced analytics for credit scoring, personalization, fraud detection. AI/ML initiatives active. Data monetization potential.</p>
                 </div>
             </div>
         </section>
 
         <section class="section-card">
-            <h2>🎯 Best Infrastructure Plays</h2>
+            <h2 data-en="🎯 Best Infrastructure Plays" data-es="🎯 Mejores Oportunidades de Infraestructura">🎯 Best Infrastructure Plays</h2>
             <div class="priority-list">
                 <div class="priority-item high">
                     <span class="priority-num">1</span>
                     <div class="priority-content">
-                        <h4>Digital Platform Scaling (Yape Infrastructure)</h4>
-                        <p>"Keep Yape growing." 15M+ users and counting. Cloud infrastructure, auto-scaling, performance optimization, cost management at scale.</p>
+                        <h4 data-en="Digital Platform Scaling (Yape + BCP App Infrastructure)" data-es="Escalamiento de Plataforma Digital (Infraestructura Yape + App BCP)">Digital Platform Scaling (Yape + BCP App Infrastructure)</h4>
+                        <p data-en="&quot;Keep digital growing.&quot; 14M Yape users + 7.5M BCP App clients. Cloud infrastructure, auto-scaling, performance optimization, cost management at scale." data-es="&quot;Mantén el digital creciendo.&quot; 14M usuarios Yape + 7.5M clientes App BCP. Infraestructura cloud, auto-scaling, optimización de performance, gestión de costos a escala.">"Keep digital growing." 14M Yape users + 7.5M BCP App clients. Cloud infrastructure, auto-scaling, performance optimization, cost management at scale.</p>
                     </div>
                 </div>
                 <div class="priority-item high">
                     <span class="priority-num">2</span>
                     <div class="priority-content">
-                        <h4>Data & Analytics Platform</h4>
-                        <p>"Turn 15M users into insights." Modern data platform, real-time analytics, AI/ML infrastructure, data monetization enablement.</p>
+                        <h4 data-en="Data & Analytics Platform" data-es="Plataforma de Datos y Analytics">Data & Analytics Platform</h4>
+                        <p data-en="&quot;Turn users into insights.&quot; Modern data platform, real-time analytics, AI/ML infrastructure, data monetization enablement." data-es="&quot;Convierte usuarios en insights.&quot; Plataforma de datos moderna, analytics en tiempo real, infraestructura AI/ML, habilitación de monetización de datos.">"Turn users into insights." Modern data platform, real-time analytics, AI/ML infrastructure, data monetization enablement.</p>
                     </div>
                 </div>
                 <div class="priority-item high">
                     <span class="priority-num">3</span>
                     <div class="priority-content">
-                        <h4>Hybrid Cloud Optimization</h4>
-                        <p>"Best of both worlds." Cloud-native + on-prem integration, FinOps, multi-cloud management, security across environments.</p>
+                        <h4 data-en="Hybrid Cloud Optimization" data-es="Optimización de Cloud Híbrido">Hybrid Cloud Optimization</h4>
+                        <p data-en="&quot;Best of both worlds.&quot; Cloud-native + on-prem integration, FinOps, multi-cloud management, security across environments." data-es="&quot;Lo mejor de ambos mundos.&quot; Integración cloud-native + on-prem, FinOps, gestión multi-cloud, seguridad entre ambientes.">"Best of both worlds." Cloud-native + on-prem integration, FinOps, multi-cloud management, security across environments.</p>
                     </div>
                 </div>
                 <div class="priority-item medium">
                     <span class="priority-num">4</span>
                     <div class="priority-content">
-                        <h4>Core Modernization Support</h4>
-                        <p>"Unlock the legacy." API management, integration platforms, gradual core decomposition, microservices enablement.</p>
+                        <h4 data-en="Core Modernization Support" data-es="Soporte de Modernización de Core">Core Modernization Support</h4>
+                        <p data-en="&quot;Unlock the legacy.&quot; API management, integration platforms, gradual core decomposition, microservices enablement." data-es="&quot;Desbloquea el legacy.&quot; Gestión de APIs, plataformas de integración, descomposición gradual del core, habilitación de microservicios.">"Unlock the legacy." API management, integration platforms, gradual core decomposition, microservices enablement.</p>
                     </div>
                 </div>
             </div>
             
             <div class="commercial-box">
-                <h4>💬 Recommended Engagement Narrative</h4>
-                <p>"BCP has proven it can build world-class digital products with Yape. The question is: how do you scale that success across all of BCP's operations? Infrastructure that powers 15M mobile users has different requirements than traditional banking infrastructure. We help digital leaders like BCP optimize for scale, speed, and cost."</p>
+                <h4 data-en="💬 Recommended Engagement Narrative" data-es="💬 Narrativa de Engagement Recomendada">💬 Recommended Engagement Narrative</h4>
+                <p data-en="&quot;BCP has proven it can build world-class digital products with Yape and BCP App. The question is: how do you scale that success across all of BCP's operations? Infrastructure that powers 14M+ Yape users and 7.5M BCP App clients has different requirements than traditional banking infrastructure. We help digital leaders like BCP optimize for scale, speed, and cost.&quot;" data-es="&quot;BCP ha probado que puede construir productos digitales de clase mundial con Yape y App BCP. La pregunta es: ¿cómo escalan ese éxito a todas las operaciones de BCP? La infraestructura que alimenta 14M+ usuarios Yape y 7.5M clientes App BCP tiene requerimientos diferentes a la infraestructura bancaria tradicional. Ayudamos a líderes digitales como BCP a optimizar para escala, velocidad y costo.&quot;">"BCP has proven it can build world-class digital products with Yape and BCP App. The question is: how do you scale that success across all of BCP's operations? Infrastructure that powers 14M+ Yape users and 7.5M BCP App clients has different requirements than traditional banking infrastructure. We help digital leaders like BCP optimize for scale, speed, and cost."</p>
             </div>
         </section>
 
         <section class="section-card">
-            <h2>⚠️ Key Objection to Prepare For</h2>
-            <p><strong>"We build our own technology — look at Yape."</strong></p>
-            <p>Response: Validate their capability, position as enabler not replacement. "Yape proves BCP can build incredible products. The infrastructure challenge is different — you don't want your best engineers managing servers when they could be building the next Yape. How do you free up innovation capacity while maintaining enterprise reliability?"</p>
+            <h2 data-en="⚠️ Key Objection to Prepare For" data-es="⚠️ Objeción Clave a Preparar">⚠️ Key Objection to Prepare For</h2>
+            <p><strong data-en="&quot;We build our own technology — look at Yape.&quot;" data-es="&quot;Nosotros construimos nuestra propia tecnología — mira Yape.&quot;">"We build our own technology — look at Yape."</strong></p>
+            <p data-en="Response: Validate their capability, position as enabler not replacement. &quot;Yape proves BCP can build incredible products. The infrastructure challenge is different — you don't want your best engineers managing servers when they could be building the next Yape. How do you free up innovation capacity while maintaining enterprise reliability?&quot;" data-es="Respuesta: Valida su capacidad, posiciónate como habilitador no reemplazo. &quot;Yape prueba que BCP puede construir productos increíbles. El desafío de infraestructura es diferente — no quieres a tus mejores ingenieros administrando servidores cuando podrían estar construyendo el próximo Yape. ¿Cómo liberas capacidad de innovación mientras mantienes confiabilidad enterprise?&quot;">Response: Validate their capability, position as enabler not replacement. "Yape proves BCP can build incredible products. The infrastructure challenge is different — you don't want your best engineers managing servers when they could be building the next Yape. How do you free up innovation capacity while maintaining enterprise reliability?"</p>
         </section>
 
         <!-- Executive Intelligence -->
         <section class="section-card">
-            <h2>👔 Executive Intelligence — Meeting Participants</h2>
+            <h2 data-en="👔 Executive Intelligence — Meeting Participants" data-es="👔 Inteligencia de Ejecutivos — Participantes del Meeting">👔 Executive Intelligence — Meeting Participants</h2>
             
             <div class="exec-grid" style="margin-top: 1rem;">
                 <a href="../executives/cesar_casabonne_gutierrez.html" class="exec-card">
                     <div class="exec-avatar">CC</div>
                     <div class="exec-info">
                         <h3>César Casabonne Gutiérrez</h3>
-                        <p class="exec-title">Gerente Central de Clientes Personas</p>
+                        <p class="exec-title" data-en="Central Manager of Retail Customers" data-es="Gerente Central de Clientes Personas">Central Manager of Retail Customers</p>
                         <div class="exec-tags">
-                            <span class="tag influence-high">24+ años en BCP</span>
+                            <span class="tag influence-high" data-en="24+ years at BCP" data-es="24+ años en BCP">24+ years at BCP</span>
                             <span class="tag">Retail Banking</span>
                         </div>
                     </div>
@@ -803,9 +580,9 @@
                     <div class="exec-avatar">DS</div>
                     <div class="exec-info">
                         <h3>David Sáenz</h3>
-                        <p class="exec-title">(Rol por confirmar)</p>
+                        <p class="exec-title" data-en="(Role to confirm)" data-es="(Rol por confirmar)">(Role to confirm)</p>
                         <div class="exec-tags">
-                            <span class="tag">Profile pending</span>
+                            <span class="tag" data-en="Profile pending" data-es="Perfil pendiente">Profile pending</span>
                         </div>
                     </div>
                     <span class="exec-arrow">→</span>
@@ -815,7 +592,7 @@
                     <div class="exec-avatar">DC</div>
                     <div class="exec-info">
                         <h3>Diego Cavero Belaunde</h3>
-                        <p class="exec-title">Gerente General (CEO)</p>
+                        <p class="exec-title" data-en="CEO / General Manager" data-es="Gerente General (CEO)">CEO / General Manager</p>
                         <div class="exec-tags">
                             <span class="tag influence-high">CEO — Key Decision Maker</span>
                             <span class="tag">"Guerra al Cash"</span>
@@ -825,32 +602,61 @@
                 </a>
             </div>
 
-            <h3 style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--accent);">Additional Key Roles to Research</h3>
+            <h3 style="margin-top: 1.5rem; font-size: 0.95rem; color: var(--accent);" data-en="Additional Key Roles to Research" data-es="Roles Clave Adicionales a Investigar">Additional Key Roles to Research</h3>
             <ul>
-                <li><strong>CEO / Gerente General</strong> — Gianfranco Ferrari (verify current)</li>
-                <li><strong>CIO / Chief Information Officer</strong> — Technology strategy owner</li>
-                <li><strong>VP Yape / Digital</strong> — Digital platform decisions</li>
-                <li><strong>CFO</strong> — Budget holder for large investments</li>
+                <li><strong>CEO / <span data-en="General Manager" data-es="Gerente General">General Manager</span></strong> — Gianfranco Ferrari (<span data-en="verify current" data-es="verificar actual">verify current</span>)</li>
+                <li><strong>CIO / Chief Information Officer</strong> — <span data-en="Technology strategy owner" data-es="Dueño de estrategia de tecnología">Technology strategy owner</span></li>
+                <li><strong>VP Yape / Digital</strong> — <span data-en="Digital platform decisions" data-es="Decisiones de plataforma digital">Digital platform decisions</span></li>
+                <li><strong>CFO</strong> — <span data-en="Budget holder for large investments" data-es="Responsable de presupuesto para grandes inversiones">Budget holder for large investments</span></li>
             </ul>
         </section>
 
         <section class="section-card">
-            <h2>🔗 Credicorp Context</h2>
-            <p>BCP is the flagship of <strong>Credicorp Ltd.</strong> (NYSE: BAP), Peru's largest financial holding company. Other Credicorp entities:</p>
+            <h2 data-en="🔗 Credicorp Context" data-es="🔗 Contexto Credicorp">🔗 Credicorp Context</h2>
+            <p data-en="BCP is the flagship of Credicorp Ltd. (NYSE: BAP), Peru's largest financial holding company. Other Credicorp entities:" data-es="BCP es el buque insignia de Credicorp Ltd. (NYSE: BAP), el holding financiero más grande del Perú. Otras entidades de Credicorp:">BCP is the flagship of <strong>Credicorp Ltd.</strong> (NYSE: BAP), Peru's largest financial holding company. Other Credicorp entities:</p>
             <ul>
-                <li><strong>Mibanco</strong> — Microfinance leader</li>
-                <li><strong>Prima AFP</strong> — Pension fund manager</li>
-                <li><strong>Pacífico Seguros</strong> — Insurance</li>
-                <li><strong>Atlantic Security Bank</strong> — Private banking</li>
-                <li><strong>Credicorp Capital</strong> — Investment banking</li>
+                <li><strong>Mibanco</strong> — <span data-en="Microfinance leader" data-es="Líder en microfinanzas">Microfinance leader</span></li>
+                <li><strong>Prima AFP</strong> — <span data-en="Pension fund manager" data-es="Administradora de fondos de pensiones">Pension fund manager</span></li>
+                <li><strong>Pacífico Seguros</strong> — <span data-en="Insurance" data-es="Seguros">Insurance</span></li>
+                <li><strong>Atlantic Security Bank</strong> — <span data-en="Private banking" data-es="Banca privada">Private banking</span></li>
+                <li><strong>Credicorp Capital</strong> — <span data-en="Investment banking" data-es="Banca de inversión">Investment banking</span></li>
             </ul>
-            <p style="margin-top: 1rem;"><strong>Implication:</strong> Large deals may involve Credicorp-level approval. Infrastructure that works across Credicorp entities has higher strategic value.</p>
+            <p style="margin-top: 1rem;" data-en="Implication: Large deals may involve Credicorp-level approval. Infrastructure that works across Credicorp entities has higher strategic value." data-es="Implicación: Deals grandes pueden requerir aprobación a nivel Credicorp. Infraestructura que funciona a través de entidades Credicorp tiene mayor valor estratégico."><strong><span data-en="Implication:" data-es="Implicación:">Implication:</span></strong> <span data-en="Large deals may involve Credicorp-level approval. Infrastructure that works across Credicorp entities has higher strategic value." data-es="Deals grandes pueden requerir aprobación a nivel Credicorp. Infraestructura que funciona a través de entidades Credicorp tiene mayor valor estratégico.">Large deals may involve Credicorp-level approval. Infrastructure that works across Credicorp entities has higher strategic value.</span></p>
         </section>
 
         <div class="exec-navigation">
             <a href="../index.html" class="btn-secondary">← Back to Dashboard</a>
-            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+            <a href="../executives/index.html" class="btn-primary"><span data-en="All Executives" data-es="Todos los Ejecutivos">All Executives</span> →</a>
         </div>
     </main>
+
+    <script>
+        // Language Toggle Functionality
+        const langBtns = document.querySelectorAll('.lang-btn');
+        let currentLang = localStorage.getItem('dashboardLang') || 'en';
+        
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('dashboardLang', lang);
+            
+            // Update buttons
+            langBtns.forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.lang === lang);
+            });
+            
+            // Update all translatable elements
+            document.querySelectorAll('[data-en][data-es]').forEach(el => {
+                el.textContent = el.dataset[lang];
+            });
+        }
+        
+        // Initialize
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+        });
+        
+        // Set initial language
+        setLanguage(currentLang);
+    </script>
 </body>
 </html>
