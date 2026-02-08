@@ -1,1101 +1,220 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 50 Bancos LATAM | Zonix Intelligence</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            min-height: 100vh;
-            color: #e4e4e4;
-        }
-        
-        .container {
-            max-width: 1600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            text-align: center;
-            padding: 30px 20px;
-            background: rgba(255,255,255,0.03);
-            border-radius: 16px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        h1 {
-            font-size: 2.2rem;
-            background: linear-gradient(135deg, #00d4ff, #7b2cbf);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 8px;
-        }
-        
-        .subtitle {
-            color: #888;
-            font-size: 1rem;
-        }
-        
-        /* Stats Bar */
-        .stats-bar {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .stat-card {
-            background: rgba(255,255,255,0.05);
-            padding: 15px 25px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.1);
-            min-width: 150px;
-        }
-        
-        .stat-value {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: #00d4ff;
-        }
-        
-        .stat-label {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 3px;
-        }
-        
-        /* Filters */
-        .filters {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255,255,255,0.03);
-            padding: 15px 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .filter-group {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .filter-group label {
-            font-size: 0.85rem;
-            color: #888;
-        }
-        
-        select, input[type="text"] {
-            background: rgba(255,255,255,0.1);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            padding: 10px 15px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            outline: none;
-        }
-        
-        select:focus, input[type="text"]:focus {
-            border-color: #00d4ff;
-        }
-        
-        /* Country Sections */
-        .country-section {
-            margin-bottom: 35px;
-        }
-        
-        .country-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 15px 20px;
-            background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,44,191,0.15));
-            border-radius: 12px 12px 0 0;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-bottom: none;
-        }
-        
-        .country-flag {
-            font-size: 2rem;
-        }
-        
-        .country-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #fff;
-        }
-        
-        .country-stats {
-            margin-left: auto;
-            display: flex;
-            gap: 20px;
-            font-size: 0.85rem;
-            color: #aaa;
-        }
-        
-        .country-stats span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        
-        .country-stats strong {
-            color: #00d4ff;
-        }
-        
-        /* Bank Cards Grid */
-        .banks-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 15px;
-            background: rgba(255,255,255,0.02);
-            padding: 20px;
-            border-radius: 0 0 12px 12px;
-            border: 1px solid rgba(255,255,255,0.1);
-            border-top: none;
-        }
-        
-        /* Bank Card - FULL INFO ALWAYS VISIBLE */
-        .bank-card {
-            background: rgba(255,255,255,0.05);
-            border-radius: 12px;
-            padding: 18px;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.2s ease;
-        }
-        
-        .bank-card:hover {
-            border-color: rgba(0,212,255,0.4);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-        }
-        
-        .bank-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-        }
-        
-        .bank-rank {
-            width: 32px;
-            height: 32px;
-            background: rgba(123,44,191,0.3);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.9rem;
-            color: #b57edc;
-        }
-        
-        .bank-rank.top-3 {
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            color: #000;
-        }
-        
-        .bank-name {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #fff;
-            flex: 1;
-            margin-left: 12px;
-        }
-        
-        .segment-badge {
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.7rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-        
-        .segment-mega { background: rgba(255,215,0,0.2); color: #ffd700; }
-        .segment-large { background: rgba(0,212,255,0.2); color: #00d4ff; }
-        .segment-mid { background: rgba(123,44,191,0.2); color: #b57edc; }
-        .segment-emerging { background: rgba(0,255,157,0.2); color: #00ff9d; }
-        
-        /* Bank Info Grid - ALWAYS VISIBLE */
-        .bank-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .info-item {
-            background: rgba(0,0,0,0.2);
-            padding: 10px 12px;
-            border-radius: 8px;
-        }
-        
-        .info-label {
-            font-size: 0.7rem;
-            color: #888;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 3px;
-        }
-        
-        .info-value {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #fff;
-        }
-        
-        .info-value.highlight {
-            color: #00d4ff;
-        }
-        
-        .info-value.assets {
-            font-size: 1.3rem;
-            color: #00d4ff;
-        }
-        
-        /* Full width items */
-        .info-item.full {
-            grid-column: span 2;
-        }
-        
-        /* Infrastructure indicators */
-        .infra-indicators {
-            display: flex;
-            gap: 6px;
-            flex-wrap: wrap;
-            margin-top: 12px;
-        }
-        
-        .infra-tag {
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.7rem;
-            background: rgba(255,255,255,0.08);
-            color: #aaa;
-        }
-        
-        .infra-tag.active {
-            background: rgba(0,212,255,0.15);
-            color: #00d4ff;
-        }
-        
-        /* Commercial signals */
-        .signals {
-            margin-top: 12px;
-            padding-top: 12px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .signal {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 5px;
-        }
-        
-        .signal-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-        }
-        
-        .signal-dot.hot { background: #ff4757; }
-        .signal-dot.warm { background: #ffa502; }
-        .signal-dot.cool { background: #2ed573; }
-        
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #555;
-            font-size: 0.8rem;
-        }
-        
-        footer a {
-            color: #00d4ff;
-            text-decoration: none;
-        }
-        
-        /* No results */
-        .no-results {
-            text-align: center;
-            padding: 60px 20px;
-            color: #666;
-            font-size: 1.1rem;
-        }
-        
-        @media (max-width: 768px) {
-            h1 { font-size: 1.6rem; }
-            .banks-grid { grid-template-columns: 1fr; }
-            .country-stats { display: none; }
-        }
-    </style>
+    <title>LATAM Bank Intelligence | Zuni</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🏦 Top 50 Bancos LATAM</h1>
-            <p class="subtitle">Inteligencia Comercial para Infraestructura | Información Completa</p>
-        </header>
-        
-        <div class="stats-bar" id="stats-bar">
-            <!-- Stats populated by JS -->
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
         </div>
-        
-        <div class="filters">
-            <div class="filter-group">
-                <label>País:</label>
-                <select id="country-filter">
-                    <option value="">🌎 Todos los Países</option>
-                    <option value="BR">🇧🇷 Brasil</option>
-                    <option value="MX">🇲🇽 México</option>
-                    <option value="CL">🇨🇱 Chile</option>
-                    <option value="CO">🇨🇴 Colombia</option>
-                    <option value="PE">🇵🇪 Perú</option>
-                    <option value="AR">🇦🇷 Argentina</option>
-                    <option value="PA">🇵🇦 Panamá</option>
-                    <option value="CR">🇨🇷 Costa Rica</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Segmento:</label>
-                <select id="segment-filter">
-                    <option value="">Todos</option>
-                    <option value="mega">Mega (>$200B)</option>
-                    <option value="large">Large ($50B-$200B)</option>
-                    <option value="mid">Mid ($20B-$50B)</option>
-                    <option value="emerging">Emerging (<$20B)</option>
-                </select>
-            </div>
-            <div class="filter-group">
-                <label>Buscar:</label>
-                <input type="text" id="search" placeholder="Nombre del banco...">
-            </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.0 • Feb 2025</p>
         </div>
-        
-        <div id="content">
-            <!-- Content populated by JS -->
+    </nav>
+
+    <main class="main-content">
+        <div class="page active">
+            <header class="page-header">
+                <h1>🏦 LATAM Bank Intelligence Dashboard</h1>
+                <p class="subtitle">Strategic infrastructure sales intelligence for Zuni</p>
+            </header>
+
+            <div class="stats-grid">
+                <div class="stat-card" onclick="window.location.href='ranking/index.html'" style="cursor: pointer;">
+                    <span class="stat-icon">🏦</span>
+                    <div class="stat-content">
+                        <h3>50</h3>
+                        <p>Banks Ranked</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-icon">🌎</span>
+                    <div class="stat-content">
+                        <h3>8</h3>
+                        <p>Countries</p>
+                    </div>
+                </div>
+                <div class="stat-card highlight">
+                    <span class="stat-icon">🎯</span>
+                    <div class="stat-content">
+                        <h3>12</h3>
+                        <p>High Priority</p>
+                    </div>
+                </div>
+                <div class="stat-card" onclick="window.location.href='executives/index.html'" style="cursor: pointer;">
+                    <span class="stat-icon">👔</span>
+                    <div class="stat-content">
+                        <h3>9</h3>
+                        <p>Executive Profiles</p>
+                    </div>
+                </div>
+            </div>
+
+            <section class="priority-section">
+                <h2>🎯 Priority Targets</h2>
+                <div class="priority-grid">
+                    <div class="priority-card tier1" style="border-color: var(--success); background: linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%);">
+                        <div class="priority-header">
+                            <span class="tier-badge" style="background: var(--success);">🔥 MEETING</span>
+                            <span class="country-flag">🇵🇪</span>
+                        </div>
+                        <h3>BCP — Banco de Crédito del Perú</h3>
+                        <p class="priority-reason">Active meeting prep. César Casabonne + David Sáenz + Diego Cavero</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$62B Assets</span>
+                            <span class="metric">#1 Peru</span>
+                        </div>
+                        <a href="peru/bcp.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇨🇴</span>
+                        </div>
+                        <h3>Bancolombia</h3>
+                        <p class="priority-reason">#1 Colombia, Nequi (17M users), autonomous tech decisions, best ROE (16.2%)</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$85B Assets</span>
+                            <span class="metric">46% CIR</span>
+                        </div>
+                        <a href="colombia/bancolombia.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇨🇴</span>
+                        </div>
+                        <h3>Davivienda</h3>
+                        <p class="priority-reason">DaviPlata pioneer, Grupo Bolívar (autonomous), strong digital DNA</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$48B Assets</span>
+                            <span class="metric">55% CIR</span>
+                        </div>
+                        <a href="colombia/davivienda.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇨🇴</span>
+                        </div>
+                        <h3>Banco de Bogotá</h3>
+                        <p class="priority-reason">Grupo Aval tech consolidation, regional expansion, core transition</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$55B Assets</span>
+                            <span class="metric">52% CIR</span>
+                        </div>
+                        <a href="colombia/banco_bogota.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇪🇨</span>
+                        </div>
+                        <h3>Banco Guayaquil</h3>
+                        <p class="priority-reason">Fastest growth (+22%), best ROE (14.8%), digital-first culture</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$6.1B Assets</span>
+                            <span class="metric">48% CIR</span>
+                        </div>
+                        <a href="ecuador/banco_guayaquil.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇪🇨</span>
+                        </div>
+                        <h3>Banco Pichincha</h3>
+                        <p class="priority-reason">Largest bank (41% market share), complex infrastructure needs</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$14.2B Assets</span>
+                            <span class="metric">52% CIR</span>
+                        </div>
+                        <a href="ecuador/banco_pichincha.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="quick-access">
+                <h2>👔 Executive Intelligence</h2>
+                <div class="country-grid" style="margin-bottom: 2rem;">
+                    <a href="executives/index.html" class="country-card">
+                        <span class="country-flag-large">👔</span>
+                        <h3>Executive Hub</h3>
+                        <p>9 CEOs profiled</p>
+                        <span class="status-badge active">Live</span>
+                    </a>
+                    <a href="executives/juan_carlos_mora.html" class="country-card">
+                        <span class="country-flag-large">🇨🇴</span>
+                        <h3>Bancolombia CEO</h3>
+                        <p>Juan Carlos Mora</p>
+                        <span class="status-badge" style="background: var(--success); color: white;">TIER 1</span>
+                    </a>
+                    <a href="executives/efrain_forero.html" class="country-card">
+                        <span class="country-flag-large">🇨🇴</span>
+                        <h3>Davivienda CEO</h3>
+                        <p>Efraín Forero</p>
+                        <span class="status-badge" style="background: var(--success); color: white;">TIER 1</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="quick-access">
+                <h2>🗺️ Countries</h2>
+                <div class="country-grid">
+                    <a href="colombia/index.html" class="country-card">
+                        <span class="country-flag-large">🇨🇴</span>
+                        <h3>Colombia</h3>
+                        <p>6 banks • $249B market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
+                    <a href="peru/index.html" class="country-card">
+                        <span class="country-flag-large">🇵🇪</span>
+                        <h3>Peru</h3>
+                        <p>6 banks • $157B market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
+                    <a href="ecuador/index.html" class="country-card">
+                        <span class="country-flag-large">🇪🇨</span>
+                        <h3>Ecuador</h3>
+                        <p>5 banks • $35B market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
+                </div>
+            </section>
         </div>
-        
-        <footer>
-            <p>Datos: Reportes anuales 2023-2024 | Superintendencias bancarias | Rankings The Banker</p>
-            <p style="margin-top: 8px;">Creado por <a href="#">Mr Zonix</a> para Zuni | Actualizado: Junio 2025</p>
-        </footer>
-    </div>
-    
-    <script>
-        // Full bank data with ALL information always visible
-        const banks = [
-            { 
-                rank: 1, name: "Itaú Unibanco", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 460, segment: "mega", ownership: "Privado",
-                roe: 18.5, cir: 42, npl: 2.8, growth: 12,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Expansión cloud en curso - AWS/Azure multi-cloud" },
-                    { level: "cool", text: "Core banking modernizado 2022" }
-                ]
-            },
-            { 
-                rank: 2, name: "Banco do Brasil", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 420, segment: "mega", ownership: "Estatal",
-                roe: 14.2, cir: 48, npl: 3.1, growth: 8,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-growing"],
-                signals: [
-                    { level: "hot", text: "RFP activo para modernización core" },
-                    { level: "warm", text: "Presión regulatoria para resiliencia" }
-                ]
-            },
-            { 
-                rank: 3, name: "Bradesco", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 350, segment: "mega", ownership: "Privado",
-                roe: 12.8, cir: 51, npl: 4.2, growth: 5,
-                infra: ["hybrid-cloud", "ai-active", "core-transition", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Consolidación data centers 2024-25" },
-                    { level: "warm", text: "CIR alto - buscando eficiencia" }
-                ]
-            },
-            { 
-                rank: 4, name: "Caixa Econômica Federal", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 380, segment: "mega", ownership: "Estatal",
-                roe: 10.5, cir: 55, npl: 3.8, growth: 6,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-growing"],
-                signals: [
-                    { level: "hot", text: "Licitaciones infraestructura 2025" },
-                    { level: "hot", text: "Mandato de transformación digital" }
-                ]
-            },
-            { 
-                rank: 5, name: "Santander Brasil", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 210, segment: "mega", ownership: "Multinacional",
-                roe: 15.2, cir: 44, npl: 3.2, growth: 9,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Infraestructura global Santander" },
-                    { level: "warm", text: "Expansión capacidad analytics" }
-                ]
-            },
-            { 
-                rank: 6, name: "BTG Pactual", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 95, segment: "large", ownership: "Privado",
-                roe: 22.1, cir: 38, npl: 1.5, growth: 25,
-                infra: ["cloud-native", "ai-advanced", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Crecimiento agresivo - escalabilidad" },
-                    { level: "cool", text: "Tech-forward, cloud-first" }
-                ]
-            },
-            { 
-                rank: 7, name: "Banco Safra", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 75, segment: "large", ownership: "Privado",
-                roe: 16.8, cir: 40, npl: 2.1, growth: 11,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Inversión continua en tecnología" }
-                ]
-            },
-            { 
-                rank: 8, name: "Banco Votorantim", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 55, segment: "large", ownership: "Privado",
-                roe: 13.5, cir: 46, npl: 2.8, growth: 7,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Modernización core en evaluación" }
-                ]
-            },
-            { 
-                rank: 9, name: "Banco Inter", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 42, segment: "mid", ownership: "Privado",
-                roe: 8.5, cir: 58, npl: 3.5, growth: 35,
-                infra: ["cloud-native", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "hot", text: "Hipercrecimiento - necesita escalar infra" },
-                    { level: "warm", text: "100% digital, cloud-native" }
-                ]
-            },
-            { 
-                rank: 10, name: "Nubank", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 38, segment: "mid", ownership: "Privado",
-                roe: 25.0, cir: 35, npl: 4.5, growth: 40,
-                infra: ["cloud-native", "ai-advanced", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Full cloud AWS - referencia regional" },
-                    { level: "warm", text: "Expansión LATAM acelera" }
-                ]
-            },
-            { 
-                rank: 11, name: "Banco Original", country: "BR", countryName: "Brasil", flag: "🇧🇷", 
-                assets: 15, segment: "emerging", ownership: "Privado",
-                roe: 6.2, cir: 62, npl: 4.8, growth: 12,
-                infra: ["cloud-native", "ai-exploring", "core-modern", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Digital bank buscando diferenciación" }
-                ]
-            },
-            
-            // MÉXICO
-            { 
-                rank: 12, name: "BBVA México", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 190, segment: "large", ownership: "Multinacional",
-                roe: 19.8, cir: 36, npl: 2.4, growth: 14,
-                infra: ["hybrid-cloud", "ai-advanced", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Líder digital México - benchmark" },
-                    { level: "warm", text: "Expansión capacidad AI/ML" }
-                ]
-            },
-            { 
-                rank: 13, name: "Banorte", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 175, segment: "large", ownership: "Privado",
-                roe: 17.5, cir: 42, npl: 2.1, growth: 11,
-                infra: ["hybrid-cloud", "ai-active", "core-transition", "data-platform"],
-                signals: [
-                    { level: "hot", text: "Mega-proyecto transformación digital" },
-                    { level: "warm", text: "Integración post-Interacciones" }
-                ]
-            },
-            { 
-                rank: 14, name: "Santander México", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 120, segment: "large", ownership: "Multinacional",
-                roe: 14.2, cir: 45, npl: 2.8, growth: 8,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Alineación con estrategia global" }
-                ]
-            },
-            { 
-                rank: 15, name: "Citibanamex", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 115, segment: "large", ownership: "Multinacional",
-                roe: 11.5, cir: 52, npl: 3.2, growth: 4,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-growing"],
-                signals: [
-                    { level: "hot", text: "Venta pendiente - nueva dirección TI" },
-                    { level: "hot", text: "Separación de Citi = nuevo stack" }
-                ]
-            },
-            { 
-                rank: 16, name: "HSBC México", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 52, segment: "large", ownership: "Multinacional",
-                roe: 9.8, cir: 58, npl: 3.5, growth: 3,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Reestructuración global impacta MX" }
-                ]
-            },
-            { 
-                rank: 17, name: "Inbursa", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 45, segment: "mid", ownership: "Privado",
-                roe: 12.5, cir: 35, npl: 2.5, growth: 6,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-basic"],
-                signals: [
-                    { level: "hot", text: "Infraestructura legacy - oportunidad" },
-                    { level: "warm", text: "Grupo Carso recursos disponibles" }
-                ]
-            },
-            { 
-                rank: 18, name: "Banco Azteca", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 28, segment: "mid", ownership: "Privado",
-                roe: 8.2, cir: 65, npl: 5.8, growth: 2,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "CIR muy alto - eficiencia operativa" },
-                    { level: "warm", text: "Red masiva sucursales = edge" }
-                ]
-            },
-            { 
-                rank: 19, name: "Banregio", country: "MX", countryName: "México", flag: "🇲🇽", 
-                assets: 22, segment: "mid", ownership: "Privado",
-                roe: 15.8, cir: 44, npl: 1.8, growth: 15,
-                infra: ["cloud-native", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Banco más innovador MX - referencia" },
-                    { level: "warm", text: "Expansión nacional acelerada" }
-                ]
-            },
-            
-            // CHILE
-            { 
-                rank: 20, name: "Banco de Chile", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 95, segment: "large", ownership: "Privado",
-                roe: 18.2, cir: 42, npl: 1.8, growth: 9,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Modernización continua post-pandemia" }
-                ]
-            },
-            { 
-                rank: 21, name: "BancoEstado", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 85, segment: "large", ownership: "Estatal",
-                roe: 8.5, cir: 58, npl: 2.5, growth: 5,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-growing"],
-                signals: [
-                    { level: "hot", text: "Plan transformación 2024-2026" },
-                    { level: "hot", text: "Licitaciones públicas activas" }
-                ]
-            },
-            { 
-                rank: 22, name: "Santander Chile", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 80, segment: "large", ownership: "Multinacional",
-                roe: 16.5, cir: 40, npl: 2.1, growth: 7,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Estándar global Santander aplicado" }
-                ]
-            },
-            { 
-                rank: 23, name: "Scotiabank Chile", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 65, segment: "large", ownership: "Multinacional",
-                roe: 12.8, cir: 48, npl: 2.8, growth: 4,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Integración BBVA Chile completándose" }
-                ]
-            },
-            { 
-                rank: 24, name: "BCI", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 62, segment: "large", ownership: "Privado",
-                roe: 14.5, cir: 45, npl: 2.2, growth: 8,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Expansión EEUU requiere escala" },
-                    { level: "warm", text: "Inversión tecnológica sostenida" }
-                ]
-            },
-            { 
-                rank: 25, name: "Banco Itaú Chile", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 45, segment: "mid", ownership: "Multinacional",
-                roe: 11.2, cir: 52, npl: 3.1, growth: 3,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Alineación con matriz Brasil" }
-                ]
-            },
-            { 
-                rank: 26, name: "Bice", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 18, segment: "emerging", ownership: "Privado",
-                roe: 10.5, cir: 55, npl: 2.5, growth: 6,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-basic"],
-                signals: [
-                    { level: "warm", text: "Nicho corporativo - oportunidad foco" }
-                ]
-            },
-            { 
-                rank: 27, name: "Security", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 16, segment: "emerging", ownership: "Privado",
-                roe: 9.8, cir: 58, npl: 2.8, growth: 4,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-basic"],
-                signals: [
-                    { level: "warm", text: "Grupo Security diversificado" }
-                ]
-            },
-            { 
-                rank: 28, name: "Banco Falabella", country: "CL", countryName: "Chile", flag: "🇨🇱", 
-                assets: 12, segment: "emerging", ownership: "Privado",
-                roe: 8.5, cir: 62, npl: 4.2, growth: 2,
-                infra: ["hybrid-cloud", "ai-exploring", "core-modern", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Integración ecosistema retail" }
-                ]
-            },
-            
-            // COLOMBIA
-            { 
-                rank: 29, name: "Bancolombia", country: "CO", countryName: "Colombia", flag: "🇨🇴", 
-                assets: 85, segment: "large", ownership: "Privado",
-                roe: 15.8, cir: 48, npl: 4.2, growth: 10,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Líder transformación digital CO" },
-                    { level: "warm", text: "Nequi crecimiento exponencial" }
-                ]
-            },
-            { 
-                rank: 30, name: "Banco de Bogotá", country: "CO", countryName: "Colombia", flag: "🇨🇴", 
-                assets: 55, segment: "large", ownership: "Privado",
-                roe: 14.2, cir: 52, npl: 3.8, growth: 7,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "hot", text: "Grupo Aval - consolidación tech" },
-                    { level: "warm", text: "Presencia Centroamérica expande" }
-                ]
-            },
-            { 
-                rank: 31, name: "Davivienda", country: "CO", countryName: "Colombia", flag: "🇨🇴", 
-                assets: 48, segment: "mid", ownership: "Privado",
-                roe: 12.5, cir: 55, npl: 4.5, growth: 6,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "DaviPlata competencia Nequi" },
-                    { level: "warm", text: "CIR alto - buscando eficiencia" }
-                ]
-            },
-            { 
-                rank: 32, name: "BBVA Colombia", country: "CO", countryName: "Colombia", flag: "🇨🇴", 
-                assets: 28, segment: "mid", ownership: "Multinacional",
-                roe: 11.8, cir: 50, npl: 3.5, growth: 5,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Plataforma global BBVA" },
-                    { level: "warm", text: "Expansión digital acelerada" }
-                ]
-            },
-            { 
-                rank: 33, name: "Banco de Occidente", country: "CO", countryName: "Colombia", flag: "🇨🇴", 
-                assets: 18, segment: "emerging", ownership: "Privado",
-                roe: 10.2, cir: 58, npl: 4.0, growth: 4,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-basic"],
-                signals: [
-                    { level: "hot", text: "Core legacy - modernización urgente" },
-                    { level: "warm", text: "Grupo Aval recursos disponibles" }
-                ]
-            },
-            { 
-                rank: 34, name: "Banco Pichincha Colombia", country: "CO", countryName: "Colombia", flag: "🇨🇴", 
-                assets: 15, segment: "emerging", ownership: "Multinacional",
-                roe: 8.5, cir: 62, npl: 5.2, growth: 3,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Alineación con matriz Ecuador" }
-                ]
-            },
-            
-            // PERÚ
-            { 
-                rank: 35, name: "Banco de Crédito del Perú (BCP)", country: "PE", countryName: "Perú", flag: "🇵🇪", 
-                assets: 62, segment: "large", ownership: "Privado",
-                roe: 18.5, cir: 42, npl: 3.2, growth: 9,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Yape líder pagos móviles" },
-                    { level: "cool", text: "Tech más avanzado Perú" }
-                ]
-            },
-            { 
-                rank: 36, name: "BBVA Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", 
-                assets: 32, segment: "mid", ownership: "Multinacional",
-                roe: 14.2, cir: 48, npl: 3.5, growth: 6,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Plataforma global BBVA" }
-                ]
-            },
-            { 
-                rank: 37, name: "Scotiabank Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", 
-                assets: 28, segment: "mid", ownership: "Multinacional",
-                roe: 11.8, cir: 52, npl: 4.0, growth: 4,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Consolidación post-adquisiciones" }
-                ]
-            },
-            { 
-                rank: 38, name: "Interbank", country: "PE", countryName: "Perú", flag: "🇵🇪", 
-                assets: 22, segment: "mid", ownership: "Privado",
-                roe: 13.5, cir: 50, npl: 3.8, growth: 7,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Innovación retail agresiva" },
-                    { level: "warm", text: "Tunki competencia wallets" }
-                ]
-            },
-            { 
-                rank: 39, name: "MiBanco Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", 
-                assets: 8, segment: "emerging", ownership: "Privado",
-                roe: 15.2, cir: 55, npl: 4.5, growth: 12,
-                infra: ["hybrid-cloud", "ai-exploring", "core-modern", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Microfinanzas - modelo único" },
-                    { level: "warm", text: "Crecimiento capilaridad" }
-                ]
-            },
-            { 
-                rank: 40, name: "Banco Ripley Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", 
-                assets: 5, segment: "emerging", ownership: "Privado",
-                roe: 6.8, cir: 68, npl: 6.2, growth: 1,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-basic"],
-                signals: [
-                    { level: "warm", text: "Retail banking - integración" }
-                ]
-            },
-            
-            // ARGENTINA
-            { 
-                rank: 41, name: "Banco de la Nación Argentina", country: "AR", countryName: "Argentina", flag: "🇦🇷", 
-                assets: 45, segment: "mid", ownership: "Estatal",
-                roe: 25.0, cir: 55, npl: 2.5, growth: 85,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-growing"],
-                signals: [
-                    { level: "hot", text: "Infraestructura legacy masiva" },
-                    { level: "hot", text: "Contexto macro complica inversión" }
-                ]
-            },
-            { 
-                rank: 42, name: "Banco Galicia", country: "AR", countryName: "Argentina", flag: "🇦🇷", 
-                assets: 28, segment: "mid", ownership: "Privado",
-                roe: 35.0, cir: 48, npl: 2.2, growth: 95,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Más innovador Argentina" },
-                    { level: "cool", text: "Naranja X ecosistema fintech" }
-                ]
-            },
-            { 
-                rank: 43, name: "Banco Macro", country: "AR", countryName: "Argentina", flag: "🇦🇷", 
-                assets: 22, segment: "mid", ownership: "Privado",
-                roe: 28.0, cir: 52, npl: 2.8, growth: 80,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Presencia interior país" },
-                    { level: "warm", text: "Digitalización acelerada" }
-                ]
-            },
-            { 
-                rank: 44, name: "Santander Argentina", country: "AR", countryName: "Argentina", flag: "🇦🇷", 
-                assets: 20, segment: "mid", ownership: "Multinacional",
-                roe: 22.0, cir: 50, npl: 3.0, growth: 70,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Plataforma global Santander" }
-                ]
-            },
-            { 
-                rank: 45, name: "BBVA Argentina", country: "AR", countryName: "Argentina", flag: "🇦🇷", 
-                assets: 18, segment: "emerging", ownership: "Multinacional",
-                roe: 20.0, cir: 52, npl: 3.2, growth: 65,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "cool", text: "Plataforma global BBVA" }
-                ]
-            },
-            
-            // PANAMÁ
-            { 
-                rank: 46, name: "Banco General (Panamá)", country: "PA", countryName: "Panamá", flag: "🇵🇦", 
-                assets: 22, segment: "mid", ownership: "Privado",
-                roe: 14.5, cir: 42, npl: 1.8, growth: 8,
-                infra: ["hybrid-cloud", "ai-exploring", "core-modern", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Líder mercado panameño" },
-                    { level: "warm", text: "Expansión regional Centroamérica" }
-                ]
-            },
-            { 
-                rank: 47, name: "Banistmo", country: "PA", countryName: "Panamá", flag: "🇵🇦", 
-                assets: 15, segment: "emerging", ownership: "Multinacional",
-                roe: 10.2, cir: 55, npl: 2.5, growth: 4,
-                infra: ["hybrid-cloud", "ai-exploring", "core-transition", "data-growing"],
-                signals: [
-                    { level: "warm", text: "Bancolombia matriz - alineación" }
-                ]
-            },
-            
-            // COSTA RICA
-            { 
-                rank: 48, name: "BAC Credomatic", country: "CR", countryName: "Costa Rica", flag: "🇨🇷", 
-                assets: 18, segment: "emerging", ownership: "Multinacional",
-                roe: 16.5, cir: 45, npl: 2.2, growth: 10,
-                infra: ["hybrid-cloud", "ai-active", "core-modern", "data-platform"],
-                signals: [
-                    { level: "warm", text: "Líder Centroamérica" },
-                    { level: "cool", text: "Grupo Aval Colombia - tech compartido" }
-                ]
-            },
-            { 
-                rank: 49, name: "Banco Nacional de Costa Rica", country: "CR", countryName: "Costa Rica", flag: "🇨🇷", 
-                assets: 14, segment: "emerging", ownership: "Estatal",
-                roe: 8.5, cir: 62, npl: 2.8, growth: 5,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-basic"],
-                signals: [
-                    { level: "hot", text: "Core legacy - plan modernización" },
-                    { level: "warm", text: "Sinpe Móvil impulsa digital" }
-                ]
-            },
-            { 
-                rank: 50, name: "Banco Popular (Costa Rica)", country: "CR", countryName: "Costa Rica", flag: "🇨🇷", 
-                assets: 12, segment: "emerging", ownership: "Estatal",
-                roe: 7.2, cir: 65, npl: 3.2, growth: 3,
-                infra: ["on-prem", "ai-exploring", "core-legacy", "data-basic"],
-                signals: [
-                    { level: "hot", text: "Transformación digital necesaria" }
-                ]
-            }
-        ];
-        
-        // Sort by assets
-        banks.sort((a, b) => b.assets - a.assets);
-        banks.forEach((b, i) => b.rank = i + 1);
-        
-        const countryOrder = ['BR', 'MX', 'CL', 'CO', 'PE', 'AR', 'PA', 'CR'];
-        const countryNames = {
-            'BR': { name: 'Brasil', flag: '🇧🇷' },
-            'MX': { name: 'México', flag: '🇲🇽' },
-            'CL': { name: 'Chile', flag: '🇨🇱' },
-            'CO': { name: 'Colombia', flag: '🇨🇴' },
-            'PE': { name: 'Perú', flag: '🇵🇪' },
-            'AR': { name: 'Argentina', flag: '🇦🇷' },
-            'PA': { name: 'Panamá', flag: '🇵🇦' },
-            'CR': { name: 'Costa Rica', flag: '🇨🇷' }
-        };
-        
-        function getSegmentLabel(segment) {
-            return { mega: 'Mega', large: 'Large', mid: 'Mid', emerging: 'Emerging' }[segment] || segment;
-        }
-        
-        function getInfraLabel(tag) {
-            const labels = {
-                'hybrid-cloud': '☁️ Hybrid Cloud',
-                'cloud-native': '🚀 Cloud Native',
-                'on-prem': '🏢 On-Prem',
-                'ai-advanced': '🤖 AI Avanzado',
-                'ai-active': '🧠 AI Activo',
-                'ai-exploring': '💡 AI Explorando',
-                'core-modern': '✅ Core Moderno',
-                'core-transition': '🔄 Core Transición',
-                'core-legacy': '⚠️ Core Legacy',
-                'data-platform': '📊 Data Platform',
-                'data-growing': '📈 Data Creciendo',
-                'data-basic': '📁 Data Básico'
-            };
-            return labels[tag] || tag;
-        }
-        
-        function renderBankCard(bank) {
-            const signalsHtml = bank.signals ? bank.signals.map(s => `
-                <div class="signal">
-                    <span class="signal-dot ${s.level}"></span>
-                    <span>${s.text}</span>
-                </div>
-            `).join('') : '';
-            
-            const infraHtml = bank.infra ? bank.infra.map(tag => `
-                <span class="infra-tag active">${getInfraLabel(tag)}</span>
-            `).join('') : '';
-            
-            return `
-                <div class="bank-card">
-                    <div class="bank-header">
-                        <span class="bank-rank ${bank.rank <= 3 ? 'top-3' : ''}">${bank.rank}</span>
-                        <span class="bank-name">${bank.name}</span>
-                        <span class="segment-badge segment-${bank.segment}">${getSegmentLabel(bank.segment)}</span>
-                    </div>
-                    
-                    <div class="bank-info">
-                        <div class="info-item">
-                            <div class="info-label">Activos Totales</div>
-                            <div class="info-value assets">$${bank.assets}B</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Tipo</div>
-                            <div class="info-value">${bank.ownership}</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">ROE</div>
-                            <div class="info-value highlight">${bank.roe}%</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">CIR</div>
-                            <div class="info-value ${bank.cir > 55 ? 'highlight' : ''}">${bank.cir}%</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">NPL</div>
-                            <div class="info-value">${bank.npl}%</div>
-                        </div>
-                        <div class="info-item">
-                            <div class="info-label">Crecimiento 3Y</div>
-                            <div class="info-value highlight">${bank.growth}%</div>
-                        </div>
-                    </div>
-                    
-                    ${infraHtml ? `<div class="infra-indicators">${infraHtml}</div>` : ''}
-                    
-                    ${signalsHtml ? `<div class="signals">${signalsHtml}</div>` : ''}
-                </div>
-            `;
-        }
-        
-        function renderContent(filteredBanks) {
-            const content = document.getElementById('content');
-            
-            if (filteredBanks.length === 0) {
-                content.innerHTML = '<div class="no-results">No se encontraron bancos con los filtros seleccionados</div>';
-                return;
-            }
-            
-            // Group by country
-            const grouped = {};
-            filteredBanks.forEach(bank => {
-                if (!grouped[bank.country]) grouped[bank.country] = [];
-                grouped[bank.country].push(bank);
-            });
-            
-            // Sort countries by order
-            const sortedCountries = Object.keys(grouped).sort((a, b) => 
-                countryOrder.indexOf(a) - countryOrder.indexOf(b)
-            );
-            
-            let html = '';
-            sortedCountries.forEach(countryCode => {
-                const countryBanks = grouped[countryCode];
-                const info = countryNames[countryCode];
-                const totalAssets = countryBanks.reduce((sum, b) => sum + b.assets, 0);
-                
-                html += `
-                    <div class="country-section">
-                        <div class="country-header">
-                            <span class="country-flag">${info.flag}</span>
-                            <span class="country-name">${info.name}</span>
-                            <div class="country-stats">
-                                <span><strong>${countryBanks.length}</strong> bancos</span>
-                                <span><strong>$${totalAssets}B</strong> activos</span>
-                            </div>
-                        </div>
-                        <div class="banks-grid">
-                            ${countryBanks.map(renderBankCard).join('')}
-                        </div>
-                    </div>
-                `;
-            });
-            
-            content.innerHTML = html;
-        }
-        
-        function updateStats(filteredBanks) {
-            const totalAssets = filteredBanks.reduce((sum, b) => sum + b.assets, 0);
-            const countries = new Set(filteredBanks.map(b => b.country)).size;
-            const megaCount = filteredBanks.filter(b => b.segment === 'mega').length;
-            const hotSignals = filteredBanks.filter(b => b.signals && b.signals.some(s => s.level === 'hot')).length;
-            
-            document.getElementById('stats-bar').innerHTML = `
-                <div class="stat-card">
-                    <div class="stat-value">$${(totalAssets / 1000).toFixed(1)}T</div>
-                    <div class="stat-label">Activos Totales</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">${filteredBanks.length}</div>
-                    <div class="stat-label">Bancos</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">${countries}</div>
-                    <div class="stat-label">Países</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value">${megaCount}</div>
-                    <div class="stat-label">Mega Banks</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" style="color: #ff4757;">${hotSignals}</div>
-                    <div class="stat-label">🔥 Oportunidades Hot</div>
-                </div>
-            `;
-        }
-        
-        function filterBanks() {
-            const countryFilter = document.getElementById('country-filter').value;
-            const segmentFilter = document.getElementById('segment-filter').value;
-            const searchTerm = document.getElementById('search').value.toLowerCase();
-            
-            let filtered = banks.filter(bank => {
-                if (countryFilter && bank.country !== countryFilter) return false;
-                if (segmentFilter && bank.segment !== segmentFilter) return false;
-                if (searchTerm && !bank.name.toLowerCase().includes(searchTerm)) return false;
-                return true;
-            });
-            
-            // Re-rank
-            filtered.forEach((b, i) => b.rank = i + 1);
-            
-            renderContent(filtered);
-            updateStats(filtered);
-        }
-        
-        // Event listeners
-        document.getElementById('country-filter').addEventListener('change', filterBanks);
-        document.getElementById('segment-filter').addEventListener('change', filterBanks);
-        document.getElementById('search').addEventListener('input', filterBanks);
-        
-        // Initial render - ALL BANKS, ALL INFO VISIBLE
-        renderContent(banks);
-        updateStats(banks);
-    </script>
+    </main>
 </body>
 </html>
