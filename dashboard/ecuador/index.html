@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ecuador - Sistema Bancario | LATAM Intel</title>
+    <title>Ecuador Banking Sector | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
         <ul class="nav-menu">
             <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
             <li class="nav-item" onclick="window.location.href='../ranking.html'"><span class="nav-icon">🏆</span><span>Ranking</span></li>
@@ -18,119 +21,177 @@
             <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
             <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Ejecutivos</span></li>
         </ul>
-        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.3</p></div>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3</p>
+        </div>
     </nav>
 
     <main class="main-content">
-        <a href="../index.html" class="back-link">← Volver al Dashboard</a>
+        <a href="../index.html" class="back-link">← Back to Dashboard</a>
         
         <header class="page-header">
-            <h1>🇪🇨 Ecuador - Sistema Bancario</h1>
-            <p class="subtitle">Top 6 bancos por activos totales • Economía dolarizada (USD)</p>
+            <h1>🇪🇨 Ecuador Banking Sector</h1>
+            <p class="subtitle">Top 5 banks by total assets • ~$55B total market (FY2024)</p>
         </header>
 
+        <div style="background: var(--bg-card); border: 1px solid var(--border-primary); border-radius: var(--radius-md); padding: 12px 20px; margin-bottom: 24px; font-size: 13px; color: var(--text-secondary);">
+            <strong>📅 Data as of:</strong> Nov 2024 • <strong>Source:</strong> Superintendencia de Bancos del Ecuador • <strong>Currency:</strong> USD (dollarized economy)
+        </div>
+
         <div class="info-banner">
-            <strong>Resumen del Mercado:</strong> ~$58B activos totales del sistema • Economía dolarizada desde 2000 • 
-            Alta concentración (Top 4 = 65%) • Supervisado por Superintendencia de Bancos
+            <strong>Market Overview:</strong> ~$55B total banking assets • Top 5 = 75% concentration • Dollarized economy (USD) • Conservative regulatory environment • Digital banking growing rapidly
+        </div>
+
+        <div class="stats-grid" style="grid-template-columns: repeat(4, 1fr);">
+            <div class="stat-card">
+                <span class="stat-icon">🏦</span>
+                <div class="stat-content">
+                    <h3>5</h3>
+                    <p>Banks Analyzed</p>
+                    <span style="font-size:10px;color:var(--text-dim)">Top by assets</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">💰</span>
+                <div class="stat-content">
+                    <h3>$53.9B</h3>
+                    <p>Top 5 Assets</p>
+                    <span style="font-size:10px;color:var(--text-dim)">FY2024 USD</span>
+                </div>
+            </div>
+            <div class="stat-card highlight">
+                <span class="stat-icon">🎯</span>
+                <div class="stat-content">
+                    <h3>2</h3>
+                    <p>Tier 1 Targets</p>
+                    <span style="font-size:10px;color:var(--text-dim)">High opportunity</span>
+                </div>
+            </div>
+            <div class="stat-card">
+                <span class="stat-icon">📈</span>
+                <div class="stat-content">
+                    <h3>+13%</h3>
+                    <p>Avg YoY Growth</p>
+                    <span style="font-size:10px;color:var(--text-dim)">Sector average</span>
+                </div>
+            </div>
         </div>
 
         <section class="section-card">
-            <h2>📊 Ranking de Bancos Ecuatorianos</h2>
+            <h2>📊 Bank Comparison — Top 5</h2>
             <div class="table-container">
                 <table class="bank-table">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Banco</th>
-                            <th>Activos (USD)</th>
-                            <th>Participación</th>
-                            <th>Tipo</th>
-                            <th>ROE</th>
-                            <th>Oportunidad</th>
-                            <th>Detalle</th>
+                            <th>Rank</th>
+                            <th>Bank</th>
+                            <th>Assets<br><span style="font-size:9px;font-weight:400;color:var(--text-dim)">Nov 2024 USD</span></th>
+                            <th>Mkt Share<br><span style="font-size:9px;font-weight:400;color:var(--text-dim)">% of total</span></th>
+                            <th>Growth<br><span style="font-size:9px;font-weight:400;color:var(--text-dim)">YoY %</span></th>
+                            <th>ROE<br><span style="font-size:9px;font-weight:400;color:var(--text-dim)">FY2024</span></th>
+                            <th>CIR<br><span style="font-size:9px;font-weight:400;color:var(--text-dim)">FY2024</span></th>
+                            <th>Opportunity</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="tier1-row">
                             <td>1</td>
-                            <td><strong>Banco Pichincha</strong></td>
-                            <td>$20B</td>
-                            <td>~34%</td>
-                            <td>Privado</td>
+                            <td><a href="banco_pichincha.html"><strong>Banco Pichincha</strong></a></td>
+                            <td><strong>$20.4B</strong></td>
+                            <td>37%</td>
+                            <td><span style="color:var(--success)">+12.5%</span></td>
                             <td>13.5%</td>
-                            <td><span class="opportunity high">🟢 ALTA</span></td>
-                            <td><a href="banco_pichincha.html" class="btn-small">Ver →</a></td>
+                            <td>50%</td>
+                            <td><span class="opportunity high">🟢 HIGH</span></td>
+                            <td><a href="banco_pichincha.html" class="btn-small">Details</a></td>
                         </tr>
-                        <tr>
+                        <tr class="tier1-row">
                             <td>2</td>
-                            <td><strong>Banco Guayaquil</strong></td>
-                            <td>$10B</td>
-                            <td>~17%</td>
-                            <td>Privado</td>
-                            <td>15.0%</td>
-                            <td><span class="opportunity high">🟢 ALTA</span></td>
-                            <td><a href="banco_guayaquil.html" class="btn-small">Ver →</a></td>
+                            <td><a href="banco_guayaquil.html"><strong>Banco Guayaquil</strong></a></td>
+                            <td><strong>$9.9B</strong></td>
+                            <td>18%</td>
+                            <td><span style="color:var(--success)">+18.5%</span></td>
+                            <td>15.8%</td>
+                            <td>46%</td>
+                            <td><span class="opportunity high">🟢 HIGH</span></td>
+                            <td><a href="banco_guayaquil.html" class="btn-small">Details</a></td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td><strong>Produbanco</strong></td>
-                            <td>$9B</td>
-                            <td>~15%</td>
-                            <td>Privado (Promerica)</td>
-                            <td>14.5%</td>
-                            <td><span class="opportunity high">🟢 ALTA</span></td>
-                            <td><a href="produbanco.html" class="btn-small">Ver →</a></td>
+                            <td><a href="produbanco.html">Produbanco</a></td>
+                            <td><strong>$8.8B</strong></td>
+                            <td>16%</td>
+                            <td><span style="color:var(--success)">+14.2%</span></td>
+                            <td>14.2%</td>
+                            <td>48%</td>
+                            <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                            <td><a href="produbanco.html" class="btn-small">Details</a></td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><strong>Banco del Pacífico</strong></td>
-                            <td>$8B</td>
-                            <td>~14%</td>
-                            <td>Estatal</td>
-                            <td>9.0%</td>
-                            <td><span class="opportunity medium">🟡 MEDIA</span></td>
-                            <td><a href="banco_pacifico.html" class="btn-small">Ver →</a></td>
+                            <td><a href="banco_pacifico.html">Banco del Pacífico</a></td>
+                            <td><strong>$8.2B</strong></td>
+                            <td>15%</td>
+                            <td><span style="color:var(--text-muted)">+8.5%</span></td>
+                            <td>8.5%</td>
+                            <td>55%</td>
+                            <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                            <td><a href="banco_pacifico.html" class="btn-small">Details</a></td>
                         </tr>
                         <tr>
                             <td>5</td>
-                            <td><strong>Banco Internacional</strong></td>
-                            <td>$6B</td>
-                            <td>~10%</td>
-                            <td>Privado</td>
-                            <td>12.0%</td>
-                            <td><span class="opportunity medium">🟡 MEDIA</span></td>
-                            <td><a href="banco_internacional.html" class="btn-small">Ver →</a></td>
-                        </tr>
-                        <tr>
-                            <td>6</td>
-                            <td>Banco Bolivariano</td>
-                            <td>$5B</td>
-                            <td>~8%</td>
-                            <td>Privado</td>
-                            <td>11.5%</td>
-                            <td><span class="opportunity medium">🟡 MEDIA</span></td>
-                            <td><span class="btn-small disabled">Próximamente</span></td>
+                            <td><a href="banco_internacional.html">Banco Internacional</a></td>
+                            <td><strong>$6.6B</strong></td>
+                            <td>12%</td>
+                            <td><span style="color:var(--success)">+11.8%</span></td>
+                            <td>12.5%</td>
+                            <td>52%</td>
+                            <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                            <td><a href="banco_internacional.html" class="btn-small">Details</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">
-                📊 Fuente: Superintendencia de Bancos Ecuador, Reportes anuales 2024. Datos en USD.
-            </p>
+            <div style="margin-top: 12px; font-size: 11px; color: var(--text-dim);">
+                <strong>Notes:</strong> Market share based on total system assets (~$55B). Growth = YoY asset growth. ROE and CIR from latest available quarterly data.
+            </div>
         </section>
 
         <section class="section-card">
-            <h2>🔥 Matriz de Oportunidades de Infraestructura</h2>
+            <h2>🎯 Opportunity Prioritization</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px;">
+                <div style="background: var(--success-bg); border: 1px solid var(--success); border-radius: var(--radius-md); padding: 16px;">
+                    <h4 style="color: var(--success); margin-bottom: 8px;">🟢 TIER 1 — Pursue Aggressively</h4>
+                    <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+                        <li><strong>Banco Pichincha</strong> — Largest bank ($20.4B), 37% market share, digital leader, complex infra needs</li>
+                        <li><strong>Banco Guayaquil</strong> — Fastest growing (+18.5%), best ROE (15.8%), aggressive digital agenda</li>
+                    </ul>
+                </div>
+                <div style="background: var(--warning-bg); border: 1px solid var(--warning); border-radius: var(--radius-md); padding: 16px;">
+                    <h4 style="color: var(--warning); margin-bottom: 8px;">🟡 TIER 2 — Pursue Strategically</h4>
+                    <ul style="font-size: 13px; color: var(--text-secondary); line-height: 1.8;">
+                        <li><strong>Produbanco</strong> — Strong financials, Promerica regional group (decisions may involve HQ)</li>
+                        <li><strong>Banco Internacional</strong> — SME focus, efficiency-driven, operational infra plays</li>
+                        <li><strong>Banco del Pacífico</strong> — State-owned = slower procurement, but high CIR creates need</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🔥 Infrastructure Opportunity Matrix</h2>
             <div class="table-container">
                 <table class="matrix-table">
                     <thead>
                         <tr>
-                            <th>Banco</th>
-                            <th>Cómputo</th>
+                            <th>Bank</th>
+                            <th>Compute</th>
                             <th>Storage</th>
-                            <th>Red</th>
+                            <th>Network</th>
                             <th>Core Banking</th>
-                            <th>Banca Digital</th>
+                            <th>Digital Platform</th>
                             <th>Data/AI</th>
                         </tr>
                     </thead>
@@ -149,69 +210,65 @@
                             <td>🟢</td>
                             <td>🟡</td>
                             <td>🟡</td>
-                            <td>🟡</td>
+                            <td>🟢</td>
                             <td>🟢</td>
                             <td>🟡</td>
                         </tr>
                         <tr>
-                            <td><strong>Produbanco</strong></td>
+                            <td>Produbanco</td>
                             <td>🟡</td>
                             <td>🟡</td>
-                            <td>🟢</td>
-                            <td>🟢</td>
+                            <td>🟡</td>
+                            <td>🟡</td>
                             <td>🟡</td>
                             <td>🟡</td>
                         </tr>
                         <tr>
-                            <td><strong>Pacífico</strong></td>
+                            <td>Pacífico</td>
+                            <td>🟡</td>
+                            <td>🟢</td>
                             <td>🟡</td>
                             <td>🔴</td>
                             <td>🟡</td>
-                            <td>🔴</td>
                             <td>🟡</td>
-                            <td>🔴</td>
                         </tr>
                         <tr>
-                            <td><strong>Internacional</strong></td>
+                            <td>Internacional</td>
                             <td>🟡</td>
                             <td>🟡</td>
                             <td>🟡</td>
                             <td>🟡</td>
                             <td>🟡</td>
-                            <td>🟡</td>
+                            <td>🔴</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="legend">🟢 Oportunidad activa | 🟡 Necesidad latente / Por verificar | 🔴 Baja prioridad</p>
+            <p class="legend">🟢 Active opportunity | 🟡 Latent need | 🔴 Low priority / blocked</p>
         </section>
 
         <section class="section-card">
-            <h2>📝 Notas del Mercado Ecuatoriano</h2>
-            <ul style="line-height: 2; color: var(--text-secondary);">
-                <li><strong>Economía dolarizada:</strong> Desde 2000, todo en USD - sin riesgo cambiario</li>
-                <li><strong>Líderes digitales:</strong> Pichincha (Deuna) y Guayaquil lideran transformación digital</li>
-                <li><strong>Concentración:</strong> Top 4 bancos controlan ~80% del mercado</li>
-                <li><strong>Banco estatal:</strong> Pacífico es propiedad del gobierno - procesos diferentes</li>
-                <li><strong>Regulador:</strong> Superintendencia de Bancos - estable, pro-modernización</li>
-                <li><strong>Oportunidad cloud:</strong> Alta - mayoría aún on-premise, buscando modernizar</li>
-            </ul>
-        </section>
-
-        <section class="section-card">
-            <h2>🎯 Ejecutivos Clave de Ecuador</h2>
-            <div class="priority-grid">
-                <div class="priority-card" onclick="window.location.href='../executives/abelardo_pachano_bertero.html'" style="cursor:pointer">
-                    <h4>Abelardo Pachano</h4>
-                    <p>Presidente Ejecutivo - Produbanco</p>
+            <h2>📊 Key Financial Comparisons</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-top: 16px;">
+                <div style="background: var(--bg-elevated); padding: 16px; border-radius: var(--radius-md);">
+                    <h4 style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">🏆 Highest ROE (Profitability)</h4>
+                    <div style="font-size: 20px; font-weight: 700; color: var(--success);">Guayaquil 15.8%</div>
+                    <div style="font-size: 11px; color: var(--text-dim);">→ Best positioned to invest</div>
                 </div>
-                <div class="priority-card" onclick="window.location.href='../executives/antonio_acosta_espinosa.html'" style="cursor:pointer">
-                    <h4>Antonio Acosta</h4>
-                    <p>Presidente - Banco Pichincha</p>
+                <div style="background: var(--bg-elevated); padding: 16px; border-radius: var(--radius-md);">
+                    <h4 style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">📈 Fastest Growth (YoY)</h4>
+                    <div style="font-size: 20px; font-weight: 700; color: var(--success);">Guayaquil +18.5%</div>
+                    <div style="font-size: 11px; color: var(--text-dim);">→ Scaling pressure = infra need</div>
                 </div>
-                <div class="priority-card" onclick="window.location.href='../executives/guillermo_lasso_mendoza.html'" style="cursor:pointer">
-                    <h4>Guillermo Lasso</h4>
-                    <p>Fundador - Banco Guayaquil</p>
+                <div style="background: var(--bg-elevated); padding: 16px; border-radius: var(--radius-md);">
+                    <h4 style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">⚠️ Highest CIR (Efficiency Need)</h4>
+                    <div style="font-size: 20px; font-weight: 700; color: var(--warning);">Pacífico 55%</div>
+                    <div style="font-size: 11px; color: var(--text-dim);">→ Automation business case</div>
+                </div>
+                <div style="background: var(--bg-elevated); padding: 16px; border-radius: var(--radius-md);">
+                    <h4 style="font-size: 12px; color: var(--text-muted); margin-bottom: 8px;">🏛️ Largest Scale</h4>
+                    <div style="font-size: 20px; font-weight: 700; color: var(--accent-primary);">Pichincha $20.4B</div>
+                    <div style="font-size: 11px; color: var(--text-dim);">→ Big deals, complex needs</div>
                 </div>
             </div>
         </section>

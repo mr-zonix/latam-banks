@@ -72,7 +72,7 @@
             <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
             <li class="nav-item" onclick="window.location.href='../ranking.html'"><span class="nav-icon">🏆</span><span>Ranking</span></li>
             <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
-            <li class="nav-item active"><span class="nav-icon">🇵🇪</span><span>Perú</span></li>
+            <li class="nav-item" class="nav-item active"><span class="nav-icon">🇵🇪</span><span>Perú</span></li>
             <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
             <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Ejecutivos</span></li>
         </ul>
@@ -83,7 +83,7 @@
     </nav>
 
     <main class="main-content">
-        <a href="../index.html" class="back-link">← Back to Dashboard</a>
+        <a href="index.html" class="back-link">← Volver a Perú</a>
         
         <div class="bank-header">
             <div class="bank-title">
@@ -400,7 +400,7 @@
             </ul>
         </section>
 
-<!-- Infrastructure Stack - UPDATED WITH CONFIRMED INTEL -->
+        <!-- Infrastructure Stack - UPDATED WITH CONFIRMED INTEL -->
         <section class="section-card">
             <h2 data-en="🔧 Infrastructure Stack — Confirmed Intelligence" data-es="🔧 Stack de Infraestructura — Inteligencia Confirmada">🔧 Infrastructure Stack — Confirmed Intelligence</h2>
             <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
@@ -424,54 +424,54 @@
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">🏢</span>
                         <span class="infra-layer-name">Data Centers</span>
-                        <span class="infra-layer-opp confirmed" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
+                        <span class="infra-layer-opp" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
                     </div>
                     <div class="infra-brands">
                         <span class="brand-tag confirmed">2 DC en Lima</span>
                         <span class="brand-tag confirmed">1 DR en Brasil</span>
                     </div>
-                    <p class="infra-notes">Arquitectura distribuida con DR geográfico fuera del país. 3 capas lógicas: Infraestructura → Plataforma/Middleware → Aplicación/Negocio. Arquitectura modular alineada con mejores prácticas de banca distribuida.</p>
+                    <p class="infra-notes">Arquitectura distribuida con DR geográfico fuera del país. 3 capas lógicas: Infraestructura → Plataforma/Middleware → Aplicación/Negocio.</p>
                 </div>
 
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">☁️</span>
                         <span class="infra-layer-name">Cloud & Compute</span>
-                        <span class="infra-layer-opp confirmed" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
+                        <span class="infra-layer-opp" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
                     </div>
                     <div class="infra-brands">
                         <span class="brand-tag confirmed">Microsoft Azure (contrato mayor)</span>
                         <span class="brand-tag likely">Hybrid Cloud</span>
                         <span class="brand-tag confirmed">VMware (exposure mínima)</span>
                     </div>
-                    <p class="infra-notes">Contrato grande con Microsoft. VMware NO es prioridad de reemplazo — pocas aplicaciones dependen de él. El approach de infra es hybrid con Azure como cloud principal.</p>
+                    <p class="infra-notes">Contrato grande con Microsoft. VMware NO es prioridad de reemplazo — pocas aplicaciones dependen de él.</p>
                 </div>
 
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">🔗</span>
                         <span class="infra-layer-name">Integration & APIs</span>
-                        <span class="infra-layer-opp confirmed" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
+                        <span class="infra-layer-opp" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
                     </div>
                     <div class="infra-brands">
                         <span class="brand-tag confirmed">MuleSoft (API orchestration)</span>
                         <span class="brand-tag confirmed">DAPR (Distributed Application Runtime)</span>
                     </div>
-                    <p class="infra-notes"><strong>MuleSoft</strong> es el backbone de integración y orquestación de APIs. <strong>DAPR</strong> provee abstracción para microservicios: comunicación service-to-service, state management, pub/sub, secrets. Los desarrolladores NO codean contra DBs o engines específicos — usan APIs de DAPR. <strong>Implicación:</strong> Bajo vendor lock-in, alta flexibilidad arquitectónica.</p>
+                    <p class="infra-notes"><strong>MuleSoft</strong> es el backbone de integración y orquestación de APIs. <strong>DAPR</strong> provee abstracción para microservicios: comunicación service-to-service, state management, pub/sub, secrets. <strong>Implicación:</strong> Bajo vendor lock-in, alta flexibilidad arquitectónica.</p>
                 </div>
 
                 <div class="infra-layer">
                     <div class="infra-layer-header">
                         <span class="infra-layer-icon">📊</span>
                         <span class="infra-layer-name">Data, Analytics & AI</span>
-                        <span class="infra-layer-opp confirmed" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
+                        <span class="infra-layer-opp" style="background: rgba(16, 185, 129, 0.2); color: var(--accent-green);">CONFIRMED</span>
                     </div>
                     <div class="infra-brands">
                         <span class="brand-tag confirmed">Databricks (Lakehouse Architecture)</span>
                         <span class="brand-tag likely">Real-time analytics</span>
                         <span class="brand-tag likely">ML pipelines</span>
                     </div>
-                    <p class="infra-notes"><strong>Databricks</strong> es el backbone de data y analytics — arquitectura Lakehouse con capacidades de analytics en tiempo real, pipelines de ML, y orquestación de datos a gran escala. NO es SAS/Snowflake/Redshift. Cualquier alternativa competitiva debe demostrar: scalability comparable, integración nativa de AI, eficiencia de costos, simplicidad operativa.</p>
+                    <p class="infra-notes"><strong>Databricks</strong> es el backbone de data y analytics — arquitectura Lakehouse. NO es SAS/Snowflake/Redshift.</p>
                 </div>
 
                 <div class="infra-layer">
@@ -484,7 +484,7 @@
                         <span class="brand-tag confirmed">Core crea cuentas Yape (invisibles al usuario)</span>
                         <span class="brand-tag likely">Legacy + API Layer</span>
                     </div>
-                    <p class="infra-notes"><strong>Insight clave:</strong> Cuando un usuario se registra en Yape (por celular), se crea una cuenta REAL en el core bancario, pero invisible al usuario. Yape NO es un wallet separado — es un funnel de adquisición digital integrado al core. <strong>Oportunidad:</strong> Si cada usuario Yape = cuenta en core, hay potencial de optimización de licencias core (por número de cuentas/productos/transacciones). Área para deeper discovery.</p>
+                    <p class="infra-notes"><strong>Insight clave:</strong> Cuando un usuario se registra en Yape, se crea una cuenta REAL en el core bancario pero invisible al usuario. Yape NO es wallet separado — es funnel de adquisición integrado al core. <strong>Oportunidad:</strong> Optimización de licencias core.</p>
                 </div>
 
                 <div class="infra-layer">
@@ -495,23 +495,22 @@
                     </div>
                     <div class="infra-brands">
                         <span class="brand-tag confirmed">15M usuarios activos</span>
-                        <span class="brand-tag confirmed">107K tx/min</span>
+                        <span class="brand-tag confirmed">107K tx/min (~1,783 TPS)</span>
                         <span class="brand-tag confirmed">Cloud-native</span>
                     </div>
-                    <p class="infra-notes">Yape maneja ~1,783 TPS — categoría de ecosistema digital de alto rendimiento. <strong>Yape Tienda</strong> (SMEs) NO cobra fees al usuario final, monetiza via spread del merchant. Escala de transacciones impacta directamente sustentabilidad de márgenes. Cualquier propuesta debe benchmarkear contra esta densidad de transacciones, elasticidad peak, y tolerancia a latencia baja.</p>
+                    <p class="infra-notes">Yape maneja ~1,783 TPS — ecosistema digital de alto rendimiento. <strong>Yape Tienda</strong> monetiza via spread del merchant (no fees usuario).</p>
                 </div>
             </div>
             
             <!-- Strategic Alert -->
-            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(232, 76, 61, 0.1); border-left: 4px solid var(--accent-red); padding: 1rem;">
-                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);">🎯 Alerta Estratégica para Engagement</h4>
-                <p style="margin: 0;">BCP opera como un <strong>ecosistema digital de gran escala</strong>, no como banco tradicional. Con 3,000 desarrolladores y arquitectura moderna (DAPR, MuleSoft, Databricks), el engagement debe ser <strong>arquitectónico, técnico y consultivo</strong>. Un approach puramente comercial NO será efectivo. El equipo tech es sofisticado y benchmark-driven.</p>
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(232, 76, 61, 0.1); border-left: 4px solid var(--danger); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--danger);">🎯 Alerta Estratégica</h4>
+                <p style="margin: 0;">BCP opera como <strong>ecosistema digital de gran escala</strong>, no banco tradicional. Con 3,000 desarrolladores y arquitectura moderna (DAPR, MuleSoft, Databricks), el engagement debe ser <strong>arquitectónico, técnico y consultivo</strong>. Approach puramente comercial NO será efectivo.</p>
             </div>
         </section>
 
         <section class="section-card">
-            <h2 data-en="🎯 Best Infrastructure Plays" data-es="🎯 Mejores Oportunidades de Infraestructura">🎯 Best Infrastructure Plays</h2>
-            <h2 data-en="🎯 Best Infrastructure Plays" data-es="🎯 Mejores Oportunidades de Infraestructura">🎯 Best Infrastructure Plays</h2>
+            <h2 data-en="🎯 Best Infrastructure Plays</h2>
             <div class="priority-list">
                 <div class="priority-item high">
                     <span class="priority-num">1</span>

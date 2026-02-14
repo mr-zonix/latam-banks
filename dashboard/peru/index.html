@@ -1,152 +1,128 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perú - Sistema Bancario | LATAM Intel</title>
+    <title>Peru Banking Sector | LATAM LATAM Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
         <ul class="nav-menu">
             <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
             <li class="nav-item" onclick="window.location.href='../ranking.html'"><span class="nav-icon">🏆</span><span>Ranking</span></li>
             <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
-            <li class="nav-item active"><span class="nav-icon">🇵🇪</span><span>Perú</span></li>
+            <li class="nav-item" class="nav-item active"><span class="nav-icon">🇵🇪</span><span>Perú</span></li>
             <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
             <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Ejecutivos</span></li>
         </ul>
-        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.3</p></div>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3</p>
+        </div>
     </nav>
 
     <main class="main-content">
-        <a href="../index.html" class="back-link">← Volver al Dashboard</a>
+        <a href="../index.html" class="back-link">← Back to Dashboard</a>
         
         <header class="page-header">
-            <h1>🇵🇪 Perú - Sistema Bancario</h1>
-            <p class="subtitle">Top 5 bancos por activos totales • Moneda: Soles (PEN)</p>
+            <h1>🇵🇪 Peru Banking Sector</h1>
+            <p class="subtitle">Top 4 banks by total assets • PEN economy (USD converted)</p>
         </header>
 
         <div class="info-banner">
-            <strong>Resumen del Mercado:</strong> ~S/600B activos totales • Alta concentración (BCP ~33%) • 
-            Fuerte adopción digital • Fenómeno Yape (20M+ usuarios) • Regulado por SBS
+            <strong>Market Overview:</strong> ~$120B total banking assets • Highly concentrated (Top 4 = 85%+) • Strong economic fundamentals • Growing digital adoption
         </div>
 
         <section class="section-card">
-            <h2>📊 Ranking de Bancos Peruanos</h2>
+            <h2>📊 Bank Comparison — Top 4</h2>
             <div class="table-container">
                 <table class="bank-table">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Banco</th>
-                            <th>Activos</th>
-                            <th>Participación</th>
-                            <th>Holding</th>
+                            <th>Rank</th>
+                            <th>Bank</th>
+                            <th>Assets</th>
+                            <th>3Y Growth</th>
                             <th>ROE</th>
-                            <th>Oportunidad</th>
-                            <th>Detalle</th>
+                            <th>CIR</th>
+                            <th>Opportunity</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="tier1-row">
                             <td>1</td>
-                            <td><strong>BCP - Banco de Crédito del Perú</strong></td>
-                            <td>S/260B+ (~$70B)</td>
-                            <td>~33%</td>
-                            <td>Credicorp</td>
-                            <td>19.5%</td>
-                            <td><span class="opportunity high">🟢 ALTA</span></td>
-                            <td><a href="bcp.html" class="btn-small">Ver →</a></td>
+                            <td><a href="bcp.html"><strong>BCP (Crédito del Perú)</strong></a></td>
+                            <td>$55B</td>
+                            <td>+11%</td>
+                            <td>18.5%</td>
+                            <td>42%</td>
+                            <td><span class="opportunity high">🟢 HIGH</span></td>
+                            <td><a href="bcp.html" class="btn-small">Details</a></td>
                         </tr>
                         <tr>
                             <td>2</td>
-                            <td><strong>BBVA Perú</strong></td>
-                            <td>S/130B+ (~$36B)</td>
-                            <td>~17%</td>
-                            <td>BBVA Group (España)</td>
-                            <td>16.0%</td>
-                            <td><span class="opportunity medium">🟡 MEDIA</span></td>
-                            <td><span class="btn-small disabled">Próximamente</span></td>
+                            <td>BBVA Peru</td>
+                            <td>$25B</td>
+                            <td>+8%</td>
+                            <td>15.2%</td>
+                            <td>45%</td>
+                            <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                            <td><span class="btn-small disabled">Coming</span></td>
                         </tr>
                         <tr>
                             <td>3</td>
-                            <td><strong>Scotiabank Perú</strong></td>
-                            <td>S/115B+ (~$32B)</td>
-                            <td>~14%</td>
-                            <td>Scotiabank (Canadá)</td>
-                            <td>13.5%</td>
-                            <td><span class="opportunity medium">🟡 MEDIA</span></td>
-                            <td><span class="btn-small disabled">Próximamente</span></td>
+                            <td>Interbank</td>
+                            <td>$18B</td>
+                            <td>+12%</td>
+                            <td>16.8%</td>
+                            <td>48%</td>
+                            <td><span class="opportunity medium">🟡 MEDIUM</span></td>
+                            <td><span class="btn-small disabled">Coming</span></td>
                         </tr>
                         <tr>
                             <td>4</td>
-                            <td><strong>Interbank</strong></td>
-                            <td>S/95B+ (~$26B)</td>
-                            <td>~12%</td>
-                            <td>Intercorp</td>
-                            <td>17.0%</td>
-                            <td><span class="opportunity high">🟢 ALTA</span></td>
-                            <td><span class="btn-small disabled">Próximamente</span></td>
-                        </tr>
-                        <tr>
-                            <td>5</td>
-                            <td><strong>Banco de la Nación</strong></td>
-                            <td>S/80B+ (~$22B)</td>
-                            <td>~10%</td>
-                            <td>Estado Peruano</td>
-                            <td>5.0%</td>
-                            <td><span class="opportunity low">⚪ BAJA</span></td>
-                            <td><span class="btn-small disabled">Próximamente</span></td>
+                            <td>Scotiabank Peru</td>
+                            <td>$17B</td>
+                            <td>+6%</td>
+                            <td>12.1%</td>
+                            <td>52%</td>
+                            <td><span class="opportunity low">🔴 LOW</span></td>
+                            <td><span class="btn-small disabled">Coming</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 1rem;">
-                📊 Fuente: SBS Perú, Reportes anuales 2024. TC: ~3.7 PEN/USD
-            </p>
         </section>
 
-        <section class="section-card" style="border: 2px solid var(--success); background: var(--success-bg);">
-            <h2>🔥 Oportunidad Prioritaria: BCP</h2>
-            <p style="margin-bottom: 1rem;">El banco más grande de Perú y líder indiscutible del mercado. Yape tiene 20M+ usuarios activos.</p>
-            <div class="priority-grid">
-                <div class="stat-card">
-                    <h3>$70B</h3>
-                    <p>Activos Totales</p>
-                </div>
-                <div class="stat-card">
-                    <h3>19.5%</h3>
-                    <p>ROE 2024</p>
-                </div>
-                <div class="stat-card">
-                    <h3>36%</h3>
-                    <p>CIR (Muy eficiente)</p>
-                </div>
-                <div class="stat-card">
-                    <h3>20M+</h3>
-                    <p>Usuarios Yape</p>
-                </div>
-            </div>
-            <div style="margin-top: 1.5rem;">
-                <a href="bcp.html" class="btn-primary" style="display: inline-block; padding: 12px 24px; background: var(--success); color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">Ver Análisis Completo de BCP →</a>
-            </div>
+        <section class="section-card" style="border: 2px solid var(--accent-green);">
+            <h2>🔥 Active Opportunity: BCP Meeting</h2>
+            <p>BCP is the current priority target with active meeting preparation.</p>
+            <ul>
+                <li><strong>Meeting contacts:</strong> César Casabonne, David Sáenz, Diego Cavero</li>
+                <li><strong>Why BCP:</strong> #1 bank, best financials, Credicorp backing, autonomous decisions</li>
+            </ul>
+            <a href="bcp.html" class="btn-primary" style="margin-top: 1rem; display: inline-block;">View BCP Analysis →</a>
         </section>
 
         <section class="section-card">
-            <h2>🔥 Matriz de Oportunidades de Infraestructura</h2>
+            <h2>🔥 Infrastructure Opportunity Matrix</h2>
             <div class="table-container">
                 <table class="matrix-table">
                     <thead>
                         <tr>
-                            <th>Banco</th>
-                            <th>Cómputo</th>
+                            <th>Bank</th>
+                            <th>Compute</th>
                             <th>Storage</th>
-                            <th>Red</th>
-                            <th>Core Banking</th>
-                            <th>Banca Digital</th>
+                            <th>Network</th>
+                            <th>Core</th>
+                            <th>Digital</th>
                             <th>Data/AI</th>
                         </tr>
                     </thead>
@@ -154,69 +130,43 @@
                         <tr>
                             <td><strong>BCP</strong></td>
                             <td>🟢</td>
-                            <td>🟡</td>
-                            <td>🟡</td>
                             <td>🟢</td>
+                            <td>🟢</td>
+                            <td>🟡</td>
                             <td>🟢</td>
                             <td>🟢</td>
                         </tr>
                         <tr>
-                            <td><strong>BBVA Perú</strong></td>
+                            <td>BBVA Peru</td>
                             <td>🟡</td>
                             <td>🟡</td>
                             <td>🟡</td>
-                            <td>🟡</td>
-                            <td>🟡</td>
-                            <td>🟡</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Scotiabank</strong></td>
-                            <td>🟡</td>
-                            <td>🟡</td>
-                            <td>🟡</td>
-                            <td>🟡</td>
+                            <td>🔴</td>
                             <td>🟡</td>
                             <td>🟡</td>
                         </tr>
                         <tr>
-                            <td><strong>Interbank</strong></td>
-                            <td>🟡</td>
+                            <td>Interbank</td>
+                            <td>🟢</td>
                             <td>🟡</td>
                             <td>🟡</td>
                             <td>🟡</td>
                             <td>🟢</td>
                             <td>🟡</td>
+                        </tr>
+                        <tr>
+                            <td>Scotiabank Peru</td>
+                            <td>🔴</td>
+                            <td>🔴</td>
+                            <td>🔴</td>
+                            <td>🔴</td>
+                            <td>🟡</td>
+                            <td>🔴</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="legend">🟢 Oportunidad activa | 🟡 Necesidad latente / Por verificar | 🔴 Baja prioridad</p>
-        </section>
-
-        <section class="section-card">
-            <h2>📝 Notas del Mercado Peruano</h2>
-            <ul style="line-height: 2; color: var(--text-secondary);">
-                <li><strong>Líderes digitales:</strong> BCP (Yape) + Interbank (Tunki) dominan pagos digitales</li>
-                <li><strong>Concentración:</strong> Top 4 bancos controlan ~75% del mercado</li>
-                <li><strong>Propiedad extranjera:</strong> BBVA (España), Scotiabank (Canadá) - decisiones pueden ser regionales</li>
-                <li><strong>Regulador:</strong> SBS (Superintendencia de Banca y Seguros) - estable, pro-digital</li>
-                <li><strong>Moneda:</strong> Sol peruano (PEN) - TC ~3.7 PEN/USD</li>
-                <li><strong>Interbank:</strong> Decisiones locales (Intercorp), fuerte foco digital</li>
-            </ul>
-        </section>
-
-        <section class="section-card">
-            <h2>🎯 Ejecutivos Clave de Perú</h2>
-            <div class="priority-grid">
-                <div class="priority-card" onclick="window.location.href='../executives/cesar_casabonne_gutierrez.html'" style="cursor:pointer">
-                    <h4>César Casabonne</h4>
-                    <p>Gerente División Banca Personas - BCP</p>
-                </div>
-                <div class="priority-card" onclick="window.location.href='../executives/hernan_gimenez.html'" style="cursor:pointer">
-                    <h4>Hernán Giménez</h4>
-                    <p>CIO - BCP</p>
-                </div>
-            </div>
+            <p class="legend">🟢 Active opportunity | 🟡 Latent need | 🔴 Global decisions</p>
         </section>
     </main>
 </body>
