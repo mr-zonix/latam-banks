@@ -30,21 +30,31 @@
         .legend-dot.warm{background:#FFB800}
         .legend-dot.watch{background:#4DA3FF}
         .ranking-table-container{background:var(--bg-card);border-radius:var(--radius-lg);overflow-x:auto;border:1px solid var(--border-primary)}
-        .ranking-table{width:100%;border-collapse:collapse;min-width:1300px}
-        .ranking-table th{background:rgba(232,76,61,0.1);padding:12px 8px;text-align:left;font-weight:600;color:var(--accent-primary);font-size:0.7rem;text-transform:uppercase;cursor:pointer;border-bottom:1px solid var(--border-primary);white-space:nowrap}
+        .ranking-table{width:100%;border-collapse:collapse;min-width:1200px;table-layout:fixed}
+        .ranking-table th{background:rgba(232,76,61,0.1);padding:12px 10px;text-align:center;font-weight:600;color:var(--accent-primary);font-size:0.7rem;text-transform:uppercase;cursor:pointer;border-bottom:1px solid var(--border-primary);white-space:nowrap;vertical-align:middle}
+        .ranking-table th:first-child{width:45px;text-align:center}
+        .ranking-table th:nth-child(2){width:200px;text-align:left}
+        .ranking-table th:nth-child(3){width:120px;text-align:left}
+        .ranking-table th:nth-child(4){width:90px;text-align:right}
+        .ranking-table th:nth-child(5){width:70px;text-align:center}
+        .ranking-table th:nth-child(6){width:70px;text-align:center}
+        .ranking-table th:nth-child(7){width:70px;text-align:center}
+        .ranking-table th:nth-child(8){width:80px;text-align:center}
+        .ranking-table th:nth-child(9){width:90px;text-align:center}
+        .ranking-table th:nth-child(10){width:100px;text-align:center}
         .ranking-table th:hover{background:rgba(232,76,61,0.15)}
         .ranking-table th.sorted-asc::after{content:' ▲'}
         .ranking-table th.sorted-desc::after{content:' ▼'}
-        .ranking-table td{padding:10px 8px;border-bottom:1px solid var(--border-primary);font-size:0.8rem}
+        .ranking-table td{padding:10px;border-bottom:1px solid var(--border-primary);font-size:0.8rem;vertical-align:middle}
         .ranking-table tbody tr:hover{background:rgba(232,76,61,0.05)}
-        .rank-cell{font-weight:700;text-align:center;width:35px;color:var(--text-muted)}
+        .rank-cell{font-weight:700;text-align:center;color:var(--text-muted)}
         .rank-1{color:#FFD700!important}
         .rank-2{color:#C0C0C0!important}
         .rank-3{color:#CD7F32!important}
-        .bank-name-cell{font-weight:600;color:var(--text-primary);max-width:180px}
-        .country-cell{white-space:nowrap}
-        .flag{font-size:1rem}
-        .assets-cell{font-weight:600;color:var(--accent-primary);text-align:right;font-family:var(--font-mono)}
+        .bank-name-cell{font-weight:600;color:var(--text-primary);text-align:left;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .country-cell{white-space:nowrap;text-align:left}
+        .flag{font-size:1rem;margin-right:4px}
+        .assets-cell{font-weight:600;color:var(--accent-primary);text-align:right;font-family:var(--font-mono);padding-right:15px}
         .ratio-cell{text-align:center;font-family:var(--font-mono);font-size:0.75rem}
         .ratio-good{color:#34D399}
         .ratio-warning{color:#FFB800}
@@ -52,14 +62,14 @@
         .ratio-neutral{color:var(--text-secondary)}
         .growth-positive{color:#34D399}
         .growth-negative{color:#FF6B6B}
-        .year-badge{font-size:0.6rem;color:var(--text-dim);display:block}
-        .segment-badge{display:inline-block;padding:3px 8px;border-radius:10px;font-size:0.65rem;font-weight:600}
+        .year-badge{font-size:0.55rem;color:var(--text-dim);display:block;margin-top:2px}
+        .segment-badge{display:inline-block;padding:4px 10px;border-radius:10px;font-size:0.65rem;font-weight:600;white-space:nowrap}
         .segment-mega{background:rgba(255,215,0,0.15);color:#FFD700}
         .segment-large{background:rgba(232,76,61,0.15);color:#FF8A65}
         .segment-mid{background:rgba(147,51,234,0.15);color:#A78BFA}
         .segment-emerging{background:rgba(16,185,129,0.15);color:#34D399}
-        .opportunity-cell{text-align:center}
-        .opp-badge{display:inline-block;padding:4px 10px;border-radius:12px;font-size:0.65rem;font-weight:700;text-transform:uppercase}
+        .opportunity-cell{text-align:center;vertical-align:middle}
+        .opp-badge{display:inline-block;padding:5px 12px;border-radius:12px;font-size:0.65rem;font-weight:700;text-transform:uppercase;white-space:nowrap}
         .opp-hot{background:rgba(255,107,107,0.2);color:#FF6B6B}
         .opp-warm{background:rgba(255,184,0,0.2);color:#FFB800}
         .opp-watch{background:rgba(77,163,255,0.2);color:#4DA3FF}
