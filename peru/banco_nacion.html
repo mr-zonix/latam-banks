@@ -96,6 +96,21 @@
             font-weight: 600;
             white-space: nowrap;
         }
+        .vendor-tag {
+            display: inline-block;
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.1rem;
+            border: 1px solid var(--border);
+        }
+        .vendor-tag.verified {
+            background: rgba(16, 185, 129, 0.2);
+            color: var(--accent-green);
+            border-color: var(--accent-green);
+        }
     </style>
 </head>
 <body>
@@ -302,11 +317,15 @@
         <!-- INFRASTRUCTURE LAYERS -->
         <section class="section-card">
             <h2>🏗️ Análisis por Capas</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
+                ⚠️ Proveedores marcados con * requieren verificación en SEACE o contacto directo
+            </p>
             <div class="table-container">
                 <table class="bank-table layer-table">
                     <thead>
                         <tr>
                             <th>Capa</th>
+                            <th>Proveedores Actuales</th>
                             <th>Estado</th>
                             <th>Oportunidad</th>
                             <th>Prioridad</th>
@@ -315,42 +334,70 @@
                     <tbody>
                         <tr>
                             <td>🖥️ Compute</td>
+                            <td><span class="vendor-tag">IBM*</span> <span class="vendor-tag">VMware*</span> <span class="vendor-tag">Windows Server</span></td>
                             <td>Legacy, virtualización parcial</td>
                             <td>Modernización, cloud híbrido</td>
                             <td>🟢 HIGH</td>
                         </tr>
                         <tr>
                             <td>💾 Storage</td>
+                            <td><span class="vendor-tag">IBM*</span> <span class="vendor-tag">Dell EMC*</span></td>
                             <td>SAN tradicional, crecimiento</td>
                             <td>Consolidación, flash</td>
                             <td>🟢 HIGH</td>
                         </tr>
                         <tr>
                             <td>🌐 Network</td>
+                            <td><span class="vendor-tag verified">Telefónica</span> <span class="vendor-tag verified">Claro</span> <span class="vendor-tag">Cisco*</span> <span class="vendor-tag">Hughes VSAT*</span></td>
                             <td>WAN compleja, VSAT rural</td>
                             <td>SD-WAN, optimización rural</td>
                             <td>🟢 HIGH</td>
                         </tr>
                         <tr>
                             <td>🏦 Core Banking</td>
-                            <td>Sistema customizado/legacy</td>
+                            <td><span class="vendor-tag">Sistema Propio/Legacy*</span></td>
+                            <td>Altamente customizado</td>
                             <td>Middleware, APIs (largo plazo)</td>
                             <td>🟡 MEDIUM</td>
                         </tr>
                         <tr>
                             <td>📱 Digital Platform</td>
-                            <td>App/web básicos</td>
+                            <td><span class="vendor-tag">Desarrollo interno*</span></td>
+                            <td>App/web funcional pero básico</td>
                             <td>UX modernization</td>
                             <td>🟡 MEDIUM</td>
                         </tr>
                         <tr>
                             <td>📊 Data/AI</td>
-                            <td>BI tradicional</td>
+                            <td><span class="vendor-tag">Oracle DB*</span> <span class="vendor-tag">IBM Cognos*</span></td>
+                            <td>BI tradicional, reportes</td>
                             <td>Data platform, analytics</td>
                             <td>🟢 HIGH</td>
                         </tr>
+                        <tr>
+                            <td>☁️ Cloud</td>
+                            <td><span class="vendor-tag">On-premise</span> <span class="vendor-tag">Nube Perú (evaluando)*</span></td>
+                            <td>Sin adopción cloud significativa</td>
+                            <td>Cloud híbrido/soberano</td>
+                            <td>🟢 HIGH</td>
+                        </tr>
+                        <tr>
+                            <td>🔒 Seguridad</td>
+                            <td><span class="vendor-tag">Por verificar</span></td>
+                            <td>Cumplimiento SBS</td>
+                            <td>SOC, SIEM, Zero Trust</td>
+                            <td>🟡 MEDIUM</td>
+                        </tr>
                     </tbody>
                 </table>
+            </div>
+            <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
+                <strong>📋 Para verificar proveedores:</strong>
+                <ul style="margin: 0.5rem 0 0 1rem; font-size: 0.9rem;">
+                    <li><a href="https://prodapp2.seace.gob.pe/" target="_blank">SEACE</a> — Buscar contratos del Banco de la Nación</li>
+                    <li>LinkedIn — Perfiles de empleados de TI mencionan tecnologías</li>
+                    <li>Reunión con García Morán — Validación directa</li>
+                </ul>
             </div>
         </section>
 
