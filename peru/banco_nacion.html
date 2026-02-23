@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de la Nación | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .state-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        .executive-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-left: 4px solid var(--accent-blue);
+        }
+        .executive-card.primary {
+            border-left-color: var(--accent-green);
+            background: rgba(16, 185, 129, 0.1);
+        }
+        .executive-name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .executive-role {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .opportunity-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .opportunity-card {
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            padding: 1rem;
+            border-top: 3px solid var(--accent-blue);
+        }
+        .opportunity-card h4 {
+            margin: 0 0 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .priority-1 { border-top-color: var(--accent-green); }
+        .priority-2 { border-top-color: var(--accent-blue); }
+        .priority-3 { border-top-color: var(--accent-yellow); }
+        .warning-box {
+            background: rgba(245, 158, 11, 0.15);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .warning-box h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+        }
+        .metrics-row {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+        .metric-box {
+            background: var(--bg-secondary);
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            flex: 1;
+            min-width: 120px;
+        }
+        .metric-box .value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
+        .metric-box .label {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+        .layer-table td:first-child {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v3.9 • Feb 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="index.html" class="back-link">← Volver a Perú</a>
+        
+        <header class="page-header">
+            <span class="state-badge">🏛️ BANCO ESTATAL</span>
+            <h1>Banco de la Nación</h1>
+            <p class="subtitle">Agente financiero del Estado Peruano • 100% propiedad estatal</p>
+        </header>
+
+        <!-- KEY METRICS -->
+        <section class="section-card">
+            <h2>📊 Datos Clave</h2>
+            <div class="metrics-row">
+                <div class="metric-box">
+                    <div class="value">~$9.3B</div>
+                    <div class="label">Activos Totales</div>
+                </div>
+                <div class="metric-box">
+                    <div class="value">630+</div>
+                    <div class="label">Agencias</div>
+                </div>
+                <div class="metric-box">
+                    <div class="value">300+</div>
+                    <div class="label">Distritos Únicos</div>
+                </div>
+                <div class="metric-box">
+                    <div class="value">~4,500</div>
+                    <div class="label">Empleados</div>
+                </div>
+                <div class="metric-box">
+                    <div class="value">#5</div>
+                    <div class="label">Ranking Perú</div>
+                </div>
+            </div>
+            <p class="legend">Único banco presente en más de 300 distritos rurales del Perú</p>
+        </section>
+
+        <!-- WARNING BOX -->
+        <div class="warning-box">
+            <h4>⚠️ Consideraciones de Venta — Sector Público</h4>
+            <ul style="margin: 0; padding-left: 1.5rem;">
+                <li><strong>Proceso:</strong> Toda compra es por licitación pública (SEACE/OSCE)</li>
+                <li><strong>Ciclo:</strong> 6-18 meses desde oportunidad hasta contrato</li>
+                <li><strong>Presupuesto:</strong> Anual, planificación en Q3 para año siguiente</li>
+                <li><strong>Pitch ganador:</strong> "Servicio al ciudadano" &gt; "ROI"</li>
+            </ul>
+        </div>
+
+        <!-- PROFILE -->
+        <section class="section-card">
+            <h2>🏦 Perfil Institucional</h2>
+            <div class="table-container">
+                <table class="bank-table">
+                    <tbody>
+                        <tr><td><strong>Nombre Completo</strong></td><td>Banco de la Nación</td></tr>
+                        <tr><td><strong>Tipo</strong></td><td>Banco Estatal (100% Gobierno de Perú)</td></tr>
+                        <tr><td><strong>Fundado</strong></td><td>1966</td></tr>
+                        <tr><td><strong>Sede</strong></td><td>Lima, Perú</td></tr>
+                        <tr><td><strong>Supervisión</strong></td><td>MEF + FONAFE + SBS</td></tr>
+                        <tr><td><strong>Teléfono Central</strong></td><td>(01) 519 2000</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3 style="margin-top: 1.5rem;">Mandato y Funciones</h3>
+            <ul>
+                <li><strong>Agente financiero del Estado</strong> — paga sueldos, pensiones, subsidios</li>
+                <li><strong>Recaudación tributaria</strong> — SUNAT, tasas, contribuciones</li>
+                <li><strong>Inclusión financiera</strong> — presencia donde ningún banco privado opera</li>
+                <li><strong>Programas sociales</strong> — Pensión 65, Juntos, Beca 18, etc.</li>
+                <li><strong>Préstamos Multired</strong> — créditos a empleados estatales</li>
+            </ul>
+        </section>
+
+        <!-- EXECUTIVES -->
+        <section class="section-card">
+            <h2>👔 Ejecutivos Clave — Verificado ✅</h2>
+            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Fuente: gob.pe/institucion/bn/funcionarios • Febrero 2025</p>
+            
+            <h3>🎯 Contactos Prioritarios para TI</h3>
+            <div class="executive-card primary">
+                <div class="executive-name">Luis Rolando García Morán</div>
+                <div class="executive-role">Gerente de Tecnologías de Información (e)</div>
+                <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+                    📞 (01) 519 2000 • 🔴 <strong>CONTACTO PRINCIPAL</strong>
+                </div>
+            </div>
+            <div class="executive-card primary">
+                <div class="executive-name">Carlos Alberto Quevedo Juárez</div>
+                <div class="executive-role">Gerente Banca Digital</div>
+                <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+                    📞 (01) 519 2000 • 🎯 Transformación digital
+                </div>
+            </div>
+            <div class="executive-card">
+                <div class="executive-name">Oscar Fernando Moyano Cano</div>
+                <div class="executive-role">Gerente de Red de Agencias</div>
+                <div style="margin-top: 0.5rem; font-size: 0.85rem;">
+                    📞 (01) 519 2000 • 📍 Conectividad y operaciones
+                </div>
+            </div>
+
+            <h3 style="margin-top: 1.5rem;">Directorio</h3>
+            <div class="executive-card">
+                <div class="executive-name">German Alfredo Boza Pro</div>
+                <div class="executive-role">Presidente Ejecutivo</div>
+            </div>
+            
+            <h3 style="margin-top: 1.5rem;">Otras Gerencias</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.5rem;">
+                <div class="executive-card">
+                    <div class="executive-name">Pietro R. Malfitano Malfitano</div>
+                    <div class="executive-role">Gerente de Finanzas y Tesorería (e)</div>
+                </div>
+                <div class="executive-card">
+                    <div class="executive-name">Jesus Cristian Gustavo Villaverde Martinez</div>
+                    <div class="executive-role">Gerente de Administración y Logística</div>
+                </div>
+                <div class="executive-card">
+                    <div class="executive-name">Luis Eduardo Salazar Flores</div>
+                    <div class="executive-role">Gerente de Planeamiento y Control (e)</div>
+                </div>
+                <div class="executive-card">
+                    <div class="executive-name">Renzo Fabrizio Sponza Tuesta</div>
+                    <div class="executive-role">Gerente de Productos e Inclusión Financiera (e)</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFRASTRUCTURE OPPORTUNITIES -->
+        <section class="section-card">
+            <h2>🔧 Oportunidades de Infraestructura</h2>
+            <div class="opportunity-grid">
+                <div class="opportunity-card priority-1">
+                    <h4>🌐 #1 Networking</h4>
+                    <p><strong>Oportunidad:</strong> Conectividad para 630+ agencias, especialmente rurales</p>
+                    <p><strong>Pitch:</strong> "Llevar servicios financieros de calidad a todos los peruanos"</p>
+                    <p><strong>Soluciones:</strong> SD-WAN, optimización satelital, alta disponibilidad</p>
+                </div>
+                <div class="opportunity-card priority-1">
+                    <h4>📊 #2 Data & Analytics</h4>
+                    <p><strong>Oportunidad:</strong> Plataforma de datos para programas sociales</p>
+                    <p><strong>Pitch:</strong> "Medir impacto de política pública con datos"</p>
+                    <p><strong>Soluciones:</strong> Data lake, BI moderno, dashboards de impacto</p>
+                </div>
+                <div class="opportunity-card priority-2">
+                    <h4>💻 #3 Compute</h4>
+                    <p><strong>Oportunidad:</strong> Modernización para picos de pago (fin de mes)</p>
+                    <p><strong>Pitch:</strong> "Disponibilidad cuando más importa"</p>
+                    <p><strong>Soluciones:</strong> Virtualización, cloud híbrido, escalabilidad</p>
+                </div>
+                <div class="opportunity-card priority-3">
+                    <h4>💾 #4 Storage</h4>
+                    <p><strong>Oportunidad:</strong> Consolidación y cumplimiento regulatorio</p>
+                    <p><strong>Pitch:</strong> "Eficiencia en el gasto público"</p>
+                    <p><strong>Soluciones:</strong> Flash arrays, backup modernization, archive</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- INFRASTRUCTURE LAYERS -->
+        <section class="section-card">
+            <h2>🏗️ Análisis por Capas</h2>
+            <div class="table-container">
+                <table class="bank-table layer-table">
+                    <thead>
+                        <tr>
+                            <th>Capa</th>
+                            <th>Estado</th>
+                            <th>Oportunidad</th>
+                            <th>Prioridad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🖥️ Compute</td>
+                            <td>Legacy, virtualización parcial</td>
+                            <td>Modernización, cloud híbrido</td>
+                            <td>🟢 HIGH</td>
+                        </tr>
+                        <tr>
+                            <td>💾 Storage</td>
+                            <td>SAN tradicional, crecimiento</td>
+                            <td>Consolidación, flash</td>
+                            <td>🟢 HIGH</td>
+                        </tr>
+                        <tr>
+                            <td>🌐 Network</td>
+                            <td>WAN compleja, VSAT rural</td>
+                            <td>SD-WAN, optimización rural</td>
+                            <td>🟢 HIGH</td>
+                        </tr>
+                        <tr>
+                            <td>🏦 Core Banking</td>
+                            <td>Sistema customizado/legacy</td>
+                            <td>Middleware, APIs (largo plazo)</td>
+                            <td>🟡 MEDIUM</td>
+                        </tr>
+                        <tr>
+                            <td>📱 Digital Platform</td>
+                            <td>App/web básicos</td>
+                            <td>UX modernization</td>
+                            <td>🟡 MEDIUM</td>
+                        </tr>
+                        <tr>
+                            <td>📊 Data/AI</td>
+                            <td>BI tradicional</td>
+                            <td>Data platform, analytics</td>
+                            <td>🟢 HIGH</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ENGAGEMENT STRATEGY -->
+        <section class="section-card">
+            <h2>🎯 Estrategia de Acercamiento</h2>
+            <div class="table-container">
+                <table class="bank-table">
+                    <thead>
+                        <tr>
+                            <th>Fase</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Identificación ✅</strong></td>
+                            <td>Contactos verificados. Buscar niveles técnicos en LinkedIn.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Acercamiento</strong></td>
+                            <td>Eventos (ASBANC, gobierno digital), referencias de sector público, LinkedIn connect.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Técnico</strong></td>
+                            <td>Reunión con García Morán o equipo de Infra. PoC si hay apertura.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4. Licitación</strong></td>
+                            <td>Monitorear SEACE, preparar documentación, alianzas locales.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- LINKS -->
+        <section class="section-card">
+            <h2>🔗 Enlaces Útiles</h2>
+            <ul>
+                <li><a href="https://www.bn.com.pe" target="_blank">Web oficial del Banco de la Nación</a></li>
+                <li><a href="https://www.gob.pe/institucion/bn/funcionarios" target="_blank">Directorio de Funcionarios (gob.pe)</a></li>
+                <li><a href="https://prodapp2.seace.gob.pe/" target="_blank">SEACE — Licitaciones públicas</a></li>
+                <li><a href="https://www.sbs.gob.pe" target="_blank">SBS — Superintendencia</a></li>
+            </ul>
+        </section>
+
+        <p class="legend" style="margin-top: 2rem;">Última actualización: Febrero 2025 • Datos verificados en fuentes oficiales</p>
+    </main>
+</body>
+</html>
