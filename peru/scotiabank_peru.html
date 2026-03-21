@@ -6,8 +6,62 @@
     <title>Scotiabank Perú | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .lang-btn:hover:not(.active) {
+            background: rgba(99, 102, 241, 0.2);
+        }
+        .key-metrics {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .key-metrics .metric-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.75rem;
+        }
+        .key-metrics .metric-item .value {
+            font-size: 1.25rem;
+        }
+        .key-metrics .metric-item .label {
+            font-size: 0.7rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
     <nav class="sidebar">
         <div class="logo">
             <span class="logo-icon">🏦</span>
@@ -26,7 +80,7 @@
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
             </li>
-            <li class="nav-item active" onclick="window.location.href='../peru/index.html'">
+            <li class="nav-item active">
                 <span class="nav-icon">🇵🇪</span>
                 <span>Peru</span>
             </li>
@@ -55,104 +109,397 @@
         <div class="bank-header">
             <div class="bank-title">
                 <h1>🏦 Scotiabank Perú</h1>
-                <p class="subtitle">Multinational Commercial Bank • Lima, Peru</p>
+                <p class="subtitle">Private Commercial Bank • Lima, Peru • Subsidiary of Bank of Nova Scotia (Canada)</p>
             </div>
             <div class="bank-badges">
-                <span class="badge medium">🟡 MEDIUM OPPORTUNITY</span>
-                <span class="badge tier">TIER 2</span>
+                <span class="badge low">🔴 LOW OPPORTUNITY (Global)</span>
+                <span class="badge tier">TIER 1</span>
+                <span class="badge" style="background: var(--accent-purple); color: white;">#4 IN PERU</span>
             </div>
         </div>
 
+        <!-- PROFILE SECTION -->
         <section class="section-card">
-            <h2>📊 Key Financial Metrics</h2>
+            <h2 data-en="🏢 Bank Profile" data-es="🏢 Perfil del Banco">🏢 Bank Profile</h2>
+            <ul>
+                <li><strong data-en="Type:" data-es="Tipo:">Type:</strong> <span data-en="Private Commercial Bank — 100% Subsidiary of Scotiabank (Canada)" data-es="Banco Privado Comercial — 100% Subsidiaria de Scotiabank (Canadá)">Private Commercial Bank — 100% Subsidiary of Scotiabank (Canada)</span></li>
+                <li><strong data-en="Founded in Peru:" data-es="Fundado en Perú:">Founded in Peru:</strong> <span data-en="1997 (acquired Banco Wiese in 2006, Citibank Peru retail in 2015)" data-es="1997 (adquirió Banco Wiese en 2006, retail de Citibank Perú en 2015)">1997 (acquired Banco Wiese in 2006, Citibank Peru retail in 2015)</span></li>
+                <li><strong data-en="Ownership:" data-es="Propiedad:">Ownership:</strong> <span data-en="Bank of Nova Scotia (Canada) — 98.05%" data-es="Bank of Nova Scotia (Canadá) — 98.05%">Bank of Nova Scotia (Canada) — 98.05%</span></li>
+                <li><strong data-en="Headquarters:" data-es="Sede:">Headquarters:</strong> Av. Dionisio Derteano 102, San Isidro, Lima</li>
+                <li><strong data-en="Market Position:" data-es="Posición de Mercado:">Market Position:</strong> <span data-en="#4 in Peru — Global bank subsidiary" data-es="#4 en Perú — Subsidiaria de banco global">#4 in Peru — Global bank subsidiary</span></li>
+                <li><strong data-en="Employees:" data-es="Colaboradores:">Employees:</strong> ~5,200 (2024)</li>
+                <li><strong data-en="Branches:" data-es="Agencias:">Branches:</strong> <span data-en="~200 offices nationwide" data-es="~200 oficinas a nivel nacional">~200 offices nationwide</span></li>
+                <li><strong>ATMs:</strong> ~950</li>
+                <li><strong>Key Differentiator:</strong> <span data-en="Canadian banking standards, corporate/trade finance strength" data-es="Estándares bancarios canadienses, fortaleza en banca corporativa/trade finance">Canadian banking standards, corporate/trade finance strength</span></li>
+                <li><strong>Digital Maturity:</strong> 🟡 MEDIUM — <span data-en="PLIN partner, improving digital channels but behind BCP/Interbank" data-es="Socio de PLIN, mejorando canales digitales pero detrás de BCP/Interbank">PLIN partner, improving digital channels but behind BCP/Interbank</span></li>
+                <li><strong>Parent:</strong> Bank of Nova Scotia (TSX: BNS, NYSE: BNS) — Canada's 3rd largest bank</li>
+            </ul>
+        </section>
+
+        <!-- KEY METRICS -->
+        <section class="section-card">
+            <h2 data-en="📊 Key Metrics 2024 (Source: SBS Peru / Scotiabank Perú Annual Report)" data-es="📊 Métricas Clave 2024 (Fuente: SBS Perú / Memoria Anual Scotiabank Perú)">📊 Key Metrics 2024 (Source: SBS Peru / Scotiabank Perú Annual Report)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">PEN/USD: 3.72 | <span data-en="All values converted to USD" data-es="Todos los valores convertidos a USD">All values converted to USD</span></p>
             <div class="key-metrics">
                 <div class="metric-item">
-                    <div class="value">$25B</div>
-                    <div class="label">Total Assets</div>
+                    <div class="value">$19.1B</div>
+                    <div class="label" data-en="Total Assets" data-es="Activos Totales">Total Assets</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">+4.8%</div>
-                    <div class="label">3Y Growth</div>
+                    <div class="value">$260.2M</div>
+                    <div class="label" data-en="Net Income" data-es="Utilidad Neta">Net Income</div>
+                </div>
+                <div class="metric-item" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-yellow);">
+                    <div class="value" style="color: var(--accent-yellow);">8.0%</div>
+                    <div class="label">ROAE</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">12.8%</div>
-                    <div class="label">ROE</div>
+                    <div class="value">13.0%</div>
+                    <div class="label" data-en="Market Share" data-es="Market Share">Market Share</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">50%</div>
-                    <div class="label">CIR</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">4.0%</div>
-                    <div class="label">NPL Ratio</div>
+                    <div class="value">$3.2B</div>
+                    <div class="label" data-en="Net Equity" data-es="Patrimonio Neto">Net Equity</div>
                 </div>
             </div>
         </section>
 
+        <!-- FINANCIAL ANALYSIS -->
         <section class="section-card">
-            <h2>🏢 Bank Profile</h2>
-            <ul>
-                <li><strong>Type:</strong> Multinational Commercial Bank (Scotiabank Group)</li>
-                <li><strong>Market Position:</strong> #3 in Peru (~17% market share)</li>
-                <li><strong>Employees:</strong> ~5,000</li>
-                <li><strong>Branches:</strong> 200+ nationwide</li>
-                <li><strong>Digital Platform:</strong> Scotia App, integrated with global platform</li>
-                <li><strong>Parent:</strong> Bank of Nova Scotia (Canada)</li>
-            </ul>
+            <h2>📈 Financial Analysis (3-Year Trend)</h2>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th data-en="Metric" data-es="Métrica">Metric</th>
+                            <th>2022</th>
+                            <th>2023</th>
+                            <th>2024</th>
+                            <th>Δ 3Y</th>
+                            <th data-en="Signal" data-es="Señal">Signal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total Assets</strong></td>
+                            <td>$18.2B</td>
+                            <td>$18.7B</td>
+                            <td>$19.1B</td>
+                            <td style="color: var(--accent-green);">+4.9%</td>
+                            <td data-en="📈 Modest Growth" data-es="📈 Crecimiento Modesto">📈 Modest Growth</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net Income</strong></td>
+                            <td>$285M</td>
+                            <td>$271M</td>
+                            <td>$260M</td>
+                            <td style="color: var(--accent-red);">-8.8%</td>
+                            <td data-en="📉 Declining" data-es="📉 Declinando">📉 Declining</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ROE</strong></td>
+                            <td>9.5%</td>
+                            <td>8.6%</td>
+                            <td>8.0%</td>
+                            <td style="color: var(--accent-red);">-1.5pp</td>
+                            <td data-en="📉 Underperforming" data-es="📉 Bajo rendimiento">📉 Underperforming</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CIR (Cost/Income)</strong></td>
+                            <td>52.1%</td>
+                            <td>53.8%</td>
+                            <td>55.2%</td>
+                            <td style="color: var(--accent-red);">+3.1pp</td>
+                            <td data-en="📉 Worsening" data-es="📉 Empeorando">📉 Worsening</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NPL Ratio</strong></td>
+                            <td>4.8%</td>
+                            <td>5.5%</td>
+                            <td>6.1%</td>
+                            <td style="color: var(--accent-red);">+1.3pp</td>
+                            <td data-en="⚠️ Critical" data-es="⚠️ Crítico">⚠️ Critical</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-yellow); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-yellow);">⚠️ Financial Analysis</h4>
+                <p style="margin: 0;" data-en="Scotiabank Perú is the weakest performer among Peru's Big 4. ROE at 8.0% is below cost of capital. CIR at 55.2% is highest among top banks. NPL at 6.1% indicates credit risk issues. This suggests either: (a) restructuring/efficiency initiatives coming, or (b) reduced strategic priority from Toronto. Either way, LOCAL investment decisions are unlikely." data-es="Scotiabank Perú es el peor desempeño entre los Big 4 de Perú. ROE de 8.0% está por debajo del costo de capital. CIR de 55.2% es el más alto entre los bancos top. NPL de 6.1% indica problemas de riesgo crediticio. Esto sugiere: (a) iniciativas de reestructuración/eficiencia vienen, o (b) prioridad estratégica reducida desde Toronto. De cualquier forma, decisiones de inversión LOCAL son improbables.">Scotiabank Perú is the weakest performer among Peru's Big 4. ROE at 8.0% is below cost of capital. CIR at 55.2% is highest among top banks. NPL at 6.1% indicates credit risk issues. This suggests either: (a) restructuring/efficiency initiatives coming, or (b) reduced strategic priority from Toronto. Either way, LOCAL investment decisions are unlikely.</p>
+            </div>
         </section>
 
-        <section class="section-card">
-            <h2>💻 Technology & Infrastructure</h2>
-            <ul>
-                <li><strong>Core Banking:</strong> Scotiabank global platform, transition phase</li>
-                <li><strong>Cloud Strategy:</strong> Aligned with Scotiabank global cloud migration</li>
-                <li><strong>Data Centers:</strong> Regional consolidation underway</li>
-                <li><strong>AI/Analytics:</strong> Leveraging group capabilities, local implementation</li>
-                <li><strong>Digital Channels:</strong> Mobile app improving, catching up to leaders</li>
-            </ul>
+        <!-- GLOBAL CONTEXT -->
+        <section class="section-card" style="border: 2px solid var(--accent-red);">
+            <h2 data-en="🌍 Global Context — Critical for Sales Strategy" data-es="🌍 Contexto Global — Crítico para Estrategia de Ventas">🌍 Global Context — Critical for Sales Strategy</h2>
+            
+            <div class="alert-box" style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--accent-red); padding: 1rem; margin-bottom: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);">🚨 Scotiabank Global Restructuring (2024)</h4>
+                <p style="margin: 0;" data-en="In 2024, Scotiabank Canada announced strategic review of LATAM operations. They are actively evaluating their footprint and may reduce presence in non-core markets. Peru outcome unclear, but this creates UNCERTAINTY for local investment decisions." data-es="En 2024, Scotiabank Canadá anunció revisión estratégica de operaciones en LATAM. Están evaluando activamente su footprint y pueden reducir presencia en mercados no-core. El resultado para Perú es incierto, pero esto crea INCERTIDUMBRE para decisiones de inversión local.">In 2024, Scotiabank Canada announced strategic review of LATAM operations. They are actively evaluating their footprint and may reduce presence in non-core markets. Peru outcome unclear, but this creates UNCERTAINTY for local investment decisions.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent-red);">Scotiabank LATAM Markets</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>🇲🇽 Mexico — Core market (keeping)</li>
+                        <li>🇨🇱 Chile — Core market (keeping)</li>
+                        <li>🇵🇪 Peru — Under review</li>
+                        <li>🇨🇴 Colombia — Sold (2024)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent-yellow);">What This Means</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>Local team has minimal investment authority</li>
+                        <li>All major decisions go to Toronto</li>
+                        <li>Possible sale/exit scenario</li>
+                        <li>Cost-cutting mode, not investment mode</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
+        <!-- INFRASTRUCTURE STACK - 6 LAYERS -->
         <section class="section-card">
-            <h2>🎯 Best Infrastructure Plays</h2>
+            <h2 data-en="🔧 Infrastructure Stack — 6 Layers Deep Dive" data-es="🔧 Stack de Infraestructura — 6 Capas en Profundidad">🔧 Infrastructure Stack — 6 Layers Deep Dive</h2>
+            <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                <span style="color: var(--accent-green);">●</span> <span data-en="Confirmed" data-es="Confirmado">Confirmed</span> &nbsp;
+                <span style="color: var(--accent-yellow);">●</span> <span data-en="Likely/Estimated" data-es="Probable/Estimado">Likely/Estimated</span> &nbsp;
+                <span style="color: var(--accent-red);">●</span> <span data-en="Global Decision" data-es="Decisión Global">Global Decision</span>
+            </p>
+            
+            <div class="infra-stack">
+                <!-- LAYER 1: Processing & Compute -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💻</span>
+                        <span class="infra-layer-name">Layer 1: Processing & Compute</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">IBM (Core Banking)</span>
+                        <span class="brand-tag likely">Dell/HP x86</span>
+                        <span class="brand-tag likely">VMware</span>
+                        <span class="brand-tag likely">AWS (Limited)</span>
+                        <span class="brand-tag confirmed">Azure (Global Standard)</span>
+                    </div>
+                    <p class="infra-notes" data-en="Scotiabank Canada mandates global infrastructure standards. Azure is the preferred cloud provider globally. On-premises compute follows IBM (for core) + Dell/HP x86 for distributed workloads. Cloud adoption slower than local competitors due to global governance. Local team has ZERO autonomy for compute decisions. All purchases go through global procurement." data-es="Scotiabank Canadá manda estándares globales de infraestructura. Azure es el proveedor cloud preferido globalmente. Cómputo on-premises sigue IBM (para core) + Dell/HP x86 para workloads distribuidos. Adopción de cloud más lenta que competidores locales debido a governance global. Equipo local tiene CERO autonomía para decisiones de cómputo. Todas las compras pasan por procurement global.">Scotiabank Canada mandates global infrastructure standards. Azure is the preferred cloud provider globally. On-premises compute follows IBM (for core) + Dell/HP x86 for distributed workloads. Cloud adoption slower than local competitors due to global governance. Local team has ZERO autonomy for compute decisions. All purchases go through global procurement.</p>
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-red);">🚫 No Opportunity:</strong> Global procurement. Toronto makes all infrastructure decisions.
+                    </div>
+                </div>
+
+                <!-- LAYER 2: Storage -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💾</span>
+                        <span class="infra-layer-name">Layer 2: Enterprise Storage</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">IBM Storage</span>
+                        <span class="brand-tag likely">NetApp</span>
+                        <span class="brand-tag likely">Azure Blob/Files</span>
+                        <span class="brand-tag">Dell EMC</span>
+                    </div>
+                    <p class="infra-notes" data-en="Storage follows global Scotiabank standards. Likely IBM or NetApp for enterprise storage, Azure for cloud workloads. Legacy data from Banco Wiese and Citibank Peru acquisitions creates complex data estate. SBS Peru requires 10-year retention. Global data governance very strict — Canadian banking regulations apply." data-es="Almacenamiento sigue estándares globales de Scotiabank. Probablemente IBM o NetApp para almacenamiento enterprise, Azure para workloads cloud. Datos legacy de adquisiciones de Banco Wiese y Citibank Perú crean estate de datos complejo. SBS Perú requiere retención de 10 años. Governance de datos global muy estricto — aplican regulaciones bancarias canadienses.">Storage follows global Scotiabank standards. Likely IBM or NetApp for enterprise storage, Azure for cloud workloads. Legacy data from Banco Wiese and Citibank Peru acquisitions creates complex data estate. SBS Peru requires 10-year retention. Global data governance very strict — Canadian banking regulations apply.</p>
+                </div>
+
+                <!-- LAYER 3: Networking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🌐</span>
+                        <span class="infra-layer-name">Layer 3: Networking</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Cisco (Global Standard)</span>
+                        <span class="brand-tag likely">Palo Alto</span>
+                        <span class="brand-tag likely">SD-WAN (Cisco/VMware)</span>
+                        <span class="brand-tag likely">Azure ExpressRoute</span>
+                    </div>
+                    <p class="infra-notes" data-en="~200 branches require WAN infrastructure. Scotiabank Canada uses Cisco as global networking standard. Security stack likely Palo Alto or Cisco Security. SD-WAN transformation probably managed from global. International connectivity to Toronto for global services. PLIN integration requires external connectivity to consortium infrastructure (one area with potential local needs)." data-es="~200 sucursales requieren infraestructura WAN. Scotiabank Canadá usa Cisco como estándar global de networking. Stack de seguridad probablemente Palo Alto o Cisco Security. Transformación SD-WAN probablemente manejada desde global. Conectividad internacional a Toronto para servicios globales. Integración con PLIN requiere conectividad externa a infraestructura del consorcio (un área con potenciales necesidades locales).">~200 branches require WAN infrastructure. Scotiabank Canada uses Cisco as global networking standard. Security stack likely Palo Alto or Cisco Security. SD-WAN transformation probably managed from global. International connectivity to Toronto for global services. PLIN integration requires external connectivity to consortium infrastructure (one area with potential local needs).</p>
+                </div>
+
+                <!-- LAYER 4: Core Banking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🏛️</span>
+                        <span class="infra-layer-name">Layer 4: Core Banking</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Legacy Core (Post-Acquisitions)</span>
+                        <span class="brand-tag">SAP Banking</span>
+                        <span class="brand-tag">Temenos</span>
+                        <span class="brand-tag">API Layer</span>
+                    </div>
+                    <p class="infra-notes" data-en="Complex core banking environment due to acquisitions (Wiese 2006, Citibank retail 2015). Likely multiple legacy systems partially integrated. Scotiabank globally is modernizing core banking but Peru may not be priority if strategic review suggests exit. Core decisions 100% controlled by Toronto. No local opportunity." data-es="Ambiente de core banking complejo debido a adquisiciones (Wiese 2006, retail de Citibank 2015). Probablemente múltiples sistemas legacy parcialmente integrados. Scotiabank globalmente está modernizando core banking pero Perú puede no ser prioridad si revisión estratégica sugiere salida. Decisiones de core 100% controladas por Toronto. Sin oportunidad local.">Complex core banking environment due to acquisitions (Wiese 2006, Citibank retail 2015). Likely multiple legacy systems partially integrated. Scotiabank globally is modernizing core banking but Peru may not be priority if strategic review suggests exit. Core decisions 100% controlled by Toronto. No local opportunity.</p>
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-red);">🚫 No Opportunity:</strong> Global core modernization program. Peru is not a decision point.
+                    </div>
+                </div>
+
+                <!-- LAYER 5: Digital Banking Platform -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📱</span>
+                        <span class="infra-layer-name">Layer 5: Digital Banking Platform</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">Scotiabank App</span>
+                        <span class="brand-tag confirmed">PLIN Partner</span>
+                        <span class="brand-tag likely">Azure Cloud</span>
+                        <span class="brand-tag">Open Banking APIs</span>
+                    </div>
+                    <p class="infra-notes" data-en="Scotiabank mobile app based on global platform. Digital maturity behind BCP and Interbank. PLIN consortium partner — contributes customers to multi-bank wallet but doesn't lead infrastructure. Open Banking requirements may drive local API development. Digital channels less developed than competitors — CIR at 55% suggests underinvestment in automation. PLIN integration is the ONE area with local decision flexibility." data-es="App móvil de Scotiabank basada en plataforma global. Madurez digital detrás de BCP e Interbank. Socio del consorcio PLIN — contribuye clientes al wallet multi-banco pero no lidera infraestructura. Requerimientos de Open Banking pueden impulsar desarrollo local de APIs. Canales digitales menos desarrollados que competidores — CIR de 55% sugiere subinversión en automatización. Integración con PLIN es la UNA área con flexibilidad de decisión local.">Scotiabank mobile app based on global platform. Digital maturity behind BCP and Interbank. PLIN consortium partner — contributes customers to multi-bank wallet but doesn't lead infrastructure. Open Banking requirements may drive local API development. Digital channels less developed than competitors — CIR at 55% suggests underinvestment in automation. PLIN integration is the ONE area with local decision flexibility.</p>
+                    <div style="background: rgba(245, 158, 11, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-yellow);">💡 Small Opportunity:</strong> PLIN integration, Open Banking compliance, local regulatory APIs.
+                    </div>
+                </div>
+
+                <!-- LAYER 6: Data, Analytics & AI -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📊</span>
+                        <span class="infra-layer-name">Layer 6: Data, Analytics & AI</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">SAS (Global)</span>
+                        <span class="brand-tag likely">Azure Analytics</span>
+                        <span class="brand-tag likely">Power BI (Global Standard)</span>
+                        <span class="brand-tag">Databricks</span>
+                    </div>
+                    <p class="infra-notes" data-en="Scotiabank has global data and analytics platforms managed from Toronto. SAS likely for risk analytics (global standard). Azure analytics stack (Synapse, Databricks, Power BI) for business intelligence. NPL at 6.1% indicates need for better credit risk analytics but investment decisions made globally. Local team implements global models, doesn't build their own. Limited local opportunity." data-es="Scotiabank tiene plataformas globales de datos y analytics manejadas desde Toronto. SAS probable para analytics de riesgo (estándar global). Stack de analytics de Azure (Synapse, Databricks, Power BI) para business intelligence. NPL en 6.1% indica necesidad de mejor analytics de riesgo crediticio pero decisiones de inversión se toman globalmente. Equipo local implementa modelos globales, no construye los suyos. Oportunidad local limitada.">Scotiabank has global data and analytics platforms managed from Toronto. SAS likely for risk analytics (global standard). Azure analytics stack (Synapse, Databricks, Power BI) for business intelligence. NPL at 6.1% indicates need for better credit risk analytics but investment decisions made globally. Local team implements global models, doesn't build their own. Limited local opportunity.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMERCIAL SYNTHESIS -->
+        <section class="section-card" style="border: 2px solid var(--accent-red);">
+            <h2 data-en="🎯 Commercial Synthesis" data-es="🎯 Síntesis Comercial">🎯 Commercial Synthesis</h2>
+            
+            <div class="alert-box" style="background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--accent-red); padding: 1rem; margin-bottom: 1.5rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);">🚨 Bottom Line: LOW PRIORITY TARGET</h4>
+                <p style="margin: 0;" data-en="Scotiabank Perú has MINIMAL local autonomy. All infrastructure decisions go to Toronto. Financial performance is weakest among Peru's Big 4. Strategic review creates uncertainty about Peru's future. Unless you have existing Scotiabank global relationships, this is NOT a good target for local sales efforts." data-es="Scotiabank Perú tiene autonomía local MÍNIMA. Todas las decisiones de infraestructura van a Toronto. El desempeño financiero es el más débil entre los Big 4 de Perú. La revisión estratégica crea incertidumbre sobre el futuro de Perú. A menos que tengas relaciones existentes con Scotiabank global, este NO es un buen objetivo para esfuerzos de venta locales.">Scotiabank Perú has MINIMAL local autonomy. All infrastructure decisions go to Toronto. Financial performance is weakest among Peru's Big 4. Strategic review creates uncertainty about Peru's future. Unless you have existing Scotiabank global relationships, this is NOT a good target for local sales efforts.</p>
+            </div>
+            
             <div class="priority-list">
-                <div class="priority-item medium">
+                <div class="priority-item low">
                     <span class="priority-num">1</span>
                     <div class="priority-content">
-                        <h4>Core Modernization Support</h4>
-                        <p>Supporting global platform migration with local infrastructure.</p>
+                        <h4 data-en="Only Opportunity: PLIN Integration / Open Banking" data-es="Única Oportunidad: Integración PLIN / Open Banking">Only Opportunity: PLIN Integration / Open Banking</h4>
+                        <p data-en="PLIN consortium integration is the ONE area where Scotiabank Peru might have local budget authority. Open Banking regulatory compliance may require local solutions. Very niche, very small opportunity." data-es="Integración al consorcio PLIN es la UNA área donde Scotiabank Perú podría tener autoridad presupuestaria local. Cumplimiento regulatorio de Open Banking puede requerir soluciones locales. Muy nicho, oportunidad muy pequeña.">"PLIN consortium integration is the ONE area where Scotiabank Peru might have local budget authority. Open Banking regulatory compliance may require local solutions. Very niche, very small opportunity."</p>
                     </div>
                 </div>
-                <div class="priority-item medium">
-                    <span class="priority-num">2</span>
-                    <div class="priority-content">
-                        <h4>Network Infrastructure</h4>
-                        <p>Branch connectivity, WAN optimization for cloud access.</p>
-                    </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Entry Strategy</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="DON'T pursue locally unless you have Scotiabank global relationships. If you do have global connections, engage Toronto first, not Lima. Local team cannot make buying decisions." data-es="NO persigas localmente a menos que tengas relaciones con Scotiabank global. Si tienes conexiones globales, contacta Toronto primero, no Lima. El equipo local no puede tomar decisiones de compra.">DON'T pursue locally unless you have Scotiabank global relationships. If you do have global connections, engage Toronto first, not Lima. Local team cannot make buying decisions.</p>
                 </div>
-                <div class="priority-item low">
-                    <span class="priority-num">3</span>
-                    <div class="priority-content">
-                        <h4>Data Center Optimization</h4>
-                        <p>Efficiency improvements during consolidation phase.</p>
-                    </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Key Stakeholders</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                        • <strong>CEO Peru:</strong> Miguel Uccelli<br>
+                        • <strong>Real Decision Makers:</strong> Toronto HQ<br>
+                        • <strong>Global CIO:</strong> Scotiabank Canada
+                    </p>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Timing</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="BAD timing. Strategic review of LATAM creates uncertainty. Until Scotiabank Canada confirms Peru commitment, local investment unlikely. Check again in late 2025." data-es="MAL timing. Revisión estratégica de LATAM crea incertidumbre. Hasta que Scotiabank Canadá confirme compromiso con Perú, inversión local es improbable. Revisar de nuevo a finales de 2025.">BAD timing. Strategic review of LATAM creates uncertainty. Until Scotiabank Canada confirms Peru commitment, local investment unlikely. Check again in late 2025.</p>
                 </div>
             </div>
         </section>
 
+        <!-- INVESTMENT APPETITE -->
         <section class="section-card">
-            <h2>📈 Commercial Signals</h2>
+            <h2 data-en="💡 Investment Appetite Assessment" data-es="💡 Evaluación del Apetito de Inversión">💡 Investment Appetite Assessment</h2>
+            <p><strong>Rating: 🔴 LOW</strong></p>
             <ul>
-                <li>🟡 <strong>Global decisions:</strong> Major tech decisions at group level in Toronto</li>
-                <li>🟡 <strong>Transition period:</strong> Platform consolidation creates short-term opportunities</li>
-                <li>⚠️ <strong>Lower growth:</strong> 4.8% growth below market average</li>
-                <li>✅ <strong>CIR pressure:</strong> 50% CIR means efficiency focus — automation opportunity</li>
+                <li><strong data-en="Financial capacity:" data-es="Capacidad financiera:">Financial capacity:</strong> ⚠️ <span data-en="Weak — ROE 8.0%, CIR 55.2%, NPL 6.1%" data-es="Débil — ROE 8.0%, CIR 55.2%, NPL 6.1%">Weak — ROE 8.0%, CIR 55.2%, NPL 6.1%</span></li>
+                <li><strong data-en="Local autonomy:" data-es="Autonomía local:">Local autonomy:</strong> 🔴 <span data-en="NONE — All decisions made in Toronto" data-es="NINGUNA — Todas las decisiones se toman en Toronto">NONE — All decisions made in Toronto</span></li>
+                <li><strong data-en="Strategic position:" data-es="Posición estratégica:">Strategic position:</strong> 🔴 <span data-en="Uncertain — LATAM strategic review ongoing" data-es="Incierta — Revisión estratégica de LATAM en curso">Uncertain — LATAM strategic review ongoing</span></li>
+                <li><strong data-en="Technology appetite:" data-es="Apetito tecnológico:">Technology appetite:</strong> ⚠️ <span data-en="Global programs only — no local initiatives" data-es="Solo programas globales — sin iniciativas locales">Global programs only — no local initiatives</span></li>
+                <li><strong data-en="Recommendation:" data-es="Recomendación:">Recommendation:</strong> <span data-en="Skip for local sales. Engage only through global Scotiabank relationships." data-es="Saltar para ventas locales. Contactar solo a través de relaciones globales con Scotiabank.">Skip for local sales. Engage only through global Scotiabank relationships.</span></li>
             </ul>
         </section>
 
-        <div class="exec-navigation">
-            <a href="index.html" class="btn-secondary">← Back to Peru</a>
-            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
-        </div>
+        <!-- COMPARISON TABLE -->
+        <section class="section-card">
+            <h2 data-en="📊 Peru Big 4 Comparison — Why Scotiabank is Lowest Priority" data-es="📊 Comparación Big 4 de Perú — Por qué Scotiabank es Menor Prioridad">📊 Peru Big 4 Comparison — Why Scotiabank is Lowest Priority</h2>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>BCP</th>
+                            <th>BBVA</th>
+                            <th>Interbank</th>
+                            <th>Scotiabank</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Local Autonomy</strong></td>
+                            <td style="color: var(--accent-green);">✅ High</td>
+                            <td style="color: var(--accent-yellow);">⚠️ Limited</td>
+                            <td style="color: var(--accent-green);">✅ Full</td>
+                            <td style="color: var(--accent-red);">🔴 None</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ROE</strong></td>
+                            <td style="color: var(--accent-green);">21.3%</td>
+                            <td style="color: var(--accent-green);">14.2%</td>
+                            <td style="color: var(--accent-yellow);">11.0%</td>
+                            <td style="color: var(--accent-red);">8.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CIR</strong></td>
+                            <td style="color: var(--accent-green);">35.1%</td>
+                            <td style="color: var(--accent-yellow);">40.2%</td>
+                            <td style="color: var(--accent-yellow);">48.5%</td>
+                            <td style="color: var(--accent-red);">55.2%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NPL</strong></td>
+                            <td style="color: var(--accent-green);">3.2%</td>
+                            <td style="color: var(--accent-yellow);">4.8%</td>
+                            <td style="color: var(--accent-yellow);">5.2%</td>
+                            <td style="color: var(--accent-red);">6.1%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategic Priority</strong></td>
+                            <td style="color: var(--accent-green);">✅ Core</td>
+                            <td style="color: var(--accent-green);">✅ Core</td>
+                            <td style="color: var(--accent-green);">✅ Core</td>
+                            <td style="color: var(--accent-red);">❓ Under Review</td>
+                        </tr>
+                        <tr style="background: rgba(99, 102, 241, 0.1);">
+                            <td><strong>Opportunity Rating</strong></td>
+                            <td style="color: var(--accent-green);"><strong>🟢 HIGH</strong></td>
+                            <td style="color: var(--accent-yellow);"><strong>🟡 MEDIUM</strong></td>
+                            <td style="color: var(--accent-green);"><strong>🟢 HIGH</strong></td>
+                            <td style="color: var(--accent-red);"><strong>🔴 LOW</strong></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- KEY OBJECTION -->
+        <section class="section-card">
+            <h2 data-en="⚠️ If You Must Engage — Objection to Prepare For" data-es="⚠️ Si Debes Contactar — Objeción a Preparar">⚠️ If You Must Engage — Objection to Prepare For</h2>
+            <p><strong data-en="&quot;All technology decisions are made by our global team in Toronto.&quot;" data-es="&quot;Todas las decisiones de tecnología las toma nuestro equipo global en Toronto.&quot;">"All technology decisions are made by our global team in Toronto."</strong></p>
+            <p data-en="Response: This is a DEAD END. Don't push. Instead ask: &quot;Understood. Are there any Peru-specific regulatory or compliance requirements where you do have local budget authority? We've helped other global banks address local SBS requirements that don't fit into global programs.&quot; — If answer is no, move on." data-es="Respuesta: Este es un CALLEJÓN SIN SALIDA. No presiones. En cambio pregunta: &quot;Entendido. ¿Hay algún requerimiento regulatorio o de compliance específico de Perú donde sí tengan autoridad presupuestaria local? Hemos ayudado a otros bancos globales a abordar requerimientos locales de SBS que no encajan en programas globales.&quot; — Si la respuesta es no, sigue adelante.">Response: This is a DEAD END. Don't push. Instead ask: "Understood. Are there any Peru-specific regulatory or compliance requirements where you do have local budget authority? We've helped other global banks address local SBS requirements that don't fit into global programs." — If answer is no, move on.</p>
+        </section>
+
     </main>
     <script src="../js/version.js"></script>
 </body>

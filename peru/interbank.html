@@ -6,8 +6,62 @@
     <title>Interbank | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .lang-btn:hover:not(.active) {
+            background: rgba(99, 102, 241, 0.2);
+        }
+        .key-metrics {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .key-metrics .metric-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.75rem;
+        }
+        .key-metrics .metric-item .value {
+            font-size: 1.25rem;
+        }
+        .key-metrics .metric-item .label {
+            font-size: 0.7rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
     <nav class="sidebar">
         <div class="logo">
             <span class="logo-icon">🏦</span>
@@ -26,7 +80,7 @@
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
             </li>
-            <li class="nav-item active" onclick="window.location.href='../peru/index.html'">
+            <li class="nav-item active">
                 <span class="nav-icon">🇵🇪</span>
                 <span>Peru</span>
             </li>
@@ -55,105 +109,412 @@
         <div class="bank-header">
             <div class="bank-title">
                 <h1>🏦 Interbank</h1>
-                <p class="subtitle">Private Commercial Bank • Lima, Peru</p>
+                <p class="subtitle">Private Commercial Bank • Lima, Peru • Part of Intercorp Group</p>
             </div>
             <div class="bank-badges">
-                <span class="badge medium">🟡 MEDIUM OPPORTUNITY</span>
-                <span class="badge tier">TIER 2</span>
+                <span class="badge high">🟢 HIGH OPPORTUNITY</span>
+                <span class="badge tier">TIER 1</span>
+                <span class="badge" style="background: var(--accent-purple); color: white;">🥉 #3 IN PERU</span>
             </div>
         </div>
 
+        <!-- PROFILE SECTION -->
         <section class="section-card">
-            <h2>📊 Key Financial Metrics</h2>
+            <h2 data-en="🏢 Bank Profile" data-es="🏢 Perfil del Banco">🏢 Bank Profile</h2>
+            <ul>
+                <li><strong data-en="Type:" data-es="Tipo:">Type:</strong> <span data-en="Private Commercial Bank — Part of Intercorp Group" data-es="Banco Privado Comercial — Parte del Grupo Intercorp">Private Commercial Bank — Part of Intercorp Group</span></li>
+                <li><strong data-en="Founded:" data-es="Fundado:">Founded:</strong> <span data-en="1897 (127 years of history)" data-es="1897 (127 años de historia)">1897 (127 years of history)</span></li>
+                <li><strong data-en="Ownership:" data-es="Propiedad:">Ownership:</strong> <span data-en="Intercorp Financial Services (IFS) — 99.3%. Carlos Rodríguez-Pastor family controls Intercorp" data-es="Intercorp Financial Services (IFS) — 99.3%. La familia Carlos Rodríguez-Pastor controla Intercorp">Intercorp Financial Services (IFS) — 99.3%. Carlos Rodríguez-Pastor family controls Intercorp</span></li>
+                <li><strong data-en="Headquarters:" data-es="Sede:">Headquarters:</strong> Torre Interbank, Av. Carlos Villarán 140, La Victoria, Lima</li>
+                <li><strong data-en="Market Position:" data-es="Posición de Mercado:">Market Position:</strong> <span data-en="#3 in Peru — Digital innovation leader" data-es="#3 en Perú — Líder en innovación digital">#3 in Peru — Digital innovation leader</span></li>
+                <li><strong data-en="Employees:" data-es="Colaboradores:">Employees:</strong> ~7,500 (2024)</li>
+                <li><strong data-en="Branches:" data-es="Agencias:">Branches:</strong> <span data-en="~220 offices + Interbank tiendas (integrated with Intercorp retail)" data-es="~220 oficinas + tiendas Interbank (integradas con retail de Intercorp)">~220 offices + Interbank tiendas (integrated with Intercorp retail)</span></li>
+                <li><strong>ATMs:</strong> ~2,100</li>
+                <li><strong>Key Differentiator:</strong> <span data-en="Intercorp retail ecosystem synergy (Plaza Vea, Oechsle, Inkafarma)" data-es="Sinergia con ecosistema retail de Intercorp (Plaza Vea, Oechsle, Inkafarma)">Intercorp retail ecosystem synergy (Plaza Vea, Oechsle, Inkafarma)</span></li>
+                <li><strong>Digital Maturity:</strong> 🟢 HIGH — <span data-en="Plin wallet (direct Yape competitor), strong fintech partnerships" data-es="Wallet Plin (competidor directo de Yape), fuertes alianzas fintech">Plin wallet (direct Yape competitor), strong fintech partnerships</span></li>
+                <li><strong>Holding:</strong> Intercorp Financial Services (NYSE: IFS)</li>
+            </ul>
+        </section>
+
+        <!-- KEY METRICS -->
+        <section class="section-card">
+            <h2 data-en="📊 Key Metrics 2024 (Source: SBS Peru / Interbank Annual Report)" data-es="📊 Métricas Clave 2024 (Fuente: SBS Perú / Memoria Anual Interbank)">📊 Key Metrics 2024 (Source: SBS Peru / Interbank Annual Report)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">PEN/USD: 3.72 | <span data-en="All values converted to USD" data-es="Todos los valores convertidos a USD">All values converted to USD</span></p>
             <div class="key-metrics">
                 <div class="metric-item">
-                    <div class="value">$22B</div>
-                    <div class="label">Total Assets</div>
+                    <div class="value">$19.9B</div>
+                    <div class="label" data-en="Total Assets" data-es="Activos Totales">Total Assets</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">+8.2%</div>
-                    <div class="label">3Y Growth</div>
+                    <div class="value">$253.7M</div>
+                    <div class="label" data-en="Net Income" data-es="Utilidad Neta">Net Income</div>
+                </div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">11.0%</div>
+                    <div class="label">ROAE</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">14.5%</div>
-                    <div class="label">ROE</div>
+                    <div class="value">13.5%</div>
+                    <div class="label" data-en="Market Share" data-es="Market Share">Market Share</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">48%</div>
-                    <div class="label">CIR</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">3.8%</div>
-                    <div class="label">NPL Ratio</div>
+                    <div class="value">$2.3B</div>
+                    <div class="label" data-en="Net Equity" data-es="Patrimonio Neto">Net Equity</div>
                 </div>
             </div>
         </section>
 
+        <!-- FINANCIAL ANALYSIS -->
         <section class="section-card">
-            <h2>🏢 Bank Profile</h2>
-            <ul>
-                <li><strong>Type:</strong> Private Commercial Bank (Intercorp Group)</li>
-                <li><strong>Market Position:</strong> #4 in Peru (~15% market share)</li>
-                <li><strong>Employees:</strong> ~7,000</li>
-                <li><strong>Branches:</strong> 250+ nationwide</li>
-                <li><strong>Digital Platform:</strong> Tunki wallet, Plin alliance member</li>
-                <li><strong>Group:</strong> Intercorp — retail conglomerate (Supermercados, Cines, Real Plaza)</li>
-            </ul>
+            <h2>📈 Financial Analysis (3-Year Trend)</h2>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th data-en="Metric" data-es="Métrica">Metric</th>
+                            <th>2022</th>
+                            <th>2023</th>
+                            <th>2024</th>
+                            <th>Δ 3Y</th>
+                            <th data-en="Signal" data-es="Señal">Signal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total Assets</strong></td>
+                            <td>$17.8B</td>
+                            <td>$18.9B</td>
+                            <td>$19.9B</td>
+                            <td style="color: var(--accent-green);">+11.8%</td>
+                            <td data-en="📈 Growing" data-es="📈 Creciendo">📈 Growing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net Income</strong></td>
+                            <td>$312M</td>
+                            <td>$278M</td>
+                            <td>$254M</td>
+                            <td style="color: var(--accent-red);">-18.6%</td>
+                            <td data-en="📉 Declining" data-es="📉 Declinando">📉 Declining</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ROE</strong></td>
+                            <td>15.2%</td>
+                            <td>12.8%</td>
+                            <td>11.0%</td>
+                            <td style="color: var(--accent-red);">-4.2pp</td>
+                            <td data-en="📉 Pressure" data-es="📉 Presión">📉 Pressure</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CIR (Cost/Income)</strong></td>
+                            <td>45.2%</td>
+                            <td>47.1%</td>
+                            <td>48.5%</td>
+                            <td style="color: var(--accent-red);">+3.3pp</td>
+                            <td data-en="📉 Worsening" data-es="📉 Empeorando">📉 Worsening</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NPL Ratio</strong></td>
+                            <td>3.2%</td>
+                            <td>4.1%</td>
+                            <td>5.2%</td>
+                            <td style="color: var(--accent-red);">+2.0pp</td>
+                            <td data-en="⚠️ Critical" data-es="⚠️ Crítico">⚠️ Critical</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--accent-red); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-red);">🎯 Critical Commercial Insight</h4>
+                <p style="margin: 0;" data-en="Interbank is under PROFITABILITY PRESSURE. Net income down 18.6%, ROE dropped to 11%, CIR worsening, NPL at 5.2%. This creates URGENCY for efficiency solutions. They NEED to cut costs and improve operations. Perfect timing for infrastructure optimization, automation, and analytics pitches." data-es="Interbank está bajo PRESIÓN DE RENTABILIDAD. Utilidad neta bajó 18.6%, ROE cayó a 11%, CIR empeorando, NPL en 5.2%. Esto crea URGENCIA para soluciones de eficiencia. NECESITAN recortar costos y mejorar operaciones. Momento perfecto para pitches de optimización de infraestructura, automatización y analytics.">Interbank is under PROFITABILITY PRESSURE. Net income down 18.6%, ROE dropped to 11%, CIR worsening, NPL at 5.2%. This creates URGENCY for efficiency solutions. They NEED to cut costs and improve operations. Perfect timing for infrastructure optimization, automation, and analytics pitches.</p>
+            </div>
         </section>
 
-        <section class="section-card">
-            <h2>💻 Technology & Infrastructure</h2>
-            <ul>
-                <li><strong>Core Banking:</strong> Modern platform, continuous improvement</li>
-                <li><strong>Cloud Strategy:</strong> Hybrid cloud, AWS presence</li>
-                <li><strong>Data Centers:</strong> Modern facilities, good DR capabilities</li>
-                <li><strong>AI/Analytics:</strong> Active investment, retail analytics integration with Intercorp</li>
-                <li><strong>Digital Channels:</strong> Strong mobile presence, Tunki wallet innovation</li>
-                <li><strong>Ecosystem:</strong> Integration with Intercorp retail ecosystem (unique advantage)</li>
-            </ul>
+        <!-- INTERCORP ECOSYSTEM -->
+        <section class="section-card" style="border: 2px solid var(--accent);">
+            <h2 data-en="🏢 Intercorp Ecosystem — Strategic Context" data-es="🏢 Ecosistema Intercorp — Contexto Estratégico">🏢 Intercorp Ecosystem — Strategic Context</h2>
+            <p data-en="Interbank is part of Peru's largest conglomerate. Understanding this ecosystem is KEY to selling:" data-es="Interbank es parte del conglomerado más grande de Perú. Entender este ecosistema es CLAVE para vender:">Interbank is part of Peru's largest conglomerate. Understanding this ecosystem is KEY to selling:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent-blue);">🏦 Financial Services</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>Interbank (banking)</li>
+                        <li>Interseguro (insurance)</li>
+                        <li>Inteligo (wealth management)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent-green);">🛒 Retail</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>Plaza Vea / Vivanda (supermarkets)</li>
+                        <li>Oechsle (department stores)</li>
+                        <li>Promart (home improvement)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent-yellow);">💊 Pharmacy & Health</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>Inkafarma</li>
+                        <li>Mifarma</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent-purple);">🎓 Education & Real Estate</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>UTP, Zegel IPAE</li>
+                        <li>Real Plaza (malls)</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Sales Angle</h4>
+                <p style="margin: 0;" data-en="Interbank branches are often inside Real Plaza malls and Intercorp retail stores. They have unique cross-sell data from retail + banking. An infrastructure or analytics play at Interbank could expand to the broader Intercorp ecosystem." data-es="Sucursales de Interbank están frecuentemente dentro de malls Real Plaza y tiendas retail de Intercorp. Tienen datos únicos de cross-sell de retail + banca. Una jugada de infraestructura o analytics en Interbank podría expandirse al ecosistema más amplio de Intercorp.">Interbank branches are often inside Real Plaza malls and Intercorp retail stores. They have unique cross-sell data from retail + banking. An infrastructure play at Interbank could expand to the broader Intercorp ecosystem.</p>
+            </div>
         </section>
 
+        <!-- PLIN - Digital Wallet -->
         <section class="section-card">
-            <h2>🎯 Best Infrastructure Plays</h2>
+            <h2>📱 PLIN — Digital Wallet (Yape Competitor)</h2>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th>Metric</th>
+                            <th>PLIN</th>
+                            <th>Yape (BCP)</th>
+                            <th>Analysis</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Active Users</strong></td>
+                            <td>~8M</td>
+                            <td>14M</td>
+                            <td style="color: var(--accent-yellow);">Trailing by 6M users</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Bank Alliance</strong></td>
+                            <td>Interbank + BBVA + Scotiabank + BanBif</td>
+                            <td>BCP only</td>
+                            <td style="color: var(--accent-green);">Multi-bank advantage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategy</strong></td>
+                            <td>Interoperability coalition</td>
+                            <td>Standalone dominance</td>
+                            <td>Different approach</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="margin-top: 1rem; color: var(--text-muted);" data-en="PLIN is a consortium response to Yape's dominance. Interbank leads the technical infrastructure for PLIN — this is HIGH PRIORITY for their digital strategy." data-es="PLIN es una respuesta de consorcio a la dominancia de Yape. Interbank lidera la infraestructura técnica de PLIN — esto es ALTA PRIORIDAD para su estrategia digital."><strong>Note:</strong> PLIN is a consortium response to Yape's dominance. Interbank leads the technical infrastructure for PLIN — this is HIGH PRIORITY for their digital strategy.</p>
+        </section>
+
+        <!-- INFRASTRUCTURE STACK - 6 LAYERS -->
+        <section class="section-card">
+            <h2 data-en="🔧 Infrastructure Stack — 6 Layers Deep Dive" data-es="🔧 Stack de Infraestructura — 6 Capas en Profundidad">🔧 Infrastructure Stack — 6 Layers Deep Dive</h2>
+            <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                <span style="color: var(--accent-green);">●</span> <span data-en="Confirmed" data-es="Confirmado">Confirmed</span> &nbsp;
+                <span style="color: var(--accent-yellow);">●</span> <span data-en="Likely/Estimated" data-es="Probable/Estimado">Likely/Estimated</span> &nbsp;
+                <span style="color: var(--accent);">●</span> <span data-en="To verify" data-es="Por verificar">To verify</span>
+            </p>
+            
+            <div class="infra-stack">
+                <!-- LAYER 1: Processing & Compute -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💻</span>
+                        <span class="infra-layer-name">Layer 1: Processing & Compute</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">IBM Power (Legacy Core)</span>
+                        <span class="brand-tag likely">Dell PowerEdge (x86)</span>
+                        <span class="brand-tag likely">VMware vSphere</span>
+                        <span class="brand-tag confirmed">AWS (Cloud)</span>
+                        <span class="brand-tag likely">Azure</span>
+                    </div>
+                    <p class="infra-notes" data-en="Hybrid infrastructure with IBM for core banking workloads and x86 for distributed systems. Active cloud migration to AWS for digital banking and PLIN infrastructure. VMware virtualization for on-prem, likely evaluating migration/modernization. CIR pressure (48.5%) creates STRONG incentive for compute optimization. LOCAL decision-making authority — not constrained by global parent." data-es="Infraestructura híbrida con IBM para workloads de core banking y x86 para sistemas distribuidos. Migración activa a cloud con AWS para banca digital e infraestructura de PLIN. Virtualización VMware para on-prem, probablemente evaluando migración/modernización. Presión de CIR (48.5%) crea FUERTE incentivo para optimización de cómputo. Autoridad de decisión LOCAL — no restringida por casa matriz global.">Hybrid infrastructure with IBM for core banking workloads and x86 for distributed systems. Active cloud migration to AWS for digital banking and PLIN infrastructure. VMware virtualization for on-prem, likely evaluating migration/modernization. CIR pressure (48.5%) creates STRONG incentive for compute optimization. LOCAL decision-making authority — not constrained by global parent.</p>
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-green);">✅ Key Advantage:</strong> Interbank has FULL LOCAL AUTONOMY. No global parent dictating infrastructure choices.
+                    </div>
+                </div>
+
+                <!-- LAYER 2: Storage -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💾</span>
+                        <span class="infra-layer-name">Layer 2: Enterprise Storage</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Dell EMC PowerStore</span>
+                        <span class="brand-tag likely">NetApp</span>
+                        <span class="brand-tag likely">AWS S3/EBS</span>
+                        <span class="brand-tag">Pure Storage</span>
+                    </div>
+                    <p class="infra-notes" data-en="127-year institution = significant data estate. Retail ecosystem integration (Plaza Vea, Inkafarma) creates unique data volume challenges. Hybrid storage strategy likely: flash for transaction workloads, tiered for analytics, cloud for new applications. Regulatory compliance requires 10-year retention (SBS). Cross-sell analytics with Intercorp retail generates additional storage demand." data-es="Institución de 127 años = estate de datos significativo. Integración con ecosistema retail (Plaza Vea, Inkafarma) crea desafíos únicos de volumen de datos. Estrategia de almacenamiento híbrido probable: flash para workloads transaccionales, tiered para analytics, cloud para nuevas aplicaciones. Cumplimiento regulatorio requiere retención de 10 años (SBS). Analytics de cross-sell con retail de Intercorp genera demanda adicional de almacenamiento.">127-year institution = significant data estate. Retail ecosystem integration (Plaza Vea, Inkafarma) creates unique data volume challenges. Hybrid storage strategy likely: flash for transaction workloads, tiered for analytics, cloud for new applications. Regulatory compliance requires 10-year retention (SBS). Cross-sell analytics with Intercorp retail generates additional storage demand.</p>
+                </div>
+
+                <!-- LAYER 3: Networking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🌐</span>
+                        <span class="infra-layer-name">Layer 3: Networking</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Cisco (Core)</span>
+                        <span class="brand-tag likely">Fortinet</span>
+                        <span class="brand-tag likely">SD-WAN</span>
+                        <span class="brand-tag likely">AWS Direct Connect</span>
+                    </div>
+                    <p class="infra-notes" data-en="220+ branches with unique distribution model — many inside Real Plaza malls and retail locations. Requires connectivity to both Interbank DC and Intercorp retail systems. SD-WAN transformation likely in progress for branch optimization. PLIN requires high-performance, low-latency connectivity to multiple banks (multi-bank interoperability). Security stack critical for retail integration points." data-es="220+ sucursales con modelo de distribución único — muchas dentro de malls Real Plaza y locales retail. Requiere conectividad tanto al DC de Interbank como a sistemas retail de Intercorp. Transformación SD-WAN probablemente en progreso para optimización de sucursales. PLIN requiere conectividad de alto rendimiento y baja latencia a múltiples bancos (interoperabilidad multi-banco). Stack de seguridad crítico para puntos de integración retail.">220+ branches with unique distribution model — many inside Real Plaza malls and retail locations. Requires connectivity to both Interbank DC and Intercorp retail systems. SD-WAN transformation likely in progress for branch optimization. PLIN requires high-performance, low-latency connectivity to multiple banks (multi-bank interoperability). Security stack critical for retail integration points.</p>
+                </div>
+
+                <!-- LAYER 4: Core Banking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🏛️</span>
+                        <span class="infra-layer-name">Layer 4: Core Banking</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Legacy Core (Custom/In-house)</span>
+                        <span class="brand-tag likely">Temenos T24</span>
+                        <span class="brand-tag">API Layer (Modern)</span>
+                        <span class="brand-tag">Microservices</span>
+                    </div>
+                    <p class="infra-notes" data-en="Core banking likely a combination of legacy systems with modern API layer. 127 years of history suggests multiple legacy systems integrated over time. Digital banking (PLIN, mobile app) runs on modern microservices architecture decoupled from core. Core modernization is probable strategic initiative given CIR pressure. Strong API-first approach needed for Intercorp ecosystem integration and PLIN multi-bank connectivity." data-es="Core banking probablemente una combinación de sistemas legacy con capa API moderna. 127 años de historia sugieren múltiples sistemas legacy integrados con el tiempo. Banca digital (PLIN, app móvil) corre en arquitectura de microservicios moderna desacoplada del core. Modernización de core es probable iniciativa estratégica dada la presión de CIR. Enfoque API-first fuerte necesario para integración con ecosistema Intercorp y conectividad multi-banco de PLIN.">Core banking likely a combination of legacy systems with modern API layer. 127 years of history suggests multiple legacy systems integrated over time. Digital banking (PLIN, mobile app) runs on modern microservices architecture decoupled from core. Core modernization is probable strategic initiative given CIR pressure. Strong API-first approach needed for Intercorp ecosystem integration and PLIN multi-bank connectivity.</p>
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent);">💡 Signal:</strong> CIR at 48.5% and rising = core efficiency is a pain point. Integration middleware and automation opportunities.
+                    </div>
+                </div>
+
+                <!-- LAYER 5: Digital Banking Platform -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📱</span>
+                        <span class="infra-layer-name">Layer 5: Digital Banking Platform</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">PLIN (Multi-bank wallet)</span>
+                        <span class="brand-tag confirmed">Interbank App</span>
+                        <span class="brand-tag likely">AWS/Cloud Native</span>
+                        <span class="brand-tag likely">Kubernetes</span>
+                        <span class="brand-tag">Open Banking APIs</span>
+                    </div>
+                    <p class="infra-notes" data-en="PLIN is the crown jewel — Interbank leads the technical infrastructure for this multi-bank wallet competing with Yape. ~8M users and growing. Cloud-native architecture on AWS for scalability. Interbank mobile app highly rated, strong digital onboarding. Open Banking strategy for Intercorp ecosystem integration. Need to scale PLIN to catch Yape (14M users) creates infrastructure investment pressure." data-es="PLIN es la joya de la corona — Interbank lidera la infraestructura técnica de este wallet multi-banco que compite con Yape. ~8M de usuarios y creciendo. Arquitectura cloud-native en AWS para escalabilidad. App móvil de Interbank muy bien calificada, onboarding digital fuerte. Estrategia de Open Banking para integración con ecosistema Intercorp. Necesidad de escalar PLIN para alcanzar a Yape (14M usuarios) crea presión de inversión en infraestructura.">PLIN is the crown jewel — Interbank leads the technical infrastructure for this multi-bank wallet competing with Yape. ~8M users and growing. Cloud-native architecture on AWS for scalability. Interbank mobile app highly rated, strong digital onboarding. Open Banking strategy for Intercorp ecosystem integration. Need to scale PLIN to catch Yape (14M users) creates infrastructure investment pressure.</p>
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-green);">🎯 Hot Opportunity:</strong> PLIN infrastructure scaling, multi-bank integration platform, API gateway modernization.
+                    </div>
+                </div>
+
+                <!-- LAYER 6: Data, Analytics & AI -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📊</span>
+                        <span class="infra-layer-name">Layer 6: Data, Analytics & AI</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">SAS</span>
+                        <span class="brand-tag likely">AWS Analytics (Redshift/Athena)</span>
+                        <span class="brand-tag likely">Tableau/Power BI</span>
+                        <span class="brand-tag">Snowflake</span>
+                        <span class="brand-tag">Python/ML</span>
+                    </div>
+                    <p class="infra-notes" data-en="UNIQUE DATA ASSET: Interbank has cross-sell data from entire Intercorp ecosystem. Banking + retail (Plaza Vea) + pharmacy (Inkafarma) + real estate (Real Plaza) = unmatched customer 360. NPL at 5.2% creates urgent need for advanced credit risk analytics. Customer behavior data from retail integration enables sophisticated personalization. Data monetization potential across Intercorp is massive but likely underleveraged." data-es="ACTIVO DE DATOS ÚNICO: Interbank tiene datos de cross-sell de todo el ecosistema Intercorp. Banca + retail (Plaza Vea) + farmacia (Inkafarma) + inmobiliario (Real Plaza) = cliente 360 sin igual. NPL en 5.2% crea necesidad urgente de analytics avanzado de riesgo crediticio. Datos de comportamiento del cliente de integración retail habilitan personalización sofisticada. Potencial de monetización de datos a través de Intercorp es masivo pero probablemente subutilizado.">UNIQUE DATA ASSET: Interbank has cross-sell data from entire Intercorp ecosystem. Banking + retail (Plaza Vea) + pharmacy (Inkafarma) + real estate (Real Plaza) = unmatched customer 360. NPL at 5.2% creates urgent need for advanced credit risk analytics. Customer behavior data from retail integration enables sophisticated personalization. Data monetization potential across Intercorp is massive but likely underleveraged.</p>
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-green);">🔥 Highest Value Opportunity:</strong> Unified data platform for Intercorp ecosystem, credit risk AI, retail-bank cross-sell analytics.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- COMMERCIAL SYNTHESIS -->
+        <section class="section-card" style="border: 2px solid var(--accent-green);">
+            <h2 data-en="🎯 Commercial Synthesis" data-es="🎯 Síntesis Comercial">🎯 Commercial Synthesis</h2>
+            
             <div class="priority-list">
                 <div class="priority-item high">
                     <span class="priority-num">1</span>
                     <div class="priority-content">
-                        <h4>Retail Ecosystem Analytics</h4>
-                        <p>Cross-ecosystem data platform with Intercorp retail companies.</p>
+                        <h4 data-en="Primary Opportunity: Data & Analytics Platform" data-es="Oportunidad Principal: Plataforma de Datos y Analytics">Primary Opportunity: Data & Analytics Platform</h4>
+                        <p data-en="Intercorp ecosystem data is GOLD. Banking + retail + pharmacy + real estate = unique customer 360. NPL at 5.2% = urgent need for risk analytics. CIR at 48.5% = need for operational efficiency insights. Position as 'Unlock the Intercorp data advantage.'" data-es="Los datos del ecosistema Intercorp son ORO. Banca + retail + farmacia + inmobiliario = cliente 360 único. NPL en 5.2% = necesidad urgente de analytics de riesgo. CIR en 48.5% = necesidad de insights de eficiencia operacional. Posiciona como 'Desbloquea la ventaja de datos de Intercorp.'">Intercorp ecosystem data is GOLD. Banking + retail + pharmacy + real estate = unique customer 360. NPL at 5.2% = urgent need for risk analytics. CIR at 48.5% = need for operational efficiency insights. Position as "Unlock the Intercorp data advantage."</p>
                     </div>
                 </div>
-                <div class="priority-item medium">
+                <div class="priority-item high">
                     <span class="priority-num">2</span>
                     <div class="priority-content">
-                        <h4>Digital Banking Infrastructure</h4>
-                        <p>Tunki wallet scaling, API platform expansion.</p>
+                        <h4 data-en="Secondary Opportunity: PLIN Infrastructure Scaling" data-es="Oportunidad Secundaria: Escalamiento de Infraestructura PLIN">Secondary Opportunity: PLIN Infrastructure Scaling</h4>
+                        <p data-en="PLIN (8M users) is chasing Yape (14M). Interbank leads the technical infrastructure. Scaling a multi-bank wallet is complex — cloud infrastructure, API management, real-time processing, security. High urgency to not lose the digital payments war." data-es="PLIN (8M usuarios) persigue a Yape (14M). Interbank lidera la infraestructura técnica. Escalar un wallet multi-banco es complejo — infraestructura cloud, gestión de APIs, procesamiento en tiempo real, seguridad. Alta urgencia de no perder la guerra de pagos digitales.">"PLIN (8M users) is chasing Yape (14M). Interbank leads the technical infrastructure. Scaling a multi-bank wallet is complex — cloud infrastructure, API management, real-time processing, security. High urgency to not lose the digital payments war."</p>
                     </div>
                 </div>
-                <div class="priority-item medium">
+                <div class="priority-item high">
                     <span class="priority-num">3</span>
                     <div class="priority-content">
-                        <h4>Cloud Infrastructure</h4>
-                        <p>Hybrid cloud optimization, container orchestration.</p>
+                        <h4 data-en="Tertiary Opportunity: Infrastructure Cost Optimization" data-es="Oportunidad Terciaria: Optimización de Costos de Infraestructura">Tertiary Opportunity: Infrastructure Cost Optimization</h4>
+                        <p data-en="CIR at 48.5% and worsening. They NEED to cut costs. Cloud optimization, infrastructure consolidation, automation. Frame as 'Get your CIR down to compete with BCP (35%).' FinOps, cloud cost management, automation solutions." data-es="CIR en 48.5% y empeorando. NECESITAN recortar costos. Optimización cloud, consolidación de infraestructura, automatización. Enmarca como 'Baja tu CIR para competir con BCP (35%).' FinOps, gestión de costos cloud, soluciones de automatización.">"CIR at 48.5% and worsening. They NEED to cut costs. Cloud optimization, infrastructure consolidation, automation. Frame as 'Get your CIR down to compete with BCP (35%).' FinOps, cloud cost management, automation solutions."</p>
                     </div>
                 </div>
             </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Entry Strategy</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="Lead with efficiency narrative. 'We help banks improve CIR by X%.' Interbank has profitability pressure — they need quick wins. PLIN scaling is strategic, data platform is transformational." data-es="Lidera con narrativa de eficiencia. 'Ayudamos a bancos a mejorar CIR en X%.' Interbank tiene presión de rentabilidad — necesitan quick wins. Escalamiento de PLIN es estratégico, plataforma de datos es transformacional.">Lead with efficiency narrative. "We help banks improve CIR by X%." Interbank has profitability pressure — they need quick wins. PLIN scaling is strategic, data platform is transformational.</p>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Key Stakeholders</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                        • <strong>CEO:</strong> Luis Felipe Castellanos<br>
+                        • <strong>CIO:</strong> Technology strategy owner<br>
+                        • <strong>PLIN Head:</strong> Digital payments decisions<br>
+                        • <strong>CFO:</strong> Cost optimization mandate
+                    </p>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Timing</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="NOW is optimal. Profitability pressure creates urgency. PLIN vs Yape war is active. Q1-Q2 2025 budget likely includes efficiency mandates. Full local autonomy = faster decision cycles." data-es="AHORA es óptimo. Presión de rentabilidad crea urgencia. Guerra PLIN vs Yape está activa. Presupuesto Q1-Q2 2025 probablemente incluye mandatos de eficiencia. Autonomía local completa = ciclos de decisión más rápidos.">NOW is optimal. Profitability pressure creates urgency. PLIN vs Yape war is active. Q1-Q2 2025 budget likely includes efficiency mandates. Full local autonomy = faster decision cycles.</p>
+                </div>
+            </div>
+
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">✅ Why Interbank is HIGH OPPORTUNITY</h4>
+                <ul style="margin: 0; padding-left: 1.5rem;">
+                    <li><strong>Full local autonomy</strong> — No global parent constraints (unlike BBVA, Scotiabank)</li>
+                    <li><strong>Profitability pressure</strong> — CIR 48.5%, NPL 5.2%, ROE 11% = NEED to act</li>
+                    <li><strong>Unique data asset</strong> — Intercorp ecosystem = competitive moat to leverage</li>
+                    <li><strong>PLIN competition</strong> — Digital payments war creates infrastructure investment urgency</li>
+                    <li><strong>Ecosystem expansion potential</strong> — Win Interbank, expand to Intercorp retail</li>
+                </ul>
+            </div>
         </section>
 
+        <!-- INVESTMENT APPETITE -->
         <section class="section-card">
-            <h2>📈 Commercial Signals</h2>
+            <h2 data-en="💡 Investment Appetite Assessment" data-es="💡 Evaluación del Apetito de Inversión">💡 Investment Appetite Assessment</h2>
+            <p><strong>Rating: 🟢 HIGH</strong></p>
             <ul>
-                <li>✅ <strong>Intercorp ecosystem:</strong> Unique retail integration creates analytics opportunities</li>
-                <li>✅ <strong>Innovation culture:</strong> Tunki, Plin alliance shows tech appetite</li>
-                <li>✅ <strong>Autonomous decisions:</strong> Local group, faster decision cycles than multinationals</li>
-                <li>🟡 <strong>Size constraint:</strong> Smaller than top 3, but growing fast</li>
+                <li><strong data-en="Financial capacity:" data-es="Capacidad financiera:">Financial capacity:</strong> ⚠️ <span data-en="Under pressure but backed by Intercorp resources" data-es="Bajo presión pero respaldado por recursos de Intercorp">Under pressure but backed by Intercorp resources</span></li>
+                <li><strong data-en="Local autonomy:" data-es="Autonomía local:">Local autonomy:</strong> ✅ <span data-en="FULL — No global parent constraints" data-es="COMPLETA — Sin restricciones de casa matriz global">FULL — No global parent constraints</span></li>
+                <li><strong data-en="Urgency:" data-es="Urgencia:">Urgency:</strong> ✅ <span data-en="HIGH — CIR, NPL, ROE all signaling need for action" data-es="ALTA — CIR, NPL, ROE todos señalan necesidad de actuar">HIGH — CIR, NPL, ROE all signaling need for action</span></li>
+                <li><strong data-en="Strategic priorities:" data-es="Prioridades estratégicas:">Strategic priorities:</strong> <span data-en="PLIN scaling, cost optimization, risk management" data-es="Escalamiento de PLIN, optimización de costos, gestión de riesgo">PLIN scaling, cost optimization, risk management</span></li>
+                <li><strong data-en="Ecosystem leverage:" data-es="Apalancamiento de ecosistema:">Ecosystem leverage:</strong> ✅ <span data-en="Win at Interbank, expand across Intercorp" data-es="Gana en Interbank, expande a través de Intercorp">Win at Interbank, expand across Intercorp</span></li>
             </ul>
         </section>
 
-        <div class="exec-navigation">
-            <a href="index.html" class="btn-secondary">← Back to Peru</a>
-            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
-        </div>
+        <!-- KEY OBJECTION -->
+        <section class="section-card">
+            <h2 data-en="⚠️ Key Objection to Prepare For" data-es="⚠️ Objeción Clave a Preparar">⚠️ Key Objection to Prepare For</h2>
+            <p><strong data-en="&quot;We're focused on cost cutting — we can't invest right now.&quot;" data-es="&quot;Estamos enfocados en recortar costos — no podemos invertir ahora.&quot;">"We're focused on cost cutting — we can't invest right now."</strong></p>
+            <p data-en="Response: &quot;That's exactly why we should talk. Your CIR at 48.5% compared to BCP's 35% represents over $100M in annual efficiency gap. The right infrastructure investment pays for itself in 12-18 months through operational savings. We help banks turn technology from a cost center into a competitive advantage. Can we show you how Interbank could capture efficiency gains while scaling PLIN?&quot;" data-es="Respuesta: &quot;Por eso exactamente deberíamos hablar. Tu CIR de 48.5% comparado con el 35% de BCP representa más de $100M en brecha de eficiencia anual. La inversión correcta en infraestructura se paga sola en 12-18 meses a través de ahorros operacionales. Ayudamos a bancos a convertir tecnología de centro de costo en ventaja competitiva. ¿Podemos mostrarte cómo Interbank podría capturar ganancias de eficiencia mientras escala PLIN?&quot;">Response: "That's exactly why we should talk. Your CIR at 48.5% compared to BCP's 35% represents over $100M in annual efficiency gap. The right infrastructure investment pays for itself in 12-18 months through operational savings. We help banks turn technology from a cost center into a competitive advantage. Can we show you how Interbank could capture efficiency gains while scaling PLIN?"</p>
+        </section>
+
     </main>
     <script src="../js/version.js"></script>
 </body>

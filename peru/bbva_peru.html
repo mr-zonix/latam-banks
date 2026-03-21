@@ -6,8 +6,62 @@
     <title>BBVA Perú | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .lang-btn:hover:not(.active) {
+            background: rgba(99, 102, 241, 0.2);
+        }
+        .key-metrics {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .key-metrics .metric-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.75rem;
+        }
+        .key-metrics .metric-item .value {
+            font-size: 1.25rem;
+        }
+        .key-metrics .metric-item .label {
+            font-size: 0.7rem;
+        }
+    </style>
 </head>
 <body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
     <nav class="sidebar">
         <div class="logo">
             <span class="logo-icon">🏦</span>
@@ -26,7 +80,7 @@
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
             </li>
-            <li class="nav-item active" onclick="window.location.href='../peru/index.html'">
+            <li class="nav-item active">
                 <span class="nav-icon">🇵🇪</span>
                 <span>Peru</span>
             </li>
@@ -55,104 +109,309 @@
         <div class="bank-header">
             <div class="bank-title">
                 <h1>🏦 BBVA Perú</h1>
-                <p class="subtitle">Multinational Commercial Bank • Lima, Peru</p>
+                <p class="subtitle">Private Commercial Bank • Lima, Peru • Subsidiary of BBVA Group (Spain)</p>
             </div>
             <div class="bank-badges">
-                <span class="badge high">🟢 HIGH OPPORTUNITY</span>
+                <span class="badge medium">🟡 MEDIUM OPPORTUNITY</span>
                 <span class="badge tier">TIER 1</span>
+                <span class="badge" style="background: var(--accent-purple); color: white;">🥈 #2 IN PERU</span>
             </div>
         </div>
 
+        <!-- PROFILE SECTION -->
         <section class="section-card">
-            <h2>📊 Key Financial Metrics</h2>
+            <h2 data-en="🏢 Bank Profile" data-es="🏢 Perfil del Banco">🏢 Bank Profile</h2>
+            <ul>
+                <li><strong data-en="Type:" data-es="Tipo:">Type:</strong> <span data-en="Private Commercial Bank — Subsidiary of BBVA Group (Spain)" data-es="Banco Privado Comercial — Subsidiaria del Grupo BBVA (España)">Private Commercial Bank — Subsidiary of BBVA Group (Spain)</span></li>
+                <li><strong data-en="Founded:" data-es="Fundado:">Founded:</strong> <span data-en="1951 as Banco Continental, became BBVA Continental in 1998, rebranded BBVA Perú in 2019" data-es="1951 como Banco Continental, se convirtió en BBVA Continental en 1998, renombrado BBVA Perú en 2019">1951 as Banco Continental, became BBVA Continental in 1998, rebranded BBVA Perú in 2019</span></li>
+                <li><strong data-en="Ownership:" data-es="Propiedad:">Ownership:</strong> <span data-en="BBVA Group (Spain) — 46.12%, Brescia Group (Peru) — 4.8%, Public float — 49%" data-es="Grupo BBVA (España) — 46.12%, Grupo Brescia (Perú) — 4.8%, Flotación pública — 49%">BBVA Group (Spain) — 46.12%, Brescia Group (Peru) — 4.8%, Public float — 49%</span></li>
+                <li><strong data-en="Headquarters:" data-es="Sede:">Headquarters:</strong> Av. República de Panamá 3055, San Isidro, Lima</li>
+                <li><strong data-en="Market Position:" data-es="Posición de Mercado:">Market Position:</strong> <span data-en="#2 in Peru — Strong challenger" data-es="#2 en Perú — Retador fuerte">#2 in Peru — Strong challenger</span></li>
+                <li><strong data-en="Employees:" data-es="Colaboradores:">Employees:</strong> ~5,800 (2024)</li>
+                <li><strong data-en="Branches:" data-es="Agencias:">Branches:</strong> <span data-en="270+ offices nationwide" data-es="270+ oficinas a nivel nacional">270+ offices nationwide</span></li>
+                <li><strong>ATMs:</strong> ~1,800</li>
+                <li><strong>Key Differentiator:</strong> <span data-en="Global bank technology stack, BBVA Spain's digital DNA" data-es="Stack tecnológico de banco global, ADN digital de BBVA España">Global bank technology stack, BBVA Spain's digital DNA</span></li>
+                <li><strong>Digital Maturity:</strong> 🟢 HIGH — <span data-en="78% digital customers, leader in digital onboarding" data-es="78% de clientes digitales, líder en onboarding digital">78% digital customers, leader in digital onboarding</span></li>
+                <li><strong>Listed:</strong> BVL (Lima Stock Exchange) — BBVAC1</li>
+            </ul>
+        </section>
+
+        <!-- KEY METRICS -->
+        <section class="section-card">
+            <h2 data-en="📊 Key Metrics 2024 (Source: SBS Peru / BBVA Perú Annual Report)" data-es="📊 Métricas Clave 2024 (Fuente: SBS Perú / Memoria Anual BBVA Perú)">📊 Key Metrics 2024 (Source: SBS Peru / BBVA Perú Annual Report)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">PEN/USD: 3.72 | <span data-en="All values converted to USD" data-es="Todos los valores convertidos a USD">All values converted to USD</span></p>
             <div class="key-metrics">
                 <div class="metric-item">
-                    <div class="value">$28B</div>
-                    <div class="label">Total Assets</div>
+                    <div class="value">$30.2B</div>
+                    <div class="label" data-en="Total Assets" data-es="Activos Totales">Total Assets</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">+7.5%</div>
-                    <div class="label">3Y Growth</div>
+                    <div class="value">$512.6M</div>
+                    <div class="label" data-en="Net Income" data-es="Utilidad Neta">Net Income</div>
+                </div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">14.2%</div>
+                    <div class="label">ROAE</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">15.2%</div>
-                    <div class="label">ROE</div>
+                    <div class="value">20.5%</div>
+                    <div class="label" data-en="Market Share" data-es="Market Share">Market Share</div>
                 </div>
                 <div class="metric-item">
-                    <div class="value">45%</div>
-                    <div class="label">CIR</div>
-                </div>
-                <div class="metric-item">
-                    <div class="value">3.5%</div>
-                    <div class="label">NPL Ratio</div>
+                    <div class="value">$3.6B</div>
+                    <div class="label" data-en="Net Equity" data-es="Patrimonio Neto">Net Equity</div>
                 </div>
             </div>
         </section>
 
+        <!-- FINANCIAL ANALYSIS -->
         <section class="section-card">
-            <h2>🏢 Bank Profile</h2>
-            <ul>
-                <li><strong>Type:</strong> Multinational Commercial Bank (BBVA Group)</li>
-                <li><strong>Market Position:</strong> #2 in Peru (~21% market share)</li>
-                <li><strong>Employees:</strong> ~6,000</li>
-                <li><strong>Branches:</strong> 300+ nationwide</li>
-                <li><strong>Digital Platform:</strong> BBVA App Peru, Plin alliance</li>
-                <li><strong>Parent:</strong> BBVA Group (Spain) — global tech platform</li>
-            </ul>
+            <h2>📈 Financial Analysis (3-Year Trend)</h2>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th data-en="Metric" data-es="Métrica">Metric</th>
+                            <th>2022</th>
+                            <th>2023</th>
+                            <th>2024</th>
+                            <th>Δ 3Y</th>
+                            <th data-en="Signal" data-es="Señal">Signal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Total Assets</strong></td>
+                            <td>$27.5B</td>
+                            <td>$28.9B</td>
+                            <td>$30.2B</td>
+                            <td style="color: var(--accent-green);">+9.8%</td>
+                            <td data-en="📈 Growing" data-es="📈 Creciendo">📈 Growing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Net Income</strong></td>
+                            <td>$456M</td>
+                            <td>$489M</td>
+                            <td>$513M</td>
+                            <td style="color: var(--accent-green);">+12.5%</td>
+                            <td data-en="📈 Healthy" data-es="📈 Saludable">📈 Healthy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ROE</strong></td>
+                            <td>14.8%</td>
+                            <td>14.5%</td>
+                            <td>14.2%</td>
+                            <td style="color: var(--accent-yellow);">-0.6pp</td>
+                            <td data-en="➡️ Stable" data-es="➡️ Estable">➡️ Stable</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CIR (Cost/Income)</strong></td>
+                            <td>42.5%</td>
+                            <td>41.8%</td>
+                            <td>40.2%</td>
+                            <td style="color: var(--accent-green);">-2.3pp</td>
+                            <td data-en="📈 Improving" data-es="📈 Mejorando">📈 Improving</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NPL Ratio</strong></td>
+                            <td>4.1%</td>
+                            <td>4.5%</td>
+                            <td>4.8%</td>
+                            <td style="color: var(--accent-yellow);">+0.7pp</td>
+                            <td data-en="⚠️ Watch" data-es="⚠️ Monitorear">⚠️ Watch</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Commercial Insight</h4>
+                <p style="margin: 0;" data-en="BBVA Perú is financially healthy but constrained by global directives. ROE of 14.2% is solid but below BCP (21.3%). NPL trending up signals credit risk focus — opportunity for analytics solutions. CIR improvement shows efficiency focus aligned with BBVA Group's global transformation." data-es="BBVA Perú es financieramente saludable pero limitado por directivas globales. ROE de 14.2% es sólido pero menor que BCP (21.3%). NPL en alza señala foco en riesgo crediticio — oportunidad para soluciones de analytics. Mejora de CIR muestra foco en eficiencia alineado con la transformación global de Grupo BBVA.">BBVA Perú is financially healthy but constrained by global directives. ROE of 14.2% is solid but below BCP (21.3%). NPL trending up signals credit risk focus — opportunity for analytics solutions. CIR improvement shows efficiency focus aligned with BBVA Group's global transformation.</p>
+            </div>
         </section>
 
+        <!-- INFRASTRUCTURE STACK - 6 LAYERS -->
         <section class="section-card">
-            <h2>💻 Technology & Infrastructure</h2>
-            <ul>
-                <li><strong>Core Banking:</strong> BBVA global platform — modern, cloud-enabled</li>
-                <li><strong>Cloud Strategy:</strong> Aligned with BBVA global cloud-first strategy</li>
-                <li><strong>Data Centers:</strong> Leverages BBVA global infrastructure + local presence</li>
-                <li><strong>AI/Analytics:</strong> Access to BBVA global AI capabilities</li>
-                <li><strong>Digital Channels:</strong> Strong mobile app, Plin payment alliance</li>
-            </ul>
+            <h2 data-en="🔧 Infrastructure Stack — 6 Layers Deep Dive" data-es="🔧 Stack de Infraestructura — 6 Capas en Profundidad">🔧 Infrastructure Stack — 6 Layers Deep Dive</h2>
+            <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                <span style="color: var(--accent-green);">●</span> <span data-en="Confirmed" data-es="Confirmado">Confirmed</span> &nbsp;
+                <span style="color: var(--accent-yellow);">●</span> <span data-en="Likely/Estimated" data-es="Probable/Estimado">Likely/Estimated</span> &nbsp;
+                <span style="color: var(--accent-red);">●</span> <span data-en="Global Decision" data-es="Decisión Global">Global Decision</span>
+            </p>
+            
+            <div class="infra-stack">
+                <!-- LAYER 1: Processing & Compute -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💻</span>
+                        <span class="infra-layer-name">Layer 1: Processing & Compute</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">AWS (Primary Cloud)</span>
+                        <span class="brand-tag confirmed">Google Cloud (Secondary)</span>
+                        <span class="brand-tag likely">VMware vSphere</span>
+                        <span class="brand-tag likely">Dell PowerEdge</span>
+                    </div>
+                    <p class="infra-notes" data-en="BBVA Group runs a global cloud-first strategy mandated from Spain. AWS is the primary cloud provider globally, with Google Cloud for specific workloads. On-premises compute is largely VMware-based, being gradually migrated to cloud. Local team has LIMITED autonomy for compute decisions — global standards apply." data-es="Grupo BBVA ejecuta una estrategia cloud-first global mandatada desde España. AWS es el proveedor cloud primario globalmente, con Google Cloud para workloads específicos. El cómputo on-premises es principalmente basado en VMware, siendo migrado gradualmente a cloud. Equipo local tiene autonomía LIMITADA para decisiones de cómputo — aplican estándares globales.">BBVA Group runs a global cloud-first strategy mandated from Spain. AWS is the primary cloud provider globally, with Google Cloud for specific workloads. On-premises compute is largely VMware-based, being gradually migrated to cloud. Local team has LIMITED autonomy for compute decisions — global standards apply.</p>
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-red);">⚠️ Global Constraint:</strong> BBVA Spain sets cloud strategy. Local infra purchases follow global procurement agreements.
+                    </div>
+                </div>
+
+                <!-- LAYER 2: Storage -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💾</span>
+                        <span class="infra-layer-name">Layer 2: Enterprise Storage</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">AWS S3/EBS</span>
+                        <span class="brand-tag likely">NetApp (Legacy)</span>
+                        <span class="brand-tag likely">Dell EMC</span>
+                        <span class="brand-tag">Pure Storage</span>
+                    </div>
+                    <p class="infra-notes" data-en="Storage follows cloud-first mandate. New applications use AWS native storage (S3, EBS, EFS). Legacy on-prem storage likely NetApp or Dell EMC, being phased out. Data growth driven by regulatory requirements and digital banking expansion. SBS Peru requires 10-year data retention." data-es="Almacenamiento sigue mandato cloud-first. Nuevas aplicaciones usan almacenamiento nativo de AWS (S3, EBS, EFS). Almacenamiento legacy on-prem probablemente NetApp o Dell EMC, siendo desactivado. Crecimiento de datos impulsado por requerimientos regulatorios y expansión de banca digital. SBS Perú requiere retención de datos por 10 años.">Storage follows cloud-first mandate. New applications use AWS native storage (S3, EBS, EFS). Legacy on-prem storage likely NetApp or Dell EMC, being phased out. Data growth driven by regulatory requirements and digital banking expansion. SBS Peru requires 10-year data retention.</p>
+                </div>
+
+                <!-- LAYER 3: Networking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🌐</span>
+                        <span class="infra-layer-name">Layer 3: Networking</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">Cisco (Core & DC)</span>
+                        <span class="brand-tag likely">Fortinet Security</span>
+                        <span class="brand-tag likely">Palo Alto (Perimeter)</span>
+                        <span class="brand-tag likely">AWS Direct Connect</span>
+                    </div>
+                    <p class="infra-notes" data-en="270+ branches require robust WAN infrastructure. SD-WAN transformation likely completed or in progress. Cisco dominates core and data center networking. Hybrid connectivity via AWS Direct Connect to cloud workloads. Security stack includes next-gen firewalls at perimeter and branch locations. Network is area with SOME local autonomy due to regulatory requirements." data-es="270+ agencias requieren infraestructura WAN robusta. Transformación SD-WAN probablemente completada o en progreso. Cisco domina networking de core y data center. Conectividad híbrida vía AWS Direct Connect a workloads cloud. Stack de seguridad incluye firewalls next-gen en perímetro y sucursales. Red es área con ALGO de autonomía local debido a requerimientos regulatorios.">270+ branches require robust WAN infrastructure. SD-WAN transformation likely completed or in progress. Cisco dominates core and data center networking. Hybrid connectivity via AWS Direct Connect to cloud workloads. Security stack includes next-gen firewalls at perimeter and branch locations. Network is area with SOME local autonomy due to regulatory requirements.</p>
+                </div>
+
+                <!-- LAYER 4: Core Banking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🏛️</span>
+                        <span class="infra-layer-name">Layer 4: Core Banking</span>
+                        <span class="infra-layer-opp low">LOW OPP (Global)</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">ALNOVA (BBVA Proprietary)</span>
+                        <span class="brand-tag confirmed">API Connect</span>
+                        <span class="brand-tag">Microservices Layer</span>
+                    </div>
+                    <p class="infra-notes" data-en="BBVA developed ALNOVA — their proprietary core banking platform deployed across all subsidiaries. This is a GLOBAL DECISION with zero local autonomy. ALNOVA is modern, cloud-native, API-first architecture. Peru was one of the first markets to migrate to ALNOVA (2017-2019). No core banking opportunity here — fully controlled by Spain." data-es="BBVA desarrolló ALNOVA — su plataforma de core banking propietaria desplegada en todas las subsidiarias. Esta es una DECISIÓN GLOBAL con cero autonomía local. ALNOVA es moderno, cloud-native, arquitectura API-first. Perú fue uno de los primeros mercados en migrar a ALNOVA (2017-2019). No hay oportunidad de core banking aquí — totalmente controlado por España.">BBVA developed ALNOVA — their proprietary core banking platform deployed across all subsidiaries. This is a GLOBAL DECISION with zero local autonomy. ALNOVA is modern, cloud-native, API-first architecture. Peru was one of the first markets to migrate to ALNOVA (2017-2019). No core banking opportunity here — fully controlled by Spain.</p>
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-red);">🚫 No Opportunity:</strong> ALNOVA is proprietary. Core modernization is complete. No vendor opportunity.
+                    </div>
+                </div>
+
+                <!-- LAYER 5: Digital Banking Platform -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📱</span>
+                        <span class="infra-layer-name">Layer 5: Digital Banking Platform</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">BBVA App (Global Platform)</span>
+                        <span class="brand-tag confirmed">API Market</span>
+                        <span class="brand-tag likely">Kubernetes/EKS</span>
+                        <span class="brand-tag">Open Banking APIs</span>
+                    </div>
+                    <p class="infra-notes" data-en="BBVA Perú app is based on global BBVA platform — #1 rated banking app in multiple markets. Strong digital onboarding: 100% digital account opening since 2019. Open Banking leader in Peru — first to launch API Market. ~78% of customers are digital active. Mobile-first strategy with 4.8M digital customers. Some local customization allowed for regulatory compliance and local market features." data-es="App de BBVA Perú está basada en plataforma global BBVA — app bancaria #1 en múltiples mercados. Onboarding digital fuerte: apertura de cuentas 100% digital desde 2019. Líder de Open Banking en Perú — primero en lanzar API Market. ~78% de clientes son digitales activos. Estrategia mobile-first con 4.8M de clientes digitales. Algo de customización local permitida para cumplimiento regulatorio y features de mercado local.">BBVA Perú app is based on global BBVA platform — #1 rated banking app in multiple markets. Strong digital onboarding: 100% digital account opening since 2019. Open Banking leader in Peru — first to launch API Market. ~78% of customers are digital active. Mobile-first strategy with 4.8M digital customers. Some local customization allowed for regulatory compliance and local market features.</p>
+                </div>
+
+                <!-- LAYER 6: Data, Analytics & AI -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📊</span>
+                        <span class="infra-layer-name">Layer 6: Data, Analytics & AI</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">BBVA AI Factory</span>
+                        <span class="brand-tag likely">AWS SageMaker</span>
+                        <span class="brand-tag likely">Snowflake</span>
+                        <span class="brand-tag likely">Tableau/Power BI</span>
+                    </div>
+                    <p class="infra-notes" data-en="BBVA has a global AI Factory that develops ML models for all subsidiaries. Peru implements: fraud detection AI, credit scoring models, personalization engines, chatbots. Data platform likely Snowflake or AWS-native analytics. Strong data governance due to global standards. Local team can customize models but core AI/ML capabilities come from global. NPL increase (4.8%) creates opportunity for advanced credit risk analytics." data-es="BBVA tiene una AI Factory global que desarrolla modelos ML para todas las subsidiarias. Perú implementa: IA de detección de fraude, modelos de scoring crediticio, motores de personalización, chatbots. Plataforma de datos probablemente Snowflake o analytics nativo de AWS. Governance de datos fuerte debido a estándares globales. Equipo local puede customizar modelos pero capacidades core de AI/ML vienen de global. Aumento de NPL (4.8%) crea oportunidad para analytics avanzado de riesgo crediticio.">BBVA has a global AI Factory that develops ML models for all subsidiaries. Peru implements: fraud detection AI, credit scoring models, personalization engines, chatbots. Data platform likely Snowflake or AWS-native analytics. Strong data governance due to global standards. Local team can customize models but core AI/ML capabilities come from global. NPL increase (4.8%) creates opportunity for advanced credit risk analytics.</p>
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-green);">💡 Opportunity:</strong> Credit risk analytics, local market intelligence, regulatory reporting automation.
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section class="section-card">
-            <h2>🎯 Best Infrastructure Plays</h2>
+        <!-- COMMERCIAL SYNTHESIS -->
+        <section class="section-card" style="border: 2px solid var(--accent-yellow);">
+            <h2 data-en="🎯 Commercial Synthesis" data-es="🎯 Síntesis Comercial">🎯 Commercial Synthesis</h2>
+            
             <div class="priority-list">
-                <div class="priority-item high">
+                <div class="priority-item medium">
                     <span class="priority-num">1</span>
                     <div class="priority-content">
-                        <h4>Local Data & Analytics Enhancement</h4>
-                        <p>Peru-specific analytics, local data platform augmentation.</p>
+                        <h4 data-en="Primary Opportunity: Credit Risk & Analytics" data-es="Oportunidad Principal: Riesgo Crediticio y Analytics">Primary Opportunity: Credit Risk & Analytics</h4>
+                        <p data-en="NPL at 4.8% and rising. Local team needs better risk analytics tools. Global platform provides foundation but local customization is needed for Peru market dynamics. Regulatory reporting automation is pain point." data-es="NPL en 4.8% y en alza. Equipo local necesita mejores herramientas de analytics de riesgo. Plataforma global provee base pero se necesita customización local para dinámicas del mercado peruano. Automatización de reportes regulatorios es pain point.">"NPL at 4.8% and rising. Local team needs better risk analytics tools. Global platform provides foundation but local customization is needed for Peru market dynamics. Regulatory reporting automation is pain point."</p>
                     </div>
                 </div>
                 <div class="priority-item medium">
                     <span class="priority-num">2</span>
                     <div class="priority-content">
-                        <h4>Edge Infrastructure</h4>
-                        <p>Branch modernization, local compute for latency-sensitive apps.</p>
-                    </div>
-                </div>
-                <div class="priority-item medium">
-                    <span class="priority-num">3</span>
-                    <div class="priority-content">
-                        <h4>Hybrid Cloud Expansion</h4>
-                        <p>Local cloud presence to complement global BBVA infrastructure.</p>
+                        <h4 data-en="Secondary Opportunity: Network Security" data-es="Oportunidad Secundaria: Seguridad de Red">Secondary Opportunity: Network Security</h4>
+                        <p data-en="270+ branches need local security management. While global sets standards, implementation and local security operations have autonomy. Zero Trust architecture implementation in branches could be opportunity." data-es="270+ agencias necesitan gestión de seguridad local. Mientras global define estándares, la implementación y operaciones de seguridad local tienen autonomía. Implementación de arquitectura Zero Trust en sucursales podría ser oportunidad.">"270+ branches need local security management. While global sets standards, implementation and local security operations have autonomy. Zero Trust architecture implementation in branches could be opportunity."</p>
                     </div>
                 </div>
             </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Entry Strategy</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="Focus on local pain points NOT covered by global: regulatory compliance, local market analytics, branch network optimization. Don't compete with global vendors on core infrastructure." data-es="Enfócate en pain points locales NO cubiertos por global: cumplimiento regulatorio, analytics de mercado local, optimización de red de sucursales. No compitas con vendors globales en infraestructura core.">Focus on local pain points NOT covered by global: regulatory compliance, local market analytics, branch network optimization. Don't compete with global vendors on core infrastructure.</p>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Key Stakeholders</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                        • <strong>CEO:</strong> Fernando Eguiluz Lozano<br>
+                        • <strong>CIO/CTO:</strong> Reports to global, limited local authority<br>
+                        • <strong>CFO:</strong> Budget holder for local initiatives
+                    </p>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Timing</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="Q2-Q3 2025 budget planning. Global transformation initiatives may free up local budget for specialized needs. Rising NPL creates urgency for risk solutions." data-es="Planificación de presupuesto Q2-Q3 2025. Iniciativas de transformación global pueden liberar presupuesto local para necesidades especializadas. NPL en alza crea urgencia para soluciones de riesgo.">Q2-Q3 2025 budget planning. Global transformation initiatives may free up local budget for specialized needs. Rising NPL creates urgency for risk solutions.</p>
+                </div>
+            </div>
+
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-yellow); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-yellow);">⚠️ Key Challenge</h4>
+                <p style="margin: 0;" data-en="BBVA Perú has LIMITED local autonomy. Major infrastructure decisions are made in Madrid. Focus on niche opportunities where local team has budget authority: compliance tools, local analytics, branch-specific solutions." data-es="BBVA Perú tiene autonomía local LIMITADA. Decisiones mayores de infraestructura se toman en Madrid. Enfócate en oportunidades de nicho donde el equipo local tiene autoridad presupuestaria: herramientas de compliance, analytics local, soluciones específicas de sucursales.">BBVA Perú has LIMITED local autonomy. Major infrastructure decisions are made in Madrid. Focus on niche opportunities where local team has budget authority: compliance tools, local analytics, branch-specific solutions.</p>
+            </div>
         </section>
 
+        <!-- INVESTMENT APPETITE -->
         <section class="section-card">
-            <h2>📈 Commercial Signals</h2>
+            <h2 data-en="💡 Investment Appetite Assessment" data-es="💡 Evaluación del Apetito de Inversión">💡 Investment Appetite Assessment</h2>
+            <p><strong>Rating: 🟡 MEDIUM</strong></p>
             <ul>
-                <li>✅ <strong>Global platform advantage:</strong> Access to BBVA's world-class tech stack</li>
-                <li>✅ <strong>Plin alliance:</strong> Competing with Yape drives digital investment</li>
-                <li>⚠️ <strong>Global decisions:</strong> Major infra decisions often made at group level</li>
-                <li>🟡 <strong>Local opportunities:</strong> Peru-specific needs create entry points</li>
+                <li><strong data-en="Financial capacity:" data-es="Capacidad financiera:">Financial capacity:</strong> ✅ <span data-en="Strong — $513M net income, 14.2% ROE" data-es="Fuerte — $513M utilidad neta, 14.2% ROE">Strong — $513M net income, 14.2% ROE</span></li>
+                <li><strong data-en="Local autonomy:" data-es="Autonomía local:">Local autonomy:</strong> ⚠️ <span data-en="Limited — Global parent controls major decisions" data-es="Limitada — Casa matriz global controla decisiones mayores">Limited — Global parent controls major decisions</span></li>
+                <li><strong data-en="Technology appetite:" data-es="Apetito tecnológico:">Technology appetite:</strong> ✅ <span data-en="High — BBVA Group is a digital banking leader" data-es="Alto — Grupo BBVA es líder en banca digital">High — BBVA Group is a digital banking leader</span></li>
+                <li><strong data-en="Current pain points:" data-es="Pain points actuales:">Current pain points:</strong> <span data-en="Rising NPL, regulatory compliance, local market competition" data-es="NPL en alza, cumplimiento regulatorio, competencia de mercado local">Rising NPL, regulatory compliance, local market competition</span></li>
+                <li><strong data-en="Best approach:" data-es="Mejor enfoque:">Best approach:</strong> <span data-en="Niche solutions that complement (not compete with) global platforms" data-es="Soluciones de nicho que complementan (no compiten con) plataformas globales">Niche solutions that complement (not compete with) global platforms</span></li>
             </ul>
         </section>
 
-        <div class="exec-navigation">
-            <a href="index.html" class="btn-secondary">← Back to Peru</a>
-            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
-        </div>
+        <!-- KEY OBJECTION -->
+        <section class="section-card">
+            <h2 data-en="⚠️ Key Objection to Prepare For" data-es="⚠️ Objeción Clave a Preparar">⚠️ Key Objection to Prepare For</h2>
+            <p><strong data-en="&quot;We use global platforms — decisions are made in Spain.&quot;" data-es="&quot;Usamos plataformas globales — las decisiones se toman en España.&quot;">"We use global platforms — decisions are made in Spain."</strong></p>
+            <p data-en="Response: &quot;Absolutely, and BBVA's global platform is world-class. We're not competing with that. We focus on Peru-specific challenges that global platforms weren't designed for: SBS regulatory requirements, local credit risk patterns, branch network optimization in Peruvian geography. These are areas where your local team has both the need and the authority to act.&quot;" data-es="Respuesta: &quot;Absolutamente, y la plataforma global de BBVA es de clase mundial. No competimos con eso. Nos enfocamos en desafíos específicos de Perú que las plataformas globales no fueron diseñadas para resolver: requerimientos regulatorios de SBS, patrones locales de riesgo crediticio, optimización de red de sucursales en geografía peruana. Estas son áreas donde su equipo local tiene tanto la necesidad como la autoridad para actuar.&quot;">Response: "Absolutely, and BBVA's global platform is world-class. We're not competing with that. We focus on Peru-specific challenges that global platforms weren't designed for: SBS regulatory requirements, local credit risk patterns, branch network optimization in Peruvian geography. These are areas where your local team has both the need and the authority to act."</p>
+        </section>
+
     </main>
     <script src="../js/version.js"></script>
 </body>
