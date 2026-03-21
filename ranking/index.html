@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 53 Banks Ranking | LATAM Bank Intelligence</title>
+    <title>Top 50 Banks Ranking | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -124,13 +124,13 @@
             <span class="logo-text">LATAM Intel</span>
         </div>
         <ul class="nav-menu">
+            <li class="nav-item active">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
             <li class="nav-item" onclick="window.location.href='../index.html'">
                 <span class="nav-icon">📊</span>
                 <span>Dashboard</span>
-            </li>
-            <li class="nav-item active" onclick="window.location.href='../ranking/index.html'" >
-                <span class="nav-icon">📋</span>
-                <span>Ranking</span>
             </li>
             <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
                 <span class="nav-icon">🇪🇨</span>
@@ -143,14 +143,6 @@
             <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
                 <span class="nav-icon">🇨🇴</span>
                 <span>Colombia</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
-                <span class="nav-icon">🇬🇹</span>
-                <span>Guatemala</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
-                <span class="nav-icon">🇵🇦</span>
-                <span>Panamá</span>
             </li>
             <li class="nav-item" onclick="window.location.href='../executives/index.html'">
                 <span class="nav-icon">👔</span>
@@ -165,7 +157,7 @@
 
     <main class="main-content">
         <header class="page-header">
-            <h1>📋 Top 53 Banks LATAM</h1>
+            <h1>📋 Top 50 Banks LATAM</h1>
             <p class="subtitle">Ranking by Total Assets (USD) | Commercial Infrastructure Intelligence</p>
         </header>
 
@@ -195,7 +187,6 @@
                 <option value="EC">🇪🇨 Ecuador</option>
                 <option value="AR">🇦🇷 Argentina</option>
                 <option value="PA">🇵🇦 Panamá</option>
-                <option value="GT">🇬🇹 Guatemala</option>
             </select>
             <select id="segment-filter">
                 <option value="">All Segments</option>
@@ -277,8 +268,8 @@
             { rank: 17, name: "BCI", country: "CL", countryName: "Chile", flag: "🇨🇱", assets: 68, segment: "large", ownership: "Private", roe: 14.8, cir: 44, growth: 8.5, source: "✓", link: null },
             { rank: 18, name: "Scotiabank Chile", country: "CL", countryName: "Chile", flag: "🇨🇱", assets: 62, segment: "large", ownership: "Multinational", roe: 11.5, cir: 48, growth: 4.2, source: "✓", link: null },
             
-            // PERU - SBS, Dec 2024
-            { rank: 19, name: "BCP (Credicorp)", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 58, segment: "large", ownership: "Private", roe: 21.3, cir: 38, growth: 9.8, source: "✓", link: "../peru/bcp.html" },
+            // PERU - SBS, Dec 2024 (verified from Peru page)
+            { rank: 19, name: "BCP (Credicorp)", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 53, segment: "large", ownership: "Private", roe: 20.9, cir: 38, growth: 9.8, source: "✓", link: "../peru/bcp.html" },
             
             // MEXICO continued
             { rank: 20, name: "HSBC México", country: "MX", countryName: "México", flag: "🇲🇽", assets: 55, segment: "large", ownership: "Multinational", roe: 8.5, cir: 56, growth: 2.1, source: "✓", link: null },
@@ -304,10 +295,10 @@
             // COLOMBIA Mid
             { rank: 29, name: "BBVA Colombia", country: "CO", countryName: "Colombia", flag: "🇨🇴", assets: 32, segment: "mid", ownership: "Multinational", roe: 10.5, cir: 49, growth: 5.2, source: "✓", link: "../colombia/bbva_colombia.html" },
             
-            // PERU Mid
-            { rank: 30, name: "BBVA Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 28, segment: "mid", ownership: "Multinational", roe: 15.2, cir: 45, growth: 7.5, source: "✓", link: "../peru/bbva_peru.html" },
-            { rank: 31, name: "Scotiabank Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 25, segment: "mid", ownership: "Multinational", roe: 12.8, cir: 50, growth: 4.8, source: "✓", link: "../peru/scotiabank_peru.html" },
-            { rank: 32, name: "Interbank", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 22, segment: "mid", ownership: "Private", roe: 14.5, cir: 48, growth: 8.2, source: "✓", link: "../peru/interbank.html" },
+            // PERU Mid - SBS Dec 2024 (verified from Peru page)
+            { rank: 30, name: "BBVA Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 30.2, segment: "mid", ownership: "Multinational", roe: 14.2, cir: 45, growth: 7.5, source: "✓", link: "../peru/bbva_peru.html" },
+            { rank: 31, name: "Interbank", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 19.9, segment: "emerging", ownership: "Private", roe: 11.0, cir: 48, growth: 8.2, source: "✓", link: "../peru/interbank.html" },
+            { rank: 32, name: "Scotiabank Perú", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 19.1, segment: "emerging", ownership: "Multinational", roe: 8.0, cir: 50, growth: 4.8, source: "✓", link: "../peru/scotiabank_peru.html" },
             
             // PANAMA
             { rank: 33, name: "Banco General (PA)", country: "PA", countryName: "Panamá", flag: "🇵🇦", assets: 24, segment: "mid", ownership: "Private", roe: 14.8, cir: 40, growth: 7.5, source: "✓", link: null },
@@ -350,15 +341,10 @@
             { rank: 48, name: "Banco Internacional EC", country: "EC", countryName: "Ecuador", flag: "🇪🇨", assets: 6.6, segment: "emerging", ownership: "Private", roe: 12.5, cir: 52, growth: 11.8, source: "✓", link: "../ecuador/banco_internacional.html" },
             
             // PERU Emerging
-            { rank: 49, name: "MiBanco", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 9, segment: "emerging", ownership: "Private", roe: 16.8, cir: 52, growth: 12.5, source: "✓", link: "../peru/mibanco.html" },
+            { rank: 49, name: "MiBanco", country: "PE", countryName: "Perú", flag: "🇵🇪", assets: 9, segment: "emerging", ownership: "Private", roe: 16.8, cir: 52, growth: 12.5, source: "✓", link: null },
             
             // BRAZIL Emerging/Digital
-            { rank: 50, name: "Banco Original", country: "BR", countryName: "Brasil", flag: "🇧🇷", assets: 18, segment: "emerging", ownership: "Private", roe: 7.5, cir: 58, growth: 15.2, source: "✓", link: null },
-            
-            // GUATEMALA - SIB Guatemala, Dec 2024
-            { rank: 51, name: "Banco Industrial", country: "GT", countryName: "Guatemala", flag: "🇬🇹", assets: 18, segment: "emerging", ownership: "Private", roe: 16.5, cir: 45, growth: 9.0, source: "✓", link: "../guatemala/banco_industrial.html" },
-            { rank: 52, name: "Banrural", country: "GT", countryName: "Guatemala", flag: "🇬🇹", assets: 12, segment: "emerging", ownership: "Private", roe: 12.8, cir: 55, growth: 11.0, source: "✓", link: "../guatemala/banrural.html" },
-            { rank: 53, name: "G&T Continental", country: "GT", countryName: "Guatemala", flag: "🇬🇹", assets: 8, segment: "emerging", ownership: "Private", roe: 11.5, cir: 52, growth: 6.0, source: "✓", link: "../guatemala/banco_gyt.html" }
+            { rank: 50, name: "Banco Original", country: "BR", countryName: "Brasil", flag: "🇧🇷", assets: 18, segment: "emerging", ownership: "Private", roe: 7.5, cir: 58, growth: 15.2, source: "✓", link: null }
         ];
 
         // Sort by assets
@@ -465,6 +451,5 @@
         renderTable(banks);
         updateStats(banks);
     </script>
-    <script src="../js/version.js"></script>
 </body>
 </html>
