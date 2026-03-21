@@ -18,10 +18,6 @@
                 <span class="nav-icon">📊</span>
                 <span>Dashboard</span>
             </li>
-            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
-                <span class="nav-icon">📋</span>
-                <span>Ranking</span>
-            </li>
             <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
@@ -34,14 +30,6 @@
                 <span class="nav-icon">🇨🇴</span>
                 <span>Colombia</span>
             </li>
-            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
-                <span class="nav-icon">🇬🇹</span>
-                <span>Guatemala</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
-                <span class="nav-icon">🇵🇦</span>
-                <span>Panamá</span>
-            </li>
             <li class="nav-item" onclick="window.location.href='../executives/index.html'">
                 <span class="nav-icon">👔</span>
                 <span>Executives</span>
@@ -49,7 +37,7 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix</p>
-            <p class="version">v4.1 • Mar 2025</p>
+            <p class="version">v3.7 • 06/02 ECT</p>
         </div>
     </nav>
 
@@ -58,11 +46,12 @@
         
         <header class="page-header">
             <h1>🇨🇴 Colombia Banking Sector</h1>
-            <p class="subtitle">Top 7 banks by total assets • Data: Superfinanciera December 2024</p>
+            <p class="subtitle">Top 7 banks by total assets • COP economy (USD converted)</p>
         </header>
 
         <div class="info-banner">
-            <strong>Market Overview:</strong> ~$320B total banking assets • Largest Andean market • Regulator: Superfinanciera • COP currency (COP/USD ~4,405) • Strong conglomerate presence (Grupo Aval, Grupo Bolívar, Grupo Gilinski)
+            <strong>Market Overview:</strong> ~$280B total banking assets (Dec 2024) • Largest banking market in Andean region • Strong conglomerate presence (Grupo Aval, Grupo Bolívar) • Advanced digital banking adoption
+            <br><span style="font-size: 0.85rem; color: var(--text-muted);">Source: Superfinanciera Colombia</span>
         </div>
 
         <section class="section-card">
@@ -77,7 +66,6 @@
                             <th>3Y Growth</th>
                             <th>ROE</th>
                             <th>CIR</th>
-                            <th>NPL</th>
                             <th>Opportunity</th>
                             <th>Action</th>
                         </tr>
@@ -90,7 +78,6 @@
                             <td>+8.5%</td>
                             <td>14.8%</td>
                             <td>48%</td>
-                            <td>3.8%</td>
                             <td><span class="opportunity high">🟢 HIGH</span></td>
                             <td><a href="bancolombia.html" class="btn-small">Details</a></td>
                         </tr>
@@ -101,7 +88,6 @@
                             <td>+6.2%</td>
                             <td>13.2%</td>
                             <td>51%</td>
-                            <td>4.2%</td>
                             <td><span class="opportunity high">🟢 HIGH</span></td>
                             <td><a href="banco_bogota.html" class="btn-small">Details</a></td>
                         </tr>
@@ -112,7 +98,6 @@
                             <td>+5.8%</td>
                             <td>11.5%</td>
                             <td>54%</td>
-                            <td>4.5%</td>
                             <td><span class="opportunity high">🟢 HIGH</span></td>
                             <td><a href="davivienda.html" class="btn-small">Details</a></td>
                         </tr>
@@ -123,7 +108,6 @@
                             <td>+5.2%</td>
                             <td>10.5%</td>
                             <td>49%</td>
-                            <td>3.5%</td>
                             <td><span class="opportunity medium">🟡 MEDIUM</span></td>
                             <td><a href="bbva_colombia.html" class="btn-small">Details</a></td>
                         </tr>
@@ -134,29 +118,26 @@
                             <td>+4.5%</td>
                             <td>9.8%</td>
                             <td>56%</td>
-                            <td>5.1%</td>
                             <td><span class="opportunity medium">🟡 MEDIUM</span></td>
                             <td><a href="banco_occidente.html" class="btn-small">Details</a></td>
                         </tr>
                         <tr>
                             <td>6</td>
                             <td><a href="banco_popular.html">Banco Popular</a></td>
-                            <td>$16B</td>
-                            <td>+3.8%</td>
-                            <td>8.2%</td>
-                            <td>58%</td>
-                            <td>4.8%</td>
+                            <td>$14B</td>
+                            <td>+7%</td>
+                            <td>10.8%</td>
+                            <td>56%</td>
                             <td><span class="opportunity medium">🟡 MEDIUM</span></td>
                             <td><a href="banco_popular.html" class="btn-small">Details</a></td>
                         </tr>
                         <tr>
                             <td>7</td>
                             <td><a href="scotiabank_colpatria.html">Scotiabank Colpatria</a></td>
-                            <td>$14B</td>
-                            <td>+2.5%</td>
-                            <td>7.5%</td>
-                            <td>60%</td>
-                            <td>5.5%</td>
+                            <td>$13B</td>
+                            <td>+6%</td>
+                            <td>9.5%</td>
+                            <td>58%</td>
                             <td><span class="opportunity low">🔴 LOW</span></td>
                             <td><a href="scotiabank_colpatria.html" class="btn-small">Details</a></td>
                         </tr>
@@ -166,101 +147,51 @@
         </section>
 
         <section class="section-card">
-            <h2>🏢 Conglomerate Structure</h2>
-            <div class="table-container">
-                <table class="bank-table">
-                    <thead>
-                        <tr>
-                            <th>Conglomerate</th>
-                            <th>Banks</th>
-                            <th>Combined Assets</th>
-                            <th>Tech Autonomy</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Grupo Aval</strong></td>
-                            <td>Banco de Bogotá, Banco de Occidente, Banco Popular, AV Villas</td>
-                            <td>~$95B</td>
-                            <td>🟢 High (local decisions)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Grupo Bancolombia</strong></td>
-                            <td>Bancolombia (standalone)</td>
-                            <td>~$92B</td>
-                            <td>🟢 High (full autonomy)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Grupo Bolívar</strong></td>
-                            <td>Davivienda</td>
-                            <td>~$52B</td>
-                            <td>🟢 High (full autonomy)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>BBVA España</strong></td>
-                            <td>BBVA Colombia</td>
-                            <td>~$32B</td>
-                            <td>🟡 Medium (Madrid oversight)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Scotiabank Canada</strong></td>
-                            <td>Scotiabank Colpatria</td>
-                            <td>~$14B</td>
-                            <td>🔴 Low (Toronto controls)</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
-        <section class="section-card">
-            <h2>🎯 Opportunity Matrix</h2>
-            <div class="priority-grid">
-                <div class="priority-card tier1">
-                    <div class="priority-header">
-                        <span class="tier-badge" style="background: var(--accent-green);">🟢 HIGH</span>
-                    </div>
-                    <h3>Tier 1 — Primary Targets</h3>
-                    <ul>
-                        <li><strong>Bancolombia:</strong> #1 Colombia, Nequi (17M users), full tech autonomy, best ROE</li>
-                        <li><strong>Davivienda:</strong> DaviPlata pioneer, Grupo Bolívar autonomy, digital DNA</li>
-                        <li><strong>Banco de Bogotá:</strong> Grupo Aval flagship, regional presence (CAM)</li>
+            <h2>🏛️ Conglomerate Map</h2>
+            <p style="margin-bottom: 1rem;">Understanding ownership is critical — many banks share infrastructure decisions at group level.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid var(--accent-blue); border-radius: 8px; padding: 1rem;">
+                    <h4 style="color: var(--accent-blue);">🔵 Grupo Aval</h4>
+                    <ul style="font-size: 0.85rem;">
+                        <li><strong>Banco de Bogotá</strong> (#2)</li>
+                        <li><strong>Banco de Occidente</strong> (#5)</li>
+                        <li><strong>Banco Popular</strong> (#6)</li>
                     </ul>
+                    <p style="font-size: 0.8rem; color: var(--accent-yellow);">⚠️ Tech often centralized</p>
                 </div>
-                <div class="priority-card tier2">
-                    <div class="priority-header">
-                        <span class="tier-badge" style="background: var(--accent-yellow);">🟡 MEDIUM</span>
-                    </div>
-                    <h3>Tier 2 — Selective Approach</h3>
-                    <ul>
-                        <li><strong>BBVA Colombia:</strong> Madrid controls big decisions, local niches only</li>
-                        <li><strong>Banco de Occidente:</strong> Grupo Aval, corporate focus</li>
-                        <li><strong>Banco Popular:</strong> Grupo Aval, public sector focus</li>
+                
+                <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid var(--accent-red); border-radius: 8px; padding: 1rem;">
+                    <h4 style="color: var(--accent-red);">🔴 Grupo Bolívar</h4>
+                    <ul style="font-size: 0.85rem;">
+                        <li><strong>Davivienda</strong> (#3)</li>
+                        <li>DaviPlata (wallet)</li>
                     </ul>
+                    <p style="font-size: 0.8rem; color: var(--accent-green);">✅ Autonomous tech decisions</p>
                 </div>
-                <div class="priority-card tier3">
-                    <div class="priority-header">
-                        <span class="tier-badge" style="background: var(--accent-red);">🔴 LOW</span>
-                    </div>
-                    <h3>Tier 3 — Avoid</h3>
-                    <ul>
-                        <li><strong>Scotiabank Colpatria:</strong> Toronto controls all, worst ratios, strategic uncertainty</li>
+                
+                <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-green); border-radius: 8px; padding: 1rem;">
+                    <h4 style="color: var(--accent-green);">🟢 GEA</h4>
+                    <ul style="font-size: 0.85rem;">
+                        <li><strong>Bancolombia</strong> (#1)</li>
+                        <li>Nequi (wallet)</li>
                     </ul>
+                    <p style="font-size: 0.8rem; color: var(--accent-green);">✅ Independent on tech</p>
                 </div>
             </div>
         </section>
 
         <section class="section-card">
-            <h2>🔍 Infrastructure Opportunity Summary</h2>
+            <h2>🔥 Infrastructure Opportunity Matrix</h2>
             <div class="table-container">
-                <table class="bank-table">
+                <table class="matrix-table">
                     <thead>
                         <tr>
                             <th>Bank</th>
                             <th>Compute</th>
                             <th>Storage</th>
                             <th>Network</th>
-                            <th>Core Banking</th>
+                            <th>Core</th>
                             <th>Digital</th>
                             <th>Data/AI</th>
                         </tr>
@@ -270,53 +201,52 @@
                             <td><strong>Bancolombia</strong></td>
                             <td>🟢</td>
                             <td>🟢</td>
-                            <td>🟡</td>
+                            <td>🟢</td>
                             <td>🟡</td>
                             <td>🟢</td>
                             <td>🟢</td>
                         </tr>
                         <tr>
-                            <td><strong>Banco de Bogotá</strong></td>
+                            <td><strong>Banco Bogotá</strong></td>
                             <td>🟢</td>
+                            <td>🟢</td>
+                            <td>🟡</td>
                             <td>🟡</td>
                             <td>🟢</td>
                             <td>🟡</td>
-                            <td>🟡</td>
-                            <td>🟢</td>
                         </tr>
                         <tr>
                             <td><strong>Davivienda</strong></td>
                             <td>🟢</td>
+                            <td>🟡</td>
+                            <td>🟡</td>
                             <td>🟢</td>
-                            <td>🟡</td>
-                            <td>🟡</td>
                             <td>🟢</td>
                             <td>🟢</td>
                         </tr>
                         <tr>
-                            <td><strong>BBVA Colombia</strong></td>
-                            <td>🔴</td>
-                            <td>🔴</td>
+                            <td>BBVA Colombia</td>
+                            <td>🟡</td>
+                            <td>🟡</td>
                             <td>🟡</td>
                             <td>🔴</td>
                             <td>🟡</td>
                             <td>🟡</td>
                         </tr>
                         <tr>
-                            <td><strong>Scotiabank</strong></td>
+                            <td>Scotiabank</td>
                             <td>🔴</td>
                             <td>🔴</td>
                             <td>🔴</td>
                             <td>🔴</td>
-                            <td>🔴</td>
+                            <td>🟡</td>
                             <td>🔴</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p class="table-legend">🟢 High opportunity | 🟡 Medium/Selective | 🔴 Low/Blocked</p>
+            <p class="legend">🟢 Active opportunity | 🟡 Latent need | 🔴 Global decisions</p>
         </section>
-
     </main>
 </body>
 </html>
