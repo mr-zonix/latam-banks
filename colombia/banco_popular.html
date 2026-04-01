@@ -5,10 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banco Popular | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
         <ul class="nav-menu">
             <li class="nav-item" onclick="window.location.href='../index.html'">
                 <span class="nav-icon">📊</span>
@@ -26,7 +30,7 @@
                 <span class="nav-icon">🇵🇪</span>
                 <span>Peru</span>
             </li>
-            <li class="nav-item active" onclick="window.location.href='../colombia/index.html'" >
+            <li class="nav-item active" onclick="window.location.href='../colombia/index.html'">
                 <span class="nav-icon">🇨🇴</span>
                 <span>Colombia</span>
             </li>
@@ -43,29 +47,480 @@
                 <span>Executives</span>
             </li>
         </ul>
-        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v3.7</p></div>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.0 • Feb 2025</p>
+        </div>
     </nav>
+
     <main class="main-content">
         <a href="index.html" class="back-link">← Back to Colombia</a>
+        
         <div class="bank-header">
-            <h1>🏦 Banco Popular</h1>
-            <p class="subtitle">Grupo Aval • Bogotá, Colombia</p>
-            <div class="bank-badges"><span class="badge medium">🟡 MEDIUM</span></div>
+            <div class="bank-title">
+                <h1>🏦 Banco Popular</h1>
+                <p class="subtitle">Grupo Aval • Bogotá, Colombia</p>
+            </div>
+            <div class="bank-badges">
+                <span class="badge medium">🟡 MEDIUM OPPORTUNITY</span>
+                <span class="badge tier">TIER 2</span>
+                <span class="badge" style="background: var(--accent-blue); color: white;">🔵 GRUPO AVAL</span>
+            </div>
         </div>
+
+        <!-- SECTION 1: PROFILE -->
         <section class="section-card">
-            <h2>📊 Key Metrics</h2>
-            <div class="key-metrics">
-                <div class="metric-item"><div class="value">$14B</div><div class="label">Assets</div></div>
-                <div class="metric-item"><div class="value">10.8%</div><div class="label">ROE</div></div>
-                <div class="metric-item"><div class="value">56%</div><div class="label">CIR</div></div>
+            <h2>🏢 Bank Profile</h2>
+            <div class="profile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">General Information</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Founded:</strong> 1950 (75 years)</li>
+                        <li><strong>Headquarters:</strong> Bogotá, Colombia</li>
+                        <li><strong>Type:</strong> Private Commercial Bank</li>
+                        <li><strong>Regulator:</strong> Superfinanciera Colombia</li>
+                        <li><strong>BVC Listed:</strong> Yes (Bolsa de Valores de Colombia)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;">Ownership & Control</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Parent:</strong> Grupo Aval Acciones y Valores</li>
+                        <li><strong>Ultimate Control:</strong> Luis Carlos Sarmiento Angulo</li>
+                        <li><strong>Sister Banks:</strong> Banco de Bogotá, Banco de Occidente, BAC</li>
+                        <li><strong>Decision Authority:</strong> ⚠️ Some centralization at Grupo Aval</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">Scale & Footprint</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Employees:</strong> ~6,500</li>
+                        <li><strong>Branches:</strong> 220+ nationwide</li>
+                        <li><strong>ATMs:</strong> 800+ (shared Grupo Aval network)</li>
+                        <li><strong>Focus:</strong> Consumer banking, payroll loans</li>
+                        <li><strong>Niche:</strong> Government employee lending</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-banner" style="margin-top: 1rem;">
+                <strong>Strategic Position:</strong> Specialist in consumer lending, particularly payroll-deducted loans to government employees. Part of Grupo Aval (largest financial conglomerate in Colombia). Some technology decisions centralized at group level, but maintains operational autonomy in core banking and branch operations.
             </div>
         </section>
+
+        <!-- SECTION 2: FINANCIAL ANALYSIS -->
         <section class="section-card">
-            <h2>⚠️ Key Consideration</h2>
-            <p>Part of Grupo Aval. Tech decisions may be centralized. Best approached after winning Banco de Bogotá.</p>
+            <h2>📊 Financial Analysis</h2>
+            <div class="key-metrics">
+                <div class="metric-item">
+                    <div class="value">$14B</div>
+                    <div class="label">Total Assets</div>
+                </div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">+7%</div>
+                    <div class="label">3Y Asset Growth</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">10.8%</div>
+                    <div class="label">ROE</div>
+                </div>
+                <div class="metric-item" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-yellow);">
+                    <div class="value" style="color: var(--accent-yellow);">56%</div>
+                    <div class="label">CIR (High)</div>
+                </div>
+            </div>
+            
+            <div class="financial-details" style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue);">Profitability Metrics</h4>
+                    <table class="mini-table" style="width: 100%; font-size: 0.85rem;">
+                        <tr><td>Net Income (2024)</td><td style="text-align: right;"><strong>$185M</strong></td></tr>
+                        <tr><td>ROE</td><td style="text-align: right;"><strong>10.8%</strong></td></tr>
+                        <tr><td>ROA</td><td style="text-align: right;"><strong>1.3%</strong></td></tr>
+                        <tr><td>NIM (Net Interest Margin)</td><td style="text-align: right;"><strong>5.2%</strong></td></tr>
+                        <tr><td>Cost-to-Income Ratio</td><td style="text-align: right; color: var(--accent-yellow);"><strong>56%</strong></td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-green);">Asset Quality</h4>
+                    <table class="mini-table" style="width: 100%; font-size: 0.85rem;">
+                        <tr><td>NPL Ratio</td><td style="text-align: right;"><strong>3.8%</strong></td></tr>
+                        <tr><td>Coverage Ratio</td><td style="text-align: right;"><strong>125%</strong></td></tr>
+                        <tr><td>Loan Portfolio</td><td style="text-align: right;"><strong>$9.8B</strong></td></tr>
+                        <tr><td>Deposits</td><td style="text-align: right;"><strong>$11.2B</strong></td></tr>
+                        <tr><td>CAR (Solvency)</td><td style="text-align: right;"><strong>13.5%</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="interpretation" style="margin-top: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid var(--accent-yellow);">
+                <h4 style="margin-bottom: 0.5rem;">💡 Commercial Interpretation</h4>
+                <p style="font-size: 0.9rem; margin: 0;">
+                    <strong>Efficiency opportunity:</strong> 56% CIR is above industry average — strong case for automation and digital transformation. 
+                    <strong>Consumer focus:</strong> High NIM (5.2%) from consumer lending creates cash flow for tech investment.
+                    <strong>Grupo Aval factor:</strong> Some infrastructure shared with sister banks — verify decision authority per project.
+                    <strong>NPL pressure:</strong> 3.8% NPL indicates need for better credit analytics and collection systems.
+                </p>
+            </div>
         </section>
-        <div class="exec-navigation"><a href="index.html" class="btn-secondary">← Colombia</a></div>
+
+        <!-- SECTION 3: INFRASTRUCTURE LAYERS -->
+        <section class="section-card">
+            <h2>🔧 Technology Infrastructure — 6 Layers</h2>
+            
+            <!-- Layer 1: Processing & Compute -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #3b82f6;">
+                <h3 style="color: #3b82f6; margin-bottom: 0.75rem;">Layer 1: Processing & Compute</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Current State:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Shared DC with Grupo Aval infrastructure</li>
+                            <li>IBM Power Systems for core workloads</li>
+                            <li>x86 servers (Dell/HPE) for applications</li>
+                            <li>VMware virtualization platform</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Cloud Strategy:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Grupo Aval cloud initiative (Azure primary)</li>
+                            <li>Limited local cloud autonomy</li>
+                            <li>Digital channels moving to cloud</li>
+                            <li>Hybrid approach mandated by group</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Decision Authority:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>⚠️ Major compute: Grupo Aval level</li>
+                            <li>✅ Application servers: Local</li>
+                            <li>✅ Branch infrastructure: Local</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Branch compute refresh and edge computing for 220+ locations. Application modernization projects have local budget.
+                </div>
+            </div>
+
+            <!-- Layer 2: Storage -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #10b981;">
+                <h3 style="color: #10b981; margin-bottom: 0.75rem;">Layer 2: Storage & Data Management</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Primary Storage:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Dell EMC (Grupo Aval standard)</li>
+                            <li>Shared SAN infrastructure</li>
+                            <li>Estimated 500TB+ managed</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Backup & DR:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Centralized backup at Grupo Aval DC</li>
+                            <li>Veeam for virtualized workloads</li>
+                            <li>Cross-site replication</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Data Growth:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>~25% YoY growth</li>
+                            <li>Consumer loan documents driving volume</li>
+                            <li>Regulatory retention: 10 years</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Document management and archival solutions for consumer lending documents. Local budget for departmental storage needs.
+                </div>
+            </div>
+
+            <!-- Layer 3: Networking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                <h3 style="color: #f59e0b; margin-bottom: 0.75rem;">Layer 3: Networking & Security Infrastructure</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Network Architecture:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Cisco-based infrastructure</li>
+                            <li>MPLS WAN (Claro/Movistar)</li>
+                            <li>220+ branch connections</li>
+                            <li>Grupo Aval shared backbone</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Security Stack:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Fortinet firewalls (branch)</li>
+                            <li>Palo Alto (perimeter - group level)</li>
+                            <li>SIEM: Splunk (group shared)</li>
+                            <li>Endpoint: CrowdStrike</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Connectivity:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>ACH Colombia integration</li>
+                            <li>PSE (payment gateway)</li>
+                            <li>Transfiya real-time payments</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Branch network refresh and SD-WAN for 220 locations. Security tools at branch level have local budget. WiFi modernization.
+                </div>
+            </div>
+
+            <!-- Layer 4: Core Banking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                <h3 style="color: #8b5cf6; margin-bottom: 0.75rem;">Layer 4: Core Banking System</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Core Platform:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li><strong>Primary:</strong> AS/400 based core (legacy)</li>
+                            <li>Heavily customized over 30+ years</li>
+                            <li>Modules: Deposits, Loans, Cards</li>
+                            <li>Batch processing dominant</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Satellite Systems:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Loan Origination: Custom built</li>
+                            <li>Collections: Specialized system</li>
+                            <li>Cards: Shared Grupo Aval platform</li>
+                            <li>Treasury: Murex (group level)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Modernization:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>API layer being developed</li>
+                            <li>Gradual strangler pattern</li>
+                            <li>No full core replacement planned</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Loan origination modernization is bank-specific priority. Collections system upgrade needed. API management platform for core integration.
+                </div>
+            </div>
+
+            <!-- Layer 5: Digital Banking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #ec4899;">
+                <h3 style="color: #ec4899; margin-bottom: 0.75rem;">Layer 5: Digital Banking Platform</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Consumer Digital:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li><strong>App:</strong> "Popular App" (3.8★)</li>
+                            <li>Users: ~800K active</li>
+                            <li>Basic functionality</li>
+                            <li>Loan status, payments, transfers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Digital Lending:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Online loan pre-approval</li>
+                            <li>Limited digital origination</li>
+                            <li>Branch-dependent for completion</li>
+                            <li>Payroll integration (government)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Technology Stack:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Hybrid native/web app</li>
+                            <li>Backend: Java/.NET mix</li>
+                            <li>Moving to Azure (group)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Digital lending journey transformation — current process is too branch-dependent. App modernization. Customer self-service for loan management.
+                </div>
+            </div>
+
+            <!-- Layer 6: Data & AI -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #06b6d4;">
+                <h3 style="color: #06b6d4; margin-bottom: 0.75rem;">Layer 6: Data, Analytics & AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Data Platform:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Traditional data warehouse</li>
+                            <li>SQL Server based</li>
+                            <li>Limited real-time capabilities</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Analytics & BI:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Power BI (expanding)</li>
+                            <li>Excel-heavy culture</li>
+                            <li>Basic dashboards</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>AI/ML Initiatives:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Credit scoring: Traditional models</li>
+                            <li>Collections: Rule-based</li>
+                            <li>AI initiatives: Early exploration</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(6, 182, 212, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Major gap — bank needs modern analytics for credit risk (3.8% NPL is high). Collections optimization with AI. Customer analytics for cross-sell. This is LOCAL budget, not group-controlled.
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: EXECUTIVE INTELLIGENCE -->
+        <section class="section-card">
+            <h2>👔 Executive Intelligence — Key Decision Makers</h2>
+            <div class="exec-org" style="margin-top: 1rem;">
+                <div class="org-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-blue);">
+                        <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">🏛️ C-Suite</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>CEO:</strong> <em>To verify</em></li>
+                            <li><strong>CFO:</strong> <em>To verify</em></li>
+                            <li><strong>COO:</strong> <em>To verify</em></li>
+                        </ul>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            🔍 <a href="https://www.linkedin.com/search/results/people/?keywords=CEO%20Banco%20Popular%20Colombia" target="_blank">LinkedIn Search</a>
+                        </p>
+                    </div>
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-green);">
+                        <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;">💻 Technology Leadership</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>VP Tecnología:</strong> <em>To verify</em></li>
+                            <li><strong>Director Infraestructura:</strong> <em>To verify</em></li>
+                            <li><strong>Gerente Desarrollo:</strong> <em>To verify</em></li>
+                        </ul>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            🔍 <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Tecnologia%20Banco%20Popular%20Colombia" target="_blank">LinkedIn Search</a>
+                        </p>
+                    </div>
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-purple);">
+                        <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">📊 Risk & Analytics</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>VP Riesgo:</strong> <em>To verify</em></li>
+                            <li><strong>Director Analytics:</strong> <em>To verify</em></li>
+                            <li><strong>Gerente Cobranzas:</strong> <em>To verify</em></li>
+                        </ul>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            🔍 <a href="https://www.linkedin.com/search/results/people/?keywords=Riesgo%20Analytics%20Banco%20Popular%20Colombia" target="_blank">LinkedIn Search</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="exec-notes" style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px;">
+                    <h4 style="margin-bottom: 0.5rem;">📋 Engagement Notes</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Decision Structure:</strong> Part of Grupo Aval — verify if project is group-level or bank-specific before engaging.</li>
+                        <li><strong>Best Entry:</strong> Risk/Analytics and Collections — these are bank-controlled budgets.</li>
+                        <li><strong>Avoid:</strong> Core infrastructure pitches — likely decided at Grupo Aval level.</li>
+                        <li><strong>Grupo Aval Contact:</strong> For major deals, may need to engage holding company tech leadership.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: COMMERCIAL SYNTHESIS -->
+        <section class="section-card">
+            <h2>🎯 Commercial Synthesis</h2>
+            
+            <div class="alert-box" style="background: rgba(245, 158, 11, 0.15); border-left: 4px solid var(--accent-yellow); padding: 1rem; margin-bottom: 1.5rem;">
+                <h4 style="margin: 0; color: var(--accent-yellow);">⚠️ Grupo Aval Consideration</h4>
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">This bank is part of Grupo Aval. Some infrastructure decisions are centralized. Focus on bank-specific opportunities: consumer lending, collections, risk analytics.</p>
+            </div>
+            
+            <div class="synthesis-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-green);">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">💰 Opportunity Assessment</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Deal Size Potential:</strong> $1-3M (bank-specific projects)</li>
+                        <li><strong>Budget Cycle:</strong> Oct-Dec planning</li>
+                        <li><strong>Decision Speed:</strong> 4-6 months for local projects</li>
+                        <li><strong>Procurement:</strong> RFP for >$200K</li>
+                    </ul>
+                    <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 4px; font-size: 0.85rem;">
+                        <strong>Local Budget Areas:</strong> Collections, Credit Risk Analytics, Digital Lending, Branch Tech
+                    </div>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-blue);">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎪 Recommended Strategy</h4>
+                    <ol style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Lead with Risk/Collections:</strong> 3.8% NPL = urgent need</li>
+                        <li><strong>Digital Lending Journey:</strong> Bank-specific priority</li>
+                        <li><strong>Avoid infrastructure:</strong> Likely Grupo Aval decision</li>
+                        <li><strong>Reference sister banks:</strong> Leverage Grupo Aval relationships</li>
+                    </ol>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-purple);">
+                    <h4 style="color: var(--accent-purple); margin-bottom: 0.75rem;">👔 Stakeholder Strategy</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Primary:</strong> VP Riesgo / Director Cobranzas</li>
+                        <li><strong>Secondary:</strong> VP Tecnología (for tech validation)</li>
+                        <li><strong>Sponsor:</strong> CFO (cost reduction angle)</li>
+                    </ul>
+                    <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                        Consumer lending focus = Risk team has significant budget authority
+                    </p>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid #f59e0b;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Entry Points</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget Planning:</strong> Oct-Nov</li>
+                        <li><strong>Best Quarter:</strong> Q1 (new budget)</li>
+                        <li><strong>Events:</strong> Asobancaria Congress</li>
+                        <li><strong>Approach:</strong> Reference Grupo Aval relationships</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="priority-plays" style="margin-top: 1.5rem;">
+                <h4 style="margin-bottom: 1rem;">🏆 Top 3 Priority Plays</h4>
+                <div class="priority-list">
+                    <div class="priority-item high">
+                        <span class="priority-num">1</span>
+                        <div class="priority-content">
+                            <h4>Collections Intelligence Platform</h4>
+                            <p>AI-driven collections optimization. 3.8% NPL is pain point. $500K-800K opportunity. Decision: Q1 2025.</p>
+                        </div>
+                    </div>
+                    <div class="priority-item high">
+                        <span class="priority-num">2</span>
+                        <div class="priority-content">
+                            <h4>Credit Risk Analytics</h4>
+                            <p>Modern credit scoring, real-time decisioning for consumer loans. $400-600K. Decision: Q2 2025.</p>
+                        </div>
+                    </div>
+                    <div class="priority-item medium">
+                        <span class="priority-num">3</span>
+                        <div class="priority-content">
+                            <h4>Digital Lending Journey</h4>
+                            <p>End-to-end digital loan origination to reduce branch dependency. $300-500K. Decision: Q3 2025.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="exec-navigation">
+            <a href="index.html" class="btn-secondary">← Back to Colombia</a>
+            <a href="scotiabank_colpatria.html" class="btn-primary">Next: Scotiabank Colpatria →</a>
+        </div>
     </main>
+
     <script src="../js/version.js"></script>
 </body>
 </html>

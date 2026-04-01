@@ -5,9 +5,9 @@
 // Actualizar aquí y todas las páginas se actualizan.
 
 const DASHBOARD_VERSION = {
-    version: "4.1",
-    date: "Mar 2025",
-    lastUpdate: "2025-03-21",
+    version: "4.2",
+    date: "Apr 2025",
+    lastUpdate: "2025-04-01",
     author: "Mr Zonix"
 };
 

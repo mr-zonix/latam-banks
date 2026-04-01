@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Banco Pichincha | LATAM Bank Intelligence</title>
+    <title>Banco Pichincha | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
                 <span class="nav-icon">📋</span>
                 <span>Ranking</span>
             </li>
-            <li class="nav-item active" onclick="window.location.href='../ecuador/index.html'">
+            <li class="nav-item active" onclick="window.location.href='index.html'">
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
             </li>
@@ -49,7 +49,7 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix</p>
-            <p class="version">v4.1 • Mar 2025</p>
+            <p class="version">v4.0 • Feb 2025</p>
         </div>
     </nav>
 
@@ -59,97 +59,472 @@
         <div class="bank-header">
             <div class="bank-title">
                 <h1>🏦 Banco Pichincha</h1>
-                <p class="subtitle">Private Commercial Bank • Quito, Ecuador</p>
+                <p class="subtitle">Grupo Pichincha • Quito, Ecuador</p>
             </div>
             <div class="bank-badges">
                 <span class="badge high">🟢 HIGH OPPORTUNITY</span>
                 <span class="badge tier">TIER 1</span>
+                <span class="badge" style="background: var(--accent-purple); color: white;">🥇 #1 ECUADOR</span>
             </div>
         </div>
 
+        <!-- SECTION 1: PROFILE -->
         <section class="section-card">
-            <h2>📊 Key Financial Metrics <span style="font-size: 0.7rem; color: var(--text-muted);">(Nov 2024 - Superbancos)</span></h2>
+            <h2>🏢 Bank Profile</h2>
+            <div class="profile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">General Information</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Founded:</strong> 1906 (119 years)</li>
+                        <li><strong>Headquarters:</strong> Quito, Ecuador</li>
+                        <li><strong>Type:</strong> Private Commercial Bank</li>
+                        <li><strong>Regulator:</strong> Superintendencia de Bancos</li>
+                        <li><strong>BVQ Listed:</strong> Yes (Bolsa de Valores Quito)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;">Ownership & Control</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Control:</strong> Familia Acosta-Espinosa</li>
+                        <li><strong>Structure:</strong> Family-controlled, local ownership</li>
+                        <li><strong>Decision Authority:</strong> ✅ Full local autonomy</li>
+                        <li><strong>Chairman:</strong> Fidel Egas Grijalva</li>
+                        <li><strong>CEO:</strong> Antonio Acosta Espinosa</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">Scale & Footprint</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Employees:</strong> ~7,000</li>
+                        <li><strong>Branches:</strong> 300+ nationwide</li>
+                        <li><strong>ATMs:</strong> 1,200+</li>
+                        <li><strong>Digital Users:</strong> 3.5M+ (Pichincha Móvil)</li>
+                        <li><strong>Countries:</strong> Ecuador (HQ), Colombia, Perú, Spain, Panamá</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-banner" style="margin-top: 1rem;">
+                <strong>Strategic Position:</strong> Largest and oldest private bank in Ecuador with ~37% market share. Family-controlled with long-term vision. Regional expansion in Andean countries. Strong retail franchise with most extensive branch and ATM network in the country.
+            </div>
+        </section>
+
+        <!-- SECTION 2: FINANCIAL ANALYSIS -->
+        <section class="section-card">
+            <h2>📊 Financial Analysis <span style="font-size: 0.7rem; color: var(--text-muted);">(Nov 2024 - Superbancos Ecuador)</span></h2>
             <div class="key-metrics">
                 <div class="metric-item">
                     <div class="value">$20.4B</div>
                     <div class="label">Total Assets</div>
                 </div>
-                <div class="metric-item">
-                    <div class="value">+12.5%</div>
-                    <div class="label">YoY Growth</div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">+12.5%</div>
+                    <div class="label">YoY Asset Growth</div>
                 </div>
-                <div class="metric-item">
-                    <div class="value">13.5%</div>
-                    <div class="label">ROE</div>
+                <div class="metric-item" style="background: rgba(16, 185, 129, 0.15); border: 1px solid var(--accent-green);">
+                    <div class="value" style="color: var(--accent-green);">13.5%</div>
+                    <div class="label">ROE (Good)</div>
                 </div>
                 <div class="metric-item">
                     <div class="value">50%</div>
                     <div class="label">CIR</div>
                 </div>
-                <div class="metric-item">
-                    <div class="value">3.2%</div>
-                    <div class="label">NPL Ratio</div>
+            </div>
+            
+            <div class="financial-details" style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue);">Profitability Metrics</h4>
+                    <table class="mini-table" style="width: 100%; font-size: 0.85rem;">
+                        <tr><td>Net Income (2024)</td><td style="text-align: right;"><strong>$285M</strong></td></tr>
+                        <tr><td>ROE</td><td style="text-align: right;"><strong>13.5%</strong></td></tr>
+                        <tr><td>ROA</td><td style="text-align: right;"><strong>1.4%</strong></td></tr>
+                        <tr><td>NIM (Net Interest Margin)</td><td style="text-align: right;"><strong>6.2%</strong></td></tr>
+                        <tr><td>Cost-to-Income Ratio</td><td style="text-align: right;"><strong>50%</strong></td></tr>
+                    </table>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-green);">Asset Quality</h4>
+                    <table class="mini-table" style="width: 100%; font-size: 0.85rem;">
+                        <tr><td>NPL Ratio</td><td style="text-align: right;"><strong>3.2%</strong></td></tr>
+                        <tr><td>Coverage Ratio</td><td style="text-align: right;"><strong>145%</strong></td></tr>
+                        <tr><td>Loan Portfolio</td><td style="text-align: right;"><strong>$13.8B</strong></td></tr>
+                        <tr><td>Deposits</td><td style="text-align: right;"><strong>$16.5B</strong></td></tr>
+                        <tr><td>CAR (Capital Adequacy)</td><td style="text-align: right;"><strong>13.2%</strong></td></tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="interpretation" style="margin-top: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                <h4 style="margin-bottom: 0.5rem;">💡 Commercial Interpretation</h4>
+                <p style="font-size: 0.9rem; margin: 0;">
+                    <strong>Market dominance:</strong> With 37% market share and $20.4B in assets, Pichincha is the undisputed leader in Ecuador. 
+                    <strong>Scale advantage:</strong> Largest branch/ATM network creates operational efficiency opportunities.
+                    <strong>Digital transformation:</strong> 3.5M digital users signal heavy investment in technology. 
+                    <strong>Investment capacity:</strong> Strong profitability enables significant tech budget ($60-80M annually estimated).
+                    <strong>Regional presence:</strong> International operations create additional complexity and opportunity for enterprise solutions.
+                </p>
+            </div>
+        </section>
+
+        <!-- SECTION 3: INFRASTRUCTURE LAYERS -->
+        <section class="section-card">
+            <h2>🔧 Technology Infrastructure — 6 Layers</h2>
+            
+            <!-- Layer 1: Processing & Compute -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #3b82f6;">
+                <h3 style="color: #3b82f6; margin-bottom: 0.75rem;">Layer 1: Processing & Compute</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Current State:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Primary DC: Tier III facility (Quito)</li>
+                            <li>DR Site: Guayaquil (secondary DC)</li>
+                            <li>IBM Power Systems (core banking)</li>
+                            <li>VMware vSphere virtualization</li>
+                            <li>HPE ProLiant servers (x86 workloads)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Cloud Strategy:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>AWS adopted for digital channels (2020)</li>
+                            <li>Azure for Microsoft workloads</li>
+                            <li>Hybrid approach: core on-prem, digital in cloud</li>
+                            <li>Container adoption in progress (Kubernetes)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Vendors & Contracts:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>IBM (hardware + services)</li>
+                            <li>VMware (virtualization)</li>
+                            <li>AWS (cloud partner)</li>
+                            <li>Local: CNT/Claro (connectivity)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> VMware licensing changes create opportunity for alternatives. IBM Power refresh cycle coming. Strong interest in compute modernization and cloud migration for non-core workloads.
+                </div>
+            </div>
+
+            <!-- Layer 2: Storage -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #10b981;">
+                <h3 style="color: #10b981; margin-bottom: 0.75rem;">Layer 2: Storage & Data Management</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Primary Storage:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Dell EMC PowerStore (primary)</li>
+                            <li>IBM FlashSystem (core banking)</li>
+                            <li>NetApp AFF for file services</li>
+                            <li>Total capacity: ~3PB</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Backup & DR:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Veeam Backup & Replication</li>
+                            <li>IBM Spectrum Protect (legacy)</li>
+                            <li>Tape archive for compliance</li>
+                            <li>RPO: 15 min / RTO: 4 hours</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Data Governance:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>SB compliance: 10-year retention</li>
+                            <li>Encryption at rest (AES-256)</li>
+                            <li>Data classification initiative</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Storage consolidation project planned. All-flash migration for performance. Cloud tiering for cold data. Data lifecycle management modernization.
+                </div>
+            </div>
+
+            <!-- Layer 3: Networking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                <h3 style="color: #f59e0b; margin-bottom: 0.75rem;">Layer 3: Networking & Security Infrastructure</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Network Architecture:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Cisco Nexus (DC switching)</li>
+                            <li>Cisco Catalyst (branch network)</li>
+                            <li>MPLS WAN (CNT/Claro)</li>
+                            <li>SD-WAN pilot (Cisco Viptela)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Security Stack:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Fortinet (NGFW, FortiGate)</li>
+                            <li>Cisco ISE (NAC)</li>
+                            <li>F5 BIG-IP (load balancing/WAF)</li>
+                            <li>CrowdStrike (endpoint)</li>
+                            <li>IBM QRadar (SIEM)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Connectivity:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>AWS Direct Connect</li>
+                            <li>SWIFT connectivity (AllianceLite2)</li>
+                            <li>BCE integration (interbank)</li>
+                            <li>Branch links: 50Mbps-1Gbps</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> SD-WAN rollout to 300+ branches (major project 2025). Zero Trust architecture initiative. SASE evaluation for remote workforce. Security operations modernization.
+                </div>
+            </div>
+
+            <!-- Layer 4: Core Banking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                <h3 style="color: #8b5cf6; margin-bottom: 0.75rem;">Layer 4: Core Banking System</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Core Platform:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li><strong>Primary:</strong> Temenos T24</li>
+                            <li>Implemented: 2015 (major upgrade 2021)</li>
+                            <li>Modules: Retail, Corporate, Trade Finance</li>
+                            <li>Integration: Temenos APIs + custom</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Satellite Systems:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Cards: Fiserv (First Data)</li>
+                            <li>Treasury: Bloomberg + in-house</li>
+                            <li>Loans: Temenos (integrated)</li>
+                            <li>Trade Finance: Temenos T24</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Integration Layer:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>IBM Integration Bus (ESB)</li>
+                            <li>MuleSoft evaluation</li>
+                            <li>REST APIs for digital channels</li>
+                            <li>Open Banking: Planning phase</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Core banking modernization roadmap active. API layer modernization critical for digital strategy. Payment hub consolidation. ISO 20022 migration project.
+                </div>
+            </div>
+
+            <!-- Layer 5: Digital Banking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #ec4899;">
+                <h3 style="color: #ec4899; margin-bottom: 0.75rem;">Layer 5: Digital Banking Platform</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Consumer Digital:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li><strong>App:</strong> "Pichincha Móvil" (4.3★)</li>
+                            <li>Users: 3.5M+ active</li>
+                            <li>Platform: Native iOS/Android</li>
+                            <li>Features: Full transactional</li>
+                            <li>Biometrics: Face ID, fingerprint</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Business Digital:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Corporate banking portal</li>
+                            <li>Cash management suite</li>
+                            <li>Payroll services</li>
+                            <li>Multi-user approval workflows</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Technology Stack:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Frontend: React Native (mobile)</li>
+                            <li>Backend: Java/Spring Boot</li>
+                            <li>Cloud: AWS (EKS, RDS)</li>
+                            <li>CDN: CloudFront</li>
+                            <li>Monitoring: Dynatrace</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Major app redesign project (2025). UX modernization initiative. Digital onboarding optimization. QR payments expansion (BIMO integration). Low-code platform evaluation.
+                </div>
+            </div>
+
+            <!-- Layer 6: Data & AI -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #06b6d4;">
+                <h3 style="color: #06b6d4; margin-bottom: 0.75rem;">Layer 6: Data, Analytics & AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Data Platform:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Data Warehouse: Oracle Exadata</li>
+                            <li>Data Lake: AWS S3 + Glue</li>
+                            <li>ETL: Informatica PowerCenter</li>
+                            <li>Governance: In development</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Analytics & BI:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Visualization: Tableau (enterprise)</li>
+                            <li>Self-service: Power BI (growing)</li>
+                            <li>Advanced analytics: SAS</li>
+                            <li>Users: 400+ analysts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>AI/ML Initiatives:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Credit scoring: SAS + custom models</li>
+                            <li>Fraud detection: FICO Falcon</li>
+                            <li>Chatbot: "Sofi" (custom)</li>
+                            <li>ML platform: AWS SageMaker pilot</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(6, 182, 212, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Major data platform modernization (cloud DW evaluation). GenAI pilot for customer service. Real-time fraud analytics. Customer 360 project. CDP (Customer Data Platform) evaluation.
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 4: EXECUTIVE INTELLIGENCE -->
         <section class="section-card">
-            <h2>🏢 Bank Profile</h2>
-            <ul>
-                <li><strong>Type:</strong> Private Commercial Bank (Family-controlled)</li>
-                <li><strong>Founded:</strong> 1906</li>
-                <li><strong>Market Position:</strong> #1 in Ecuador (~37% market share)</li>
-                <li><strong>Employees:</strong> ~7,000</li>
-                <li><strong>Branches:</strong> 300+ nationwide</li>
-                <li><strong>International:</strong> Colombia, Spain, Peru, Panama</li>
-            </ul>
-        </section>
-
-        <section class="section-card">
-            <h2>🎯 Best Infrastructure Plays</h2>
-            <div class="priority-list">
-                <div class="priority-item high">
-                    <span class="priority-num">1</span>
-                    <div class="priority-content">
-                        <h4>Data & Analytics Modernization</h4>
-                        <p>Real-time analytics, data lake, AI/ML platform.</p>
+            <h2>👔 Executive Intelligence — Technology Leadership</h2>
+            <div class="exec-org" style="margin-top: 1rem;">
+                <div class="org-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-blue);">
+                        <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">🏛️ C-Suite</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>CEO:</strong> Antonio Acosta Espinosa</li>
+                            <li><strong>Chairman:</strong> Fidel Egas Grijalva</li>
+                            <li><strong>CFO:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=CFO%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                            <li><strong>COO:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=COO%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                        </ul>
+                    </div>
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-green);">
+                        <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;">💻 Technology Leadership</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>CIO/VP Tecnología:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                            <li><strong>VP Infraestructura:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Infraestructura%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                            <li><strong>VP Desarrollo:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Desarrollo%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                            <li><strong>CISO:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=CISO%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                        </ul>
+                    </div>
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-purple);">
+                        <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">📱 Digital & Data</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>VP Banca Digital:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                            <li><strong>CDO/VP Data:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=CDO%20Data%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                            <li><strong>Head of Innovation:</strong> <a href="https://www.linkedin.com/search/results/people/?keywords=Innovation%20Banco%20Pichincha" target="_blank"><em>To verify</em></a></li>
+                        </ul>
                     </div>
                 </div>
-                <div class="priority-item high">
-                    <span class="priority-num">2</span>
-                    <div class="priority-content">
-                        <h4>Compute / Hybrid Cloud</h4>
-                        <p>VMware modernization, cloud-adjacent infrastructure.</p>
-                    </div>
-                </div>
-                <div class="priority-item high">
-                    <span class="priority-num">3</span>
-                    <div class="priority-content">
-                        <h4>Enterprise Storage Refresh</h4>
-                        <p>All-flash upgrade, storage consolidation.</p>
-                    </div>
+                <div class="exec-notes" style="margin-top: 1rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px;">
+                    <h4 style="margin-bottom: 0.5rem;">📋 Engagement Notes</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Decision Structure:</strong> Family-controlled but professional management. Tech decisions at VP level, board approval for strategic projects >$1M.</li>
+                        <li><strong>Procurement Process:</strong> RFP for >$500K. POC/pilot often required. Local partner relationships valued.</li>
+                        <li><strong>Preferred Contact:</strong> Executive briefings. Reference visits to regional peers. Tech vendor events.</li>
+                        <li><strong>Key Events:</strong> Local banking conferences, AWS events, Gartner symposiums.</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
+        <!-- SECTION 5: COMMERCIAL SYNTHESIS -->
         <section class="section-card">
-            <h2>👔 Executive Intelligence</h2>
-            <div class="exec-grid" style="margin-top: 1rem;">
-                <a href="../executives/antonio_acosta_espinosa.html" class="exec-card">
-                    <div class="exec-avatar">AA</div>
-                    <div class="exec-info">
-                        <h3>Antonio Acosta Espinosa</h3>
-                        <p class="exec-title">CEO</p>
+            <h2>🎯 Commercial Synthesis</h2>
+            
+            <div class="synthesis-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-green);">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">💰 Opportunity Assessment</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Deal Size Potential:</strong> $15-25M over 3 years</li>
+                        <li><strong>Budget Cycle:</strong> Oct-Dec planning, Jan execution</li>
+                        <li><strong>Decision Speed:</strong> 6-12 months for strategic projects</li>
+                        <li><strong>Procurement:</strong> RFP for >$500K</li>
+                    </ul>
+                    <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 4px; font-size: 0.85rem;">
+                        <strong>Hot Projects 2025:</strong> SD-WAN rollout, Data platform modernization, Digital app redesign, API modernization
                     </div>
-                    <span class="exec-arrow">→</span>
-                </a>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-blue);">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎪 Recommended Strategy</h4>
+                    <ol style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Lead with infrastructure:</strong> SD-WAN for 300 branches is priority</li>
+                        <li><strong>Data platform play:</strong> Cloud DW modernization active</li>
+                        <li><strong>Security story:</strong> Zero Trust architecture interest</li>
+                        <li><strong>Digital experience:</strong> App modernization underway</li>
+                    </ol>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-purple);">
+                    <h4 style="color: var(--accent-purple); margin-bottom: 0.75rem;">👔 Key Stakeholders</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>CEO:</strong> Antonio Acosta Espinosa</li>
+                        <li><strong>Chairman:</strong> Fidel Egas Grijalva</li>
+                        <li><strong>CIO:</strong> <em>Verify on LinkedIn</em></li>
+                        <li><strong>VP Digital:</strong> <em>Verify on LinkedIn</em></li>
+                    </ul>
+                    <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                        🔍 <a href="https://www.linkedin.com/company/banco-pichincha/people/" target="_blank">LinkedIn: Banco Pichincha People</a>
+                    </p>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid #f59e0b;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Entry Points</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget Planning:</strong> Sep-Nov</li>
+                        <li><strong>Events:</strong> Congreso de Tecnología Bancaria Ecuador</li>
+                        <li><strong>Tech Conferences:</strong> AWS re:Invent attendees</li>
+                        <li><strong>Best Approach:</strong> Executive briefing + POC</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="priority-plays" style="margin-top: 1.5rem;">
+                <h4 style="margin-bottom: 1rem;">🏆 Top 3 Priority Plays</h4>
+                <div class="priority-list">
+                    <div class="priority-item high">
+                        <span class="priority-num">1</span>
+                        <div class="priority-content">
+                            <h4>SD-WAN Branch Transformation</h4>
+                            <p>300+ branches need modernization. Cisco incumbent but evaluating alternatives. $5-8M opportunity. Decision: H1 2025.</p>
+                        </div>
+                    </div>
+                    <div class="priority-item high">
+                        <span class="priority-num">2</span>
+                        <div class="priority-content">
+                            <h4>Data Platform Modernization</h4>
+                            <p>Oracle Exadata to cloud DW. Snowflake/Databricks opportunity. $4-6M. Decision: Q2 2025.</p>
+                        </div>
+                    </div>
+                    <div class="priority-item high">
+                        <span class="priority-num">3</span>
+                        <div class="priority-content">
+                            <h4>Storage Consolidation</h4>
+                            <p>Multi-vendor environment needs consolidation. All-flash upgrade. $2-4M. Decision: Q3 2025.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
         <div class="exec-navigation">
             <a href="index.html" class="btn-secondary">← Back to Ecuador</a>
-            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+            <a href="banco_guayaquil.html" class="btn-primary">Next: Banco Guayaquil →</a>
         </div>
     </main>
+
+    <script src="../js/version.js"></script>
 </body>
 </html>

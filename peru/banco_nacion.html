@@ -1,117 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Banco de la Nación | LATAM Bank Intelligence</title>
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        .state-badge {
-            background: linear-gradient(135deg, #f59e0b, #d97706);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 8px;
-            font-weight: 600;
-            display: inline-block;
-            margin-bottom: 1rem;
-        }
-        .executive-card {
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            border-left: 4px solid var(--accent-blue);
-        }
-        .executive-card.primary {
-            border-left-color: var(--accent-green);
-            background: rgba(16, 185, 129, 0.1);
-        }
-        .executive-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-        .executive-role {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-        .opportunity-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        .opportunity-card {
-            background: var(--bg-secondary);
-            border-radius: 8px;
-            padding: 1rem;
-            border-top: 3px solid var(--accent-blue);
-        }
-        .opportunity-card h4 {
-            margin: 0 0 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-        .priority-1 { border-top-color: var(--accent-green); }
-        .priority-2 { border-top-color: var(--accent-blue); }
-        .priority-3 { border-top-color: var(--accent-yellow); }
-        .warning-box {
-            background: rgba(245, 158, 11, 0.15);
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-        .warning-box h4 {
-            color: #f59e0b;
-            margin: 0 0 0.5rem 0;
-        }
-        .metrics-row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin: 1rem 0;
-        }
-        .metric-box {
-            background: var(--bg-secondary);
-            padding: 1rem;
-            border-radius: 8px;
-            text-align: center;
-            flex: 1;
-            min-width: 120px;
-        }
-        .metric-box .value {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent-blue);
-        }
-        .metric-box .label {
-            font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-        }
-        .layer-table td:first-child {
-            font-weight: 600;
-            white-space: nowrap;
-        }
-        .vendor-tag {
-            display: inline-block;
-            background: var(--bg-tertiary);
-            color: var(--text-secondary);
-            padding: 0.2rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin: 0.1rem;
-            border: 1px solid var(--border);
-        }
-        .vendor-tag.verified {
-            background: rgba(16, 185, 129, 0.2);
-            color: var(--accent-green);
-            border-color: var(--accent-green);
-        }
-    </style>
 </head>
 <body>
     <nav class="sidebar">
@@ -132,7 +26,7 @@
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
             </li>
-            <li class="nav-item active" onclick="window.location.href='../peru/index.html'" >
+            <li class="nav-item active" onclick="window.location.href='index.html'">
                 <span class="nav-icon">🇵🇪</span>
                 <span>Peru</span>
             </li>
@@ -162,298 +56,507 @@
     <main class="main-content">
         <a href="index.html" class="back-link">← Back to Peru</a>
         
-        <header class="page-header">
-            <span class="state-badge">🏛️ STATE-OWNED BANK</span>
-            <h1>Banco de la Nacion</h1>
-            <p class="subtitle">Financial Agent of the Peruvian State • 100% government-owned</p>
-        </header>
+        <div class="bank-header">
+            <div class="bank-title">
+                <h1>🏛️ Banco de la Nación</h1>
+                <p class="subtitle">State-Owned Bank • Lima, Perú • 100% Government</p>
+            </div>
+            <div class="bank-badges">
+                <span class="badge medium">🟡 MEDIUM OPPORTUNITY</span>
+                <span class="badge" style="background: #f59e0b; color: white;">🏛️ STATE-OWNED</span>
+                <span class="badge" style="background: var(--accent-purple); color: white;">#5 PERÚ</span>
+            </div>
+        </div>
 
-        <!-- KEY METRICS -->
+        <!-- PUBLIC SECTOR WARNING -->
+        <div style="background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+            <h4 style="color: #f59e0b; margin: 0 0 0.5rem 0;">⚠️ Public Sector Considerations — CRITICAL</h4>
+            <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                <li><strong>Procurement:</strong> ALL purchases via public tender (SEACE/OSCE)</li>
+                <li><strong>Sales Cycle:</strong> 6-18 months from opportunity to contract</li>
+                <li><strong>Budget:</strong> Annual government budget, planning in Q3 for next year</li>
+                <li><strong>Winning Strategy:</strong> "Citizen service" > "ROI" — Focus on public impact</li>
+                <li><strong>Local Partners:</strong> Often require local integrator partnerships</li>
+            </ul>
+        </div>
+
+        <!-- SECTION 1: PROFILE -->
         <section class="section-card">
-            <h2>📊 Key Metrics</h2>
-            <div class="metrics-row">
-                <div class="metric-box">
+            <h2>🏢 Bank Profile</h2>
+            <div class="profile-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">General Information</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Founded:</strong> 1966 (59 years)</li>
+                        <li><strong>Headquarters:</strong> Lima, Perú</li>
+                        <li><strong>Type:</strong> State-Owned Bank</li>
+                        <li><strong>Regulator:</strong> MEF + FONAFE + SBS</li>
+                        <li><strong>Phone:</strong> (01) 519 2000</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;">Ownership & Control</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Ownership:</strong> 100% Government of Peru</li>
+                        <li><strong>Supervision:</strong> Ministry of Economy (MEF)</li>
+                        <li><strong>Decision Authority:</strong> ⚠️ Public procurement</li>
+                        <li><strong>President:</strong> German Alfredo Boza Pro</li>
+                        <li><strong>IT Manager:</strong> Luis R. García Morán (Acting)</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">Scale & Footprint</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li><strong>Employees:</strong> ~4,500</li>
+                        <li><strong>Branches:</strong> 630+ nationwide</li>
+                        <li><strong>Unique Coverage:</strong> 300+ rural districts</li>
+                        <li><strong>ATMs:</strong> ~800</li>
+                        <li><strong>Mission:</strong> Financial inclusion</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="info-banner" style="margin-top: 1rem;">
+                <strong>Strategic Position:</strong> Financial agent of the Peruvian State. Only bank present in 300+ rural districts where no private bank operates. Key role in paying government salaries, pensions, and social programs (Pension 65, Juntos, Beca 18). Critical infrastructure for financial inclusion and state operations.
+            </div>
+        </section>
+
+        <!-- SECTION 2: FINANCIAL ANALYSIS -->
+        <section class="section-card">
+            <h2>📊 Financial Analysis</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Source: SBS Perú / Banco de la Nación Annual Reports</p>
+            <div class="key-metrics">
+                <div class="metric-item">
                     <div class="value">~$9.3B</div>
                     <div class="label">Total Assets</div>
                 </div>
-                <div class="metric-box">
+                <div class="metric-item">
                     <div class="value">630+</div>
                     <div class="label">Branches</div>
                 </div>
-                <div class="metric-box">
+                <div class="metric-item">
                     <div class="value">300+</div>
-                    <div class="label">Unique Districts</div>
+                    <div class="label">Unique Rural Districts</div>
                 </div>
-                <div class="metric-box">
-                    <div class="value">~4,500</div>
-                    <div class="label">Employees</div>
-                </div>
-                <div class="metric-box">
+                <div class="metric-item">
                     <div class="value">#5</div>
                     <div class="label">Peru Ranking</div>
                 </div>
             </div>
-            <p class="legend">Only bank present in 300+ rural districts of Peru</p>
-        </section>
-
-        <!-- WARNING BOX -->
-        <div class="warning-box">
-            <h4>⚠️ Sales Considerations — Public Sector</h4>
-            <ul style="margin: 0; padding-left: 1.5rem;">
-                <li><strong>Process:</strong> All purchases via public tender (SEACE/OSCE)</li>
-                <li><strong>Cycle:</strong> 6-18 months from opportunity to contract</li>
-                <li><strong>Budget:</strong> Annual, planning in Q3 for next year</li>
-                <li><strong>Winning pitch:</strong> "Citizen service" &gt; "ROI"</li>
-            </ul>
-        </div>
-
-        <!-- PROFILE -->
-        <section class="section-card">
-            <h2>🏦 Institutional Profile</h2>
-            <div class="table-container">
-                <table class="bank-table">
-                    <tbody>
-                        <tr><td><strong>Full Name</strong></td><td>Banco de la Nacion</td></tr>
-                        <tr><td><strong>Type</strong></td><td>State-Owned Bank (100% Government of Peru)</td></tr>
-                        <tr><td><strong>Founded</strong></td><td>1966</td></tr>
-                        <tr><td><strong>Headquarters</strong></td><td>Lima, Peru</td></tr>
-                        <tr><td><strong>Supervision</strong></td><td>MEF + FONAFE + SBS</td></tr>
-                        <tr><td><strong>Phone</strong></td><td>(01) 519 2000</td></tr>
-                    </tbody>
-                </table>
-            </div>
-            <h3 style="margin-top: 1.5rem;">Mandate & Functions</h3>
-            <ul>
-                <li><strong>State financial agent</strong> — pays salaries, pensions, subsidies</li>
-                <li><strong>Tax collection</strong> — SUNAT, fees, contributions</li>
-                <li><strong>Financial inclusion</strong> — presence where no private bank operates</li>
-                <li><strong>Social programs</strong> — Pension 65, Juntos, Beca 18, etc.</li>
-                <li><strong>Multired loans</strong> — credits to state employees</li>
-            </ul>
-        </section>
-
-        <!-- EXECUTIVES -->
-        <section class="section-card">
-            <h2>👔 Key Executives — Verified ✅</h2>
-            <p style="margin-bottom: 1rem; color: var(--text-secondary);">Source: gob.pe/institucion/bn/funcionarios • February 2025</p>
             
-            <h3>🎯 Priority IT Contacts</h3>
-            <div class="executive-card primary">
-                <div class="executive-name">Luis Rolando García Morán</div>
-                <div class="executive-role">IT Manager (Acting)</div>
-                <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-                    📞 (01) 519 2000 • 🔴 <strong>PRIMARY CONTACT</strong><br>
-                    <a href="https://www.linkedin.com/search/results/all/?keywords=Luis%20Garcia%20Moran%20Banco%20Nacion%20Peru" target="_blank" style="color: var(--accent-blue);">🔍 Search LinkedIn</a>
+            <div class="financial-details" style="margin-top: 1.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue);">Core Functions</h4>
+                    <table class="mini-table" style="width: 100%; font-size: 0.85rem;">
+                        <tr><td>State Salaries & Pensions</td><td style="text-align: right;"><strong>Primary</strong></td></tr>
+                        <tr><td>Tax Collection (SUNAT)</td><td style="text-align: right;"><strong>Primary</strong></td></tr>
+                        <tr><td>Social Programs</td><td style="text-align: right;"><strong>Pension 65, Juntos</strong></td></tr>
+                        <tr><td>Multired Loans</td><td style="text-align: right;"><strong>State Employees</strong></td></tr>
+                        <tr><td>Financial Inclusion</td><td style="text-align: right;"><strong>Rural Areas</strong></td></tr>
+                    </table>
                 </div>
-            </div>
-            <div class="executive-card primary">
-                <div class="executive-name">Carlos Alberto Quevedo Juárez</div>
-                <div class="executive-role">Digital Banking Manager</div>
-                <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-                    📞 (01) 519 2000 • 🎯 Digital transformation<br>
-                    <a href="https://www.linkedin.com/search/results/all/?keywords=Carlos%20Quevedo%20Banco%20Nacion%20Peru" target="_blank" style="color: var(--accent-blue);">🔍 Search LinkedIn</a>
+                <div>
+                    <h4 style="color: var(--accent-green);">Budget Considerations</h4>
+                    <table class="mini-table" style="width: 100%; font-size: 0.85rem;">
+                        <tr><td>Budget Type</td><td style="text-align: right;"><strong>Public/Government</strong></td></tr>
+                        <tr><td>Planning Cycle</td><td style="text-align: right;"><strong>Q3 for next year</strong></td></tr>
+                        <tr><td>Procurement</td><td style="text-align: right;"><strong>SEACE/OSCE</strong></td></tr>
+                        <tr><td>Investment Focus</td><td style="text-align: right;"><strong>Citizen Service</strong></td></tr>
+                        <tr><td>Tech Budget Est.</td><td style="text-align: right;"><strong>$30-50M/year</strong></td></tr>
+                    </table>
                 </div>
-            </div>
-            <div class="executive-card">
-                <div class="executive-name">Oscar Fernando Moyano Cano</div>
-                <div class="executive-role">Branch Network Manager</div>
-                <div style="margin-top: 0.5rem; font-size: 0.85rem;">
-                    📞 (01) 519 2000 • 📍 Connectivity & operations<br>
-                    <a href="https://www.linkedin.com/search/results/all/?keywords=Oscar%20Moyano%20Banco%20Nacion%20Peru" target="_blank" style="color: var(--accent-blue);">🔍 Search LinkedIn</a>
-                </div>
-            </div>
-
-            <h3 style="margin-top: 1.5rem;">Board</h3>
-            <div class="executive-card">
-                <div class="executive-name">German Alfredo Boza Pro</div>
-                <div class="executive-role">Executive President</div>
             </div>
             
-            <h3 style="margin-top: 1.5rem;">Other Management</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.5rem;">
-                <div class="executive-card">
-                    <div class="executive-name">Pietro R. Malfitano Malfitano</div>
-                    <div class="executive-role">Finance & Treasury Manager (Acting)</div>
-                </div>
-                <div class="executive-card">
-                    <div class="executive-name">Jesus Cristian Gustavo Villaverde Martinez</div>
-                    <div class="executive-role">Administration & Logistics Manager</div>
-                </div>
-                <div class="executive-card">
-                    <div class="executive-name">Luis Eduardo Salazar Flores</div>
-                    <div class="executive-role">Planning & Control Manager (Acting)</div>
-                </div>
-                <div class="executive-card">
-                    <div class="executive-name">Renzo Fabrizio Sponza Tuesta</div>
-                    <div class="executive-role">Products & Financial Inclusion Manager (Acting)</div>
-                </div>
+            <div class="interpretation" style="margin-top: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid var(--accent-yellow);">
+                <h4 style="margin-bottom: 0.5rem;">💡 Commercial Interpretation</h4>
+                <p style="font-size: 0.9rem; margin: 0;">
+                    <strong>Unique value proposition:</strong> Only bank in 300+ rural districts — massive geographic footprint with connectivity challenges.
+                    <strong>Public sector dynamics:</strong> Slower decision cycles but larger, multi-year contracts once won.
+                    <strong>Social mission:</strong> Pitch must focus on "improving citizen services" not ROI.
+                    <strong>Peak demand:</strong> End-of-month salary/pension payments create infrastructure stress.
+                </p>
             </div>
         </section>
 
-        <!-- INFRASTRUCTURE OPPORTUNITIES -->
+        <!-- SECTION 3: INFRASTRUCTURE LAYERS -->
         <section class="section-card">
-            <h2>🔧 Infrastructure Opportunities</h2>
-            <div class="opportunity-grid">
-                <div class="opportunity-card priority-1">
-                    <h4>🌐 #1 Networking</h4>
-                    <p><strong>Opportunity:</strong> Connectivity for 630+ branches, especially rural</p>
-                    <p><strong>Pitch:</strong> "Bring quality financial services to all Peruvians"</p>
-                    <p><strong>Solutions:</strong> SD-WAN, satellite optimization, high availability</p>
-                </div>
-                <div class="opportunity-card priority-1">
-                    <h4>📊 #2 Data & Analytics</h4>
-                    <p><strong>Opportunity:</strong> Data platform for social programs</p>
-                    <p><strong>Pitch:</strong> "Measure public policy impact with data"</p>
-                    <p><strong>Solutions:</strong> Data lake, modern BI, impact dashboards</p>
-                </div>
-                <div class="opportunity-card priority-2">
-                    <h4>💻 #3 Compute</h4>
-                    <p><strong>Opportunity:</strong> Modernization for payment peaks (end of month)</p>
-                    <p><strong>Pitch:</strong> "Availability when it matters most"</p>
-                    <p><strong>Solutions:</strong> Virtualization, hybrid cloud, scalability</p>
-                </div>
-                <div class="opportunity-card priority-3">
-                    <h4>💾 #4 Storage</h4>
-                    <p><strong>Opportunity:</strong> Consolidation and regulatory compliance</p>
-                    <p><strong>Pitch:</strong> "Efficiency in public spending"</p>
-                    <p><strong>Solutions:</strong> Flash arrays, backup modernization, archive</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- INFRASTRUCTURE LAYERS -->
-        <section class="section-card">
-            <h2>🏗️ Infrastructure Analysis by Layer</h2>
-            <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">
-                ⚠️ Vendors marked with * require verification via SEACE or direct contact
+            <h2>🔧 Technology Infrastructure — 6 Layers</h2>
+            <p style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                <span style="color: var(--accent-green);">●</span> Verified &nbsp;
+                <span style="color: var(--accent-yellow);">●</span> Likely/Estimated &nbsp;
+                <span style="color: var(--accent);">●</span> To verify via SEACE
             </p>
-            <div class="table-container">
-                <table class="bank-table layer-table">
-                    <thead>
-                        <tr>
-                            <th>Layer</th>
-                            <th>Current Vendors</th>
-                            <th>Status</th>
-                            <th>Opportunity</th>
-                            <th>Priority</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>🖥️ Compute</td>
-                            <td><span class="vendor-tag">IBM*</span> <span class="vendor-tag">VMware*</span> <span class="vendor-tag">Windows Server</span></td>
-                            <td>Legacy, partial virtualization</td>
-                            <td>Modernization, hybrid cloud</td>
-                            <td>🟢 HIGH</td>
-                        </tr>
-                        <tr>
-                            <td>💾 Storage</td>
-                            <td><span class="vendor-tag">IBM*</span> <span class="vendor-tag">Dell EMC*</span></td>
-                            <td>Traditional SAN, growing</td>
-                            <td>Consolidation, flash</td>
-                            <td>🟢 HIGH</td>
-                        </tr>
-                        <tr>
-                            <td>🌐 Network</td>
-                            <td><span class="vendor-tag verified">Telefonica</span> <span class="vendor-tag verified">Claro</span> <span class="vendor-tag">Cisco*</span> <span class="vendor-tag">Hughes VSAT*</span></td>
-                            <td>Complex WAN, rural VSAT</td>
-                            <td>SD-WAN, rural optimization</td>
-                            <td>🟢 HIGH</td>
-                        </tr>
-                        <tr>
-                            <td>🏦 Core Banking</td>
-                            <td><span class="vendor-tag">Proprietary/Legacy*</span></td>
-                            <td>Highly customized</td>
-                            <td>Middleware, APIs (long-term)</td>
-                            <td>🟡 MEDIUM</td>
-                        </tr>
-                        <tr>
-                            <td>📱 Digital Platform</td>
-                            <td><span class="vendor-tag">In-house development*</span></td>
-                            <td>Functional but basic app/web</td>
-                            <td>UX modernization</td>
-                            <td>🟡 MEDIUM</td>
-                        </tr>
-                        <tr>
-                            <td>📊 Data/AI</td>
-                            <td><span class="vendor-tag">Oracle DB*</span> <span class="vendor-tag">IBM Cognos*</span></td>
-                            <td>Traditional BI, reporting</td>
-                            <td>Data platform, analytics</td>
-                            <td>🟢 HIGH</td>
-                        </tr>
-                        <tr>
-                            <td>☁️ Cloud</td>
-                            <td><span class="vendor-tag">On-premise</span> <span class="vendor-tag">Peru Cloud (evaluating)*</span></td>
-                            <td>No significant cloud adoption</td>
-                            <td>Hybrid/sovereign cloud</td>
-                            <td>🟢 HIGH</td>
-                        </tr>
-                        <tr>
-                            <td>🔒 Security</td>
-                            <td><span class="vendor-tag">To verify</span></td>
-                            <td>SBS compliance</td>
-                            <td>SOC, SIEM, Zero Trust</td>
-                            <td>🟡 MEDIUM</td>
-                        </tr>
-                    </tbody>
-                </table>
+            
+            <!-- Layer 1: Processing & Compute -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #3b82f6;">
+                <h3 style="color: #3b82f6; margin-bottom: 0.75rem;">Layer 1: Processing & Compute</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Current State:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Primary DC: Government facility (Lima)</li>
+                            <li>DR Site: Secondary location</li>
+                            <li>IBM Power Systems (legacy core)*</li>
+                            <li>VMware virtualization*</li>
+                            <li>Windows Server environments</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Cloud Strategy:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Primarily on-premises</li>
+                            <li>Peru sovereign cloud (evaluating)*</li>
+                            <li>Limited cloud adoption due to regulations</li>
+                            <li>Hybrid cloud potential</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Vendors (to verify via SEACE):</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>IBM (hardware + services)*</li>
+                            <li>VMware (virtualization)*</li>
+                            <li>Local integrators for support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Compute modernization for payment peaks (end of month). Virtualization upgrade or hybrid cloud for scalability. Pitch: "Ensure availability when citizens need it most."
+                </div>
             </div>
-            <div style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: 8px;">
-                <strong>📋 To verify vendors:</strong>
-                <ul style="margin: 0.5rem 0 0 1rem; font-size: 0.9rem;">
-                    <li><a href="https://prodapp2.seace.gob.pe/" target="_blank">SEACE</a> — Search Banco de la Nacion contracts</li>
-                    <li>LinkedIn — IT employee profiles mention technologies</li>
-                    <li>Meeting with Garcia Moran — Direct validation</li>
-                </ul>
+
+            <!-- Layer 2: Storage -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #10b981;">
+                <h3 style="color: #10b981; margin-bottom: 0.75rem;">Layer 2: Storage & Data Management</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Primary Storage:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>IBM Storage (core banking)*</li>
+                            <li>Dell EMC (enterprise)*</li>
+                            <li>Traditional SAN architecture</li>
+                            <li>Growing data estate</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Backup & DR:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Traditional backup solutions</li>
+                            <li>Tape archive for compliance</li>
+                            <li>SBS: 10-year retention required</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Data Governance:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>SBS regulatory compliance</li>
+                            <li>Government data protection</li>
+                            <li>Social program data sensitivity</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Storage consolidation and modernization. Flash arrays for performance workloads. Backup modernization. Pitch: "Efficiency in public spending."
+                </div>
+            </div>
+
+            <!-- Layer 3: Networking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #f59e0b;">
+                <h3 style="color: #f59e0b; margin-bottom: 0.75rem;">Layer 3: Networking & Security Infrastructure</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Network Architecture:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Cisco networking (likely)*</li>
+                            <li>MPLS WAN (Telefónica, Claro)</li>
+                            <li>Hughes VSAT for rural*</li>
+                            <li>Complex multi-carrier environment</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Rural Connectivity Challenge:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>300+ rural districts</li>
+                            <li>Satellite links (VSAT)</li>
+                            <li>Limited bandwidth in remote areas</li>
+                            <li>High availability requirements</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Security Stack:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Firewall (vendor to verify)</li>
+                            <li>SBS compliance requirements</li>
+                            <li>Government security standards</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 4px;">
+                    <strong>🎯 HIGH OPPORTUNITY:</strong> 630+ branches including 300+ rural = massive WAN challenge. SD-WAN optimization, satellite connectivity improvement, high availability for remote locations. Pitch: "Bring quality financial services to ALL Peruvians."
+                </div>
+            </div>
+
+            <!-- Layer 4: Core Banking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #8b5cf6;">
+                <h3 style="color: #8b5cf6; margin-bottom: 0.75rem;">Layer 4: Core Banking System</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Core Platform:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Proprietary/Legacy core*</li>
+                            <li>Highly customized for state functions</li>
+                            <li>Social program integrations</li>
+                            <li>SUNAT tax system connections</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Specialized Functions:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Salary/pension disbursement</li>
+                            <li>Tax collection processing</li>
+                            <li>Social program payments</li>
+                            <li>Multired lending system</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Integration Layer:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Government system integrations</li>
+                            <li>MEF/SUNAT connectivity</li>
+                            <li>Social program APIs</li>
+                            <li>Interbank clearing</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(139, 92, 246, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> Middleware and integration improvements. API modernization for government interoperability. Long-term core modernization (multi-year project). Pitch: "Streamline government operations."
+                </div>
+            </div>
+
+            <!-- Layer 5: Digital Banking -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #ec4899;">
+                <h3 style="color: #ec4899; margin-bottom: 0.75rem;">Layer 5: Digital Banking Platform</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Consumer Digital:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Mobile app (functional, basic)</li>
+                            <li>Web banking portal</li>
+                            <li>In-house development*</li>
+                            <li>Limited feature set vs private banks</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Digital Channels:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>ATM network (~800)</li>
+                            <li>Branch kiosks</li>
+                            <li>Phone banking</li>
+                            <li>Government service portals</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Digital Manager:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li><strong>Carlos A. Quevedo Juárez</strong></li>
+                            <li>Digital Banking Manager</li>
+                            <li>Key contact for digital initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(236, 72, 153, 0.1); border-radius: 4px;">
+                    <strong>🎯 Opportunity:</strong> UX modernization for citizen services. Digital onboarding improvements. Accessibility features for diverse population. Pitch: "Modern digital services for all citizens."
+                </div>
+            </div>
+
+            <!-- Layer 6: Data & AI -->
+            <div class="infra-layer" style="margin-bottom: 1.5rem; padding: 1rem; background: var(--surface); border-radius: 8px; border-left: 4px solid #06b6d4;">
+                <h3 style="color: #06b6d4; margin-bottom: 0.75rem;">Layer 6: Data, Analytics & AI</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; font-size: 0.9rem;">
+                    <div>
+                        <strong>Data Platform:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Oracle Database*</li>
+                            <li>Traditional data warehouse</li>
+                            <li>Reporting-focused</li>
+                            <li>Limited modern analytics</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Analytics & BI:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>IBM Cognos (legacy)*</li>
+                            <li>Traditional BI tools</li>
+                            <li>Regulatory reporting focus</li>
+                            <li>Limited self-service</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>Potential Use Cases:</strong>
+                        <ul style="margin: 0.5rem 0; padding-left: 1.2rem;">
+                            <li>Social program impact analysis</li>
+                            <li>Financial inclusion metrics</li>
+                            <li>Fraud detection</li>
+                            <li>Citizen service optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(6, 182, 212, 0.1); border-radius: 4px;">
+                    <strong>🎯 HIGH OPPORTUNITY:</strong> Modern data platform for social program analytics. Impact dashboards for government reporting. Citizen 360 for service improvement. Pitch: "Measure and improve public policy impact with data."
+                </div>
             </div>
         </section>
 
-        <!-- ENGAGEMENT STRATEGY -->
+        <!-- SECTION 4: EXECUTIVE INTELLIGENCE -->
         <section class="section-card">
-            <h2>🎯 Engagement Strategy</h2>
-            <div class="table-container">
-                <table class="bank-table">
-                    <thead>
-                        <tr>
-                            <th>Phase</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>1. Identification ✅</strong></td>
-                            <td>Contacts verified. Search technical levels on LinkedIn.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>2. Approach</strong></td>
-                            <td>Events (ASBANC, digital government), public sector references, LinkedIn connect.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>3. Technical</strong></td>
-                            <td>Meeting with Garcia Moran or Infra team. PoC if there is openness.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>4. Tender</strong></td>
-                            <td>Monitor SEACE, prepare documentation, local partnerships.</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2>👔 Executive Intelligence — Technology Leadership</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Source: gob.pe/institucion/bn/funcionarios • February 2025</p>
+            
+            <div class="exec-org" style="margin-top: 1rem;">
+                <div class="org-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-blue);">
+                        <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;">🏛️ Leadership</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>Executive President:</strong> German Alfredo Boza Pro</li>
+                            <li><strong>Finance Manager:</strong> Pietro R. Malfitano (Acting)</li>
+                            <li><strong>Admin & Logistics:</strong> Jesus C. Villaverde Martinez</li>
+                            <li><strong>Planning & Control:</strong> Luis E. Salazar Flores (Acting)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-card-detail" style="background: rgba(16, 185, 129, 0.15); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-green);">
+                        <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;">💻 Technology Leadership — PRIMARY CONTACTS</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>IT Manager (Acting):</strong> Luis Rolando García Morán 🔴</li>
+                            <li><strong>Digital Banking Mgr:</strong> Carlos Alberto Quevedo Juárez 🎯</li>
+                            <li><strong>Branch Network Mgr:</strong> Oscar Fernando Moyano Cano</li>
+                        </ul>
+                        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                            📞 (01) 519 2000 • <a href="https://www.linkedin.com/search/results/all/?keywords=Luis%20Garcia%20Moran%20Banco%20Nacion%20Peru" target="_blank">🔍 LinkedIn Search</a>
+                        </p>
+                    </div>
+                    <div class="exec-card-detail" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-purple);">
+                        <h4 style="color: var(--accent-purple); margin-bottom: 0.5rem;">📊 Other Management</h4>
+                        <ul style="font-size: 0.85rem; margin: 0; padding-left: 1rem;">
+                            <li><strong>Products & Inclusion:</strong> Renzo F. Sponza Tuesta (Acting)</li>
+                            <li><strong>Legal:</strong> <em>To verify</em></li>
+                            <li><strong>Risk:</strong> <em>To verify</em></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="exec-notes" style="margin-top: 1rem; padding: 1rem; background: rgba(245, 158, 11, 0.15); border-radius: 8px;">
+                    <h4 style="margin-bottom: 0.5rem; color: #f59e0b;">📋 Public Sector Engagement Notes</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Decision Structure:</strong> Government institution. Tech decisions require multiple approvals (IT Manager → Finance → Board).</li>
+                        <li><strong>Procurement:</strong> ALL purchases via SEACE/OSCE public tender. No direct sales possible for significant contracts.</li>
+                        <li><strong>Approach Strategy:</strong> Public sector events (ASBANC, digital government forums), reference visits from similar institutions, local integrator partnerships.</li>
+                        <li><strong>Key Events:</strong> Government technology forums, ASBANC events, digital inclusion conferences.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- LINKS -->
+        <!-- SECTION 5: COMMERCIAL SYNTHESIS -->
+        <section class="section-card">
+            <h2>🎯 Commercial Synthesis</h2>
+            
+            <div class="synthesis-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-green);">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">💰 Opportunity Assessment</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Deal Size Potential:</strong> $5-15M over 3-5 years</li>
+                        <li><strong>Budget Cycle:</strong> Q3 planning for next fiscal year</li>
+                        <li><strong>Decision Speed:</strong> 6-18 months (public tender)</li>
+                        <li><strong>Procurement:</strong> SEACE/OSCE mandatory</li>
+                    </ul>
+                    <div style="margin-top: 0.75rem; padding: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 4px; font-size: 0.85rem;">
+                        <strong>Hot Areas:</strong> Rural connectivity (SD-WAN/VSAT), Data platform for social programs, Compute modernization
+                    </div>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-blue);">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎪 Recommended Strategy</h4>
+                    <ol style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Lead with citizen impact:</strong> "Financial services for ALL Peruvians"</li>
+                        <li><strong>Rural connectivity angle:</strong> 300+ unique districts need connectivity</li>
+                        <li><strong>Data for public policy:</strong> "Measure social program effectiveness"</li>
+                        <li><strong>Partner with local integrators:</strong> Required for public sector</li>
+                    </ol>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid var(--accent-purple);">
+                    <h4 style="color: var(--accent-purple); margin-bottom: 0.75rem;">👔 Key Stakeholders</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>IT Manager:</strong> Luis R. García Morán (Acting)</li>
+                        <li><strong>Digital Mgr:</strong> Carlos A. Quevedo Juárez</li>
+                        <li><strong>Network Mgr:</strong> Oscar F. Moyano Cano</li>
+                        <li><strong>President:</strong> German A. Boza Pro</li>
+                    </ul>
+                    <p style="font-size: 0.75rem; margin-top: 0.5rem; color: var(--text-secondary);">
+                        📞 General: (01) 519 2000
+                    </p>
+                </div>
+                
+                <div class="synthesis-box" style="background: var(--surface); border-radius: 8px; padding: 1rem; border-left: 4px solid #f59e0b;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Entry Points</h4>
+                    <ul style="font-size: 0.9rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget Planning:</strong> Q3 (Jul-Sep)</li>
+                        <li><strong>Tender Monitoring:</strong> SEACE platform</li>
+                        <li><strong>Events:</strong> ASBANC, digital government forums</li>
+                        <li><strong>Best Approach:</strong> Reference visits + local partners</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="priority-plays" style="margin-top: 1.5rem;">
+                <h4 style="margin-bottom: 1rem;">🏆 Top 3 Priority Plays</h4>
+                <div class="priority-list">
+                    <div class="priority-item high">
+                        <span class="priority-num">1</span>
+                        <div class="priority-content">
+                            <h4>Rural Connectivity (Networking)</h4>
+                            <p>"Bring financial services to ALL Peruvians." 630+ branches, 300+ rural districts. SD-WAN, satellite optimization, high availability. $3-8M opportunity.</p>
+                        </div>
+                    </div>
+                    <div class="priority-item high">
+                        <span class="priority-num">2</span>
+                        <div class="priority-content">
+                            <h4>Data & Analytics Platform</h4>
+                            <p>"Measure public policy impact with data." Social program analytics, financial inclusion dashboards, citizen 360. $2-5M opportunity.</p>
+                        </div>
+                    </div>
+                    <div class="priority-item medium">
+                        <span class="priority-num">3</span>
+                        <div class="priority-content">
+                            <h4>Compute Modernization</h4>
+                            <p>"Availability when citizens need it most." End-of-month payment peak handling, virtualization upgrade, hybrid cloud. $2-4M opportunity.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-yellow); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-yellow);">⚠️ Key Objection to Prepare For</h4>
+                <p style="margin: 0; font-size: 0.9rem;"><strong>"Everything must go through public tender."</strong></p>
+                <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">Response: "Understood, and we're experienced with SEACE/OSCE processes. We'd like to share how similar government financial institutions have improved citizen services with our solutions. Would a reference visit to [similar institution] be valuable as you develop your technical requirements for upcoming tenders?"</p>
+            </div>
+        </section>
+
+        <!-- USEFUL LINKS -->
         <section class="section-card">
             <h2>🔗 Useful Links</h2>
-            <ul>
-                <li><a href="https://www.bn.com.pe" target="_blank">Official Banco de la Nacion website</a></li>
+            <ul style="font-size: 0.9rem;">
+                <li><a href="https://www.bn.com.pe" target="_blank">Official Banco de la Nación Website</a></li>
                 <li><a href="https://www.gob.pe/institucion/bn/funcionarios" target="_blank">Officials Directory (gob.pe)</a></li>
-                <li><a href="https://prodapp2.seace.gob.pe/" target="_blank">SEACE — Public Tenders</a></li>
+                <li><a href="https://prodapp2.seace.gob.pe/" target="_blank">SEACE — Public Tenders Platform</a></li>
                 <li><a href="https://www.sbs.gob.pe" target="_blank">SBS — Superintendency</a></li>
             </ul>
         </section>
 
-        <p class="legend" style="margin-top: 2rem;">Last update: February 2025 • Data verified from official sources</p>
+        <div class="exec-navigation">
+            <a href="index.html" class="btn-secondary">← Back to Peru</a>
+            <a href="bcp.html" class="btn-primary">Next: BCP →</a>
+        </div>
     </main>
+
     <script src="../js/version.js"></script>
 </body>
 </html>
