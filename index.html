@@ -19,6 +19,10 @@
                 <span class="nav-icon">📊</span>
                 <span>Dashboard</span>
             </li>
+            <li class="nav-item" onclick="window.location.href='ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
             <li class="nav-item" onclick="window.location.href='ecuador/index.html'">
                 <span class="nav-icon">🇪🇨</span>
                 <span>Ecuador</span>
@@ -31,6 +35,14 @@
                 <span class="nav-icon">🇨🇴</span>
                 <span>Colombia</span>
             </li>
+            <li class="nav-item" onclick="window.location.href='guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
             <li class="nav-item" onclick="window.location.href='executives/index.html'">
                 <span class="nav-icon">👔</span>
                 <span>Executives</span>
@@ -38,7 +50,7 @@
         </ul>
         <div class="nav-footer">
             <p>Built by Mr Zonix</p>
-            <p class="version">v3.7 • 06/02 ECT</p>
+            <p class="version">v4.2 • Apr 2025</p>
         </div>
     </nav>
 
@@ -53,28 +65,28 @@
                 <div class="stat-card">
                     <span class="stat-icon">🏦</span>
                     <div class="stat-content">
-                        <h3>13</h3>
+                        <h3>27</h3>
                         <p>Banks Analyzed</p>
                     </div>
                 </div>
                 <div class="stat-card">
                     <span class="stat-icon">🌎</span>
                     <div class="stat-content">
-                        <h3>3</h3>
+                        <h3>5</h3>
                         <p>Countries</p>
                     </div>
                 </div>
                 <div class="stat-card highlight">
                     <span class="stat-icon">🎯</span>
                     <div class="stat-content">
-                        <h3>6</h3>
+                        <h3>12</h3>
                         <p>High Priority</p>
                     </div>
                 </div>
                 <div class="stat-card" onclick="window.location.href='executives/index.html'" style="cursor: pointer;">
                     <span class="stat-icon">👔</span>
                     <div class="stat-content">
-                        <h3>9</h3>
+                        <h3>12</h3>
                         <p>Executive Profiles</p>
                     </div>
                 </div>
@@ -91,7 +103,7 @@
                         <h3>BCP — Banco de Crédito del Perú</h3>
                         <p class="priority-reason">Active meeting prep. César Casabonne + David Sáenz + Diego Cavero</p>
                         <div class="priority-metrics">
-                            <span class="metric">~$55B Assets</span>
+                            <span class="metric">$53B Assets</span>
                             <span class="metric">#1 Peru</span>
                         </div>
                         <a href="peru/bcp.html" class="btn-primary">View Analysis →</a>
@@ -99,15 +111,41 @@
                     <div class="priority-card tier1">
                         <div class="priority-header">
                             <span class="tier-badge">TIER 1</span>
-                            <span class="country-flag">🇪🇨</span>
+                            <span class="country-flag">🇵🇦</span>
                         </div>
-                        <h3>Banco Guayaquil</h3>
-                        <p class="priority-reason">Fastest growth (+18.5%), best ROE (15.8%), digital-first culture</p>
+                        <h3>Banco General</h3>
+                        <p class="priority-reason">#1 Panamá, best CIR (38%), full autonomy, $21.8B assets</p>
                         <div class="priority-metrics">
-                            <span class="metric">$9.9B Assets</span>
-                            <span class="metric">46% CIR</span>
+                            <span class="metric">$21.8B Assets</span>
+                            <span class="metric">14.2% ROE</span>
                         </div>
-                        <a href="ecuador/banco_guayaquil.html" class="btn-primary">View Analysis →</a>
+                        <a href="panama/banco_general.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇨🇴</span>
+                        </div>
+                        <h3>Bancolombia</h3>
+                        <p class="priority-reason">#1 Colombia, Nequi (17M users), autonomous tech decisions</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$92B Assets</span>
+                            <span class="metric">14.8% ROE</span>
+                        </div>
+                        <a href="colombia/bancolombia.html" class="btn-primary">View Analysis →</a>
+                    </div>
+                    <div class="priority-card tier1">
+                        <div class="priority-header">
+                            <span class="tier-badge">TIER 1</span>
+                            <span class="country-flag">🇬🇹</span>
+                        </div>
+                        <h3>Banco Industrial</h3>
+                        <p class="priority-reason">#1 Guatemala, 30.6% market share, 18.5% ROE, full local control</p>
+                        <div class="priority-metrics">
+                            <span class="metric">$17.8B Assets</span>
+                            <span class="metric">42% CIR</span>
+                        </div>
+                        <a href="guatemala/banco_industrial.html" class="btn-primary">View Analysis →</a>
                     </div>
                     <div class="priority-card tier1">
                         <div class="priority-header">
@@ -115,10 +153,10 @@
                             <span class="country-flag">🇪🇨</span>
                         </div>
                         <h3>Banco Pichincha</h3>
-                        <p class="priority-reason">Largest bank (~37% market share), complex infrastructure needs</p>
+                        <p class="priority-reason">Largest Ecuador (~37% share), complex infrastructure needs</p>
                         <div class="priority-metrics">
                             <span class="metric">$20.4B Assets</span>
-                            <span class="metric">50% CIR</span>
+                            <span class="metric">13.5% ROE</span>
                         </div>
                         <a href="ecuador/banco_pichincha.html" class="btn-primary">View Analysis →</a>
                     </div>
@@ -127,51 +165,14 @@
                             <span class="tier-badge">TIER 1</span>
                             <span class="country-flag">🇨🇴</span>
                         </div>
-                        <h3>Bancolombia</h3>
-                        <p class="priority-reason">#1 Colombia, Nequi (17M users), autonomous tech decisions, best ROE (14.8%)</p>
-                        <div class="priority-metrics">
-                            <span class="metric">$92B Assets</span>
-                            <span class="metric">48% CIR</span>
-                        </div>
-                        <a href="colombia/bancolombia.html" class="btn-primary">View Analysis →</a>
-                    </div>
-                    <div class="priority-card tier1">
-                        <div class="priority-header">
-                            <span class="tier-badge">TIER 1</span>
-                            <span class="country-flag">🇨🇴</span>
-                        </div>
                         <h3>Davivienda</h3>
-                        <p class="priority-reason">DaviPlata pioneer, Grupo Bolívar (autonomous), strong digital DNA</p>
+                        <p class="priority-reason">DaviPlata pioneer, Grupo Bolívar (autonomous), strong digital</p>
                         <div class="priority-metrics">
                             <span class="metric">$52B Assets</span>
-                            <span class="metric">54% CIR</span>
+                            <span class="metric">11.5% ROE</span>
                         </div>
                         <a href="colombia/davivienda.html" class="btn-primary">View Analysis →</a>
                     </div>
-                </div>
-            </section>
-
-            <section class="quick-access">
-                <h2>👔 Executive Intelligence</h2>
-                <div class="country-grid" style="margin-bottom: 2rem;">
-                    <a href="executives/index.html" class="country-card">
-                        <span class="country-flag-large">👔</span>
-                        <h3>Executive Hub</h3>
-                        <p>5 CEOs profiled</p>
-                        <span class="status-badge active">Live</span>
-                    </a>
-                    <a href="executives/antonio_acosta_espinosa.html" class="country-card">
-                        <span class="country-flag-large">🏦</span>
-                        <h3>Pichincha CEO</h3>
-                        <p>Antonio Acosta</p>
-                        <span class="status-badge" style="background: var(--accent-green); color: white;">TIER 1</span>
-                    </a>
-                    <a href="executives/guillermo_lasso_mendoza.html" class="country-card">
-                        <span class="country-flag-large">⭐</span>
-                        <h3>Guayaquil Chairman</h3>
-                        <p>Guillermo Lasso</p>
-                        <span class="status-badge" style="background: var(--accent-green); color: white;">TIER 1</span>
-                    </a>
                 </div>
             </section>
 
@@ -184,17 +185,53 @@
                         <p>5 banks • $55B market</p>
                         <span class="status-badge active">Active</span>
                     </a>
+                    <a href="peru/index.html" class="country-card">
+                        <span class="country-flag-large">🇵🇪</span>
+                        <h3>Peru</h3>
+                        <p>5 banks • $147B market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
                     <a href="colombia/index.html" class="country-card">
                         <span class="country-flag-large">🇨🇴</span>
                         <h3>Colombia</h3>
                         <p>7 banks • $280B market</p>
                         <span class="status-badge active">Active</span>
                     </a>
-                    <a href="peru/index.html" class="country-card">
-                        <span class="country-flag-large">🇵🇪</span>
-                        <h3>Peru</h3>
-                        <p>4 banks • $120B market</p>
+                    <a href="guatemala/index.html" class="country-card">
+                        <span class="country-flag-large">🇬🇹</span>
+                        <h3>Guatemala</h3>
+                        <p>5 banks • $58B market</p>
                         <span class="status-badge active">Active</span>
+                    </a>
+                    <a href="panama/index.html" class="country-card">
+                        <span class="country-flag-large">🇵🇦</span>
+                        <h3>Panamá</h3>
+                        <p>5 banks • $130B market</p>
+                        <span class="status-badge active">Active</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="quick-access">
+                <h2>👔 Executive Intelligence</h2>
+                <div class="country-grid">
+                    <a href="executives/index.html" class="country-card">
+                        <span class="country-flag-large">👔</span>
+                        <h3>Executive Hub</h3>
+                        <p>12 executives profiled</p>
+                        <span class="status-badge active">Live</span>
+                    </a>
+                    <a href="executives/cesar_casabonne_gutierrez.html" class="country-card">
+                        <span class="country-flag-large">🇵🇪</span>
+                        <h3>BCP - César Casabonne</h3>
+                        <p>VP Tecnología</p>
+                        <span class="status-badge" style="background: var(--accent-green); color: white;">MEETING</span>
+                    </a>
+                    <a href="executives/juan_carlos_mora.html" class="country-card">
+                        <span class="country-flag-large">🇨🇴</span>
+                        <h3>Bancolombia CEO</h3>
+                        <p>Juan Carlos Mora</p>
+                        <span class="status-badge" style="background: var(--accent-green); color: white;">TIER 1</span>
                     </a>
                 </div>
             </section>
@@ -202,5 +239,6 @@
     </main>
 
     <script src="js/app.js"></script>
+    <script src="js/version.js"></script>
 </body>
 </html>
