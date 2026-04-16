@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bancolombia Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bancolombia.html" class="back-link">← Back to Bancolombia</a>
+        
+        <header class="page-header">
+            <h1>👔 Bancolombia — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — #1 Bank in Colombia</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO and Chairman verified from official sources (Grupo Empresarial Antioqueño, Superfinanciera). Technology leadership roles compiled from annual reports and LinkedIn — verify before outreach.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Gonzalo Alberto Pérez Rojas</div>
+                    <div class="title">Chairman / Presidente Junta</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Juan Carlos Mora Uribe</div>
+                    <div class="title">CEO / Presidente Ejecutivo</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología / CIO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Infraestructura</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">Andrés Vásquez</div>
+                    <div class="title">VP Digital / Nequi</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">JM</div>
+                    <div class="exec-title-info">
+                        <h3>Juan Carlos Mora Uribe</h3>
+                        <div class="role">CEO / Presidente Ejecutivo</div>
+                        <div class="tenure">🏦 Bancolombia desde 2016 • Grupo Empresarial Antioqueño</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Background:</strong> 30+ años en banca colombiana</li>
+                            <li><strong>Education:</strong> Administrador de Empresas, U. EAFIT</li>
+                            <li><strong>Carrera:</strong> Toda en Bancolombia/Conavi</li>
+                            <li><strong>CEO desde:</strong> 2016</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Transformación digital (Nequi líder regional)</li>
+                            <li>Expansión Centroamérica (BAM, Banistmo)</li>
+                            <li>Sostenibilidad y banca verde</li>
+                            <li>Inclusión financiera masiva</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Inversiones estratégicas >$5M</li>
+                            <li>Transformación tecnológica del grupo</li>
+                            <li>Alianzas con fintechs</li>
+                            <li>M&A y expansión regional</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing only — visión estratégica, no detalles técnicos.<br>
+                    <strong>Angle:</strong> Innovación en banca digital, casos de éxito en transformación, competitividad regional.<br>
+                    <strong>Don't:</strong> Pricing, especificaciones técnicas, demos a este nivel.<br>
+                    <strong>Best timing:</strong> Eventos ASOBANCARIA, foros económicos, Colombia Fintech.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Juan%20Carlos%20Mora%20Uribe%20Bancolombia" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">GP</div>
+                    <div class="exec-title-info">
+                        <h3>Gonzalo Alberto Pérez Rojas</h3>
+                        <div class="role">Chairman / Presidente Junta Directiva</div>
+                        <div class="tenure">🏦 Grupo Empresarial Antioqueño • Ex-CEO Sura</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Background:</strong> Ex-CEO Grupo Sura</li>
+                            <li><strong>Role:</strong> Chairman Junta Directiva</li>
+                            <li><strong>Network:</strong> GEA (Grupo Empresarial Antioqueño)</li>
+                            <li><strong>Influence:</strong> Máxima autoridad del board</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Known For</h4>
+                        <ul>
+                            <li>Liderazgo en conglomerados financieros</li>
+                            <li>Visión de largo plazo</li>
+                            <li>Gobierno corporativo sólido</li>
+                            <li>Integración grupo Sura-Bancolombia</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Board-level only — a través del CEO o conexiones de alto nivel.<br>
+                    <strong>When:</strong> Partnerships estratégicos multimillonarios, transformaciones del grupo.<br>
+                    <strong>Note:</strong> Muy poco accesible directamente. Construir relación vía CEO primero.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gonzalo%20Alberto%20P%C3%A9rez%20Rojas%20Bancolombia%20Sura" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Technology / CIO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Bancolombia estructura matricial</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, CIO, Chief Technology Officer, Gerente Corporativo TI</li>
+                            <li><strong>Reports to:</strong> CEO directamente</li>
+                            <li><strong>Team size:</strong> 2,000+ personas estimado</li>
+                            <li><strong>Budget:</strong> $200-300M annual estimado</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking platform</li>
+                            <li>Data centers (Medellín + Bogotá + DR)</li>
+                            <li>Cloud strategy (AWS, Azure, híbrido)</li>
+                            <li>Arquitectura empresarial</li>
+                            <li>Ciberseguridad y compliance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Mayor presupuesto tech de Colombia</li>
+                            <li>Decisiones de infraestructura regional</li>
+                            <li>Estrategia cloud del grupo</li>
+                            <li>POCs y pilotos tecnológicos</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "CIO" + "Bancolombia"<br>
+                    2. Revisar página de Bancolombia > Gobierno Corporativo<br>
+                    3. Buscar speakers en eventos AWS, Microsoft, Google Cloud Colombia<br>
+                    4. Nota: Bancolombia tiene estructura matricial, puede haber varios líderes tech</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Bancolombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP Infrastructure -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP / Director Infraestructura</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Infrastructure</span>
+                            <span class="exec-tag tech">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Infraestructura, Director Infraestructura TI, Head of IT Infrastructure</li>
+                            <li><strong>Reports to:</strong> VP Tecnología / CIO</li>
+                            <li><strong>Focus:</strong> Data centers, redes, storage, compute</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>3 data centers principales (Medellín, Bogotá, DR site)</li>
+                            <li>Red de 900+ oficinas Colombia</li>
+                            <li>Infraestructura Centroamérica (BAM, Banistmo)</li>
+                            <li>SD-WAN y conectividad regional</li>
+                            <li>Storage enterprise (Dell, NetApp, Pure)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Decisiones de compra de hardware</li>
+                            <li>Proyectos de modernización DC</li>
+                            <li>Consolidación storage regional</li>
+                            <li>Conectividad branch network</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Infraestructura" + "Bancolombia"<br>
+                    2. Buscar en eventos VMware, Dell, Cisco Colombia<br>
+                    3. Este es tu PRIMARY contact para ventas de infraestructura<br>
+                    4. Nota: Puede haber Director por región (Colombia vs Centroamérica)</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20TI%20Bancolombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Digital / Nequi -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">AV</div>
+                    <div class="exec-title-info">
+                        <h3>Andrés Vásquez</h3>
+                        <div class="role">Presidente Nequi / VP Banca Digital</div>
+                        <div class="tenure">🏦 Nequi — 17M+ usuarios</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Leader</span>
+                            <span class="exec-tag digital">Fintech Star</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> Presidente de Nequi</li>
+                            <li><strong>Background:</strong> Digital banking specialist</li>
+                            <li><strong>Achievement:</strong> Nequi = banco digital #1 LATAM</li>
+                            <li><strong>Style:</strong> Startup mindset en banco tradicional</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Nequi app (17M+ usuarios)</li>
+                            <li>Inclusión financiera digital</li>
+                            <li>Open Banking / APIs</li>
+                            <li>Cloud-native architecture</li>
+                            <li>UX/CX innovation</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Stack tecnológico de Nequi</li>
+                            <li>Cloud infrastructure (100% cloud)</li>
+                            <li>Partnerships fintech</li>
+                            <li>Data & analytics platform</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Innovation discussions, not traditional banking sales.<br>
+                    <strong>Angle:</strong> Cloud-native, API-first, data platforms, ML/AI use cases.<br>
+                    <strong>Events:</strong> Colombia Fintech, startup ecosystem, tech conferences.<br>
+                    <strong>Note:</strong> Nequi opera casi independiente — stack diferente al banco tradicional.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Andr%C3%A9s%20V%C3%A1squez%20Nequi%20Bancolombia" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 6. Chief Data Officer -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Chief Data Officer / VP Data</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Data es prioridad estratégica</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Data & Analytics</span>
+                            <span class="exec-tag digital">AI/ML</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CDO, Chief Data Officer, VP Data & Analytics, Director de Datos</li>
+                            <li><strong>Reports to:</strong> CEO o CIO</li>
+                            <li><strong>Focus:</strong> Data platform, analytics, AI/ML</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Data lake / data warehouse enterprise</li>
+                            <li>Analytics para 35M+ clientes</li>
+                            <li>Modelos de riesgo y scoring</li>
+                            <li>AI/ML productionization</li>
+                            <li>Data governance y compliance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Bancolombia es líder en data analytics en LATAM</li>
+                            <li>Inversiones significativas en AI</li>
+                            <li>Data platform modernization</li>
+                            <li>Real-time analytics projects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Data" OR "Analytics" OR "CDO" + "Bancolombia"<br>
+                    2. Buscar speakers en eventos de Databricks, Snowflake, AWS Data<br>
+                    3. Critical contact para data platform sales<br>
+                    4. Bancolombia tiene data science teams muy avanzados</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Chief%20Data%20Officer%20CDO%20Analytics%20Bancolombia" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Cloud modernization (AWS + Azure hybrid)</li>
+                        <li>Data platform para 35M+ clientes</li>
+                        <li>Conectividad regional (900+ branches + Centroamérica)</li>
+                        <li>Zero Trust / cybersecurity</li>
+                        <li>API platform / Open Banking</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Referencias de bancos líderes globales</li>
+                        <li>Innovation & thought leadership</li>
+                        <li>Casos de transformación digital exitosos</li>
+                        <li>Soluciones cloud-native / modern architecture</li>
+                        <li>Data & analytics use cases</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Soluciones legacy/on-prem únicamente</li>
+                        <li>Falta de escala (banco más grande de Colombia)</li>
+                        <li>No mencionar Centroamérica (visión regional)</li>
+                        <li>Ignorar compliance Superfinanciera</li>
+                        <li>Pitch sin referencias bancarias</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Sep-Nov</li>
+                        <li><strong>Fiscal year:</strong> Calendario (Jan-Dec)</li>
+                        <li><strong>RFP threshold:</strong> >$1M</li>
+                        <li><strong>Decision cycle:</strong> 6-18 meses</li>
+                        <li><strong>Tech budget:</strong> $200-300M annually</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/bancolombia/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Bancolombia Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Bancolombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Bancolombia</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Bancolombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/company/nequi/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">📱 Nequi Team</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bancolombia.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Colombia Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

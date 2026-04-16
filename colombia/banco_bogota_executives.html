@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Bogotá Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_bogota.html" class="back-link">← Back to Banco de Bogotá</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco de Bogotá — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — Grupo Aval #1</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Chairman y CEO verificados desde Grupo Aval y Superfinanciera. Parte de Grupo Aval (Luis Carlos Sarmiento). VPs de tecnología requieren verificación vía LinkedIn.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Luis Carlos Sarmiento Gutiérrez</div>
+                    <div class="title">Chairman / Presidente Junta</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Alejandro Figueroa Jaramillo</div>
+                    <div class="title">CEO / Presidente</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología / CIO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Infraestructura</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Banca Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">LS</div>
+                    <div class="exec-title-info">
+                        <h3>Luis Carlos Sarmiento Gutiérrez</h3>
+                        <div class="role">Chairman / Presidente Grupo Aval</div>
+                        <div class="tenure">🏦 Grupo Aval • Familia Sarmiento Angulo</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Ultimate Authority</span>
+                            <span class="exec-tag budget">Group Control</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Family:</strong> Hijo de Luis Carlos Sarmiento Angulo (fundador)</li>
+                            <li><strong>Education:</strong> MBA Stanford, Economía U. de los Andes</li>
+                            <li><strong>Role:</strong> Presidente Grupo Aval y Holding</li>
+                            <li><strong>Control:</strong> 4 bancos (Bogotá, Occidente, Popular, AV Villas)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Consolidación de tecnología del grupo</li>
+                            <li>Expansión regional (BAC Credomatic)</li>
+                            <li>Digital transformation a nivel grupo</li>
+                            <li>Eficiencia operativa multi-banco</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Group-level strategic partnerships only.<br>
+                    <strong>When:</strong> Transformaciones que afectan múltiples bancos del grupo.<br>
+                    <strong>Note:</strong> Grupo Aval maneja 4 bancos + BAC Credomatic. Decisiones tech grandes se toman a nivel grupo. Casi imposible acceso directo — ir por CEO del banco específico.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Luis%20Carlos%20Sarmiento%20Guti%C3%A9rrez%20Grupo%20Aval" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">AF</div>
+                    <div class="exec-title-info">
+                        <h3>Alejandro Figueroa Jaramillo</h3>
+                        <div class="role">CEO / Presidente Banco de Bogotá</div>
+                        <div class="tenure">🏦 Banco de Bogotá • 30+ años en el sector</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Background:</strong> Carrera completa en Grupo Aval</li>
+                            <li><strong>Experience:</strong> 30+ años en banca colombiana</li>
+                            <li><strong>Style:</strong> Conservador pero ejecutor</li>
+                            <li><strong>Bank focus:</strong> Segundo banco más grande de Colombia</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Transformación digital del banco</li>
+                            <li>Eficiencia operativa</li>
+                            <li>Competir con Bancolombia en digital</li>
+                            <li>Integración con BAC Credomatic (Centroamérica)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Inversiones estratégicas del banco</li>
+                            <li>Presupuesto tecnológico (con aprobación grupo)</li>
+                            <li>Partnerships y alianzas</li>
+                            <li>Transformación operativa</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — estrategia, no técnico.<br>
+                    <strong>Angle:</strong> Competitividad digital, eficiencia, casos de éxito en transformación.<br>
+                    <strong>Note:</strong> Decisiones grandes requieren alineación con Grupo Aval.<br>
+                    <strong>Best timing:</strong> Eventos ASOBANCARIA, reuniones vía referidos de alto nivel.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Alejandro%20Figueroa%20Jaramillo%20Banco%20Bogot%C3%A1" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Technology / CIO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Puede reportar también a Aval</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, CIO, Gerente de Tecnología</li>
+                            <li><strong>Reports to:</strong> CEO + alineación con CIO Grupo Aval</li>
+                            <li><strong>Team size:</strong> 500-800 personas estimado</li>
+                            <li><strong>Budget:</strong> $80-120M annual estimado</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking platform</li>
+                            <li>Data centers propios + grupo</li>
+                            <li>Cloud strategy (coordinada con Aval)</li>
+                            <li>Cybersecurity</li>
+                            <li>Integración con BAC sistemas</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Decisiones de tecnología del banco</li>
+                            <li>POCs y evaluaciones técnicas</li>
+                            <li>Coordinación con tech de Grupo Aval</li>
+                            <li>RFPs y selección de vendors</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "CIO" + "Banco de Bogotá"<br>
+                    2. Revisar también estructura de Grupo Aval (tech puede ser compartida)<br>
+                    3. Buscar en eventos AWS, Microsoft, Oracle Colombia<br>
+                    4. Nota: Grupo Aval tiene CIO corporativo — verificar estructura dual</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Banco%20Bogot%C3%A1&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP Infrastructure -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP / Director Infraestructura</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Infrastructure</span>
+                            <span class="exec-tag tech">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Infraestructura, Director Infraestructura TI, Head of IT Infra</li>
+                            <li><strong>Reports to:</strong> VP Tecnología / CIO</li>
+                            <li><strong>Focus:</strong> DC, redes, storage, compute</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Data centers (propios + Aval shared)</li>
+                            <li>Red de 700+ oficinas</li>
+                            <li>Conectividad con BAC Credomatic</li>
+                            <li>Storage y compute enterprise</li>
+                            <li>Network infrastructure</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Compras de hardware e infraestructura</li>
+                            <li>Proyectos de modernización DC</li>
+                            <li>SD-WAN y conectividad branch</li>
+                            <li>Storage consolidation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Infraestructura" + "Banco de Bogotá"<br>
+                    2. Buscar en eventos VMware, Dell, Cisco Colombia<br>
+                    3. Nota: Infraestructura puede ser compartida con otros bancos del grupo<br>
+                    4. Este es tu PRIMARY contact para ventas de hardware</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20TI%20Banco%20Bogot%C3%A1&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Digital Banking -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Banca Digital / CDO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Competencia con Bancolombia/Nequi</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">App & UX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Banca Digital, Chief Digital Officer, Director Canales Digitales</li>
+                            <li><strong>Reports to:</strong> CEO o CIO</li>
+                            <li><strong>Focus:</strong> App móvil, digital CX, omnichannel</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>App móvil Banco de Bogotá</li>
+                            <li>Digital onboarding</li>
+                            <li>Competir con Nequi (Bancolombia)</li>
+                            <li>API strategy</li>
+                            <li>Customer experience digital</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Impulsa inversión en modernización</li>
+                            <li>Cloud-native advocate</li>
+                            <li>Proyectos de app modernization</li>
+                            <li>Customer data platform</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Digital" OR "Canales" + "Banco de Bogotá"<br>
+                    2. Buscar en eventos fintech Colombia<br>
+                    3. Key para digital experience & analytics<br>
+                    4. Banco de Bogotá está invirtiendo fuerte para competir con Nequi</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Banca%20Banco%20Bogot%C3%A1&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. CIO Grupo Aval -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>CIO Grupo Aval (Corporativo)</h3>
+                        <div class="role">⚠️ To Verify — Decisiones a nivel grupo</div>
+                        <div class="tenure">🔍 Importante: Tech decisions para 4 bancos</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Group Tech Leader</span>
+                            <span class="exec-tag budget">Multi-Bank Budget</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CIO Grupo Aval, VP Tecnología Holding, Chief Technology Officer</li>
+                            <li><strong>Scope:</strong> 4 bancos Colombia + BAC Credomatic</li>
+                            <li><strong>Budget:</strong> $300-400M combinado estimado</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Estrategia tech del grupo completo</li>
+                            <li>Shared services de tecnología</li>
+                            <li>Cloud strategy corporativa</li>
+                            <li>Cybersecurity a nivel grupo</li>
+                            <li>Vendor management estratégico</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Deals grandes cruzan múltiples bancos</li>
+                            <li>Compras consolidadas del grupo</li>
+                            <li>Enterprise agreements</li>
+                            <li>Strategic partnerships</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "CIO" OR "Tecnología" + "Grupo Aval"<br>
+                    2. Revisar informes anuales de Aval<br>
+                    3. Para deals >$5M, probablemente necesitas este nivel<br>
+                    4. Puede abrir puertas a los 4 bancos + BAC</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Grupo%20Aval&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Modernización core banking</li>
+                        <li>Integración con BAC Credomatic (Centroamérica)</li>
+                        <li>Cloud migration strategy</li>
+                        <li>Digital banking competitiveness</li>
+                        <li>Shared services del grupo</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Referencias de grupos bancarios multi-país</li>
+                        <li>Soluciones que escalen a 4 bancos</li>
+                        <li>TCO & eficiencia operativa</li>
+                        <li>Enterprise agreements</li>
+                        <li>Casos de consolidación tech</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Ignorar estructura de Grupo Aval</li>
+                        <li>Propuestas solo para un banco</li>
+                        <li>No considerar BAC Credomatic</li>
+                        <li>Saltarse jerarquía del grupo</li>
+                        <li>Pricing sin considerar volumen grupo</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Sep-Nov (coordinado grupo)</li>
+                        <li><strong>Fiscal year:</strong> Calendario (Jan-Dec)</li>
+                        <li><strong>RFP threshold:</strong> >$500K</li>
+                        <li><strong>Decision cycle:</strong> 9-18 meses (grupo)</li>
+                        <li><strong>Tech budget:</strong> $80-120M (solo Bogotá)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banco-de-bogota/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Banco de Bogotá Employees</a>
+                <a href="https://www.linkedin.com/company/grupo-aval/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">🏢 Grupo Aval Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banco%20Bogot%C3%A1&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Banco de Bogotá</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Grupo%20Aval&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology - Grupo Aval</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_bogota.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Colombia Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

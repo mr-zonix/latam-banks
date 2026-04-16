@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco del Pacífico Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.government { border-left-color: #ef4444; }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.security { border-left-color: #ef4444; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-photo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            border: 3px solid var(--border);
+        }
+        .exec-photo-placeholder.government { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .exec-photo-placeholder.ceo { background: linear-gradient(135deg, var(--accent-blue), #2563eb); }
+        .exec-photo-placeholder.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-photo-placeholder.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-photo-placeholder.security { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.3rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 1rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .exec-tag { padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.security { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.verify { background: rgba(107, 114, 128, 0.2); color: #6b7280; }
+        .exec-tag.government { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .exec-detail-section h4 { font-size: 0.9rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; }
+        .exec-detail-section li { margin-bottom: 0.35rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1.25rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.95rem; }
+        .approach-box p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: #0077b5; color: white; border-radius: 6px; font-size: 0.85rem; text-decoration: none; margin-top: 0.75rem; transition: background 0.2s; }
+        .linkedin-btn:hover { background: #005885; color: white; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: center; }
+        .org-level { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 180px; }
+        .org-box.government { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .org-connector { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+        .verified-badge { background: rgba(239, 68, 68, 0.2); color: #ef4444; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block; }
+        .update-badge { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.5rem; display: block; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.3 • Apr 2026</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_pacifico.html" class="back-link">← Back to Banco del Pacífico</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco del Pacífico — Executive Intelligence</h1>
+            <p class="subtitle">Key decision makers for technology & infrastructure sales</p>
+        </header>
+
+        <div class="verified-badge">🏛️ <strong>State-Owned Bank:</strong> 100% Government of Ecuador (CFN) — Public procurement rules apply</div>
+        
+        <div class="update-badge">
+            📌 <strong>Key Note:</strong> Public procurement via SERCOP portal. Sales cycles 12-18 months. Government-appointed leadership may change with political cycles. Strong mandate for financial inclusion.
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box government">
+                    <div class="name">CFN / Government</div>
+                    <div class="title">100% State Owner</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box government">
+                    <div class="name">Board of Directors</div>
+                    <div class="title">Government-Appointed</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente General</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente de Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente Canales</div>
+                </div>
+                <div class="org-box tech" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Jefe Seguridad</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Key Decision Makers</h2>
+
+            <!-- GOVERNMENT OWNERSHIP -->
+            <div class="exec-profile-card government">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder government">GOV</div>
+                    <div class="exec-title-info">
+                        <h3>Corporación Financiera Nacional (CFN)</h3>
+                        <div class="role">100% Government Ownership</div>
+                        <div class="tenure">🏛️ State-owned enterprise • Public procurement applies</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag government">State-Owned</span>
+                            <span class="exec-tag decision">SERCOP Procurement</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Ownership Structure</h4>
+                        <ul>
+                            <li><strong>Owner:</strong> Government of Ecuador (100%)</li>
+                            <li><strong>Through:</strong> Corporación Financiera Nacional</li>
+                            <li><strong>Board:</strong> Government-appointed directors</li>
+                            <li><strong>Mandate:</strong> Financial inclusion, SME lending</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Procurement Implications</h4>
+                        <ul>
+                            <li>SERCOP portal for contracts >$70K</li>
+                            <li>Public tender process required</li>
+                            <li>12-18 month procurement cycles</li>
+                            <li>Price-competitive evaluation</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">🎪 Public Sector Strategy</h4>
+                    <p><strong>Process:</strong> Build technical relationship → Position for upcoming tenders → Respond to SERCOP.<br>
+                    <strong>Key:</strong> Reference other government/state bank clients. Align with financial inclusion mandate.<br>
+                    <strong>Monitor:</strong> <a href="https://www.compraspublicas.gob.ec" target="_blank" style="color: #ef4444;">compraspublicas.gob.ec (SERCOP)</a></p>
+                </div>
+            </div>
+
+            <!-- 1. GERENTE GENERAL -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder ceo">GG</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Gerente General</h3>
+                        <div class="role">Gerente General (CEO)</div>
+                        <div class="tenure">🏛️ Government-appointed • May change with political cycles</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag government">Gov Appointed</span>
+                            <span class="exec-tag decision">Final Approval</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> Gerente General (CEO)</li>
+                            <li><strong>Appointed by:</strong> Board / Government</li>
+                            <li><strong>Authority:</strong> Final operational decisions</li>
+                            <li><strong>Tenure:</strong> May change with political cycles</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important</h4>
+                        <ul>
+                            <li>Final approval for major tech investments</li>
+                            <li>Signs off on SERCOP contracts</li>
+                            <li>Champions strategic initiatives</li>
+                            <li>Government mandate alignment</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — align with government priorities.<br>
+                    <strong>Angle:</strong> Financial inclusion, efficiency (reduce 55% CIR), SME banking support.<br>
+                    <strong>Caution:</strong> Political changes may affect leadership continuity.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20Banco%20Pac%C3%ADfico" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 2. GERENTE TECNOLOGÍA -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder tech">GT</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Gerente de Tecnología</h3>
+                        <div class="role">Gerente de Tecnología</div>
+                        <div class="tenure">🏦 Infrastructure & IT Operations</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag tech">IT Leadership</span>
+                            <span class="exec-tag budget">Tech Budget</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> Gerente de Tecnología</li>
+                            <li><strong>Reports to:</strong> Gerente General</li>
+                            <li><strong>Authority:</strong> Tech specs for tenders</li>
+                            <li><strong>Budget:</strong> ~$25-35M annually</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data center & infrastructure</li>
+                            <li>Core banking (COBIS)</li>
+                            <li>Network & connectivity</li>
+                            <li>Technical specifications for RFPs</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li><strong>PRIMARY CONTACT</strong> for tech relationships</li>
+                            <li>Defines technical requirements</li>
+                            <li>Influences tender specifications</li>
+                            <li>Technical evaluation committee</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Technical — build relationship before tenders.<br>
+                    <strong>Hot topics:</strong> Network modernization, storage refresh, efficiency improvements.<br>
+                    <strong>Goal:</strong> Influence tender specifications through technical discussions.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20Tecnolog%C3%ADa%20Banco%20Pac%C3%ADfico" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. JEFE INFRAESTRUCTURA -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder tech">JI</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Jefe de Infraestructura</h3>
+                        <div class="role">Jefe de Infraestructura</div>
+                        <div class="tenure">🏦 Data Centers, Networks, Servers</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag tech">Infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data center operations</li>
+                            <li>Server & storage management</li>
+                            <li>Network infrastructure</li>
+                            <li>DR site operations</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Day-to-day infrastructure decisions</li>
+                            <li>Technical evaluation input</li>
+                            <li>POC execution contact</li>
+                            <li>Implementation partner</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20Banco%20Pac%C3%ADfico" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. GERENTE CANALES -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder digital">GC</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Gerente Canales Digitales</h3>
+                        <div class="role">Gerente de Canales Digitales</div>
+                        <div class="tenure">🏦 Digital Banking & Channels</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag digital">Digital Channels</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Mobile banking (Pacífico Móvil)</li>
+                            <li>Internet banking</li>
+                            <li>ATM & self-service channels</li>
+                            <li>Financial inclusion initiatives</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Digital modernization projects</li>
+                            <li>Financial inclusion mandate</li>
+                            <li>App improvement initiatives</li>
+                            <li>BIMO integration decisions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Financial inclusion, rural access, SME digital services.<br>
+                    <strong>Hot topics:</strong> Digital onboarding for underbanked, simplified UX, government benefit distribution.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Canales%20Digital%20Banco%20Pac%C3%ADfico" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. JEFE SEGURIDAD -->
+            <div class="exec-profile-card security">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder security">JS</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Jefe de Seguridad</h3>
+                        <div class="role">Jefe de Seguridad Informática</div>
+                        <div class="tenure">🏦 Security & Compliance</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag security">Security</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Security architecture</li>
+                            <li>SOC operations</li>
+                            <li>Regulatory compliance (SB)</li>
+                            <li>Government security standards</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Security tool decisions</li>
+                            <li>Compliance requirements</li>
+                            <li>SIEM modernization</li>
+                            <li>Can enable or block deals</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Seguridad%20Banco%20Pac%C3%ADfico" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- MEETING PREP -->
+        <section class="section-card">
+            <h2>📋 Meeting Preparation Guide — Public Sector</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Gerente General:</strong> Efficiency, government mandate</li>
+                        <li><strong>Gerente Tech:</strong> Infrastructure modernization</li>
+                        <li><strong>Jefe Infra:</strong> Technical specifications</li>
+                        <li><strong>Gerente Canales:</strong> Financial inclusion</li>
+                        <li><strong>Jefe Seguridad:</strong> Compliance, security</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Government/state bank references</li>
+                        <li>Efficiency & cost reduction stories</li>
+                        <li>Financial inclusion alignment</li>
+                        <li>Local support presence</li>
+                        <li>Long-term partnership approach</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">⚠️ Public Sector Process</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Portal:</strong> SERCOP (compraspublicas.gob.ec)</li>
+                        <li><strong>Threshold:</strong> >$70K requires tender</li>
+                        <li><strong>Cycle:</strong> 12-18 months typical</li>
+                        <li><strong>Budget:</strong> Government fiscal year (Jan-Dec)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--surface); border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
+            <strong>Research Sources:</strong> 
+            <a href="https://www.bancopacifico.com/sobre-nosotros" target="_blank">Banco del Pacífico Official</a> • 
+            <a href="https://www.compraspublicas.gob.ec" target="_blank">SERCOP Portal</a> •
+            <a href="https://www.linkedin.com/company/banco-del-pacifico/people/" target="_blank">LinkedIn</a><br>
+            <strong>⚠️ Note:</strong> Leadership may change with political cycles. Verify current executives before outreach.<br>
+            <strong>Last updated:</strong> April 2025
+        </div>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_pacifico.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Ecuador Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

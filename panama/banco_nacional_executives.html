@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Nacional de Panamá Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
+        .exec-avatar-large { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; flex-shrink: 0; }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.govt { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        
+        .govt-badge { background: linear-gradient(135deg, #1e40af, #3b82f6); color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-left: 0.5rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_nacional.html" class="back-link">← Back to Banco Nacional</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Nacional de Panamá — Executive Intelligence <span class="govt-badge">🏛️ Estatal</span></h1>
+            <p class="subtitle">Top decision makers — State-owned bank, government procurement processes</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status — Banco Estatal</h4>
+            <p>Banco Nacional es 100% estatal. Directivos nombrados por gobierno. Cambios con cada administración. Compras siguen proceso de licitación pública (Ley de Contrataciones). Verificar nombramientos actuales en Gaceta Oficial y SBP.</p>
+        </div>
+
+        <!-- GOVERNMENT PROCUREMENT ALERT -->
+        <section class="section-card" style="border: 2px solid #3b82f6; margin-bottom: 2rem;">
+            <h2>🏛️ Proceso de Compras Estatales — Importante</h2>
+            <div style="background: rgba(59, 130, 246, 0.1); padding: 1rem; border-radius: 8px;">
+                <p style="margin: 0 0 1rem 0; font-size: 0.9rem;"><strong>Como banco estatal, Banco Nacional debe seguir la Ley de Contrataciones Públicas de Panamá.</strong></p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                    <div>
+                        <h4 style="color: var(--accent-blue); font-size: 0.85rem;">📋 Proceso Típico</h4>
+                        <ul style="font-size: 0.8rem; padding-left: 1rem; margin: 0;">
+                            <li>Licitación pública >$300K</li>
+                            <li>Publicación en PanamaCompra</li>
+                            <li>Términos de referencia técnicos</li>
+                            <li>Evaluación por comité</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: var(--accent-green); font-size: 0.85rem;">✅ Cómo Participar</h4>
+                        <ul style="font-size: 0.8rem; padding-left: 1rem; margin: 0;">
+                            <li>Registro en PanamaCompra.gob.pa</li>
+                            <li>Monitorear licitaciones activas</li>
+                            <li>Relación con área técnica pre-RFP</li>
+                            <li>Partner local puede ser requerido</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #f59e0b; font-size: 0.85rem;">⚠️ Timing</h4>
+                        <ul style="font-size: 0.8rem; padding-left: 1rem; margin: 0;">
+                            <li>Ciclo presupuestario gobierno</li>
+                            <li>Q4 planificación próximo año</li>
+                            <li>Ejecución concentrada Q1-Q2</li>
+                            <li>Decisiones más lentas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Junta Directiva</div>
+                    <div class="title">Nombrada por Gobierno</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Subgerente Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Subgerente Operaciones</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Subgerente Banca Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Junta Directiva -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">JD</div>
+                    <div class="exec-title-info">
+                        <h3>Junta Directiva</h3>
+                        <div class="role">Presidente y Directores — Nombrados por Gobierno</div>
+                        <div class="tenure">🏛️ Cambios con cada administración</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag govt">Nombramiento Político</span>
+                            <span class="exec-tag decision">Máxima Autoridad</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Composición</h4>
+                        <ul>
+                            <li><strong>Presidente:</strong> Nombrado por Presidente de la República</li>
+                            <li><strong>Directores:</strong> 6-8 miembros, representantes gobierno</li>
+                            <li><strong>Rotación:</strong> Cambia con cada administración</li>
+                            <li><strong>Verificar:</strong> Gaceta Oficial para nombramientos actuales</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Autoridad</h4>
+                        <ul>
+                            <li>Aprobación de contratos mayores</li>
+                            <li>Estrategia institucional</li>
+                            <li>Nombramientos de alta gerencia</li>
+                            <li>Políticas de inversión tecnológica</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> No contactar directamente — trabajar a través de gerencia técnica.<br>
+                    <strong>Context:</strong> Directores son figuras políticas, no técnicas.<br>
+                    <strong>Key:</strong> Ganar el proceso técnico para que suba a Junta con recomendación favorable.</p>
+                </div>
+            </div>
+
+            <!-- 2. Gerente General -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente General</h3>
+                        <div class="role">⚠️ To Verify — Nombrado por Junta Directiva</div>
+                        <div class="tenure">🔍 Verificar nombramiento actual</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">CEO Equivalente</span>
+                            <span class="exec-tag govt">Cargo de Confianza</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Nombramiento:</strong> Por Junta Directiva</li>
+                            <li><strong>Background:</strong> Típicamente banquero o funcionario</li>
+                            <li><strong>Authority:</strong> Operación diaria del banco</li>
+                            <li><strong>Contratos:</strong> Firma hasta cierto monto, luego Junta</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Focus</h4>
+                        <ul>
+                            <li>Inclusión financiera (mandato gobierno)</li>
+                            <li>Digitalización de servicios</li>
+                            <li>Eficiencia operacional</li>
+                            <li>Cumplimiento regulatorio estricto</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Context</h4>
+                        <ul>
+                            <li>Decisiones operativas: autonomía</li>
+                            <li>Inversiones mayores: requieren Junta</li>
+                            <li>Contratos tech: proceso licitación</li>
+                            <li>Budget anual: aprobado por gobierno</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive briefings sobre modernización del sector público.<br>
+                    <strong>Angle:</strong> Casos de éxito en bancos estatales LATAM, eficiencia, inclusión financiera.<br>
+                    <strong>Key:</strong> Mostrar experiencia en sector público, compliance, transparencia.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20Banco%20Nacional%20Panama" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. Subgerente Tecnología -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Subgerente de Tecnología</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag tech">IT Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Subgerente Tecnología, Director TI, Gerente Sistemas</li>
+                            <li><strong>Reports to:</strong> Gerente General</li>
+                            <li><strong>Team:</strong> 100-200 personas estimado</li>
+                            <li><strong>Budget:</strong> $20-40M annual (requiere licitación)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking (posiblemente legacy)</li>
+                            <li>Data center gubernamental/propio</li>
+                            <li>Red de 60+ sucursales</li>
+                            <li>Sistemas de pago gobierno</li>
+                            <li>Ciberseguridad</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Define términos técnicos de licitaciones</li>
+                            <li>Recomienda a Gerencia/Junta</li>
+                            <li>Owner de evaluación técnica</li>
+                            <li>Clave para ganar RFPs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Tecnología" OR "Sistemas" + "Banco Nacional Panama"<br>
+                    2. Buscar en noticias de licitaciones adjudicadas<br>
+                    3. PanamaCompra puede tener contactos técnicos<br>
+                    4. Este es tu contacto clave para armar propuestas</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnologia%20Sistemas%20Banco%20Nacional%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. Subgerente Operaciones -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Subgerente de Operaciones</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Operations</span>
+                            <span class="exec-tag tech">Branches</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Subgerente Operaciones, Director Operaciones</li>
+                            <li><strong>Reports to:</strong> Gerente General</li>
+                            <li><strong>Focus:</strong> Red de sucursales, procesamiento</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>60+ sucursales a nivel nacional</li>
+                            <li>Presencia en zonas rurales (mandato social)</li>
+                            <li>Procesamiento de planillas gobierno</li>
+                            <li>Pagos a proveedores del Estado</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>SD-WAN para sucursales remotas</li>
+                            <li>Conectividad zonas rurales</li>
+                            <li>Automatización de procesos</li>
+                            <li>Eficiencia operacional</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Operaciones%20Banco%20Nacional%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. Subgerente Banca Digital -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Subgerente Banca Digital / Canales</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Banking</span>
+                            <span class="exec-tag digital">Financial Inclusion</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Subgerente Digital, Director Canales, Gerente Banca Electrónica</li>
+                            <li><strong>Reports to:</strong> Gerente General</li>
+                            <li><strong>Focus:</strong> Digitalización servicios, inclusión financiera</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>App móvil BNP</li>
+                            <li>Banca en línea</li>
+                            <li>Servicios digitales al ciudadano</li>
+                            <li>Integración con sistemas gobierno</li>
+                            <li>Inclusión financiera digital</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Modernización de canales</li>
+                            <li>Mobile banking para zonas rurales</li>
+                            <li>Pagos digitales gobierno</li>
+                            <li>Customer experience</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Canales%20Banco%20Nacional%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. Jefe de Compras / Adquisiciones -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Jefe de Compras / Adquisiciones</h3>
+                        <div class="role">⚠️ To Verify — Critical for Government Process</div>
+                        <div class="tenure">🔍 Key for procurement</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag govt">Procurement</span>
+                            <span class="exec-tag decision">RFP Process</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Jefe Compras, Director Adquisiciones, Gerente Contrataciones</li>
+                            <li><strong>Reports to:</strong> Subgerente Administrativo o Gerente General</li>
+                            <li><strong>Focus:</strong> Proceso de licitación, compliance legal</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Critical</h4>
+                        <ul>
+                            <li>Maneja proceso de licitación</li>
+                            <li>Publica en PanamaCompra</li>
+                            <li>Define cronogramas de RFP</li>
+                            <li>Coordina evaluación de propuestas</li>
+                            <li>Conoce requisitos legales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(59, 130, 246, 0.1);">
+                    <h4 style="color: var(--accent-blue);">📋 Procurement Insight</h4>
+                    <p>Este contacto es clave para entender timelines, requisitos de participación, y estado de licitaciones. Trabaja con él en paralelo al equipo técnico para asegurar que tu propuesta cumpla todos los requisitos formales.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Compras%20Adquisiciones%20Banco%20Nacional%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Modernización core banking</li>
+                        <li>Conectividad sucursales rurales</li>
+                        <li>Inclusión financiera digital</li>
+                        <li>Integración con sistemas gobierno</li>
+                        <li>Ciberseguridad sector público</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Referencias bancos estatales LATAM</li>
+                        <li>Experiencia sector público</li>
+                        <li>Compliance y transparencia</li>
+                        <li>Partner local establecido</li>
+                        <li>Registro en PanamaCompra</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Saltarse proceso de licitación</li>
+                        <li>Contactar directores políticos</li>
+                        <li>Esperar decisiones rápidas</li>
+                        <li>Propuestas sin cumplir requisitos formales</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget:</strong> Ciclo gobierno (Oct-Sep)</li>
+                        <li><strong>Planificación:</strong> Q4</li>
+                        <li><strong>Licitaciones:</strong> Q1-Q2</li>
+                        <li><strong>Decision:</strong> 6-18 meses</li>
+                        <li><strong>Tech budget:</strong> $20-40M est.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- USEFUL LINKS -->
+        <section class="section-card">
+            <h2>🔗 Useful Resources</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.panamacompra.gob.pa" target="_blank" class="linkedin-btn" style="background: #1e40af;">🏛️ PanamaCompra (Licitaciones)</a>
+                <a href="https://www.linkedin.com/company/banco-nacional-de-panama/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 Banco Nacional Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Banco%20Nacional%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 Search All BNP</a>
+                <a href="https://www.superbancos.gob.pa" target="_blank" class="linkedin-btn" style="background: #1e40af;">📊 SBP (Regulador)</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_nacional.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Panama Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

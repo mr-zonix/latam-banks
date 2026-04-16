@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produbanco Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.chairman { border-left-color: #f59e0b; }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.security { border-left-color: #ef4444; }
+        .exec-profile-card.regional { border-left-color: #f59e0b; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-photo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            border: 3px solid var(--border);
+        }
+        .exec-photo-placeholder.chairman { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-photo-placeholder.ceo { background: linear-gradient(135deg, var(--accent-blue), #2563eb); }
+        .exec-photo-placeholder.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-photo-placeholder.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-photo-placeholder.security { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .exec-photo-placeholder.regional { background: linear-gradient(135deg, #f59e0b, #ea580c); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.3rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 1rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .exec-tag { padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.security { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.verify { background: rgba(107, 114, 128, 0.2); color: #6b7280; }
+        .exec-tag.regional { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .exec-detail-section h4 { font-size: 0.9rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; }
+        .exec-detail-section li { margin-bottom: 0.35rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1.25rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.95rem; }
+        .approach-box p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: #0077b5; color: white; border-radius: 6px; font-size: 0.85rem; text-decoration: none; margin-top: 0.75rem; transition: background 0.2s; }
+        .linkedin-btn:hover { background: #005885; color: white; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: center; }
+        .org-level { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 180px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.regional { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .org-connector { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+        .verified-badge { background: rgba(245, 158, 11, 0.2); color: #f59e0b; padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block; }
+        .update-badge { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.5rem; display: block; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.3 • Apr 2026</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="produbanco.html" class="back-link">← Back to Produbanco</a>
+        
+        <header class="page-header">
+            <h1>👔 Produbanco — Executive Intelligence</h1>
+            <p class="subtitle">Key decision makers for technology & infrastructure sales</p>
+        </header>
+
+        <div class="verified-badge">⚠️ <strong>Regional Group:</strong> Part of Grupo Promerica (9 countries) — <a href="https://www.grupopromerica.com" target="_blank" style="color: #f59e0b;">grupopromerica.com</a></div>
+        
+        <div class="update-badge">
+            📌 <strong>Key Note:</strong> Major tech decisions may require regional (Guatemala HQ) alignment. Consider dual-track approach: local Ecuador + regional Promerica.
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box regional">
+                    <div class="name">Grupo Promerica</div>
+                    <div class="title">Regional HQ (Guatemala)</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CEO Ecuador</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CIO Local</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Digital</div>
+                </div>
+                <div class="org-box tech" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CISO</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Key Decision Makers</h2>
+
+            <!-- REGIONAL -->
+            <div class="exec-profile-card regional">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder regional">GP</div>
+                    <div class="exec-title-info">
+                        <h3>Grupo Promerica — Regional Leadership</h3>
+                        <div class="role">Regional Group (9 Countries)</div>
+                        <div class="tenure">🏦 Guatemala HQ • Regional tech decisions</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag regional">Regional Group</span>
+                            <span class="exec-tag decision">Strategic Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Group Profile</h4>
+                        <ul>
+                            <li><strong>Countries:</strong> Guatemala, Costa Rica, El Salvador, Honduras, Nicaragua, Ecuador, Panamá, Dominican Republic, Grand Cayman</li>
+                            <li><strong>HQ:</strong> Guatemala City</li>
+                            <li><strong>Combined Assets:</strong> $30B+</li>
+                            <li><strong>Regional Tech Budget:</strong> $150-200M estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Regional Opportunity</h4>
+                        <ul>
+                            <li>Group-wide technology standardization</li>
+                            <li>Regional licensing deals (9 countries)</li>
+                            <li>Shared infrastructure initiatives</li>
+                            <li>Core banking (COBIS) regional deployment</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(245, 158, 11, 0.1);">
+                    <h4 style="color: #f59e0b;">🎪 Regional Strategy</h4>
+                    <p><strong>Option 1:</strong> Ecuador-only deals (faster, local decision)<br>
+                    <strong>Option 2:</strong> Regional deals via Guatemala (larger, longer cycle)<br>
+                    <strong>Tip:</strong> Start local, then escalate to regional for scale opportunities.</p>
+                </div>
+                <a href="https://www.linkedin.com/company/grupo-promerica/people/" target="_blank" class="linkedin-btn">🔗 Grupo Promerica on LinkedIn</a>
+            </div>
+
+            <!-- 1. LOCAL CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder ceo">CEO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — CEO Ecuador</h3>
+                        <div class="role">Gerente General / CEO</div>
+                        <div class="tenure">🏦 Local Operations Leader</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag decision">Local Decision Maker</span>
+                            <span class="exec-tag budget">Ecuador Budget</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> CEO / Gerente General Ecuador</li>
+                            <li><strong>Reports to:</strong> Grupo Promerica Board</li>
+                            <li><strong>Authority:</strong> Ecuador operational decisions</li>
+                            <li><strong>Budget:</strong> ~$30-40M annual tech (Ecuador)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important</h4>
+                        <ul>
+                            <li>Final approval for Ecuador-specific tech</li>
+                            <li>Can champion regional deals to HQ</li>
+                            <li>Operational autonomy for local projects</li>
+                            <li>Key sponsor for strategic initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — Ecuador-focused with regional potential.<br>
+                    <strong>Angle:</strong> ROI, efficiency, competitive positioning in Ecuador market.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CEO%20Gerente%20General%20Produbanco" target="_blank" class="linkedin-btn">🔗 Search CEO on LinkedIn</a>
+            </div>
+
+            <!-- 2. LOCAL CIO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder tech">CIO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — CIO / VP Tecnología</h3>
+                        <div class="role">VP Tecnología / CIO</div>
+                        <div class="tenure">🏦 Ecuador Technology Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag tech">CIO/CTO</span>
+                            <span class="exec-tag budget">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> CIO / VP Tecnología</li>
+                            <li><strong>Reports to:</strong> Local CEO + Regional CIO</li>
+                            <li><strong>Authority:</strong> Ecuador infrastructure, local tech projects</li>
+                            <li><strong>Coordination:</strong> Regional tech initiatives</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data center & infrastructure</li>
+                            <li>Core banking operations (COBIS)</li>
+                            <li>Cloud adoption (AWS alignment)</li>
+                            <li>SD-WAN & branch connectivity</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li><strong>PRIMARY CONTACT</strong> for Ecuador infra deals</li>
+                            <li>Can drive local projects independently</li>
+                            <li>Gate to regional tech decisions</li>
+                            <li>Technical authority for POCs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Technical + Strategic — understands both local needs and regional context.<br>
+                    <strong>Hot topics:</strong> SD-WAN rollout, data platform modernization, regional standardization.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Produbanco" target="_blank" class="linkedin-btn">🔗 Search CIO on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP DIGITAL -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder digital">VP</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — VP Digital</h3>
+                        <div class="role">VP Digital / Canales Digitales</div>
+                        <div class="tenure">🏦 Digital Banking Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag digital">Digital Transformation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Digital banking platform</li>
+                            <li>Mobile app development</li>
+                            <li>Customer experience</li>
+                            <li>BIMO & payment integrations</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Digital platform modernization</li>
+                            <li>UX improvement initiatives</li>
+                            <li>Digital onboarding projects</li>
+                            <li>Customer journey optimization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Digital experience, customer acquisition, competitive positioning.<br>
+                    <strong>Hot topics:</strong> App modernization, digital onboarding, omnichannel experience.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Digital%20Canales%20Produbanco" target="_blank" class="linkedin-btn">🔗 Search VP Digital on LinkedIn</a>
+            </div>
+
+            <!-- 4. CISO -->
+            <div class="exec-profile-card security">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder security">CISO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — CISO</h3>
+                        <div class="role">Chief Information Security Officer</div>
+                        <div class="tenure">🏦 Security Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag security">CISO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Security architecture</li>
+                            <li>SOC operations (IBM QRadar)</li>
+                            <li>Compliance (SB Ecuador)</li>
+                            <li>Regional security coordination</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>SOC modernization decisions</li>
+                            <li>Zero Trust initiatives</li>
+                            <li>Security tool consolidation</li>
+                            <li>Regional security standards</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Risk reduction, compliance, threat intelligence.<br>
+                    <strong>Hot topics:</strong> SOC modernization, SIEM upgrade, Zero Trust, regional security.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CISO%20Seguridad%20Produbanco" target="_blank" class="linkedin-btn">🔗 Search CISO on LinkedIn</a>
+            </div>
+
+            <!-- 5. HEAD OF DATA -->
+            <div class="exec-profile-card" style="border-left-color: #06b6d4;">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">HD</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Head of Data</h3>
+                        <div class="role">Gerente de Datos / Head of Analytics</div>
+                        <div class="tenure">🏦 Data & Analytics Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag" style="background: rgba(6, 182, 212, 0.2); color: #06b6d4;">Data & Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data warehouse (Oracle → Cloud)</li>
+                            <li>Analytics & BI (Power BI)</li>
+                            <li>Data governance</li>
+                            <li>ML/AI initiatives</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Data platform modernization</li>
+                            <li>Cloud DW evaluation</li>
+                            <li>Analytics democratization</li>
+                            <li>AI/ML platform decisions</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Data%20Analytics%20Produbanco" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- MEETING PREP -->
+        <section class="section-card">
+            <h2>📋 Meeting Preparation Guide</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics by Role</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>CEO:</strong> Ecuador market, competitive positioning</li>
+                        <li><strong>CIO:</strong> SD-WAN, infrastructure, regional alignment</li>
+                        <li><strong>VP Digital:</strong> App modernization, customer experience</li>
+                        <li><strong>CISO:</strong> SOC modernization, regional security</li>
+                        <li><strong>Head Data:</strong> Cloud DW, analytics platform</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Ecuador-specific quick wins</li>
+                        <li>Regional scale opportunities</li>
+                        <li>ROI-focused business cases</li>
+                        <li>Reference other Promerica countries</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">⚠️ Regional Considerations</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Local:</strong> 4-8 months for Ecuador-only</li>
+                        <li><strong>Regional:</strong> 12+ months for group deals</li>
+                        <li><strong>Budget:</strong> Q4 planning (regional alignment)</li>
+                        <li><strong>Tip:</strong> Position as regional-scalable</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--surface); border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
+            <strong>Research Sources:</strong> 
+            <a href="https://www.produbanco.com.ec/quienes-somos" target="_blank">Produbanco Official</a> • 
+            <a href="https://www.grupopromerica.com" target="_blank">Grupo Promerica</a> •
+            <a href="https://www.linkedin.com/company/produbanco/people/" target="_blank">LinkedIn</a><br>
+            <strong>⚠️ Note:</strong> Executives marked "To Verify" should be confirmed via LinkedIn or official sources.<br>
+            <strong>Last updated:</strong> April 2025
+        </div>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="produbanco.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Ecuador Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

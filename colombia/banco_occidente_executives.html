@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Occidente Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.group { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        
+        .group-note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .group-note h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .group-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_occidente.html" class="back-link">← Back to Banco de Occidente</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco de Occidente — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — Grupo Aval</p>
+        </header>
+
+        <!-- GROUP NOTE -->
+        <div class="group-note">
+            <h4>🏢 Grupo Aval Context</h4>
+            <p>Banco de Occidente es parte de Grupo Aval (Sarmiento Angulo), junto con Banco de Bogotá, Banco Popular, y AV Villas. Tiene base fuerte en el suroccidente colombiano (Valle del Cauca). Tech decisions pueden involucrar nivel grupo.</p>
+        </div>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO verificado. Banco de Occidente opera con cierta autonomía dentro de Grupo Aval pero tech estratégica se coordina a nivel grupo. VPs requieren verificación vía LinkedIn.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Grupo Aval / Sarmiento</div>
+                    <div class="title">Holding / Board Control</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Efraín Otero Álvarez</div>
+                    <div class="title">CEO / Presidente</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Operaciones</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 5</h2>
+
+            <!-- 1. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">EO</div>
+                    <div class="exec-title-info">
+                        <h3>Efraín Otero Álvarez</h3>
+                        <div class="role">CEO / Presidente Banco de Occidente</div>
+                        <div class="tenure">🏦 Banco de Occidente • Grupo Aval</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag group">Grupo Aval</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Background:</strong> Senior banker Grupo Aval</li>
+                            <li><strong>Experience:</strong> Larga trayectoria en banca</li>
+                            <li><strong>Bank character:</strong> Fuerte en Valle del Cauca/suroccidente</li>
+                            <li><strong>Style:</strong> Operacional, enfocado en eficiencia</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Mantener liderazgo regional (suroccidente)</li>
+                            <li>Banca empresarial y comercio exterior</li>
+                            <li>Eficiencia operativa</li>
+                            <li>Digitalización de servicios</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Operaciones del banco</li>
+                            <li>Presupuesto local (con límites grupo)</li>
+                            <li>Inversiones operacionales</li>
+                            <li>Partnerships comerciales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive briefing — enfoque en eficiencia y competitividad regional.<br>
+                    <strong>Angle:</strong> Fortalecer posición en suroccidente, banca empresarial, trade finance.<br>
+                    <strong>Note:</strong> Decisiones tech grandes van a Grupo Aval.<br>
+                    <strong>Geography:</strong> Base en Cali — considerar visitas regionales.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Efra%C3%ADn%20Otero%20%C3%81lvarez%20Banco%20Occidente" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. VP Technology -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / Gerente TI</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Puede coordinarse con tech Grupo Aval</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Tech Contact</span>
+                            <span class="exec-tag group">Group Coordination</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, Gerente de Tecnología, Director TI</li>
+                            <li><strong>Reports to:</strong> CEO + coordinación Grupo Aval</li>
+                            <li><strong>Budget:</strong> $30-50M estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking local</li>
+                            <li>Infraestructura del banco</li>
+                            <li>Implementación de soluciones grupo</li>
+                            <li>Soporte de operaciones</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Group Context</h4>
+                        <ul>
+                            <li>Grupo Aval tiene shared services tech</li>
+                            <li>Core banking puede ser compartido</li>
+                            <li>Algunas decisiones van al grupo</li>
+                            <li>Autonomía para operaciones locales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "Gerente TI" + "Banco de Occidente"<br>
+                    2. Verificar si reporta también a Grupo Aval tech<br>
+                    3. Banco de Occidente tiene sede en Cali — team puede estar allá<br>
+                    4. Entender qué se decide local vs grupo</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Tecnolog%C3%ADa%20Banco%20Occidente&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Operations -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Operaciones / COO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Key para eficiencia operacional</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Operations</span>
+                            <span class="exec-tag budget">Process Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Operaciones, COO, Director Operaciones</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Focus:</strong> Eficiencia, procesos, back-office</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Operaciones back-office</li>
+                            <li>Procesamiento de transacciones</li>
+                            <li>Red de oficinas (~250)</li>
+                            <li>Eficiencia de procesos</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Buyer de soluciones de automatización</li>
+                            <li>Process improvement projects</li>
+                            <li>Back-office technology</li>
+                            <li>Trade finance operations</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Operaciones" + "Banco de Occidente"<br>
+                    2. Banco de Occidente es fuerte en trade finance — operaciones relacionadas importantes<br>
+                    3. Este rol puede tener budget para automatización y eficiencia</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Operaciones%20Banco%20Occidente&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP Digital / Channels -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Canales / Director Digital</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Transformación digital del banco</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital</span>
+                            <span class="exec-tag digital">Channels</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Canales, Director Digital, VP Banca Digital</li>
+                            <li><strong>Focus:</strong> App móvil, internet banking, omnichannel</li>
+                            <li><strong>Challenge:</strong> Competir con apps de bancos más grandes</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>App Banco de Occidente</li>
+                            <li>Internet banking empresarial</li>
+                            <li>Canales digitales</li>
+                            <li>Experiencia de usuario</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Opportunity Areas</h4>
+                        <ul>
+                            <li>App modernization</li>
+                            <li>Digital experience improvement</li>
+                            <li>Trade finance digital</li>
+                            <li>Corporate banking portal</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Mejorar competitividad digital vs bancos más grandes.<br>
+                    <strong>Note:</strong> Banco de Occidente es más corporativo/empresarial — digital para ese segmento.<br>
+                    <strong>Focus:</strong> Trade finance digital, cash management, corporate portal.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Canales%20Banco%20Occidente&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Commercial/Corporate Banking -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Banca Empresarial / Corporativa</h3>
+                        <div class="role">⚠️ To Verify — Key revenue segment</div>
+                        <div class="tenure">🔍 Banco fuerte en banca empresarial y trade finance</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Revenue Leader</span>
+                            <span class="exec-tag decision">Client Relationships</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Banca Empresarial, VP Corporativo, Director Comercial</li>
+                            <li><strong>Focus:</strong> Clientes empresariales, trade finance</li>
+                            <li><strong>Region:</strong> Muy fuerte en Valle del Cauca</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important for Tech Sales</h4>
+                        <ul>
+                            <li>Define necesidades de clientes corporativos</li>
+                            <li>Champion interno para soluciones enterprise</li>
+                            <li>Trade finance = área de diferenciación</li>
+                            <li>Cash management corporativo</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Why:</strong> VP Comercial puede ser champion si tu solución mejora experiencia de sus clientes corporativos.<br>
+                    <strong>Angle:</strong> Soluciones que mejoren trade finance, cash management, corporate banking.<br>
+                    <strong>Tip:</strong> Banco de Occidente es líder en comercio exterior — leverage this.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banca%20Empresarial%20Corporativa%20Banco%20Occidente&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Trade finance digitalization</li>
+                        <li>Corporate banking portal</li>
+                        <li>Cash management solutions</li>
+                        <li>Branch network efficiency (~250 oficinas)</li>
+                        <li>Integration with Grupo Aval systems</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Trade finance expertise/references</li>
+                        <li>Corporate banking solutions</li>
+                        <li>Regional approach (Valle del Cauca focus)</li>
+                        <li>Integration with Aval ecosystem</li>
+                        <li>Efficiency improvements</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Ignorar contexto de Grupo Aval</li>
+                        <li>Tratar como banco pequeño (es parte de grupo grande)</li>
+                        <li>No considerar fortaleza en trade finance</li>
+                        <li>Solo enfoque retail (son más corporativos)</li>
+                        <li>Olvidar presencia regional (Cali/suroccidente)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget:</strong> Coordinado con Grupo Aval</li>
+                        <li><strong>Fiscal year:</strong> Calendario (Jan-Dec)</li>
+                        <li><strong>Decision cycle:</strong> 6-12 meses local, más para grupo</li>
+                        <li><strong>Tech budget:</strong> $30-50M estimated</li>
+                        <li><strong>Key:</strong> Puede ser entry point to Aval group</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banco-de-occidente/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Banco de Occidente Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banco%20Occidente&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Banco de Occidente</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Banco%20Occidente&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/company/grupo-aval/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">🏢 Grupo Aval</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_occidente.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Colombia Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

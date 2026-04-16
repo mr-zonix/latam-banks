@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bantrab Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.worker { border-left-color: #10b981; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.worker { background: linear-gradient(135deg, #10b981, #059669); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.worker { background: rgba(16, 185, 129, 0.2); color: #10b981; }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.worker { border-color: #10b981; background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+        .worker-note {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .worker-note h4 {
+            color: #10b981;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .worker-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bantrab.html" class="back-link">← Back to Bantrab</a>
+        
+        <header class="page-header">
+            <h1>👔 Bantrab — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales | Worker-Owned Bank</p>
+        </header>
+
+        <!-- WORKER OWNERSHIP NOTE -->
+        <div class="worker-note">
+            <h4>👷 Worker-Owned Cooperative Structure — Important Context</h4>
+            <p><strong>Banco de los Trabajadores (Bantrab)</strong> is a unique worker-owned cooperative bank in Guatemala. Ownership is distributed among workers and unions, with governance through elected representation. Decision-making emphasizes worker welfare and financial services for employees across industries. Understanding this social mission is key to successful engagement.</p>
+        </div>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>All leadership roles need LinkedIn verification. Board composed of worker/union representatives. Technology leadership positions need to be confirmed through LinkedIn searches. Use provided search links to validate profiles.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box worker">
+                    <div class="name">Consejo de Administración</div>
+                    <div class="title">Board (Worker Representatives)</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ TBC — Verify</div>
+                    <div class="title">Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ TBC — Verify</div>
+                    <div class="title">Gerente Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ TBC — Verify</div>
+                    <div class="title">Director Infraestructura</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ TBC — Verify</div>
+                    <div class="title">Gerente Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Board / Worker Representatives -->
+            <div class="exec-profile-card worker">
+                <div class="exec-header">
+                    <div class="exec-avatar-large worker">CA</div>
+                    <div class="exec-title-info">
+                        <h3>Consejo de Administración</h3>
+                        <div class="role">Board of Directors (Worker Representatives)</div>
+                        <div class="tenure">👷 Elected from worker/union membership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag worker">Worker Governance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Structure</h4>
+                        <ul>
+                            <li><strong>Composition:</strong> Worker/union elected representatives</li>
+                            <li><strong>Mandate:</strong> Serve worker-owners' interests</li>
+                            <li><strong>Rotation:</strong> Elected terms with limits</li>
+                            <li><strong>Authority:</strong> Strategic direction, major investments</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Focus Areas</h4>
+                        <ul>
+                            <li>Worker financial welfare</li>
+                            <li>Affordable banking services</li>
+                            <li>Payroll & employer partnerships</li>
+                            <li>Credit access for workers</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Note:</strong> Board rarely engages with vendors directly. Work through Gerente General.<br>
+                    <strong>Key insight:</strong> Technology decisions must demonstrate value for worker-members.<br>
+                    <strong>Messaging:</strong> How solutions help serve workers better and more efficiently.</p>
+                </div>
+            </div>
+
+            <!-- 2. Gerente General (TO VERIFY) -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente General / CEO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente General, CEO, Director General</li>
+                            <li><strong>Reports to:</strong> Consejo de Administración</li>
+                            <li><strong>Background:</strong> Likely banking + cooperative experience</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Expanding worker member base</li>
+                            <li>Employer partnership growth</li>
+                            <li>Digital services for workers</li>
+                            <li>Operational efficiency</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Technology investments (board approval for major)</li>
+                            <li>Vendor partnerships</li>
+                            <li>Operational initiatives</li>
+                            <li>Branch expansion</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — focus on member value.<br>
+                    <strong>Angle:</strong> Technology enabling better services for worker-members.<br>
+                    <strong>Key message:</strong> Efficiency gains that benefit the cooperative and its members.<br>
+                    <strong>Don't:</strong> Pure cost-cutting without member benefit narrative.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20CEO%20Bantrab%20Guatemala" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. Gerente Tecnología (TO VERIFY) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente de Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente Tecnología, CIO, Director TI</li>
+                            <li><strong>Reports to:</strong> Gerente General</li>
+                            <li><strong>Team size:</strong> 60-100 people estimated</li>
+                            <li><strong>Budget:</strong> $25-35M annual estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking platform</li>
+                            <li>Payroll integration systems (critical!)</li>
+                            <li>Data center operations</li>
+                            <li>IT security & compliance</li>
+                            <li>Branch technology</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Payroll systems are key to Bantrab's model</li>
+                            <li>Employer integration platform needs</li>
+                            <li>Infrastructure for ~150+ branches</li>
+                            <li>Member service technology</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Tecnología" OR "CIO" + "Bantrab"<br>
+                    2. Also try "Banco de los Trabajadores Guatemala"<br>
+                    3. Check annual report (Memoria de Labores)<br>
+                    4. Payroll & HR system integration expertise is valued</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20CIO%20Bantrab%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. Director Infraestructura (TO VERIFY) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director / Gerente Infraestructura</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Infrastructure</span>
+                            <span class="exec-tag tech">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Infraestructura, Gerente Infraestructura TI</li>
+                            <li><strong>Reports to:</strong> Gerente Tecnología</li>
+                            <li><strong>Focus:</strong> DC, servers, storage, networks</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Data center operations</li>
+                            <li>Server & compute infrastructure</li>
+                            <li>Storage systems</li>
+                            <li>Network infrastructure</li>
+                            <li>Branch connectivity (~150+ locations)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Direct buyer for infrastructure</li>
+                            <li>Technical decision-maker</li>
+                            <li>SD-WAN for branch network</li>
+                            <li>Key contact for hardware sales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Infraestructura" + "Bantrab"<br>
+                    2. Check for VMware/Cisco/Dell certifications<br>
+                    3. This is your PRIMARY sales contact for infrastructure<br>
+                    4. Branch network modernization is likely priority</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20TI%20Bantrab%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. Gerente Canales Digitales (TO VERIFY) -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente Canales Digitales</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">Mobile Banking</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente Digital, Director Canales, Head of Digital</li>
+                            <li><strong>Reports to:</strong> Gerente General or Gerente Tecnología</li>
+                            <li><strong>Focus:</strong> Mobile app, digital services, online</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Bantrab mobile app</li>
+                            <li>Online banking platform</li>
+                            <li>Payroll portal for employers</li>
+                            <li>Worker self-service channels</li>
+                            <li>Digital loan applications</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Digital is key for worker convenience</li>
+                            <li>Payroll & employer digital integration</li>
+                            <li>Mobile-first for worker members</li>
+                            <li>Self-service reduces costs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Digital" OR "Canales" + "Bantrab"<br>
+                    2. Employer portal integration is key differentiator<br>
+                    3. Worker-friendly mobile experience matters<br>
+                    4. Payroll-linked services are priority</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Canales%20Bantrab%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. Gerente Comercial / Empresas (TO VERIFY) -->
+            <div class="exec-profile-card">
+                <div class="exec-header">
+                    <div class="exec-avatar-large" style="background: linear-gradient(135deg, #f97316, #ea580c);">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente Comercial / Relaciones Empresariales</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Employer Partnerships</span>
+                            <span class="exec-tag decision">B2B Relationships</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente Comercial, Director Empresas, VP Partnerships</li>
+                            <li><strong>Reports to:</strong> Gerente General</li>
+                            <li><strong>Focus:</strong> Employer partnerships, payroll agreements</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Employer partnerships are Bantrab's growth engine</li>
+                            <li>Influences technology needs for employer integration</li>
+                            <li>Payroll system requirements</li>
+                            <li>May champion HR/payroll integration tools</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Why engage:</strong> Understands employer technology integration needs.<br>
+                    <strong>Angle:</strong> Solutions that help onboard employers and serve workers better.<br>
+                    <strong>Example:</strong> Payroll integration, employer portals, HR system connectivity.<br>
+                    <strong>Note:</strong> May be internal champion for B2B technology.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Comercial%20Empresas%20Bantrab%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Payroll integration platform modernization</li>
+                        <li>Employer portal & HR system connectivity</li>
+                        <li>SD-WAN for ~150+ branches</li>
+                        <li>Mobile banking for worker members</li>
+                        <li>Self-service & automation</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Worker/member benefit messaging</li>
+                        <li>Payroll & HR integration expertise</li>
+                        <li>Cost efficiency for the cooperative</li>
+                        <li>Solutions that serve workers better</li>
+                        <li>Cooperative banking references</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Ignoring cooperative governance structure</li>
+                        <li>Pure profit maximization messaging</li>
+                        <li>Complex solutions beyond their scale</li>
+                        <li>Rushing decisions (board approvals needed)</li>
+                        <li>Generic banking pitches (understand their model)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Sep-Nov</li>
+                        <li><strong>Decision cycle:</strong> 9-12 months</li>
+                        <li><strong>Board approval:</strong> Major investments</li>
+                        <li><strong>RFP threshold:</strong> >$200K</li>
+                        <li><strong>Tech budget:</strong> $25-35M annually</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/bantrab/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Bantrab Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Bantrab%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 Bantrab Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Banco%20Trabajadores%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 Banco Trabajadores</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Bantrab&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+            </div>
+        </section>
+
+        <!-- WORKER OWNERSHIP CONTEXT -->
+        <section class="section-card">
+            <h2>👷 Worker Ownership Context — Why It Matters</h2>
+            <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 8px;">
+                <p style="font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                    <strong>Bantrab's worker-owned model</strong> fundamentally shapes how they operate and make decisions:
+                </p>
+                <ul style="font-size: 0.85rem; margin-top: 0.75rem; padding-left: 1.2rem;">
+                    <li><strong>Mission:</strong> Serve worker-members, not external shareholders</li>
+                    <li><strong>Governance:</strong> Elected board from worker membership</li>
+                    <li><strong>Growth model:</strong> Employer partnerships → payroll agreements → worker members</li>
+                    <li><strong>Key differentiator:</strong> Payroll deduction loans (low risk, convenient)</li>
+                    <li><strong>Technology priority:</strong> Employer integration, payroll systems</li>
+                    <li><strong>Decision style:</strong> Consensus-oriented, board approval for major investments</li>
+                </ul>
+                <p style="font-size: 0.85rem; margin-top: 0.75rem; font-style: italic;">
+                    💡 <strong>Sales tip:</strong> Frame your solutions in terms of how they help Bantrab serve its worker-members better. Payroll/employer integration is their core competency — solutions that enhance this are highly valued.
+                </p>
+            </div>
+        </section>
+
+        <!-- BANTRAB BUSINESS MODEL -->
+        <section class="section-card">
+            <h2>💼 Bantrab Business Model — Technology Implications</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #10b981; margin-bottom: 0.75rem;">🔗 Payroll Integration</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                        Bantrab's core business model relies on payroll agreements with employers. They need robust integration with diverse HR/payroll systems. <strong>Technology that improves employer onboarding and payroll connectivity is strategically valuable.</strong>
+                    </p>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-purple); margin-bottom: 0.75rem;">📱 Worker Self-Service</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                        Workers expect convenient access to their accounts, loans, and services. Mobile-first, easy-to-use interfaces matter. <strong>Digital channels that make worker banking more convenient support member satisfaction.</strong>
+                    </p>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🏢 Employer Portal</h4>
+                    <p style="font-size: 0.85rem; line-height: 1.5; margin: 0;">
+                        Employers need easy tools to manage payroll deductions and employee benefits. <strong>B2B technology that simplifies employer experience helps Bantrab win more payroll agreements.</strong>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bantrab.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Guatemala Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

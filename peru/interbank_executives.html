@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interbank Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.owner { border-left-color: #00a19b; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.owner { background: linear-gradient(135deg, #00a19b, #007d78); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.owner { background: rgba(0, 161, 155, 0.2); color: #00a19b; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.owner { border-color: #00a19b; background: rgba(0, 161, 155, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        
+        .group-note { background: rgba(0, 161, 155, 0.1); border: 1px solid rgba(0, 161, 155, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .group-note h4 { color: #00a19b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .group-note p { margin: 0; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="interbank.html" class="back-link">← Back to Interbank Profile</a>
+        
+        <header class="page-header">
+            <h1>👔 Interbank — Executive Intelligence</h1>
+            <p class="subtitle">Intercorp Group • 🟢 High Digital Ambition • Local decision autonomy</p>
+        </header>
+
+        <div class="group-note">
+            <h4>🏢 Intercorp Group — Local Powerhouse</h4>
+            <p>Interbank is the financial arm of Intercorp, Peru's largest retail conglomerate (Supermercados Peruanos, Cineplanet, Inteligo, etc.). Unlike global banks, Interbank has FULL LOCAL decision authority. Known for digital innovation and modern approach — they compete aggressively with BCP.</p>
+        </div>
+
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO and Chairman verified from annual reports. Technology leadership roles require LinkedIn verification. Interbank is known for young, tech-savvy leadership team.</p>
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box owner">
+                    <div class="name">Carlos Rodríguez-Pastor</div>
+                    <div class="title">Chairman / Intercorp Owner</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Luis Felipe Castellanos</div>
+                    <div class="title">CEO Interbank</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Technology / CTO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Digital</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Head of Data</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- Owner -->
+            <div class="exec-profile-card owner">
+                <div class="exec-header">
+                    <div class="exec-avatar-large owner">CR</div>
+                    <div class="exec-title-info">
+                        <h3>Carlos Rodríguez-Pastor Persivale</h3>
+                        <div class="role">Chairman / Controlling Shareholder</div>
+                        <div class="tenure">🏢 Intercorp Group • Peru's richest person</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag owner">Ultimate Owner</span>
+                            <span class="exec-tag decision">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Family:</strong> Rodríguez-Pastor (controlling)</li>
+                            <li><strong>Group:</strong> Intercorp Peru Ltd.</li>
+                            <li><strong>Education:</strong> Dartmouth, UC Berkeley MBA</li>
+                            <li><strong>Net Worth:</strong> ~$4B (Forbes 2024)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Known For</h4>
+                        <ul>
+                            <li>Modern retail revolution in Peru</li>
+                            <li>Customer-centric approach</li>
+                            <li>Tech-forward investments</li>
+                            <li>Silicon Valley mindset</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Intercorp Companies</h4>
+                        <ul>
+                            <li>Interbank (banking)</li>
+                            <li>Supermercados Peruanos</li>
+                            <li>Inteligo (wealth mgmt)</li>
+                            <li>Cineplanet, Real Plaza</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(0, 161, 155, 0.1);">
+                    <h4 style="color: #00a19b;">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Owner-level — rare direct access.<br>
+                    <strong>Angle:</strong> Innovation, customer experience, digital transformation at scale.<br>
+                    <strong>Key:</strong> He values disruption and modern approaches. Tech-forward mindset.<br>
+                    <strong>Access:</strong> Through CEO or Intercorp leadership only.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Carlos%20Rodriguez%20Pastor%20Intercorp" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">LC</div>
+                    <div class="exec-title-info">
+                        <h3>Luis Felipe Castellanos</h3>
+                        <div class="role">CEO / Gerente General</div>
+                        <div class="tenure">🏦 Interbank • CEO since 2018</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Full Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Tenure:</strong> CEO since 2018</li>
+                            <li><strong>Background:</strong> 20+ years banking experience</li>
+                            <li><strong>Previous:</strong> Various roles at Interbank</li>
+                            <li><strong>Style:</strong> Digital-first, customer-centric</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Digital banking leadership</li>
+                            <li>Customer experience excellence</li>
+                            <li>Aggressive BCP competition</li>
+                            <li>Technology investment</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>All strategic investments</li>
+                            <li>Technology roadmap</li>
+                            <li>Vendor partnerships</li>
+                            <li>Full P&L responsibility</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — strategic vision discussions.<br>
+                    <strong>Angle:</strong> Competitive differentiation vs BCP, digital innovation, customer experience.<br>
+                    <strong>Key:</strong> Interbank wants to be seen as the modern, innovative alternative to BCP.<br>
+                    <strong>Best timing:</strong> Banking events, Peru Fintech conferences.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Luis%20Felipe%20Castellanos%20Interbank" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- CTO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Technology / CTO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Technology, CTO, Gerente TI</li>
+                            <li><strong>Reports to:</strong> CEO directly</li>
+                            <li><strong>Budget:</strong> Significant — Interbank invests heavily</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking modernization</li>
+                            <li>Cloud strategy</li>
+                            <li>Data centers & infrastructure</li>
+                            <li>IT security & compliance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Interbank = aggressive tech investor</li>
+                            <li>Full local decision authority</li>
+                            <li>Competing with BCP/Yape</li>
+                            <li>Modern tech stack approach</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find</h4>
+                    <p>Search: "VP Technology" OR "CTO" + "Interbank" on LinkedIn. Interbank tends to hire young, innovative tech leaders.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CTO%20Technology%20Interbank%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- VP Digital -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Digital / Head of Digital</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">App & Mobile</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Digital, Head of Digital Banking</li>
+                            <li><strong>Focus:</strong> Mobile app, digital acquisition</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Interbank App (competing w/ Yape)</li>
+                            <li>Digital onboarding</li>
+                            <li>Online banking experience</li>
+                            <li>API/Open Banking</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 Key Insight</h4>
+                    <p>Interbank is playing catch-up to Yape but investing heavily. Their digital wallet "Tunki" competes directly. This team is hungry for innovation to differentiate from BCP.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Interbank%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- Head of Data -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Head of Data & Analytics</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Data & AI</span>
+                            <span class="exec-tag tech">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CDO, Head of Data, VP Analytics</li>
+                            <li><strong>Focus:</strong> Data platform, AI/ML, customer insights</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Enterprise data platform</li>
+                            <li>AI/ML for personalization</li>
+                            <li>Customer 360 view</li>
+                            <li>Intercorp data synergies</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">💡 Intercorp Advantage</h4>
+                    <p>Unique opportunity: Intercorp can combine Interbank financial data with Supermercados Peruanos retail data. Cross-ecosystem analytics is a strategic priority.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Data%20Analytics%20Interbank%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- CFO -->
+            <div class="exec-profile-card">
+                <div class="exec-header">
+                    <div class="exec-avatar-large">?</div>
+                    <div class="exec-title-info">
+                        <h3>CFO / VP Finance</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Budget Owner</span>
+                            <span class="exec-tag decision">Investment Approval</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CFO, VP Finance, Finance Director</li>
+                            <li><strong>Focus:</strong> P&L, investment approval</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Signs off on major investments</li>
+                            <li>ROI-focused decision maker</li>
+                            <li>Reports to CEO & Board</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CFO%20Finance%20Interbank%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue);">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Digital wallet competition (vs Yape)</li>
+                        <li>Customer experience innovation</li>
+                        <li>Intercorp ecosystem synergies</li>
+                        <li>Cloud & modern architecture</li>
+                        <li>Data-driven personalization</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green);">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Innovation & differentiation</li>
+                        <li>Modern, cloud-native solutions</li>
+                        <li>Customer experience focus</li>
+                        <li>Fast implementation</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444;">❌ Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Legacy-sounding messaging</li>
+                        <li>Slow implementation timelines</li>
+                        <li>"Enterprise" heavy-weight approaches</li>
+                        <li>Comparing them to BCP unfavorably</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b;">📅 Budget & Timing</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Planning:</strong> Q3-Q4</li>
+                        <li><strong>Tech budget:</strong> Aggressive investor</li>
+                        <li><strong>Decision cycle:</strong> 3-6 months</li>
+                        <li><strong>Best angle:</strong> Innovation, CX</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN SEARCHES -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/interbank/people/" target="_blank" class="linkedin-btn">👥 All Interbank Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Interbank%20Peru" target="_blank" class="linkedin-btn">🔍 VPs at Interbank</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Technology%20Interbank" target="_blank" class="linkedin-btn">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Interbank" target="_blank" class="linkedin-btn">📱 Digital Team</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="interbank.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Peru Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

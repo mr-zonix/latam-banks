@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBVA Perú Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.global { border-left-color: #0047ba; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.global { background: linear-gradient(135deg, #0047ba, #003087); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.global { background: rgba(0, 71, 186, 0.2); color: #0047ba; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.global { border-color: #0047ba; background: rgba(0, 71, 186, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        
+        .global-warning { background: rgba(0, 71, 186, 0.1); border: 1px solid rgba(0, 71, 186, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .global-warning h4 { color: #0047ba; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .global-warning p { margin: 0; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bbva_peru.html" class="back-link">← Back to BBVA Perú Profile</a>
+        
+        <header class="page-header">
+            <h1>👔 BBVA Perú — Executive Intelligence</h1>
+            <p class="subtitle">BBVA Group subsidiary • 🌐 Global Bank • Limited local autonomy</p>
+        </header>
+
+        <div class="global-warning">
+            <h4>🌐 Global Bank — Decision Authority in Madrid</h4>
+            <p>BBVA Perú is a subsidiary of BBVA Group (Spain). Major technology decisions, infrastructure investments, and strategic platforms are decided at global level. Local executives have authority over Peru-specific compliance, local integrations, and niche solutions that complement global platforms.</p>
+        </div>
+
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO verified from BBVA Peru annual reports and public announcements. Other executive roles require LinkedIn verification. Note: Technology leadership often rotates between global and local assignments.</p>
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box global">
+                    <div class="name">BBVA Group (Madrid)</div>
+                    <div class="title">Carlos Torres Vila - Group CEO</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Fernando Eguiluz Lozano</div>
+                    <div class="title">CEO BBVA Perú</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Head of IT / CIO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Head of Digital</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CFO</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- Global CEO Reference -->
+            <div class="exec-profile-card global">
+                <div class="exec-header">
+                    <div class="exec-avatar-large global">CT</div>
+                    <div class="exec-title-info">
+                        <h3>Carlos Torres Vila</h3>
+                        <div class="role">Group CEO — BBVA (Madrid)</div>
+                        <div class="tenure">🌐 Ultimate decision maker for strategic technology</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag global">Global HQ</span>
+                            <span class="exec-tag decision">Strategic Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Why It Matters</h4>
+                        <ul>
+                            <li><strong>BBVA = Digital pioneer</strong> in global banking</li>
+                            <li>All major tech platforms decided in Madrid</li>
+                            <li>Local subsidiaries use global platforms</li>
+                            <li>Peru team has limited local budget authority</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Global Tech Strategy</h4>
+                        <ul>
+                            <li>Cloud-first (AWS + Google Cloud)</li>
+                            <li>Open Banking / API banking</li>
+                            <li>AI/ML for customer experience</li>
+                            <li>Mobile-first strategy globally</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(0, 71, 186, 0.1);">
+                    <h4 style="color: #0047ba;">🎪 Implication for Sales</h4>
+                    <p><strong>Don't:</strong> Pitch infrastructure or core platforms — decided globally.<br>
+                    <strong>Do:</strong> Focus on Peru-specific needs that complement global platforms.</p>
+                </div>
+            </div>
+
+            <!-- CEO Peru -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">FE</div>
+                    <div class="exec-title-info">
+                        <h3>Fernando Eguiluz Lozano</h3>
+                        <div class="role">CEO / Country Manager — BBVA Perú</div>
+                        <div class="tenure">🏦 BBVA Perú • Leading since 2019</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Peru Decision Maker</span>
+                            <span class="exec-tag budget">Local Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Tenure:</strong> CEO since 2019</li>
+                            <li><strong>Background:</strong> 25+ years in BBVA Group</li>
+                            <li><strong>Previous:</strong> BBVA Mexico, BBVA Spain</li>
+                            <li><strong>Style:</strong> Digital transformation focus</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Digital customer acquisition</li>
+                            <li>Mobile banking penetration</li>
+                            <li>Risk management (NPL challenges)</li>
+                            <li>Regulatory compliance (SBS)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Local compliance tools</li>
+                            <li>Peru-specific solutions</li>
+                            <li>Branch network optimization</li>
+                            <li>Local vendor partnerships</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — strategic, not technical.<br>
+                    <strong>Angle:</strong> Peru market challenges, SBS compliance, local competition.<br>
+                    <strong>Key:</strong> Position as complement to global platforms, not replacement.<br>
+                    <strong>Best timing:</strong> Banking events, Peru Digital Congress.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Fernando%20Eguiluz%20BBVA%20Peru" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- CIO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Head of IT / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">IT Operations</span>
+                            <span class="exec-tag global">Reports to Global IT</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CIO, Head of IT, Director TI</li>
+                            <li><strong>Reports to:</strong> CEO Peru + Global IT</li>
+                            <li><strong>Focus:</strong> Local operations, integration</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Local IT operations</li>
+                            <li>Integration with global platforms</li>
+                            <li>Peru compliance systems</li>
+                            <li>Branch IT infrastructure</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Authority Scope</h4>
+                        <ul>
+                            <li><span style="color: var(--accent-green);">✅ Local:</span> Compliance, integration</li>
+                            <li><span style="color: #ef4444;">❌ Global:</span> Core banking, cloud strategy</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find</h4>
+                    <p>Search: "CIO" OR "IT" + "BBVA Peru" on LinkedIn. Role may be held by expat from Spain or local hire. Check for dual reporting to Madrid.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20IT%20BBVA%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- Head of Digital -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Head of Digital Banking</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">Mobile App</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Head of Digital, Digital Director</li>
+                            <li><strong>Focus:</strong> Mobile app, digital sales</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>BBVA Peru mobile app</li>
+                            <li>Digital onboarding</li>
+                            <li>Online banking channels</li>
+                            <li>Digital customer experience</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 Key Insight</h4>
+                    <p>BBVA has strong global digital platforms. Local digital team focuses on Peru market adaptation, local payment integrations (Yape competition), and SBS-compliant onboarding.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20BBVA%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- CFO -->
+            <div class="exec-profile-card">
+                <div class="exec-header">
+                    <div class="exec-avatar-large">?</div>
+                    <div class="exec-title-info">
+                        <h3>CFO / Finance Director</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Budget Owner</span>
+                            <span class="exec-tag decision">Investment Approval</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CFO, Finance Director, VP Finance</li>
+                            <li><strong>Focus:</strong> Budget, P&L, investment approval</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Controls local budget allocation</li>
+                            <li>Signs off on local investments</li>
+                            <li>ROI-focused decision maker</li>
+                            <li>Key ally for budget approval</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CFO%20Finance%20BBVA%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- Risk -->
+            <div class="exec-profile-card">
+                <div class="exec-header">
+                    <div class="exec-avatar-large">?</div>
+                    <div class="exec-title-info">
+                        <h3>Chief Risk Officer</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Risk & Compliance</span>
+                            <span class="exec-tag tech">RegTech Buyer</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CRO, Chief Risk Officer, Director Riesgos</li>
+                            <li><strong>Focus:</strong> Credit risk, compliance, SBS</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Critical</h4>
+                        <ul>
+                            <li>NPL rising = risk focus increasing</li>
+                            <li>SBS compliance requirements</li>
+                            <li>Credit scoring optimization</li>
+                            <li>Fraud detection needs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>💡 Opportunity</h4>
+                    <p>BBVA Peru's rising NPL (2.87% vs 1.8% avg) creates urgency for risk solutions. CRO has budget for Peru-specific credit risk tools and SBS compliance systems.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Risk%20CRO%20BBVA%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue);">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Peru-specific compliance (SBS)</li>
+                        <li>Local credit risk patterns</li>
+                        <li>Branch network optimization</li>
+                        <li>NPL management tools</li>
+                        <li>Local payment integrations</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green);">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Complement global platforms</li>
+                        <li>Peru-specific solutions</li>
+                        <li>SBS regulatory focus</li>
+                        <li>Quick implementation</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444;">❌ Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Pitching core banking replacement</li>
+                        <li>Cloud infrastructure (global decision)</li>
+                        <li>Competing with BBVA global tech</li>
+                        <li>Long implementation timelines</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b;">📅 Budget & Timing</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Planning:</strong> Q2-Q3</li>
+                        <li><strong>Local budget:</strong> Limited</li>
+                        <li><strong>Decision cycle:</strong> 3-6 months</li>
+                        <li><strong>Best angle:</strong> Compliance urgency</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN SEARCHES -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/bbva-peru/people/" target="_blank" class="linkedin-btn">👥 All BBVA Peru Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20BBVA%20Peru" target="_blank" class="linkedin-btn">🔍 Directors at BBVA Peru</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20BBVA%20Peru" target="_blank" class="linkedin-btn">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Riesgos%20BBVA%20Peru" target="_blank" class="linkedin-btn">⚠️ Risk Team</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bbva_peru.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Peru Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

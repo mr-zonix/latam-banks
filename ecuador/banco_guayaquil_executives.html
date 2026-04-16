@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Guayaquil Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.chairman { border-left-color: #f59e0b; }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.security { border-left-color: #ef4444; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            flex-shrink: 0;
+        }
+        .exec-photo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            border: 3px solid var(--border);
+        }
+        .exec-photo-placeholder.chairman { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-photo-placeholder.ceo { background: linear-gradient(135deg, var(--accent-blue), #2563eb); }
+        .exec-photo-placeholder.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-photo-placeholder.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-photo-placeholder.security { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.3rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 1rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .exec-tag { padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.security { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.verify { background: rgba(107, 114, 128, 0.2); color: #6b7280; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .exec-detail-section h4 { font-size: 0.9rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; }
+        .exec-detail-section li { margin-bottom: 0.35rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1.25rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.95rem; }
+        .approach-box p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: #0077b5; color: white; border-radius: 6px; font-size: 0.85rem; text-decoration: none; margin-top: 0.75rem; transition: background 0.2s; }
+        .linkedin-btn:hover { background: #005885; color: white; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: center; }
+        .org-level { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 180px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .org-connector { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+        .verified-badge { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block; }
+        .update-badge { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.5rem; display: block; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.3 • Apr 2026</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_guayaquil.html" class="back-link">← Back to Banco Guayaquil</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Guayaquil — Executive Intelligence</h1>
+            <p class="subtitle">Key decision makers for technology & infrastructure sales</p>
+        </header>
+
+        <div class="verified-badge">🔍 Source: <a href="https://www.bancoguayaquil.com/sobre-nosotros/gobierno-corporativo" target="_blank" style="color: var(--accent-purple);">bancoguayaquil.com/gobierno-corporativo</a></div>
+        
+        <div class="update-badge">
+            📌 <strong>Key Note:</strong> Bank founded by Guillermo Lasso (Ex-President of Ecuador 2021-2023). Tech-forward culture with fastest decision cycles in Ecuador.
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Guillermo Lasso Mendoza</div>
+                    <div class="title">Presidente del Directorio</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente General (CEO)</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología / CIO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Chief Digital Officer</div>
+                </div>
+                <div class="org-box tech" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CISO</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Key Decision Makers</h2>
+
+            <!-- 1. CHAIRMAN -->
+            <div class="exec-profile-card chairman">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder chairman">GL</div>
+                    <div class="exec-title-info">
+                        <h3>Guillermo Lasso Mendoza</h3>
+                        <div class="role">Presidente del Directorio (Chairman)</div>
+                        <div class="tenure">🏦 Fundador del Banco • Ex-Presidente del Ecuador (2021-2023)</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> Founder & Chairman</li>
+                            <li><strong>Family:</strong> Lasso family (controlling)</li>
+                            <li><strong>Authority:</strong> Ultimate strategic decisions</li>
+                            <li><strong>Political:</strong> Ex-President of Ecuador</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Background</h4>
+                        <ul>
+                            <li>Founded Banco Guayaquil in 1923</li>
+                            <li>Former VP of Banco de Guayaquil (Coca-Cola banker)</li>
+                            <li>President of Ecuador (2021-2023)</li>
+                            <li>Known for modernization & efficiency focus</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(245, 158, 11, 0.1);">
+                    <h4 style="color: #f59e0b;">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Board-level only — requires CEO introduction and strategic importance.<br>
+                    <strong>Note:</strong> High-profile figure. Approach through bank's professional management team first.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Guillermo%20Lasso%20Mendoza%20Banco%20Guayaquil" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder ceo">CEO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Gerente General</h3>
+                        <div class="role">Gerente General (CEO)</div>
+                        <div class="tenure">🏦 Verify via LinkedIn or Official Website</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> CEO / Gerente General</li>
+                            <li><strong>Reports to:</strong> Board / Chairman</li>
+                            <li><strong>Authority:</strong> Operational decisions, major tech investments</li>
+                            <li><strong>Budget:</strong> $40-50M annual tech spend (estimated)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important</h4>
+                        <ul>
+                            <li>Final approval for strategic tech investments</li>
+                            <li>Champions innovation culture</li>
+                            <li>Fast decision-making style (bank culture)</li>
+                            <li>Key for executive briefings</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — strategic vision, not product pitches.<br>
+                    <strong>Angle:</strong> Innovation, competitive advantage, digital leadership.<br>
+                    <strong>Culture:</strong> Bank moves fast — be ready to execute quickly.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20CEO%20Banco%20Guayaquil" target="_blank" class="linkedin-btn">🔗 Search CEO on LinkedIn</a>
+            </div>
+
+            <!-- 3. CIO/VP TECH -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder tech">CIO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — VP Tecnología / CIO</h3>
+                        <div class="role">VP Tecnología y Operaciones</div>
+                        <div class="tenure">🏦 Primary Contact for Infrastructure</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag tech">CIO/CTO</span>
+                            <span class="exec-tag budget">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> VP Tecnología / CIO</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Budget:</strong> ~$40-50M annually</li>
+                            <li><strong>Focus:</strong> AWS cloud, infrastructure, operations</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Cloud strategy (AWS primary)</li>
+                            <li>Infrastructure & data centers</li>
+                            <li>Core banking technology</li>
+                            <li>Kubernetes & containerization</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li><strong>PRIMARY CONTACT</strong> for infrastructure deals</li>
+                            <li>Cloud-native mindset (AWS-first)</li>
+                            <li>Technical authority for POCs</li>
+                            <li>Can champion innovative solutions</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Technical + Strategic — can go deep but needs business case.<br>
+                    <strong>Hot topics:</strong> Cloud optimization, Kubernetes expansion, VMware alternatives, edge computing.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Banco%20Guayaquil" target="_blank" class="linkedin-btn">🔗 Search CIO on LinkedIn</a>
+            </div>
+
+            <!-- 4. CDO -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder digital">CDO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Chief Digital Officer</h3>
+                        <div class="role">Chief Digital Officer / VP Transformación Digital</div>
+                        <div class="tenure">🏦 Digital Banking & Innovation</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag digital">Digital Transformation</span>
+                            <span class="exec-tag digital">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Digital banking transformation</li>
+                            <li>Super app strategy development</li>
+                            <li>Customer experience innovation</li>
+                            <li>Fintech partnerships & integrations</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Drives digital transformation budget</li>
+                            <li>Key for app modernization deals</li>
+                            <li>Embedded finance & BaaS decisions</li>
+                            <li>GenAI customer experience initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Digital transformation, customer experience, competitive advantage.<br>
+                    <strong>Hot topics:</strong> Super app development, embedded finance APIs, GenAI for CX, digital onboarding.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Chief%20Digital%20Officer%20Banco%20Guayaquil" target="_blank" class="linkedin-btn">🔗 Search CDO on LinkedIn</a>
+            </div>
+
+            <!-- 5. CISO -->
+            <div class="exec-profile-card security">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder security">CISO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — CISO</h3>
+                        <div class="role">Chief Information Security Officer</div>
+                        <div class="tenure">🏦 Security Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag security">CISO</span>
+                            <span class="exec-tag security">Security Budget</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Security architecture & strategy</li>
+                            <li>Cloud security (AWS-native tools)</li>
+                            <li>Identity & access management</li>
+                            <li>Compliance & regulatory (SB Ecuador)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Zero Trust initiative decisions</li>
+                            <li>Cloud security posture management</li>
+                            <li>SIEM/SOAR modernization (Splunk Cloud)</li>
+                            <li>Can block or enable infrastructure deals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Risk reduction, cloud security, compliance alignment.<br>
+                    <strong>Hot topics:</strong> Zero Trust, SASE, XDR, cloud security posture management (CSPM).</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CISO%20Seguridad%20Banco%20Guayaquil" target="_blank" class="linkedin-btn">🔗 Search CISO on LinkedIn</a>
+            </div>
+
+            <!-- 6. Chief Data Officer -->
+            <div class="exec-profile-card" style="border-left-color: #06b6d4;">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">CDO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Chief Data Officer</h3>
+                        <div class="role">Chief Data Officer / Head of Analytics</div>
+                        <div class="tenure">🏦 Data & AI Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag" style="background: rgba(6, 182, 212, 0.2); color: #06b6d4;">Data & Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data platform (Snowflake)</li>
+                            <li>Analytics & BI (Looker)</li>
+                            <li>AI/ML initiatives (SageMaker)</li>
+                            <li>Data governance & quality</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Most advanced data stack in Ecuador</li>
+                            <li>GenAI deployment decisions</li>
+                            <li>Real-time personalization initiatives</li>
+                            <li>MLOps platform expansion</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Chief%20Data%20Officer%20Analytics%20Banco%20Guayaquil" target="_blank" class="linkedin-btn">🔗 Search CDO on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- MEETING PREP -->
+        <section class="section-card">
+            <h2>📋 Meeting Preparation Guide</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics by Role</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>CEO:</strong> ROI, competitive positioning, market leadership</li>
+                        <li><strong>CIO:</strong> Cloud optimization, Kubernetes, infrastructure</li>
+                        <li><strong>CDO (Digital):</strong> Super app, embedded finance, GenAI CX</li>
+                        <li><strong>CISO:</strong> Zero Trust, cloud security, compliance</li>
+                        <li><strong>CDO (Data):</strong> Snowflake expansion, MLOps, real-time analytics</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Innovation-first positioning</li>
+                        <li>Cloud-native solutions (AWS ecosystem)</li>
+                        <li>Quick POC approach — they move fast</li>
+                        <li>Competitive differentiation stories</li>
+                        <li>Data/AI use cases with clear ROI</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget:</strong> Rolling quarterly reviews</li>
+                        <li><strong>Tech budget:</strong> $40-50M annually</li>
+                        <li><strong>Decision speed:</strong> 3-6 months (fastest in Ecuador)</li>
+                        <li><strong>Best approach:</strong> Innovation pitch + quick POC</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--surface); border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
+            <strong>Research Sources:</strong> 
+            <a href="https://www.bancoguayaquil.com/sobre-nosotros/gobierno-corporativo" target="_blank">Banco Guayaquil Official</a> • 
+            <a href="https://www.linkedin.com/company/banco-de-guayaquil/people/" target="_blank">LinkedIn Company Page</a><br>
+            <strong>⚠️ Note:</strong> Executives marked "To Verify" should be confirmed via LinkedIn or official sources before outreach.<br>
+            <strong>Last updated:</strong> April 2025
+        </div>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_guayaquil.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Ecuador Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

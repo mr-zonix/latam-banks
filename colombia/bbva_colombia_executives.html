@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBVA Colombia Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.global { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        
+        .global-note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .global-note h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .global-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bbva_colombia.html" class="back-link">← Back to BBVA Colombia</a>
+        
+        <header class="page-header">
+            <h1>👔 BBVA Colombia — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — Grupo BBVA España</p>
+        </header>
+
+        <!-- GLOBAL BANK NOTE -->
+        <div class="global-note">
+            <h4>🌍 Global Bank Context</h4>
+            <p>BBVA Colombia es subsidiaria de BBVA España (headquartered Madrid). Muchas decisiones tecnológicas vienen del grupo global. BBVA es líder mundial en transformación digital bancaria. Tech stack suele ser definido por Madrid.</p>
+        </div>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO Country verificado. VPs de tecnología requieren verificación — notar que tech puede estar muy centralizado desde España. BBVA tiene CIO global muy fuerte.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">BBVA España (Madrid)</div>
+                    <div class="title">Global HQ / Board</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Mario Pardo Bayona</div>
+                    <div class="title">CEO / Country Manager Colombia</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Infraestructura</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 5</h2>
+
+            <!-- 1. CEO Colombia -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">MP</div>
+                    <div class="exec-title-info">
+                        <h3>Mario Pardo Bayona</h3>
+                        <div class="role">CEO / Country Manager Colombia</div>
+                        <div class="tenure">🏦 BBVA Colombia • Reporta a BBVA España</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Country Decision Maker</span>
+                            <span class="exec-tag global">Global Bank</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Background:</strong> Senior banker BBVA Group</li>
+                            <li><strong>Reports to:</strong> BBVA España/Latam leadership</li>
+                            <li><strong>Scope:</strong> Operación Colombia completa</li>
+                            <li><strong>Style:</strong> Ejecutor de estrategia global</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Implementación de digital transformation BBVA</li>
+                            <li>App BBVA Colombia (misma plataforma global)</li>
+                            <li>Competitividad en mercado colombiano</li>
+                            <li>Eficiencia operativa</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Operaciones locales Colombia</li>
+                            <li>Adaptaciones de productos globales</li>
+                            <li>Presupuesto local (con límites)</li>
+                            <li>Partnerships locales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Country-level executive briefing.<br>
+                    <strong>Angle:</strong> Cómo apoyar metas regionales, eficiencia, competitividad local.<br>
+                    <strong>Note:</strong> Tech decisions grandes van a Madrid. Country manager puede influenciar pero no decidir solo.<br>
+                    <strong>Tip:</strong> Si tienes relación con BBVA España, aprovéchala — decisions flow top-down.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Mario%20Pardo%20Bayona%20BBVA%20Colombia" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. Director Tecnología -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Tecnología / CIO Colombia</h3>
+                        <div class="role">⚠️ To Verify — Tech muy centralizada</div>
+                        <div class="tenure">🔍 Reporta a Colombia + BBVA Global CIO</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Tech Contact</span>
+                            <span class="exec-tag global">Dual Report</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Tecnología, CIO Colombia, Head of IT</li>
+                            <li><strong>Reports to:</strong> CEO Colombia + BBVA Global CIO (matrix)</li>
+                            <li><strong>Autonomy:</strong> Limitada — stack es global</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Implementación de plataforma global BBVA</li>
+                            <li>Soporte local de aplicaciones</li>
+                            <li>Adaptaciones regulatorias SFC</li>
+                            <li>Operaciones día a día</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Key Understanding</h4>
+                        <ul>
+                            <li>BBVA tiene plataforma tecnológica global única</li>
+                            <li>Core banking: ALNOVA (desarrollado internamente)</li>
+                            <li>App móvil: misma en todos los países</li>
+                            <li>Decisiones grandes = Madrid</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Director Tecnología" OR "CIO" + "BBVA Colombia"<br>
+                    2. Verificar estructura de reporte (puede ser matrix con España)<br>
+                    3. BBVA tiene modelo muy centralizado — tech local es más operativa<br>
+                    4. Para deals grandes, necesitas BBVA España buy-in</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Tecnolog%C3%ADa%20CIO%20BBVA%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. Director Infraestructura -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Infraestructura</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Infra puede ser regional/shared con otros BBVA LATAM</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Infrastructure</span>
+                            <span class="exec-tag tech">Operations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Infraestructura, Head of IT Operations</li>
+                            <li><strong>Reports to:</strong> Director Tecnología</li>
+                            <li><strong>Note:</strong> BBVA puede tener infra shared con otros países LATAM</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Data centers locales (si aplica)</li>
+                            <li>Red de oficinas Colombia</li>
+                            <li>Conectividad con BBVA global</li>
+                            <li>Soporte de infraestructura</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Compras locales de infraestructura</li>
+                            <li>Network / SD-WAN para branches</li>
+                            <li>Soporte local end-user</li>
+                            <li>POCs que no requieren aprobación global</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Infraestructura" + "BBVA Colombia"<br>
+                    2. BBVA puede tener servicios compartidos LATAM (Colombia + México, etc.)<br>
+                    3. Para infraestructura puramente local, este es tu contacto<br>
+                    4. Para plataformas globales, necesitas España</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20BBVA%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. Director Digital -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Banca Digital / Canales</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 BBVA App es la misma globalmente</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag global">Global Platform</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Banca Digital, Head of Digital, Director Canales</li>
+                            <li><strong>Focus:</strong> Adopción y uso de app BBVA en Colombia</li>
+                            <li><strong>Note:</strong> La app es desarrollada globalmente</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Adopción digital en Colombia</li>
+                            <li>Customer experience local</li>
+                            <li>Campañas de digitalización</li>
+                            <li>Feedback a producto global</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Understanding BBVA Digital</h4>
+                        <ul>
+                            <li>BBVA es líder mundial en banca digital</li>
+                            <li>App consistente en todos los países</li>
+                            <li>Decisiones de features = Madrid</li>
+                            <li>Local = adopción y operación</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Note:</strong> BBVA tiene una de las mejores apps bancarias del mundo (desarrollada en Madrid).<br>
+                    <strong>Local focus:</strong> Puede influenciar features locales, campañas de adopción.<br>
+                    <strong>For sales:</strong> Si tu producto complementa la app BBVA, este es tu contacto para uso local.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Banca%20BBVA%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. BBVA Global CIO (Context) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">🌍</div>
+                    <div class="exec-title-info">
+                        <h3>BBVA Global Technology (Madrid)</h3>
+                        <div class="role">Context: Decision-making center for tech</div>
+                        <div class="tenure">🏛️ Madrid, España — Decisiones globales</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Global Decisions</span>
+                            <span class="exec-tag global">HQ Spain</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Why This Matters</h4>
+                        <ul>
+                            <li><strong>BBVA Model:</strong> Centralizado en Madrid</li>
+                            <li><strong>Tech decisions:</strong> Globales, no por país</li>
+                            <li><strong>Platform:</strong> Una sola para todos los países</li>
+                            <li><strong>Budget:</strong> Global tech budget huge</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 BBVA Tech Leadership (Spain)</h4>
+                        <ul>
+                            <li>Global CIO: Decisions for all countries</li>
+                            <li>BBVA Next Technologies: Internal tech company</li>
+                            <li>Cloud strategy: AWS partnership global</li>
+                            <li>AI/ML: Advanced capabilities from HQ</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Implications for Sales</h4>
+                        <ul>
+                            <li>Big deals need Spain approval</li>
+                            <li>Local deals: operational, not strategic</li>
+                            <li>If you have BBVA Spain relationship, leverage it</li>
+                            <li>Local team can champion but not decide</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Strategy for BBVA</h4>
+                    <p><strong>Option 1:</strong> Go local for small operational deals (infra, local services).<br>
+                    <strong>Option 2:</strong> If you have BBVA Spain relationship, use it to open Colombia door.<br>
+                    <strong>Option 3:</strong> Position as complementary to BBVA global stack, not replacement.<br>
+                    <strong>Reality:</strong> BBVA builds most tech internally — opportunities are in areas they don't cover.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/company/bbva/people/" target="_blank" class="linkedin-btn">🔗 BBVA Global on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Local Opportunities</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Network/SD-WAN para oficinas Colombia</li>
+                        <li>Soporte local de infraestructura</li>
+                        <li>Servicios de cybersecurity local</li>
+                        <li>Compliance Superfinanciera</li>
+                        <li>End-user computing</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Complementar stack BBVA (no reemplazar)</li>
+                        <li>Referencias de otros BBVA countries</li>
+                        <li>Soluciones pre-aprobadas por BBVA global</li>
+                        <li>Eficiencia operativa local</li>
+                        <li>Relación con BBVA España (si existe)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Intentar reemplazar plataforma core (ALNOVA)</li>
+                        <li>Propuestas que requieren cambio de arquitectura global</li>
+                        <li>Ignorar que decisions van a Madrid</li>
+                        <li>Vender como si fuera banco local independiente</li>
+                        <li>No mencionar experiencia con BBVA otros países</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Process</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget:</strong> Global cycle from Spain</li>
+                        <li><strong>Local budget:</strong> Limited, operational</li>
+                        <li><strong>Decision:</strong> Global = 12-24 months</li>
+                        <li><strong>Local deals:</strong> 6-12 months</li>
+                        <li><strong>Key:</strong> Start local, expand via Spain</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/bbva-en-colombia/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 BBVA Colombia Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20BBVA%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 Directors BBVA Colombia</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20BBVA%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/company/bbva/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">🌍 BBVA Global</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bbva_colombia.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Colombia Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

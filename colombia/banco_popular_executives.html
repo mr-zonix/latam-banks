@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Popular Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.risk { border-left-color: #ef4444; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.risk { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.risk { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.grupo { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.grupo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.ceo { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.risk { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        
+        .grupo-aval-note {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .grupo-aval-note h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .grupo-aval-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.3 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_popular.html" class="back-link">← Back to Banco Popular</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Popular — Executive Intelligence</h1>
+            <p class="subtitle">Key decision makers for technology & infrastructure sales — Grupo Aval Member</p>
+        </header>
+
+        <!-- GRUPO AVAL NOTE -->
+        <div class="grupo-aval-note">
+            <h4>🔵 Grupo Aval Consideration</h4>
+            <p>Banco Popular is part of <strong>Grupo Aval</strong> (Luis Carlos Sarmiento Angulo). Some infrastructure decisions are centralized at group level. Focus engagement on bank-specific areas: consumer lending tech, collections, risk analytics. For major infrastructure deals, may need to engage Grupo Aval technology leadership.</p>
+        </div>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Executive names based on public records and LinkedIn research. Verify current roles before outreach — Colombian banking has frequent rotations. Roles marked with "⚠️ To Verify" require LinkedIn confirmation.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box grupo">
+                    <div class="name">Grupo Aval</div>
+                    <div class="title">Luis Carlos Sarmiento Angulo</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Carlos Upegui Cuartas ⚠️</div>
+                    <div class="title">Presidente Ejecutivo</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología</div>
+                </div>
+                <div class="org-box risk">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Riesgo</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Cobranzas</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">CU</div>
+                    <div class="exec-title-info">
+                        <h3>Carlos Upegui Cuartas ⚠️ To Verify</h3>
+                        <div class="role">Presidente Ejecutivo / CEO</div>
+                        <div class="tenure">🏦 Banco Popular • Grupo Aval</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                            <span class="exec-tag grupo">Grupo Aval</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Background:</strong> Banking executive with Grupo Aval experience</li>
+                            <li><strong>Education:</strong> Business/Finance background</li>
+                            <li><strong>Carrera:</strong> Various roles within Grupo Aval entities</li>
+                            <li><strong>Focus:</strong> Consumer lending, operational efficiency</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Priorities</h4>
+                        <ul>
+                            <li>Efficiency improvement (56% CIR is high)</li>
+                            <li>Digital transformation of lending</li>
+                            <li>Collections optimization (3.8% NPL)</li>
+                            <li>Government employee lending market</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Bank-specific strategic initiatives</li>
+                            <li>Consumer lending technology</li>
+                            <li>Local operational investments</li>
+                            <li>⚠️ Major infra: Grupo Aval level</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — focus on efficiency and digital transformation.<br>
+                    <strong>Angle:</strong> Cost reduction, operational efficiency, consumer lending innovation.<br>
+                    <strong>Pain Points:</strong> High CIR (56%), NPL management, branch dependency for loans.<br>
+                    <strong>Note:</strong> For large infrastructure deals, may need Grupo Aval alignment.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Carlos%20Upegui%20Banco%20Popular%20Colombia" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. VP Technology / CIO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Key contact for tech sales</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, CIO, Gerente de Tecnología, Director TI</li>
+                            <li><strong>Reports to:</strong> CEO / Presidencia</li>
+                            <li><strong>Team size:</strong> ~200-300 people estimated</li>
+                            <li><strong>Budget:</strong> $15-25M annual tech spend estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking system (AS/400 legacy)</li>
+                            <li>Loan origination platforms</li>
+                            <li>Branch technology (220+ locations)</li>
+                            <li>Digital channels (Popular App)</li>
+                            <li>Coordination with Grupo Aval tech</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>✅ Application development</li>
+                            <li>✅ Branch technology</li>
+                            <li>✅ Digital lending systems</li>
+                            <li>⚠️ Major infrastructure: Grupo Aval</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "CIO" + "Banco Popular" Colombia<br>
+                    2. Check Banco Popular website: Gobierno Corporativo section<br>
+                    3. Look for speakers at ASOBANCARIA tech events<br>
+                    4. Note: May have shared reporting to Grupo Aval tech leadership</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Tecnolog%C3%ADa%20CIO%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Risk -->
+            <div class="exec-profile-card risk">
+                <div class="exec-header">
+                    <div class="exec-avatar-large risk">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Riesgo / Chief Risk Officer</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn — CRITICAL CONTACT</div>
+                        <div class="tenure">🔍 Key decision maker for analytics & credit systems</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag risk">Risk Analytics</span>
+                            <span class="exec-tag decision">High Priority</span>
+                            <span class="exec-tag budget">Local Budget</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Riesgo, Chief Risk Officer, Director Riesgo de Crédito</li>
+                            <li><strong>Reports to:</strong> CEO / Board Risk Committee</li>
+                            <li><strong>Focus:</strong> Consumer credit risk, collections, NPL management</li>
+                            <li><strong>Budget:</strong> Significant for risk systems</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Critical for Sales</h4>
+                        <ul>
+                            <li>3.8% NPL is pain point — needs solutions</li>
+                            <li>Consumer lending = high volume scoring needs</li>
+                            <li>Collections optimization is urgent priority</li>
+                            <li>Regulatory pressure from Superfinanciera</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>✅ Credit scoring models & systems</li>
+                            <li>✅ Collections platforms</li>
+                            <li>✅ Risk analytics tools</li>
+                            <li>✅ Fraud prevention (local)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">🎯 HIGH PRIORITY — Best Entry Point</h4>
+                    <p><strong>Why VP Riesgo is your #1 target:</strong> Banco Popular's 3.8% NPL ratio and consumer lending focus means Risk owns significant budget for analytics and collections. This is LOCAL budget, not Grupo Aval controlled.<br>
+                    <strong>Pitch:</strong> AI-powered credit scoring, collections optimization, real-time decisioning.<br>
+                    <strong>Events:</strong> Risk management conferences, Superfinanciera events, ASOBANCARIA.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Riesgo%20CRO%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. Director Collections -->
+            <div class="exec-profile-card risk">
+                <div class="exec-header">
+                    <div class="exec-avatar-large risk">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director / Gerente de Cobranzas</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn — KEY FOR COLLECTIONS SALES</div>
+                        <div class="tenure">🔍 Manages recovery operations for consumer loans</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag risk">Collections</span>
+                            <span class="exec-tag tech">Automation Buyer</span>
+                            <span class="exec-tag budget">Local Budget</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Cobranzas, Gerente Cobranzas, Head of Collections</li>
+                            <li><strong>Reports to:</strong> VP Riesgo or VP Operaciones</li>
+                            <li><strong>Team:</strong> Large collections operation (in-house + agencies)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Pain Points & Opportunities</h4>
+                        <ul>
+                            <li>Manual collection processes</li>
+                            <li>Need for AI-driven prioritization</li>
+                            <li>Omnichannel contact strategies</li>
+                            <li>Recovery rate optimization</li>
+                            <li>Regulatory compliance (SARLAFT)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Buying Interests</h4>
+                        <ul>
+                            <li>Collections management platforms</li>
+                            <li>Predictive analytics for recovery</li>
+                            <li>Automated contact systems</li>
+                            <li>Digital collection channels</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">🎯 Collections = Quick Win Opportunity</h4>
+                    <p><strong>Deal Size:</strong> $500K-800K for collections platform<br>
+                    <strong>Timeline:</strong> 3-6 months decision cycle<br>
+                    <strong>Angle:</strong> "Reduce NPL from 3.8% to 2.5% = $X million savings"<br>
+                    <strong>Proof points:</strong> Recovery rate improvements, cost per collection, agent productivity</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Cobranzas%20Collections%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Digital / Consumer Banking -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Banca de Consumo / Digital</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Consumer lending and digital channels</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Leader</span>
+                            <span class="exec-tag budget">Business Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Banca Personal, VP Banca de Consumo, Director Digital</li>
+                            <li><strong>Focus:</strong> Consumer loans, payroll lending, credit cards</li>
+                            <li><strong>Challenge:</strong> Digital origination still branch-dependent</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Priorities</h4>
+                        <ul>
+                            <li>End-to-end digital loan origination</li>
+                            <li>Government employee payroll lending</li>
+                            <li>Popular App enhancement (3.8★ rating)</li>
+                            <li>Customer experience improvement</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Buying Interests</h4>
+                        <ul>
+                            <li>Digital lending platforms</li>
+                            <li>Document automation</li>
+                            <li>e-Signature solutions</li>
+                            <li>Customer onboarding tools</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Digital lending journey — reduce branch dependency.<br>
+                    <strong>Pitch:</strong> "Complete loan origination digitally for government employees"<br>
+                    <strong>Competition:</strong> Nequi and digital banks threatening traditional consumer lending<br>
+                    <strong>Deal Size:</strong> $300-500K for digital lending enhancement</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banca%20Consumo%20Digital%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. CFO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Financiero / CFO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Budget authority for cost reduction initiatives</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Budget Authority</span>
+                            <span class="exec-tag decision">Executive Sponsor</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Financiero, CFO, Vicepresidente Financiero</li>
+                            <li><strong>Reports to:</strong> CEO / Board</li>
+                            <li><strong>Focus:</strong> Cost management, efficiency, ROI</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Key Concerns</h4>
+                        <ul>
+                            <li>56% Cost-to-Income ratio (high)</li>
+                            <li>Operational efficiency</li>
+                            <li>Technology ROI</li>
+                            <li>NPL provisioning costs</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Engage CFO</h4>
+                        <ul>
+                            <li>Executive sponsor for efficiency projects</li>
+                            <li>Final approval on major investments</li>
+                            <li>Receptive to cost reduction pitches</li>
+                            <li>Understands NPL impact on P&L</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Cost reduction and efficiency improvement<br>
+                    <strong>Pitch:</strong> "Reduce CIR from 56% to 50% through automation"<br>
+                    <strong>ROI Focus:</strong> NPL reduction = lower provisioning = P&L improvement<br>
+                    <strong>Timing:</strong> Budget planning (Oct-Nov) or Q1 new budget</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CFO%20VP%20Financiero%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Collections optimization (3.8% NPL)</li>
+                        <li>Credit risk analytics modernization</li>
+                        <li>Digital lending journey</li>
+                        <li>Operational efficiency (56% CIR)</li>
+                        <li>Government employee lending niche</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>ROI-focused pitches (cost reduction)</li>
+                        <li>Quick implementation timelines</li>
+                        <li>Consumer lending expertise</li>
+                        <li>Collections success stories</li>
+                        <li>Grupo Aval cross-references</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Major infrastructure pitches (Grupo Aval level)</li>
+                        <li>Long implementation timelines</li>
+                        <li>Complex enterprise-wide transformations</li>
+                        <li>Ignoring Grupo Aval dynamics</li>
+                        <li>High-end solutions beyond their tier</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Oct-Nov</li>
+                        <li><strong>Fiscal year:</strong> Calendar (Jan-Dec)</li>
+                        <li><strong>RFP threshold:</strong> >$200K</li>
+                        <li><strong>Decision cycle:</strong> 4-6 months</li>
+                        <li><strong>Best projects:</strong> $200K-800K</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banco-popular-colombia/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Banco Popular Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Banco Popular</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Riesgo%20Cobranzas%20Banco%20Popular%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">📊 Risk & Collections</a>
+                <a href="https://www.linkedin.com/company/grupo-aval/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">🏢 Grupo Aval Team</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_popular.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Colombia Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>
