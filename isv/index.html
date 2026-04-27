@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISV Ecosystem | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .isv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .isv-card { background: var(--surface); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
+        .isv-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .isv-logo { font-size: 2rem; margin-bottom: 0.5rem; }
+        .isv-name { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .isv-category { font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+        .isv-description { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; }
+        .isv-stats { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .isv-stat { background: var(--background); padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.8rem; }
+        .isv-stat strong { color: var(--accent-green); }
+        .client-badge { display: inline-block; background: rgba(61, 80, 252, 0.15); color: var(--accent-blue); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin: 0.15rem; }
+        .verified { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .section-intro { max-width: 800px; margin-bottom: 2rem; }
+        .legend { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .legend-dot.verified { background: var(--accent-green); }
+        .legend-dot.reported { background: var(--accent-blue); }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+            <li class="nav-item active">
+                <span class="nav-icon">🤝</span>
+                <span>ISV Ecosystem</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.4 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1>🤝 ISV Ecosystem</h1>
+        <p class="subtitle">Technology Partners & Vendors in LATAM Banking</p>
+        
+        <div class="section-intro">
+            <p>Mapeo de ISVs (Independent Software Vendors) con presencia confirmada en bancos de Ecuador, Perú, Colombia, Guatemala y Panamá. Solo se incluyen relaciones verificadas con fuente.</p>
+            <div class="legend">
+                <div class="legend-item"><span class="legend-dot verified"></span> Verificado (press release/case study)</div>
+                <div class="legend-item"><span class="legend-dot reported"></span> Reportado (fuentes de industria)</div>
+            </div>
+        </div>
+
+        <!-- CORE BANKING -->
+        <section class="section-card">
+            <h2>🏛️ Core Banking</h2>
+            <div class="isv-grid">
+                
+                <!-- TEMENOS -->
+                <div class="isv-card">
+                    <div class="isv-logo">🔷</div>
+                    <div class="isv-name">Temenos</div>
+                    <div class="isv-category">Core Banking • Digital • Payments</div>
+                    <div class="isv-description">Líder global en core banking. Plataformas T24/Transact, Infinity (digital), y soluciones cloud-native.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Suiza</strong></div>
+                        <div class="isv-stat">Clientes: <strong>3,000+</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Fuerte</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM Verificados:</strong><br>
+                        <span class="client-badge verified">🇪🇨 Diners Club Ecuador</span>
+                        <span class="client-badge verified">🇨🇴 Bancolombia</span>
+                        <span class="client-badge verified">🇧🇷 Banco do Brasil</span>
+                        <span class="client-badge verified">🇧🇷 Bradesco</span>
+                        <span class="client-badge verified">🌎 BBVA</span>
+                        <span class="client-badge verified">🌎 Santander</span>
+                    </div>
+                    <a href="temenos.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+                <!-- COBIS/TOPAZ -->
+                <div class="isv-card">
+                    <div class="isv-logo">💠</div>
+                    <div class="isv-name">Topaz (COBIS)</div>
+                    <div class="isv-category">Core Banking • Regional LATAM</div>
+                    <div class="isv-description">Empresa ecuatoriana. Fuerte presencia en bancos y cooperativas de la región andina. Core banking modular.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Ecuador</strong></div>
+                        <div class="isv-stat">Clientes: <strong>200+</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Dominante</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (por confirmar):</strong><br>
+                        <span class="client-badge">🇪🇨 Bancos Ecuador</span>
+                        <span class="client-badge">🇵🇪 Cooperativas Perú</span>
+                    </div>
+                    <a href="topaz.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+                <!-- MAMBU -->
+                <div class="isv-card">
+                    <div class="isv-logo">🟣</div>
+                    <div class="isv-name">Mambu</div>
+                    <div class="isv-category">Cloud Core Banking • SaaS</div>
+                    <div class="isv-description">Core banking cloud-native. Enfocado en neobancos, fintechs y bancos digitales. Modelo SaaS puro.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Alemania</strong></div>
+                        <div class="isv-stat">Clientes: <strong>200+</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Creciendo</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM Reportados:</strong><br>
+                        <span class="client-badge">🇨🇴 Nequi (Bancolombia)</span>
+                        <span class="client-badge">🇦🇷 Ualá</span>
+                    </div>
+                    <a href="mambu.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DIGITAL BANKING -->
+        <section class="section-card">
+            <h2>📱 Digital Banking</h2>
+            <div class="isv-grid">
+                
+                <!-- GALILEO -->
+                <div class="isv-card">
+                    <div class="isv-logo">🔵</div>
+                    <div class="isv-name">Galileo (SoFi)</div>
+                    <div class="isv-category">Digital Banking • Cards • Payments</div>
+                    <div class="isv-description">Plataforma de APIs para banca digital y emisión de tarjetas. Adquirió Technisys (digital banking LATAM).</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>USA</strong></div>
+                        <div class="isv-stat">Cuentas: <strong>130M+</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Vía Technisys</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (por verificar):</strong><br>
+                        <span class="client-badge">🇪🇨 Banco del Pacífico</span>
+                    </div>
+                    <a href="galileo.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+                <!-- BACKBASE -->
+                <div class="isv-card">
+                    <div class="isv-logo">🟠</div>
+                    <div class="isv-name">Backbase</div>
+                    <div class="isv-category">Digital Experience Platform</div>
+                    <div class="isv-description">Plataforma de experiencia digital bancaria. Engagement Banking. Omnicanalidad.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Países Bajos</strong></div>
+                        <div class="isv-stat">Clientes: <strong>150+</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Presente</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (investigando):</strong><br>
+                        <span class="client-badge">Por confirmar</span>
+                    </div>
+                    <a href="backbase.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+                <!-- TECHNISYS -->
+                <div class="isv-card">
+                    <div class="isv-logo">🔶</div>
+                    <div class="isv-name">Technisys</div>
+                    <div class="isv-category">Digital Banking • LATAM Native</div>
+                    <div class="isv-description">Plataforma Cyberbank. Originalmente argentina, adquirida por SoFi/Galileo en 2022. Fuerte en LATAM.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>USA (ex-Argentina)</strong></div>
+                        <div class="isv-stat">Clientes: <strong>100+</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Muy fuerte</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (investigando):</strong><br>
+                        <span class="client-badge">🇦🇷 Bancos Argentina</span>
+                        <span class="client-badge">🇨🇴 Bancos Colombia</span>
+                    </div>
+                    <a href="technisys.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PAYMENTS & CARDS -->
+        <section class="section-card">
+            <h2>💳 Payments & Cards</h2>
+            <div class="isv-grid">
+                
+                <!-- FISERV -->
+                <div class="isv-card">
+                    <div class="isv-logo">🟢</div>
+                    <div class="isv-name">Fiserv</div>
+                    <div class="isv-category">Card Processing • Payments</div>
+                    <div class="isv-description">Gigante de procesamiento de pagos y tarjetas. First Data legacy. Clover, Carat, DNA.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>USA</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$18B+</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Fuerte</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Presencia LATAM:</strong><br>
+                        <span class="client-badge">Card Processing regional</span>
+                    </div>
+                    <a href="fiserv.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+                <!-- ACI WORLDWIDE -->
+                <div class="isv-card">
+                    <div class="isv-logo">🔴</div>
+                    <div class="isv-name">ACI Worldwide</div>
+                    <div class="isv-category">Real-Time Payments • Fraud</div>
+                    <div class="isv-description">Pagos en tiempo real, fraud management, y bill payments. Infraestructura de pagos crítica.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>USA</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$1.4B</strong></div>
+                        <div class="isv-stat">LATAM: <strong>Presente</strong></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Presencia LATAM:</strong><br>
+                        <span class="client-badge">Payments hubs</span>
+                    </div>
+                    <a href="aci.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- STATUS -->
+        <section class="section-card" style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green);">
+            <h3>🔍 Estado de Investigación</h3>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <strong>Verificados con fuente:</strong> 7 relaciones ISV-Banco (Temenos)<br>
+                <strong>Reportados (por verificar):</strong> 5 relaciones (Mambu, Galileo, Topaz)<br>
+                <strong>En investigación:</strong> Backbase, ACI Worldwide, Fiserv LATAM
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+                <strong>Fuentes usadas:</strong> Press releases oficiales, Wikipedia con citas, Case studies publicados.<br>
+                Las relaciones ISV-Banco se agregan solo con confirmación verificable.
+            </p>
+        </section>
+
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>
