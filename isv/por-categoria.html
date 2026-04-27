@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISV por Categoría | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .category-section { margin-bottom: 2rem; }
+        .category-header { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); padding: 1rem 1.5rem; border-radius: 8px 8px 0 0; color: white; }
+        .category-content { background: var(--surface); padding: 1.5rem; border-radius: 0 0 8px 8px; border: 1px solid var(--border); border-top: none; }
+        .isv-row { display: grid; grid-template-columns: 200px 1fr 200px; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--border); align-items: start; }
+        .isv-row:last-child { border-bottom: none; }
+        .isv-name { font-weight: 600; color: var(--text-primary); }
+        .isv-desc { font-size: 0.85rem; color: var(--text-secondary); }
+        .client-tags { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+        .client-tag { background: rgba(61, 80, 252, 0.15); color: var(--accent-blue); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; }
+        .client-tag.verified { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .client-tag.pending { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
+        @media (max-width: 768px) { .isv-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🤝</span><span>ISV Ecosystem</span></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.4 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="index.html" class="back-link">← Back to ISV Ecosystem</a>
+        <h1>📊 ISV por Categoría de Infraestructura</h1>
+        <p class="subtitle">Mapeo de vendors tecnológicos por capa de infraestructura bancaria</p>
+
+        <!-- 1. CANALES DIGITALES -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2>📱 1. Canales Digitales (Digital Banking Platform)</h2>
+            </div>
+            <div class="category-content">
+                <div class="isv-row">
+                    <div class="isv-name">🔷 Temenos Infinity</div>
+                    <div class="isv-desc">Plataforma de digital banking de Temenos. Omnicanalidad, mobile, web banking.</div>
+                    <div class="client-tags">
+                        <span class="client-tag verified">🇪🇨 Diners Club</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔵 Galileo/Technisys</div>
+                    <div class="isv-desc">Cyberbank Digital. Adquirida por SoFi. Fuerte presencia en LATAM (Argentina origen).</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">🌎 LATAM (verificar)</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🟠 Backbase</div>
+                    <div class="isv-desc">Engagement Banking Platform. Digital experience, omnicanalidad, journey orchestration.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando LATAM</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🟣 Q2</div>
+                    <div class="isv-desc">Digital banking platform. Fuerte en USA, expandiendo globalmente.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Limitado LATAM</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">💠 COBIS/Topaz</div>
+                    <div class="isv-desc">Solución local ecuatoriana. Digital banking + core. Muy fuerte en región andina.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">🇪🇨 Bancos Ecuador</span>
+                        <span class="client-tag pending">🇵🇪 Cooperativas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. CORE BANCARIO -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2>🏛️ 2. Core Bancario</h2>
+            </div>
+            <div class="category-content">
+                <div class="isv-row">
+                    <div class="isv-name">🔷 Temenos Transact</div>
+                    <div class="isv-desc">Core banking líder global (ex-T24). Modular, cloud-ready.</div>
+                    <div class="client-tags">
+                        <span class="client-tag verified">🇪🇨 Diners Club</span>
+                        <span class="client-tag verified">🇨🇴 Bancolombia</span>
+                        <span class="client-tag verified">🇧🇷 Banco do Brasil</span>
+                        <span class="client-tag verified">🇧🇷 Bradesco</span>
+                        <span class="client-tag verified">🌎 BBVA</span>
+                        <span class="client-tag verified">🌎 Santander</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🟣 Mambu</div>
+                    <div class="isv-desc">Cloud-native core banking. SaaS. Enfocado en neobancos y fintechs.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">🇨🇴 Nequi (reportado)</span>
+                        <span class="client-tag pending">🇦🇷 Ualá</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">💠 COBIS/Topaz</div>
+                    <div class="isv-desc">Core banking regional. Origen Ecuador. Fuerte en cooperativas y bancos medianos.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">🇪🇨 Bancos Ecuador</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔶 Oracle FLEXCUBE</div>
+                    <div class="isv-desc">Core banking legacy pero robusto. Presencia en bancos grandes legacy.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🟢 Finacle (Infosys)</div>
+                    <div class="isv-desc">Core banking de Infosys. Presente en Asia y algunos bancos LATAM grandes.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. DATA PLATFORM -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2>📊 3. Data Platform (Analytics, BI, Data Warehouse)</h2>
+            </div>
+            <div class="category-content">
+                <div class="isv-row">
+                    <div class="isv-name">🔷 Temenos Analytics</div>
+                    <div class="isv-desc">BI y analytics de Temenos. Integrado con core banking.</div>
+                    <div class="client-tags">
+                        <span class="client-tag verified">🇪🇨 Diners Club</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔵 SAS</div>
+                    <div class="isv-desc">Líder en analytics avanzado. Risk management, fraud, credit scoring.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Bancos Tier 1 LATAM</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🟣 Teradata</div>
+                    <div class="isv-desc">Data warehouse enterprise. Muy usado en banca para analytics.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">❄️ Snowflake</div>
+                    <div class="isv-desc">Cloud data platform. Creciendo en financial services.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔶 Databricks</div>
+                    <div class="isv-desc">Lakehouse platform. AI/ML workloads. Data engineering.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">☁️ Cloudera</div>
+                    <div class="isv-desc">Enterprise data platform. Hadoop/Spark. On-prem y cloud.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. SECURITY & IDENTITY -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2>🔐 4. Security & Identity Platform</h2>
+            </div>
+            <div class="category-content">
+                <div class="isv-row">
+                    <div class="isv-name">🔵 Ping Identity</div>
+                    <div class="isv-desc">IAM enterprise. SSO, MFA, CIAM para banca. Fuerte en financial services.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Bancos globales</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🟣 Okta</div>
+                    <div class="isv-desc">Identity cloud. Workforce y customer identity. Cloud-native.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔶 ForgeRock</div>
+                    <div class="isv-desc">Identity platform. Open banking, CIAM, fraud prevention.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔴 RSA Security</div>
+                    <div class="isv-desc">SecurID, fraud detection. Legacy pero muy presente en banca.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Bancos tradicionales</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔷 Thales</div>
+                    <div class="isv-desc">HSM, encryption, data protection. Hardware security modules para banca.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Infraestructura crítica</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🟢 FICO</div>
+                    <div class="isv-desc">Credit scoring, fraud detection, decision management. Estándar en banca.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Amplio uso LATAM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. VIRTUALIZATION PLATFORM -->
+        <div class="category-section">
+            <div class="category-header">
+                <h2>🖥️ 5. Virtualization Platform</h2>
+            </div>
+            <div class="category-content">
+                <div class="isv-row">
+                    <div class="isv-name">🟢 VMware</div>
+                    <div class="isv-desc">Líder en virtualización. vSphere, NSX, vSAN. Presente en casi todos los bancos.</div>
+                    <div class="client-tags">
+                        <span class="client-tag">Uso generalizado</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔵 Nutanix</div>
+                    <div class="isv-desc">HCI (hyperconverged). Alternativa a VMware. Creciendo en financial services.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Investigando</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">🔴 Red Hat</div>
+                    <div class="isv-desc">OpenShift, RHEL, Ansible. Containers y Kubernetes para banca.</div>
+                    <div class="client-tags">
+                        <span class="client-tag pending">Modernización</span>
+                    </div>
+                </div>
+                <div class="isv-row">
+                    <div class="isv-name">☁️ Microsoft Hyper-V</div>
+                    <div class="isv-desc">Virtualización Microsoft. Común en ambientes Windows-centric.</div>
+                    <div class="client-tags">
+                        <span class="client-tag">Uso generalizado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- NOTAS -->
+        <section class="section-card" style="background: rgba(61, 80, 252, 0.1); border-left: 4px solid var(--accent-blue);">
+            <h3>📝 Notas de Investigación</h3>
+            <ul style="font-size: 0.9rem; margin-top: 0.5rem;">
+                <li><span class="client-tag verified" style="display: inline;">VERIFICADO</span> = Confirmado con press release, case study, o Wikipedia con citas</li>
+                <li><span class="client-tag pending" style="display: inline;">PENDIENTE</span> = Reportado en industria, necesita verificación</li>
+                <li><strong>Galileo/Technisys:</strong> Wikipedia confirma operación en Latin America (post-adquisición SoFi 2022)</li>
+                <li><strong>VMware/Hyper-V:</strong> Uso generalizado - casi todos los bancos tienen alguna forma de virtualización</li>
+            </ul>
+        </section>
+
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>
