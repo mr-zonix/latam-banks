@@ -1,5 +1,5 @@
 const DASHBOARD_VERSION = {
-    version: "4.4",
+    version: "4.5",
     date: "Apr 2026",
     lastUpdate: "2026-04-27",
     author: "Mr Zonix"
