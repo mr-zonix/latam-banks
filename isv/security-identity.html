@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security & Identity | ISV Ecosystem | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .hero-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1rem; margin: 2rem 0; }
+        .hero-stat { background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); padding: 1.5rem; border-radius: 12px; text-align: center; color: white; }
+        .hero-stat .number { font-size: 2.5rem; font-weight: 800; }
+        .hero-stat .label { font-size: 0.85rem; opacity: 0.9; }
+        .verified-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .verified-card { background: linear-gradient(145deg, var(--surface), #1a1f35); border-radius: 16px; padding: 1.5rem; border: 2px solid var(--accent-green); position: relative; overflow: hidden; }
+        .verified-card::before { content: '✓'; position: absolute; top: -10px; right: -10px; font-size: 4rem; opacity: 0.1; color: var(--accent-green); }
+        .verified-badge { background: var(--accent-green); color: white; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.7rem; font-weight: 700; display: inline-flex; align-items: center; gap: 0.3rem; }
+        .client-list { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+        .client-chip { background: rgba(255,255,255,0.1); padding: 0.4rem 0.8rem; border-radius: 20px; font-size: 0.8rem; border: 1px solid rgba(255,255,255,0.2); }
+        .client-chip.highlight { background: rgba(16, 185, 129, 0.2); border-color: var(--accent-green); }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🤝</span><span>ISV Ecosystem</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.5 • Apr 2026</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="index.html" class="back-link">← Back to ISV Ecosystem</a>
+        
+        <div class="bank-header">
+            <div class="bank-title">
+                <h1>🔐 Security & Identity</h1>
+                <p class="subtitle">Biometría • Verificación de Identidad • Prevención de Fraude</p>
+            </div>
+        </div>
+
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="number">9</div>
+                <div class="label">Bancos Verificados</div>
+            </div>
+            <div class="hero-stat" style="background: linear-gradient(135deg, var(--accent-green), #059669);">
+                <div class="number">1</div>
+                <div class="label">ISV Principal</div>
+            </div>
+            <div class="hero-stat" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                <div class="number">6</div>
+                <div class="label">Países</div>
+            </div>
+        </div>
+
+        <!-- FACEPHI - PRINCIPAL -->
+        <section class="section-card" style="background: linear-gradient(145deg, #0f172a, #1e293b); border: 2px solid var(--accent-green);">
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h2 style="margin: 0; display: flex; align-items: center; gap: 0.5rem;">
+                        <span style="font-size: 2rem;">🟢</span> FacePhi
+                        <span class="verified-badge">✓ 9 CLIENTES VERIFICADOS</span>
+                    </h2>
+                    <p style="color: var(--text-secondary); margin-top: 0.5rem;">Biometría Facial • Onboarding Digital • Verificación de Identidad</p>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">HQ: España (Alicante)</div>
+                    <div style="font-size: 0.8rem; color: var(--text-secondary);">BME: FACE</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 1.5rem;">
+                <h4 style="color: var(--accent-green); margin-bottom: 1rem;">✅ Clientes Bancarios LATAM Verificados (facephi.com)</h4>
+                <div class="verified-grid">
+                    
+                    <div class="verified-card">
+                        <span style="font-size: 1.5rem;">🇬🇹</span>
+                        <h3 style="margin: 0.5rem 0;">Banco Industrial</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Banco #1 de Guatemala. Case study publicado.</p>
+                        <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-green);">📄 Case Study en facephi.com</div>
+                    </div>
+
+                    <div class="verified-card">
+                        <span style="font-size: 1.5rem;">🇪🇨</span>
+                        <h3 style="margin: 0.5rem 0;">Banco Guayaquil</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Top 3 Ecuador. Logo en página principal.</p>
+                        <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-green);">📄 Logo verificado</div>
+                    </div>
+
+                    <div class="verified-card">
+                        <span style="font-size: 1.5rem;">🇵🇦</span>
+                        <h3 style="margin: 0.5rem 0;">Banco General</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Banco #1 de Panamá. Logo en página principal.</p>
+                        <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-green);">📄 Logo verificado</div>
+                    </div>
+
+                    <div class="verified-card">
+                        <span style="font-size: 1.5rem;">🇵🇪</span>
+                        <h3 style="margin: 0.5rem 0;">Interbank</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Top 4 Perú. Logo en página principal.</p>
+                        <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-green);">📄 Logo verificado</div>
+                    </div>
+
+                    <div class="verified-card">
+                        <span style="font-size: 1.5rem;">🇭🇳</span>
+                        <h3 style="margin: 0.5rem 0;">Banco Atlántida</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Banco líder Honduras. Logo verificado.</p>
+                        <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-green);">📄 Logo verificado</div>
+                    </div>
+
+                    <div class="verified-card">
+                        <span style="font-size: 1.5rem;">🌎</span>
+                        <h3 style="margin: 0.5rem 0;">Banco Promerica</h3>
+                        <p style="font-size: 0.85rem; color: var(--text-secondary);">Red regional Centroamérica. Logo verificado.</p>
+                        <div style="margin-top: 0.5rem; font-size: 0.75rem; color: var(--accent-green);">📄 Logo verificado</div>
+                    </div>
+
+                </div>
+
+                <div style="margin-top: 1.5rem;">
+                    <h4 style="color: var(--accent-blue);">También verificados:</h4>
+                    <div class="client-list">
+                        <span class="client-chip highlight">🌎 Scotiabank</span>
+                        <span class="client-chip highlight">🌎 Banco Santander</span>
+                        <span class="client-chip highlight">🇦🇷 Banco Supervielle</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTROS VENDORS -->
+        <section class="section-card">
+            <h2>🔍 Otros Vendors de Security & Identity</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Investigación en progreso - clientes LATAM por verificar</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <strong>Jumio</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Verificación de identidad AI-powered. Fuerte en USA, expandiendo LATAM.</p>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <strong>Incode</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Empresa mexicana. Identidad digital. Creciendo en sector bancario.</p>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <strong>Onfido</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Verificación documental y facial. Usado por fintechs.</p>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid #f59e0b;">
+                    <strong>Veriff</strong>
+                    <p style="font-size: 0.8rem; color: var(--text-secondary);">Estonia. KYC automatizado. Expandiendo globalmente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>📞 Contacto FacePhi</h2>
+            <p><a href="https://www.facephi.com" target="_blank" style="color: var(--accent-blue);">facephi.com</a> | 
+            <a href="https://www.facephi.com/en/news/" target="_blank" style="color: var(--accent-blue);">News</a> |
+            Presencia: Argentina, Chile, Colombia, Ecuador, Mexico, Peru</p>
+        </section>
+
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

@@ -7,281 +7,224 @@
     <link rel="stylesheet" href="../css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .isv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .isv-card { background: var(--surface); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
-        .isv-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
-        .isv-logo { font-size: 2rem; margin-bottom: 0.5rem; }
-        .isv-name { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
-        .isv-category { font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
-        .isv-description { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; }
-        .isv-stats { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
-        .isv-stat { background: var(--background); padding: 0.5rem 0.75rem; border-radius: 6px; font-size: 0.8rem; }
-        .isv-stat strong { color: var(--accent-green); }
-        .client-badge { display: inline-block; background: rgba(61, 80, 252, 0.15); color: var(--accent-blue); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin: 0.15rem; }
-        .verified { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
-        .section-intro { max-width: 800px; margin-bottom: 2rem; }
-        .legend { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
-        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
-        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .legend-dot.verified { background: var(--accent-green); }
-        .legend-dot.reported { background: var(--accent-blue); }
+        .hero-section { background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #312e81 100%); padding: 3rem 2rem; border-radius: 20px; margin-bottom: 2rem; position: relative; overflow: hidden; }
+        .hero-section::before { content: ''; position: absolute; top: -50%; right: -20%; width: 400px; height: 400px; background: radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%); }
+        .hero-section::after { content: ''; position: absolute; bottom: -30%; left: -10%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(61, 80, 252, 0.2) 0%, transparent 70%); }
+        .hero-content { position: relative; z-index: 1; }
+        .hero-title { font-size: 2.5rem; font-weight: 800; margin: 0; background: linear-gradient(135deg, #fff, #a5b4fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { color: rgba(255,255,255,0.7); margin-top: 0.5rem; font-size: 1.1rem; }
+        
+        .stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .stat-box { background: linear-gradient(145deg, var(--surface), #1a1f35); border-radius: 16px; padding: 1.5rem; text-align: center; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .stat-box:hover { transform: translateY(-5px); box-shadow: 0 10px 40px rgba(16, 185, 129, 0.2); }
+        .stat-number { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-green), #34d399); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .stat-label { color: var(--text-secondary); font-size: 0.9rem; margin-top: 0.25rem; }
+        
+        .verified-highlight { background: linear-gradient(145deg, rgba(16, 185, 129, 0.1), rgba(16, 185, 129, 0.05)); border: 2px solid var(--accent-green); border-radius: 16px; padding: 2rem; margin: 2rem 0; }
+        .verified-highlight h2 { display: flex; align-items: center; gap: 0.5rem; color: var(--accent-green); }
+        
+        .isv-category { margin-bottom: 2rem; }
+        .category-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 2px solid var(--border); }
+        .category-icon { font-size: 2rem; }
+        .category-title { font-size: 1.3rem; font-weight: 700; }
+        .category-count { background: var(--accent-blue); color: white; padding: 0.2rem 0.6rem; border-radius: 12px; font-size: 0.75rem; font-weight: 600; }
+        
+        .isv-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem; }
+        .isv-card { background: var(--surface); border-radius: 16px; padding: 1.5rem; border: 1px solid var(--border); transition: all 0.3s; position: relative; overflow: hidden; }
+        .isv-card:hover { border-color: var(--accent-blue); transform: translateY(-3px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+        .isv-card.verified { border-color: var(--accent-green); }
+        .isv-card.verified::before { content: ''; position: absolute; top: 0; right: 0; width: 100px; height: 100px; background: linear-gradient(135deg, transparent 50%, rgba(16, 185, 129, 0.1) 50%); }
+        
+        .isv-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .isv-name { font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; }
+        .isv-badge { font-size: 0.65rem; padding: 0.2rem 0.5rem; border-radius: 10px; font-weight: 600; }
+        .isv-badge.verified { background: var(--accent-green); color: white; }
+        .isv-badge.pending { background: #f59e0b; color: white; }
+        
+        .client-pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+        .client-pill { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); padding: 0.25rem 0.6rem; border-radius: 15px; font-size: 0.75rem; font-weight: 500; }
+        
+        .view-more { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-blue); font-size: 0.9rem; margin-top: 1rem; text-decoration: none; font-weight: 600; }
+        .view-more:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
     <nav class="sidebar">
-        <div class="logo">
-            <span class="logo-icon">🏦</span>
-            <span class="logo-text">LATAM Intel</span>
-        </div>
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
         <ul class="nav-menu">
-            <li class="nav-item" onclick="window.location.href='../index.html'">
-                <span class="nav-icon">📊</span>
-                <span>Dashboard</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
-                <span class="nav-icon">📋</span>
-                <span>Ranking</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
-                <span class="nav-icon">🇪🇨</span>
-                <span>Ecuador</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
-                <span class="nav-icon">🇵🇪</span>
-                <span>Peru</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
-                <span class="nav-icon">🇨🇴</span>
-                <span>Colombia</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
-                <span class="nav-icon">🇬🇹</span>
-                <span>Guatemala</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
-                <span class="nav-icon">🇵🇦</span>
-                <span>Panamá</span>
-            </li>
-            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
-                <span class="nav-icon">👔</span>
-                <span>Executives</span>
-            </li>
-            <li class="nav-item active">
-                <span class="nav-icon">🤝</span>
-                <span>ISV Ecosystem</span>
-            </li>
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+            <li class="nav-item active"><span class="nav-icon">🤝</span><span>ISV Ecosystem</span></li>
         </ul>
-        <div class="nav-footer">
-            <p>Built by Mr Zonix</p>
-            <p class="version">v4.4 • Apr 2026</p>
-        </div>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.5 • Apr 2026</p></div>
     </nav>
 
     <main class="main-content">
-        <h1>🤝 ISV Ecosystem</h1>
-        <p class="subtitle">Technology Partners &amp; Vendors in LATAM Banking</p>
-        <div style="margin-bottom: 1rem;"><a href="por-categoria.html" style="color: var(--accent-blue); font-weight: 600;">📊 Ver ISVs por Categoría de Infraestructura →</a></div>
-        
-        <div class="section-intro">
-            <p>Mapeo de ISVs (Independent Software Vendors) con presencia confirmada en bancos de Ecuador, Perú, Colombia, Guatemala y Panamá. Solo se incluyen relaciones verificadas con fuente.</p>
-            <div class="legend">
-                <div class="legend-item"><span class="legend-dot verified"></span> Verificado (press release/case study)</div>
-                <div class="legend-item"><span class="legend-dot reported"></span> Reportado (fuentes de industria)</div>
+        <!-- HERO SECTION -->
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1 class="hero-title">🤝 ISV Ecosystem</h1>
+                <p class="hero-subtitle">Mapeo verificado de vendors tecnológicos en banca LATAM</p>
+                <div style="margin-top: 1.5rem;">
+                    <a href="por-categoria.html" style="display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(255,255,255,0.1); padding: 0.6rem 1.2rem; border-radius: 8px; color: white; text-decoration: none; font-size: 0.9rem; border: 1px solid rgba(255,255,255,0.2);">📊 Ver por Categoría de Infraestructura →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-row">
+            <div class="stat-box">
+                <div class="stat-number">23</div>
+                <div class="stat-label">Relaciones Verificadas</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">4</div>
+                <div class="stat-label">ISVs con Clientes</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">9</div>
+                <div class="stat-label">Países Cubiertos</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">18</div>
+                <div class="stat-label">Bancos del Dashboard</div>
+            </div>
+        </div>
+
+        <!-- VERIFIED HIGHLIGHT -->
+        <div class="verified-highlight">
+            <h2>✅ Bancos del Dashboard con ISV Verificado</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Estos bancos tienen relación ISV confirmada con fuente verificable:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+                <span class="client-pill">🇪🇨 Banco Guayaquil → FacePhi</span>
+                <span class="client-pill">🇪🇨 Diners Club → Temenos</span>
+                <span class="client-pill">🇬🇹 Banco Industrial → FacePhi</span>
+                <span class="client-pill">🇵🇦 Banco General → FacePhi</span>
+                <span class="client-pill">🇵🇪 Interbank → FacePhi</span>
+                <span class="client-pill">🇨🇴 Bancolombia → Temenos</span>
+                <span class="client-pill">🇨🇱 BancoEstado → Mambu</span>
+                <span class="client-pill">🇦🇷 Ualá → Temenos + Mambu</span>
             </div>
         </div>
 
         <!-- CORE BANKING -->
-        <section class="section-card">
-            <h2>🏛️ Core Banking</h2>
-            <div class="isv-grid">
-                
-                <!-- TEMENOS -->
-                <div class="isv-card">
-                    <div class="isv-logo">🔷</div>
-                    <div class="isv-name">Temenos</div>
-                    <div class="isv-category">Core Banking • Digital • Payments</div>
-                    <div class="isv-description">Líder global en core banking. Plataformas T24/Transact, Infinity (digital), y soluciones cloud-native.</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Suiza</strong></div>
-                        <div class="isv-stat">Clientes: <strong>3,000+</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Fuerte</strong></div>
-                    </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM Verificados:</strong><br>
-                        <span class="client-badge verified">🇪🇨 Diners Club Ecuador</span>
-                        <span class="client-badge verified">🇨🇴 Bancolombia</span>
-                        <span class="client-badge verified">🇧🇷 Banco do Brasil</span>
-                        <span class="client-badge verified">🇧🇷 Bradesco</span>
-                        <span class="client-badge verified">🌎 BBVA</span>
-                        <span class="client-badge verified">🌎 Santander</span>
-                    </div>
-                    <a href="temenos.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
-                </div>
-
-                <!-- COBIS/TOPAZ -->
-                <div class="isv-card">
-                    <div class="isv-logo">💠</div>
-                    <div class="isv-name">Topaz (COBIS)</div>
-                    <div class="isv-category">Core Banking • Regional LATAM</div>
-                    <div class="isv-description">Empresa ecuatoriana. Fuerte presencia en bancos y cooperativas de la región andina. Core banking modular.</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Ecuador</strong></div>
-                        <div class="isv-stat">Clientes: <strong>200+</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Dominante</strong></div>
-                    </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (por confirmar):</strong><br>
-                        <span class="client-badge">🇪🇨 Bancos Ecuador</span>
-                        <span class="client-badge">🇵🇪 Cooperativas Perú</span>
-                    </div>
-                    <a href="topaz.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
-                </div>
-
-                <!-- MAMBU -->
-                <div class="isv-card">
-                    <div class="isv-logo">🟣</div>
-                    <div class="isv-name">Mambu</div>
-                    <div class="isv-category">Cloud Core Banking • SaaS</div>
-                    <div class="isv-description">Core banking cloud-native. Enfocado en neobancos, fintechs y bancos digitales. Modelo SaaS puro.</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Alemania</strong></div>
-                        <div class="isv-stat">Clientes: <strong>200+</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Creciendo</strong></div>
-                    </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM Reportados:</strong><br>
-                        <span class="client-badge">🇨🇴 Nequi (Bancolombia)</span>
-                        <span class="client-badge">🇦🇷 Ualá</span>
-                    </div>
-                    <a href="mambu.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
-                </div>
-
+        <div class="isv-category">
+            <div class="category-header">
+                <span class="category-icon">🏛️</span>
+                <span class="category-title">Core Banking</span>
+                <span class="category-count">14 verificados</span>
             </div>
-        </section>
-
-        <!-- DIGITAL BANKING -->
-        <section class="section-card">
-            <h2>📱 Digital Banking</h2>
-            <div class="isv-grid">
-                
-                <!-- GALILEO -->
-                <div class="isv-card">
-                    <div class="isv-logo">🔵</div>
-                    <div class="isv-name">Galileo (SoFi)</div>
-                    <div class="isv-category">Digital Banking • Cards • Payments</div>
-                    <div class="isv-description">Plataforma de APIs para banca digital y emisión de tarjetas. Adquirió Technisys (digital banking LATAM).</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA</strong></div>
-                        <div class="isv-stat">Cuentas: <strong>130M+</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Vía Technisys</strong></div>
+            <div class="isv-cards">
+                <div class="isv-card verified">
+                    <div class="isv-header">
+                        <div class="isv-name">🔷 Temenos <span class="isv-badge verified">10 CLIENTES</span></div>
                     </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (por verificar):</strong><br>
-                        <span class="client-badge">🇪🇨 Banco del Pacífico</span>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Líder global en core banking. Transact, Infinity, Analytics.</p>
+                    <div class="client-pills">
+                        <span class="client-pill">🇦🇷 Ualá</span>
+                        <span class="client-pill">🇨🇱 LarrainVial</span>
+                        <span class="client-pill">🇪🇨 Diners Club</span>
+                        <span class="client-pill">🇨🇴 Bancolombia</span>
+                        <span class="client-pill">🇧🇷 Bradesco</span>
+                        <span class="client-pill">+5 más</span>
                     </div>
-                    <a href="galileo.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                    <a href="temenos.html" class="view-more">Ver detalle completo →</a>
                 </div>
 
-                <!-- BACKBASE -->
-                <div class="isv-card">
-                    <div class="isv-logo">🟠</div>
-                    <div class="isv-name">Backbase</div>
-                    <div class="isv-category">Digital Experience Platform</div>
-                    <div class="isv-description">Plataforma de experiencia digital bancaria. Engagement Banking. Omnicanalidad.</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Países Bajos</strong></div>
-                        <div class="isv-stat">Clientes: <strong>150+</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Presente</strong></div>
+                <div class="isv-card verified">
+                    <div class="isv-header">
+                        <div class="isv-name">🟣 Mambu <span class="isv-badge verified">4 CLIENTES</span></div>
                     </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (investigando):</strong><br>
-                        <span class="client-badge">Por confirmar</span>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Cloud-native core banking. SaaS. Ideal para neobancos.</p>
+                    <div class="client-pills">
+                        <span class="client-pill">🇨🇱 BancoEstado</span>
+                        <span class="client-pill">🇨🇱 MACH</span>
+                        <span class="client-pill">🇦🇷 Ualá</span>
+                        <span class="client-pill">🇪🇨 Pichincha</span>
                     </div>
-                    <a href="backbase.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
+                    <a href="mambu.html" class="view-more">Ver detalle completo →</a>
                 </div>
-
-                <!-- TECHNISYS -->
-                <div class="isv-card">
-                    <div class="isv-logo">🔶</div>
-                    <div class="isv-name">Technisys</div>
-                    <div class="isv-category">Digital Banking • LATAM Native</div>
-                    <div class="isv-description">Plataforma Cyberbank. Originalmente argentina, adquirida por SoFi/Galileo en 2022. Fuerte en LATAM.</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA (ex-Argentina)</strong></div>
-                        <div class="isv-stat">Clientes: <strong>100+</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Muy fuerte</strong></div>
-                    </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Clientes LATAM (investigando):</strong><br>
-                        <span class="client-badge">🇦🇷 Bancos Argentina</span>
-                        <span class="client-badge">🇨🇴 Bancos Colombia</span>
-                    </div>
-                    <a href="technisys.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
-                </div>
-
             </div>
-        </section>
+        </div>
 
-        <!-- PAYMENTS & CARDS -->
-        <section class="section-card">
-            <h2>💳 Payments & Cards</h2>
-            <div class="isv-grid">
-                
-                <!-- FISERV -->
-                <div class="isv-card">
-                    <div class="isv-logo">🟢</div>
-                    <div class="isv-name">Fiserv</div>
-                    <div class="isv-category">Card Processing • Payments</div>
-                    <div class="isv-description">Gigante de procesamiento de pagos y tarjetas. First Data legacy. Clover, Carat, DNA.</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA</strong></div>
-                        <div class="isv-stat">Revenue: <strong>$18B+</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Fuerte</strong></div>
-                    </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Presencia LATAM:</strong><br>
-                        <span class="client-badge">Card Processing regional</span>
-                    </div>
-                    <a href="fiserv.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
-                </div>
-
-                <!-- ACI WORLDWIDE -->
-                <div class="isv-card">
-                    <div class="isv-logo">🔴</div>
-                    <div class="isv-name">ACI Worldwide</div>
-                    <div class="isv-category">Real-Time Payments • Fraud</div>
-                    <div class="isv-description">Pagos en tiempo real, fraud management, y bill payments. Infraestructura de pagos crítica.</div>
-                    <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA</strong></div>
-                        <div class="isv-stat">Revenue: <strong>$1.4B</strong></div>
-                        <div class="isv-stat">LATAM: <strong>Presente</strong></div>
-                    </div>
-                    <div>
-                        <strong style="font-size: 0.8rem; color: var(--text-secondary);">Presencia LATAM:</strong><br>
-                        <span class="client-badge">Payments hubs</span>
-                    </div>
-                    <a href="aci.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
-                </div>
-
+        <!-- SECURITY & IDENTITY -->
+        <div class="isv-category">
+            <div class="category-header">
+                <span class="category-icon">🔐</span>
+                <span class="category-title">Security & Identity</span>
+                <span class="category-count">9 verificados</span>
             </div>
-        </section>
+            <div class="isv-cards">
+                <div class="isv-card verified">
+                    <div class="isv-header">
+                        <div class="isv-name">🟢 FacePhi <span class="isv-badge verified">9 CLIENTES</span></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Biometría facial líder en LATAM. Onboarding digital.</p>
+                    <div class="client-pills">
+                        <span class="client-pill">🇬🇹 Banco Industrial</span>
+                        <span class="client-pill">🇪🇨 Banco Guayaquil</span>
+                        <span class="client-pill">🇵🇦 Banco General</span>
+                        <span class="client-pill">🇵🇪 Interbank</span>
+                        <span class="client-pill">🌎 Scotiabank</span>
+                        <span class="client-pill">+4 más</span>
+                    </div>
+                    <a href="security-identity.html" class="view-more">Ver detalle completo →</a>
+                </div>
 
-        <!-- STATUS -->
-        <section class="section-card" style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green);">
-            <h3>🔍 Estado de Investigación</h3>
-            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-                <strong>Verificados con fuente:</strong> 14 relaciones ISV-Banco (Temenos)<br>
-                <strong>Reportados (por verificar):</strong> 3 relaciones por verificar (Galileo, Galileo, Topaz)<br>
-                <strong>En investigación:</strong> Backbase, ACI Worldwide, Fiserv LATAM
-            </p>
-            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
-                <strong>Fuentes usadas:</strong> Press releases oficiales, Wikipedia con citas, Case studies publicados.<br>
-                Las relaciones ISV-Banco se agregan solo con confirmación verificable.
-            </p>
+                <div class="isv-card">
+                    <div class="isv-header">
+                        <div class="isv-name">🔵 Jumio <span class="isv-badge pending">INVESTIGANDO</span></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Verificación de identidad AI-powered. Fuerte en fintechs.</p>
+                </div>
+
+                <div class="isv-card">
+                    <div class="isv-header">
+                        <div class="isv-name">🟠 Incode <span class="isv-badge pending">INVESTIGANDO</span></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Empresa mexicana de identidad digital. Creciendo en banca.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DATA PLATFORM -->
+        <div class="isv-category">
+            <div class="category-header">
+                <span class="category-icon">📊</span>
+                <span class="category-title">Data Platform</span>
+                <span class="category-count">1 verificado</span>
+            </div>
+            <div class="isv-cards">
+                <div class="isv-card verified">
+                    <div class="isv-header">
+                        <div class="isv-name">📈 SAS <span class="isv-badge verified">1 CLIENTE</span></div>
+                    </div>
+                    <p style="font-size: 0.85rem; color: var(--text-secondary);">Analytics avanzado. Risk, fraud, credit scoring.</p>
+                    <div class="client-pills">
+                        <span class="client-pill">🇩🇴 Banco Popular Dominicano</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FUENTES -->
+        <section class="section-card" style="margin-top: 2rem; background: rgba(16, 185, 129, 0.05); border: 1px solid var(--accent-green);">
+            <h3 style="color: var(--accent-green);">📄 Metodología de Verificación</h3>
+            <p style="font-size: 0.9rem; margin-top: 0.5rem;">Solo incluimos relaciones ISV-Banco con fuente verificable:</p>
+            <ul style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem;">
+                <li><strong>Case Studies:</strong> Publicados en sitio oficial del ISV</li>
+                <li><strong>Press Releases:</strong> Anuncios oficiales con fecha</li>
+                <li><strong>Wikipedia:</strong> Con citas a fuentes verificables</li>
+                <li><strong>Logos en sitio:</strong> Presencia en página de clientes del ISV</li>
+            </ul>
         </section>
 
     </main>
-
     <script src="../js/version.js"></script>
 </body>
 </html>
