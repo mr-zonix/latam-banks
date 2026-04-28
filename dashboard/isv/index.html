@@ -13,7 +13,7 @@
         .isv-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
         .isv-logo { width: 56px; height: 56px; border-radius: 10px; background: #fff; display: flex; align-items: center; justify-content: center; overflow: hidden; border: 1px solid var(--border); }
         .isv-logo img { width: 44px; height: 44px; object-fit: contain; }
-        .isv-logo-emoji { font-size: 2rem; background: linear-gradient(135deg, var(--accent-blue), var(--accent-green)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .isv-logo-emoji { font-size: 2rem; }
         .isv-title { flex: 1; }
         .isv-name { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.15rem; }
         .isv-category { font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.05em; }
@@ -22,19 +22,41 @@
         .isv-stat { background: var(--background); padding: 0.4rem 0.65rem; border-radius: 6px; font-size: 0.75rem; }
         .isv-stat strong { color: var(--accent-green); }
         .client-section { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
-        .client-section-title { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
-        .client-section-title img { width: 16px; height: 16px; }
-        .client-badge { display: inline-block; background: rgba(61, 80, 252, 0.15); color: var(--accent-blue); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin: 0.15rem; }
-        .client-badge.verified { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .client-section-title { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem; font-weight: 600; }
+        .client-badges { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .client-badge { display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(61, 80, 252, 0.15); color: var(--accent-blue); padding: 0.35rem 0.6rem; border-radius: 6px; font-size: 0.75rem; }
+        .client-badge.verified { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.3); }
+        .client-badge img { width: 18px; height: 18px; border-radius: 3px; }
         .section-intro { max-width: 900px; margin-bottom: 2rem; }
-        .legend { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        
+        /* Summary Stats Section */
+        .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0; }
+        .summary-card { background: var(--surface); border-radius: 12px; padding: 1.25rem; border: 1px solid var(--border); display: flex; align-items: center; gap: 1rem; }
+        .summary-card img { width: 48px; height: 48px; }
+        .summary-card .summary-icon { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .summary-card .summary-icon.green { background: rgba(16, 185, 129, 0.15); }
+        .summary-card .summary-icon.blue { background: rgba(61, 80, 252, 0.15); }
+        .summary-card .summary-icon.orange { background: rgba(245, 158, 11, 0.15); }
+        .summary-card .summary-icon.purple { background: rgba(139, 92, 246, 0.15); }
+        .summary-content h3 { font-size: 1.5rem; margin: 0; color: var(--text-primary); }
+        .summary-content p { font-size: 0.8rem; margin: 0.25rem 0 0 0; color: var(--text-secondary); }
+        
+        /* Countries Section */
+        .countries-row { display: flex; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
+        .country-pill { display: flex; align-items: center; gap: 0.5rem; background: var(--surface); padding: 0.6rem 1rem; border-radius: 20px; border: 1px solid var(--border); font-size: 0.85rem; }
+        .country-pill img { width: 24px; height: 24px; border-radius: 4px; }
+        .country-pill span { font-weight: 500; }
+        
+        /* Legend */
+        .legend { display: flex; gap: 2rem; margin-top: 1.5rem; flex-wrap: wrap; padding: 1rem; background: var(--surface); border-radius: 8px; }
         .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
-        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
-        .legend-dot.verified { background: var(--accent-green); }
-        .legend-dot.reported { background: var(--accent-blue); }
-        .category-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 0.5rem; }
-        .category-header img { width: 32px; height: 32px; }
+        .legend-item img { width: 20px; height: 20px; }
+        
+        .category-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
         .category-icon { width: 48px; height: 48px; background: var(--background); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        
+        /* Bank logos in client badges */
+        .bank-logo { width: 20px; height: 20px; border-radius: 4px; background: #fff; }
     </style>
 </head>
 <body>
@@ -87,18 +109,86 @@
         <h1>🤝 ISV Ecosystem</h1>
         <p class="subtitle">Technology Partners & Vendors in LATAM Banking</p>
         
-        <div class="section-intro">
-            <p>Mapeo de ISVs (Independent Software Vendors) con presencia confirmada en bancos de Ecuador, Perú, Colombia, Guatemala y Panamá. Solo se incluyen relaciones verificadas con fuente.</p>
-            <div class="legend">
-                <div class="legend-item"><span class="legend-dot verified"></span> Verificado (press release/case study)</div>
-                <div class="legend-item"><span class="legend-dot reported"></span> Reportado (fuentes de industria)</div>
+        <!-- SUMMARY STATS WITH IMAGES -->
+        <div class="summary-grid">
+            <div class="summary-card">
+                <img src="https://img.icons8.com/3d-fluency/94/handshake.png" alt="partnerships">
+                <div class="summary-content">
+                    <h3>12</h3>
+                    <p>Relaciones Verificadas</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <img src="https://img.icons8.com/3d-fluency/94/company.png" alt="isv">
+                <div class="summary-content">
+                    <h3>8</h3>
+                    <p>ISVs Mapeados</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <img src="https://img.icons8.com/3d-fluency/94/bank-building.png" alt="banks">
+                <div class="summary-content">
+                    <h3>27</h3>
+                    <p>Bancos en Dashboard</p>
+                </div>
+            </div>
+            <div class="summary-card">
+                <img src="https://img.icons8.com/3d-fluency/94/globe.png" alt="countries">
+                <div class="summary-content">
+                    <h3>5</h3>
+                    <p>Países Cubiertos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COUNTRIES COVERED WITH FLAGS -->
+        <section class="section-card">
+            <h2><img src="https://img.icons8.com/3d-fluency/94/globe.png" alt="globe" style="width:28px;height:28px;vertical-align:middle;margin-right:8px;">Países Cubiertos</h2>
+            <div class="countries-row">
+                <div class="country-pill">
+                    <img src="https://flagcdn.com/w40/ec.png" alt="Ecuador">
+                    <span>Ecuador</span>
+                    <small style="color:var(--text-secondary)">5 bancos</small>
+                </div>
+                <div class="country-pill">
+                    <img src="https://flagcdn.com/w40/pe.png" alt="Peru">
+                    <span>Perú</span>
+                    <small style="color:var(--text-secondary)">5 bancos</small>
+                </div>
+                <div class="country-pill">
+                    <img src="https://flagcdn.com/w40/co.png" alt="Colombia">
+                    <span>Colombia</span>
+                    <small style="color:var(--text-secondary)">7 bancos</small>
+                </div>
+                <div class="country-pill">
+                    <img src="https://flagcdn.com/w40/gt.png" alt="Guatemala">
+                    <span>Guatemala</span>
+                    <small style="color:var(--text-secondary)">5 bancos</small>
+                </div>
+                <div class="country-pill">
+                    <img src="https://flagcdn.com/w40/pa.png" alt="Panama">
+                    <span>Panamá</span>
+                    <small style="color:var(--text-secondary)">5 bancos</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- LEGEND WITH IMAGES -->
+        <div class="legend">
+            <div class="legend-item">
+                <img src="https://img.icons8.com/3d-fluency/94/checkmark.png" alt="verified">
+                <span><strong>Verificado</strong> — Press release o case study oficial</span>
+            </div>
+            <div class="legend-item">
+                <img src="https://img.icons8.com/3d-fluency/94/search.png" alt="reported">
+                <span><strong>Reportado</strong> — Fuentes de industria (por confirmar)</span>
             </div>
         </div>
 
         <!-- CORE BANKING -->
-        <section class="section-card">
+        <section class="section-card" style="margin-top: 2rem;">
             <div class="category-header">
-                <div class="category-icon">🏛️</div>
+                <img src="https://img.icons8.com/3d-fluency/94/bank-building.png" alt="core" style="width:48px;height:48px;">
                 <div>
                     <h2 style="margin: 0;">Core Banking</h2>
                     <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Sistemas transaccionales centrales</p>
@@ -119,20 +209,23 @@
                     </div>
                     <div class="isv-description">Líder global en core banking. Plataformas T24/Transact, Infinity (digital), y soluciones cloud-native.</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Suiza 🇨🇭</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/ch.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">Suiza</div>
                         <div class="isv-stat">Clientes: <strong>3,000+</strong></div>
                         <div class="isv-stat">LATAM: <strong>Fuerte</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/verified-badge.png" alt="verified"> Clientes LATAM Verificados:
+                            <img src="https://img.icons8.com/3d-fluency/94/checkmark.png" alt="verified" style="width:18px;height:18px;">
+                            Clientes LATAM Verificados:
                         </div>
-                        <span class="client-badge verified">🇪🇨 Diners Club Ecuador</span>
-                        <span class="client-badge verified">🇨🇴 Bancolombia</span>
-                        <span class="client-badge verified">🇧🇷 Banco do Brasil</span>
-                        <span class="client-badge verified">🇧🇷 Bradesco</span>
-                        <span class="client-badge verified">🌎 BBVA</span>
-                        <span class="client-badge verified">🌎 Santander</span>
+                        <div class="client-badges">
+                            <span class="client-badge verified"><img src="https://flagcdn.com/w20/ec.png" class="bank-logo">Diners Club Ecuador</span>
+                            <span class="client-badge verified"><img src="https://logo.clearbit.com/bancolombia.com" class="bank-logo" onerror="this.src='https://flagcdn.com/w20/co.png'">Bancolombia</span>
+                            <span class="client-badge verified"><img src="https://flagcdn.com/w20/br.png" class="bank-logo">Banco do Brasil</span>
+                            <span class="client-badge verified"><img src="https://logo.clearbit.com/bradesco.com.br" class="bank-logo" onerror="this.src='https://flagcdn.com/w20/br.png'">Bradesco</span>
+                            <span class="client-badge verified"><img src="https://logo.clearbit.com/bbva.com" class="bank-logo">BBVA</span>
+                            <span class="client-badge verified"><img src="https://logo.clearbit.com/santander.com" class="bank-logo">Santander</span>
+                        </div>
                     </div>
                     <a href="temenos.html" style="display: inline-block; margin-top: 1rem; color: var(--accent-blue); font-size: 0.85rem;">Ver detalle →</a>
                 </div>
@@ -150,16 +243,19 @@
                     </div>
                     <div class="isv-description">Empresa ecuatoriana. Fuerte presencia en bancos y cooperativas de la región andina. Core banking modular.</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Ecuador 🇪🇨</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/ec.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">Ecuador</div>
                         <div class="isv-stat">Clientes: <strong>200+</strong></div>
                         <div class="isv-stat">LATAM: <strong>Dominante</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/search.png" alt="research"> Clientes LATAM (por confirmar):
+                            <img src="https://img.icons8.com/3d-fluency/94/search.png" alt="research" style="width:18px;height:18px;">
+                            Clientes LATAM (por confirmar):
                         </div>
-                        <span class="client-badge">🇪🇨 Bancos Ecuador</span>
-                        <span class="client-badge">🇵🇪 Cooperativas Perú</span>
+                        <div class="client-badges">
+                            <span class="client-badge"><img src="https://flagcdn.com/w20/ec.png" class="bank-logo">Bancos Ecuador</span>
+                            <span class="client-badge"><img src="https://flagcdn.com/w20/pe.png" class="bank-logo">Cooperativas Perú</span>
+                        </div>
                     </div>
                 </div>
 
@@ -176,16 +272,19 @@
                     </div>
                     <div class="isv-description">Core banking cloud-native. Enfocado en neobancos, fintechs y bancos digitales. Modelo SaaS puro.</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Alemania 🇩🇪</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/de.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">Alemania</div>
                         <div class="isv-stat">Clientes: <strong>200+</strong></div>
                         <div class="isv-stat">LATAM: <strong>Creciendo</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/news.png" alt="reported"> Clientes LATAM Reportados:
+                            <img src="https://img.icons8.com/3d-fluency/94/news.png" alt="reported" style="width:18px;height:18px;">
+                            Clientes LATAM Reportados:
                         </div>
-                        <span class="client-badge">🇨🇴 Nequi (Bancolombia)</span>
-                        <span class="client-badge">🇦🇷 Ualá</span>
+                        <div class="client-badges">
+                            <span class="client-badge"><img src="https://logo.clearbit.com/nequi.com" class="bank-logo" onerror="this.src='https://flagcdn.com/w20/co.png'">Nequi (Bancolombia)</span>
+                            <span class="client-badge"><img src="https://logo.clearbit.com/uala.com.ar" class="bank-logo" onerror="this.src='https://flagcdn.com/w20/ar.png'">Ualá</span>
+                        </div>
                     </div>
                 </div>
 
@@ -195,7 +294,7 @@
         <!-- DIGITAL BANKING -->
         <section class="section-card">
             <div class="category-header">
-                <div class="category-icon">📱</div>
+                <img src="https://img.icons8.com/3d-fluency/94/smartphone.png" alt="digital" style="width:48px;height:48px;">
                 <div>
                     <h2 style="margin: 0;">Digital Banking</h2>
                     <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Plataformas de experiencia digital y omnicanalidad</p>
@@ -216,15 +315,18 @@
                     </div>
                     <div class="isv-description">Plataforma de APIs para banca digital y emisión de tarjetas. Adquirió Technisys (digital banking LATAM).</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA 🇺🇸</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/us.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">USA</div>
                         <div class="isv-stat">Cuentas: <strong>130M+</strong></div>
                         <div class="isv-stat">LATAM: <strong>Vía Technisys</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/search.png" alt="research"> Clientes LATAM (por verificar):
+                            <img src="https://img.icons8.com/3d-fluency/94/search.png" alt="research" style="width:18px;height:18px;">
+                            Clientes LATAM (por verificar):
                         </div>
-                        <span class="client-badge">🇪🇨 Banco del Pacífico</span>
+                        <div class="client-badges">
+                            <span class="client-badge"><img src="https://logo.clearbit.com/bancodelpacifico.com" class="bank-logo" onerror="this.src='https://flagcdn.com/w20/ec.png'">Banco del Pacífico</span>
+                        </div>
                     </div>
                 </div>
 
@@ -241,15 +343,18 @@
                     </div>
                     <div class="isv-description">Plataforma de experiencia digital bancaria. Engagement Banking. Omnicanalidad.</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>Países Bajos 🇳🇱</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/nl.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">Países Bajos</div>
                         <div class="isv-stat">Clientes: <strong>150+</strong></div>
                         <div class="isv-stat">LATAM: <strong>Presente</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/search.png" alt="research"> Clientes LATAM (investigando):
+                            <img src="https://img.icons8.com/3d-fluency/94/search.png" alt="research" style="width:18px;height:18px;">
+                            Clientes LATAM (investigando):
                         </div>
-                        <span class="client-badge">Por confirmar</span>
+                        <div class="client-badges">
+                            <span class="client-badge">Por confirmar</span>
+                        </div>
                     </div>
                 </div>
 
@@ -266,16 +371,19 @@
                     </div>
                     <div class="isv-description">Plataforma Cyberbank. Originalmente argentina, adquirida por SoFi/Galileo en 2022. Fuerte en LATAM.</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA 🇺🇸 (ex-🇦🇷)</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/us.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">USA (ex-<img src="https://flagcdn.com/w20/ar.png" style="width:14px;height:10px;vertical-align:middle;">)</div>
                         <div class="isv-stat">Clientes: <strong>100+</strong></div>
                         <div class="isv-stat">LATAM: <strong>Muy fuerte</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/search.png" alt="research"> Clientes LATAM (investigando):
+                            <img src="https://img.icons8.com/3d-fluency/94/search.png" alt="research" style="width:18px;height:18px;">
+                            Clientes LATAM (investigando):
                         </div>
-                        <span class="client-badge">🇦🇷 Bancos Argentina</span>
-                        <span class="client-badge">🇨🇴 Bancos Colombia</span>
+                        <div class="client-badges">
+                            <span class="client-badge"><img src="https://flagcdn.com/w20/ar.png" class="bank-logo">Bancos Argentina</span>
+                            <span class="client-badge"><img src="https://flagcdn.com/w20/co.png" class="bank-logo">Bancos Colombia</span>
+                        </div>
                     </div>
                 </div>
 
@@ -285,7 +393,7 @@
         <!-- PAYMENTS & CARDS -->
         <section class="section-card">
             <div class="category-header">
-                <div class="category-icon">💳</div>
+                <img src="https://img.icons8.com/3d-fluency/94/bank-card-back-side.png" alt="payments" style="width:48px;height:48px;">
                 <div>
                     <h2 style="margin: 0;">Payments & Cards</h2>
                     <p style="margin: 0; font-size: 0.85rem; color: var(--text-secondary);">Procesamiento de pagos, tarjetas y fraud</p>
@@ -306,15 +414,18 @@
                     </div>
                     <div class="isv-description">Gigante de procesamiento de pagos y tarjetas. First Data legacy. Clover, Carat, DNA.</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA 🇺🇸</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/us.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">USA</div>
                         <div class="isv-stat">Revenue: <strong>$18B+</strong></div>
                         <div class="isv-stat">LATAM: <strong>Fuerte</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/globe.png" alt="presence"> Presencia LATAM:
+                            <img src="https://img.icons8.com/3d-fluency/94/globe.png" alt="presence" style="width:18px;height:18px;">
+                            Presencia LATAM:
                         </div>
-                        <span class="client-badge">Card Processing regional</span>
+                        <div class="client-badges">
+                            <span class="client-badge"><img src="https://img.icons8.com/3d-fluency/94/bank-card-back-side.png" style="width:16px;height:16px;">Card Processing regional</span>
+                        </div>
                     </div>
                 </div>
 
@@ -331,15 +442,18 @@
                     </div>
                     <div class="isv-description">Pagos en tiempo real, fraud management, y bill payments. Infraestructura de pagos crítica.</div>
                     <div class="isv-stats">
-                        <div class="isv-stat">HQ: <strong>USA 🇺🇸</strong></div>
+                        <div class="isv-stat"><img src="https://flagcdn.com/w20/us.png" style="width:14px;height:10px;vertical-align:middle;margin-right:4px;">USA</div>
                         <div class="isv-stat">Revenue: <strong>$1.4B</strong></div>
                         <div class="isv-stat">LATAM: <strong>Presente</strong></div>
                     </div>
                     <div class="client-section">
                         <div class="client-section-title">
-                            <img src="https://img.icons8.com/fluency/48/globe.png" alt="presence"> Presencia LATAM:
+                            <img src="https://img.icons8.com/3d-fluency/94/globe.png" alt="presence" style="width:18px;height:18px;">
+                            Presencia LATAM:
                         </div>
-                        <span class="client-badge">Payments hubs</span>
+                        <div class="client-badges">
+                            <span class="client-badge"><img src="https://img.icons8.com/3d-fluency/94/money-transfer.png" style="width:16px;height:16px;">Payments hubs</span>
+                        </div>
                     </div>
                 </div>
 
@@ -347,19 +461,40 @@
         </section>
 
         <!-- STATUS -->
-        <section class="section-card" style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green);">
-            <div style="display: flex; align-items: flex-start; gap: 1rem;">
-                <img src="https://img.icons8.com/fluency/48/search.png" alt="research" style="width: 40px; height: 40px;">
+        <section class="section-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(61, 80, 252, 0.1) 100%); border: 1px solid rgba(16, 185, 129, 0.3);">
+            <div style="display: flex; align-items: flex-start; gap: 1.5rem;">
+                <img src="https://img.icons8.com/3d-fluency/94/analytics.png" alt="status" style="width: 56px; height: 56px;">
                 <div>
-                    <h3 style="margin: 0 0 0.5rem 0;">🔍 Estado de Investigación</h3>
-                    <p style="margin-top: 0.5rem; font-size: 0.9rem;">
-                        <strong>✅ Verificados con fuente:</strong> 7 relaciones ISV-Banco (Temenos)<br>
-                        <strong>🔎 Reportados (por verificar):</strong> 5 relaciones (Mambu, Galileo, Topaz)<br>
-                        <strong>📋 En investigación:</strong> Backbase, ACI Worldwide, Fiserv LATAM
-                    </p>
-                    <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
-                        <strong>Fuentes usadas:</strong> Press releases oficiales, Wikipedia con citas, Case studies publicados.<br>
-                        Las relaciones ISV-Banco se agregan solo con confirmación verificable.
+                    <h3 style="margin: 0 0 1rem 0; display: flex; align-items: center; gap: 0.5rem;">
+                        <img src="https://img.icons8.com/3d-fluency/94/graph-report.png" style="width:24px;height:24px;">
+                        Estado de Investigación
+                    </h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <img src="https://img.icons8.com/3d-fluency/94/checkmark.png" style="width:28px;height:28px;">
+                            <div>
+                                <strong style="color: var(--accent-green);">7</strong>
+                                <span style="font-size: 0.85rem; color: var(--text-secondary);"> relaciones verificadas</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <img src="https://img.icons8.com/3d-fluency/94/search.png" style="width:28px;height:28px;">
+                            <div>
+                                <strong style="color: var(--accent-blue);">5</strong>
+                                <span style="font-size: 0.85rem; color: var(--text-secondary);"> por verificar</span>
+                            </div>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <img src="https://img.icons8.com/3d-fluency/94/in-progress.png" style="width:28px;height:28px;">
+                            <div>
+                                <strong style="color: var(--text-primary);">3</strong>
+                                <span style="font-size: 0.85rem; color: var(--text-secondary);"> en investigación</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 1.25rem; font-size: 0.85rem; color: var(--text-secondary); display: flex; align-items: center; gap: 0.5rem;">
+                        <img src="https://img.icons8.com/3d-fluency/94/document.png" style="width:18px;height:18px;">
+                        <strong>Fuentes:</strong> Press releases, Wikipedia con citas, Case studies oficiales
                     </p>
                 </div>
             </div>
