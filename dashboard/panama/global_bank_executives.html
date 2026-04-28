@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Global Bank Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
+        .exec-avatar-large { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; flex-shrink: 0; }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.1 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="global_bank.html" class="back-link">← Back to Global Bank</a>
+        
+        <header class="page-header">
+            <h1>👔 Global Bank — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure — Panama's innovative challenger bank</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Global Bank es banco privado panameño enfocado en innovación. Directivos pueden ser verificados en memoria anual y LinkedIn. Conocido por ser early adopter de tecnología. Decisiones más ágiles que bancos más grandes.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Jorge Vallarino Strunz</div>
+                    <div class="title">Chairman / Presidente</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología / CIO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Operaciones</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Digital / Innovación</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">JV</div>
+                    <div class="exec-title-info">
+                        <h3>Jorge Vallarino Strunz</h3>
+                        <div class="role">Chairman / Presidente del Directorio</div>
+                        <div class="tenure">🏦 Global Bank • Grupo fundador</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Position:</strong> Chairman del Directorio</li>
+                            <li><strong>Background:</strong> Empresario panameño reconocido</li>
+                            <li><strong>Family:</strong> Familia Vallarino (accionistas)</li>
+                            <li><strong>Network:</strong> Élite empresarial Panamá</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Known For</h4>
+                        <ul>
+                            <li>Visión de innovación bancaria</li>
+                            <li>Apuesta por tecnología</li>
+                            <li>Crecimiento orgánico sostenido</li>
+                            <li>Servicio al cliente diferenciado</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Board-level only — a través del CEO o eventos de alto nivel.<br>
+                    <strong>When:</strong> Partnerships estratégicos, inversiones transformacionales.<br>
+                    <strong>Note:</strong> Más accesible que en bancos grandes, pero aún requiere relación previa.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Jorge%20Vallarino%20Strunz%20Global%20Bank" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>CEO / Gerente General</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente General, CEO, Presidente Ejecutivo</li>
+                            <li><strong>Reports to:</strong> Directorio / Chairman</li>
+                            <li><strong>Style:</strong> Banco conocido por decisiones ágiles</li>
+                            <li><strong>Authority:</strong> Full decision-making power</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Focus</h4>
+                        <ul>
+                            <li>Diferenciación por servicio e innovación</li>
+                            <li>Banca corporativa y PyME</li>
+                            <li>Transformación digital acelerada</li>
+                            <li>Competir contra bancos más grandes</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Inversiones estratégicas tech</li>
+                            <li>Ciclo de decisión más corto</li>
+                            <li>Abierto a innovación</li>
+                            <li>Budget: $25-40M tech annually est.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing con enfoque en innovación y diferenciación.<br>
+                    <strong>Angle:</strong> Cómo tecnología ayuda a competir contra bancos más grandes.<br>
+                    <strong>Best timing:</strong> Global Bank es más receptivo a nuevas ideas que incumbentes.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20CEO%20Global%20Bank%20Panama" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Technology / CIO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, CIO, Director TI, Gerente Sistemas</li>
+                            <li><strong>Reports to:</strong> CEO directly</li>
+                            <li><strong>Team size:</strong> 80-150 personas estimated</li>
+                            <li><strong>Budget:</strong> $25-40M annual estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking moderno</li>
+                            <li>Infraestructura cloud-forward</li>
+                            <li>Ciberseguridad</li>
+                            <li>Integración con fintechs</li>
+                            <li>Data & analytics</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Decision-maker para proyectos tech</li>
+                            <li>Más abierto a innovación</li>
+                            <li>Ciclo de POC más rápido</li>
+                            <li>Puede mover deals más rápido</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "CIO" + "Global Bank Panama"<br>
+                    2. Check company page employees<br>
+                    3. Global Bank tiende a tener tech leadership más visible<br>
+                    4. Buscar speakers en eventos fintech Panamá</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Global%20Bank%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP Operations -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Operaciones</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Operations</span>
+                            <span class="exec-tag tech">Efficiency</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Operaciones, Director Operaciones, COO</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Focus:</strong> Eficiencia, sucursales, procesos</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Red de 30+ sucursales</li>
+                            <li>Operaciones centralizadas</li>
+                            <li>Procesamiento back-office</li>
+                            <li>Service excellence (diferenciador GB)</li>
+                            <li>Contact center</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>SD-WAN para sucursales</li>
+                            <li>Automatización procesos</li>
+                            <li>Customer experience tech</li>
+                            <li>Eficiencia operacional</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Operaciones%20Global%20Bank%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Digital / Innovation -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Digital / Innovación</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Key role for GB</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Banking</span>
+                            <span class="exec-tag digital">Innovation Leader</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Digital, Chief Digital Officer, Director Innovación</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Context:</strong> Global Bank conocido por innovación</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>App móvil Global Bank</li>
+                            <li>Banca en línea moderna</li>
+                            <li>Onboarding digital</li>
+                            <li>Partnerships fintech</li>
+                            <li>Open Banking & APIs</li>
+                            <li>Customer experience digital</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Champion de innovación en GB</li>
+                            <li>Budget para nuevas iniciativas</li>
+                            <li>Abierto a POCs y pilotos</li>
+                            <li>Puede ser early adopter</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎯 Innovation Angle</h4>
+                    <p>Global Bank se posiciona como banco innovador. Este contacto es receptivo a nuevas tecnologías y puede ser champion interno. Ideal para POCs y casos de uso innovadores que luego pueden escalar.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Innovacion%20Global%20Bank%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. VP Risk / CISO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Riesgos / CISO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Security</span>
+                            <span class="exec-tag decision">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Riesgos, CISO, Director Seguridad</li>
+                            <li><strong>Reports to:</strong> CEO o CIO</li>
+                            <li><strong>Focus:</strong> Ciberseguridad, compliance, riesgo</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Ciberseguridad & SOC</li>
+                            <li>Cumplimiento SBP</li>
+                            <li>Prevención de fraude</li>
+                            <li>Gestión de riesgos tech</li>
+                            <li>Auditoría IT</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Security modernization projects</li>
+                            <li>Zero Trust architecture</li>
+                            <li>Cloud security</li>
+                            <li>Compliance automation</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CISO%20Seguridad%20Riesgos%20Global%20Bank%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- CHALLENGER BANK ADVANTAGE -->
+        <section class="section-card" style="border: 2px solid var(--accent-green);">
+            <h2>🚀 Challenger Bank Advantage</h2>
+            <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <p style="margin: 0; font-size: 0.9rem;"><strong>Global Bank se posiciona como banco innovador vs. incumbentes.</strong> Esto crea oportunidades únicas para vendors de tecnología.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div>
+                    <h4 style="color: var(--accent-green);">✅ Advantages</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Decisiones más rápidas (menos burocracia)</li>
+                        <li>Abiertos a POCs y pilotos</li>
+                        <li>Buscan diferenciarse con tecnología</li>
+                        <li>Management más accesible</li>
+                        <li>Early adopters potenciales</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-blue);">🎯 Best Approach</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Mostrar innovación, no solo features</li>
+                        <li>Proponer POCs de bajo riesgo</li>
+                        <li>Destacar cómo competir vs. grandes</li>
+                        <li>Cases de otros challenger banks</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #f59e0b;">⚠️ Considerations</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Budget menor que Banco General</li>
+                        <li>Menos recursos de implementación</li>
+                        <li>Puede necesitar soluciones "right-sized"</li>
+                        <li>Pricing competitivo importante</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Innovación y diferenciación digital</li>
+                        <li>Customer experience excellence</li>
+                        <li>Competir con eficiencia</li>
+                        <li>Cloud-forward architecture</li>
+                        <li>Fintech partnerships</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Innovation-first messaging</li>
+                        <li>POCs y quick wins</li>
+                        <li>Flexible pricing/packaging</li>
+                        <li>Cases de challenger banks</li>
+                        <li>Agile engagement approach</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Enterprise-only solutions</li>
+                        <li>Precios de banco tier-1</li>
+                        <li>Procesos de venta largos</li>
+                        <li>Over-engineering</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Decision cycle:</strong> 3-6 meses</li>
+                        <li><strong>Budget:</strong> $25-40M tech est.</li>
+                        <li><strong>POC friendly:</strong> Sí</li>
+                        <li><strong>Sweet spot:</strong> $100K-$500K deals</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/global-bank-corp/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Global Bank Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Global%20Bank%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Global Bank</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Global%20Bank%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Global%20Bank%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">📊 Directors</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="global_bank.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Panama Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

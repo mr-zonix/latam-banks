@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BCP Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.0 • Feb 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bcp.html" class="back-link">← Back to BCP Profile</a>
+        
+        <header class="page-header">
+            <h1>👔 BCP — Executive Intelligence</h1>
+            <p class="subtitle">Banco de Crédito del Perú • Credicorp Group • Top decision makers</p>
+        </header>
+
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Chairman and CEO verified from Credicorp annual reports. Technology leadership roles need LinkedIn verification. BCP is the largest bank in Peru with significant tech investment.</p>
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Dionisio Romero Paoletti</div>
+                    <div class="title">Chairman / Presidente</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Gianfranco Ferrari</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente División TI</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Infraestructura</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Digital / Yape</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">DR</div>
+                    <div class="exec-title-info">
+                        <h3>Dionisio Romero Paoletti</h3>
+                        <div class="role">Chairman / Presidente del Directorio</div>
+                        <div class="tenure">🏦 Credicorp Ltd. (NYSE: BAP) • Grupo Romero</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Ultimate Owner</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Family:</strong> Romero (controlling family)</li>
+                            <li><strong>Group:</strong> Credicorp Ltd. (NYSE: BAP)</li>
+                            <li><strong>Education:</strong> MBA Harvard Business School</li>
+                            <li><strong>Net Worth:</strong> ~$1.5B (Forbes estimate)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Known For</h4>
+                        <ul>
+                            <li>Yape super-app visionary (50M+ users)</li>
+                            <li>Digital transformation champion</li>
+                            <li>Innovation culture advocate</li>
+                            <li>Regional expansion strategy</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Credicorp Companies</h4>
+                        <ul>
+                            <li>BCP (largest bank Peru)</li>
+                            <li>Prima AFP (pensions)</li>
+                            <li>Pacífico Seguros (insurance)</li>
+                            <li>Krealo (fintech venture arm)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Owner-level — extremely rare direct access.<br>
+                    <strong>Angle:</strong> Innovation, digital transformation, regional scale.<br>
+                    <strong>Key:</strong> Yape success story is his pride. Tech-forward mindset.<br>
+                    <strong>Access:</strong> Through CEO or board connections only.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Dionisio%20Romero%20Paoletti%20Credicorp" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">GF</div>
+                    <div class="exec-title-info">
+                        <h3>Gianfranco Ferrari</h3>
+                        <div class="role">CEO / Gerente General</div>
+                        <div class="tenure">🏦 BCP • CEO desde 2018</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Tenure:</strong> CEO since 2018</li>
+                            <li><strong>Background:</strong> 20+ years at BCP, prev. Retail Banking</li>
+                            <li><strong>Education:</strong> MBA Stanford University</li>
+                            <li><strong>Style:</strong> Digital-first, customer-centric</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Yape super-app expansion</li>
+                            <li>Cloud-first strategy (AWS primary)</li>
+                            <li>AI/ML for credit decisions</li>
+                            <li>Branch transformation (phygital)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Strategic investments >$5M</li>
+                            <li>Technology roadmap approval</li>
+                            <li>Vendor partnerships</li>
+                            <li>Multi-year transformation programs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — strategic vision, not technical details.<br>
+                    <strong>Angle:</strong> Digital banking trends, competitive positioning, innovation at scale.<br>
+                    <strong>Best timing:</strong> Banking conferences, Peru Digital Congress.<br>
+                    <strong>Don't:</strong> Technical deep-dives, pricing discussions at this level.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gianfranco%20Ferrari%20BCP%20Peru" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- CTO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente División Tecnología / CTO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente División TI, CTO, VP Tecnología</li>
+                            <li><strong>Reports to:</strong> CEO directly</li>
+                            <li><strong>Team size:</strong> 1,500-2,000 estimated</li>
+                            <li><strong>Budget:</strong> $200-300M annual estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking modernization</li>
+                            <li>Yape platform infrastructure</li>
+                            <li>Cloud strategy (AWS primary)</li>
+                            <li>Data centers & hybrid cloud</li>
+                            <li>IT security & compliance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>BCP = largest tech budget in Peru banking</li>
+                            <li>Yape scale demands serious infra</li>
+                            <li>Cloud-native mindset</li>
+                            <li>Key for platform modernization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Gerente División Tecnología" OR "CTO" + "BCP" OR "Credicorp"<br>
+                    2. Check Credicorp annual report executive listing<br>
+                    3. Look for AWS re:Invent or cloud event speakers from BCP</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CTO%20Tecnolog%C3%ADa%20BCP%20Banco%20Credito%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- VP Infrastructure -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP / Gerente Infraestructura</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Infrastructure</span>
+                            <span class="exec-tag tech">Cloud & DC</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Infraestructura, Gerente Infraestructura</li>
+                            <li><strong>Reports to:</strong> CTO</li>
+                            <li><strong>Focus:</strong> DC, cloud, compute, storage, network</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Data centers (Lima primary + DR)</li>
+                            <li>AWS cloud infrastructure</li>
+                            <li>Hybrid cloud architecture</li>
+                            <li>Branch connectivity (450+ locations)</li>
+                            <li>Storage & compute platforms</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find</h4>
+                    <p>Search: "Infraestructura" + "BCP" on LinkedIn. This is your PRIMARY contact for hardware/infrastructure sales!</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20BCP%20Banco%20Credito" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- VP Digital / Yape -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Digital / Head of Yape</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Yape Super-App</span>
+                            <span class="exec-tag digital">Digital Channels</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Digital, Head of Yape, CDO</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Focus:</strong> Yape app, digital banking</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Yape super-app (50M+ downloads)</li>
+                            <li>BCP mobile & web banking</li>
+                            <li>Digital onboarding & KYC</li>
+                            <li>Open Banking APIs</li>
+                            <li>Digital payments ecosystem</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 Key Insight</h4>
+                    <p>Yape is BCP's crown jewel — 50M+ users, 3M+ daily transactions. This role drives massive digital investment. Key for app infrastructure, real-time processing, cloud-native platforms.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Yape%20Digital%20BCP" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- Data & Analytics -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Head of Data & Analytics / CDO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Data & AI</span>
+                            <span class="exec-tag tech">Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CDO, Head of Data, VP Analytics</li>
+                            <li><strong>Focus:</strong> Data platform, AI/ML, real-time analytics</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Enterprise data platform</li>
+                            <li>AI/ML credit scoring</li>
+                            <li>Real-time analytics (Yape txns)</li>
+                            <li>Customer 360 initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Data%20Analytics%20AI%20BCP%20Credicorp" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue);">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Yape infrastructure scaling</li>
+                        <li>Cloud-native platform (AWS)</li>
+                        <li>AI/ML for credit & fraud</li>
+                        <li>Real-time data streaming</li>
+                        <li>Branch modernization</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green);">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Scale & performance focus</li>
+                        <li>Innovation partnerships</li>
+                        <li>Cloud-first approach</li>
+                        <li>Regional LATAM references</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444;">❌ Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Direct contact to Chairman</li>
+                        <li>Legacy-focused messaging</li>
+                        <li>Slow implementation timelines</li>
+                        <li>Ignoring SBS compliance</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b;">📅 Budget & Timing</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Planning:</strong> Sep-Nov</li>
+                        <li><strong>Tech budget:</strong> $200-300M/yr</li>
+                        <li><strong>Decision cycle:</strong> 6-9 months</li>
+                        <li><strong>RFP threshold:</strong> >$1M</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN SEARCHES -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banco-de-credito-bcp/people/" target="_blank" class="linkedin-btn">👥 All BCP Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20BCP%20Peru" target="_blank" class="linkedin-btn">🔍 Gerentes at BCP</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20BCP" target="_blank" class="linkedin-btn">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Yape%20BCP" target="_blank" class="linkedin-btn">📱 Yape Team</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bcp.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Peru Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

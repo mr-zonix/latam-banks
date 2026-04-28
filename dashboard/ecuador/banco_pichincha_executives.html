@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Pichincha Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.1 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_pichincha.html" class="back-link">← Back to Banco Pichincha</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Pichincha — Executive Intelligence</h1>
+            <p class="subtitle">Top 5 decision makers for technology & infrastructure sales</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO and Chairman verified. Technology leadership roles need LinkedIn verification. Use the search links provided to validate and enrich each profile before your meeting.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Fidel Egas Grijalva</div>
+                    <div class="title">Chairman</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Antonio Acosta Espinosa</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">TBC — Verify</div>
+                    <div class="title">VP Tecnología / CIO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">TBC — Verify</div>
+                    <div class="title">VP Infraestructura</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">TBC — Verify</div>
+                    <div class="title">VP Banca Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 5</h2>
+
+            <!-- 1. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">AA</div>
+                    <div class="exec-title-info">
+                        <h3>Antonio Acosta Espinosa</h3>
+                        <div class="role">CEO / Gerente General</div>
+                        <div class="tenure">🏦 Banco Pichincha • Familia controladora</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Family:</strong> Acosta-Espinosa (controlling family)</li>
+                            <li><strong>Role:</strong> CEO, board member</li>
+                            <li><strong>Authority:</strong> Full decision-making power</li>
+                            <li><strong>Education:</strong> TBC — verify LinkedIn</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Regional expansion (Peru, Colombia, Spain)</li>
+                            <li>Digital transformation acceleration</li>
+                            <li>Market leadership in Ecuador</li>
+                            <li>Operational efficiency & technology modernization</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Strategic investments >$1M</li>
+                            <li>Board-level technology decisions</li>
+                            <li>Vendor partnerships & alliances</li>
+                            <li>Multi-year transformation programs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing only — don't pitch, share strategic vision.<br>
+                    <strong>Angle:</strong> Regional banking trends, competitive positioning, digital transformation ROI.<br>
+                    <strong>Don't:</strong> Technical details, pricing discussions at this level.<br>
+                    <strong>Best timing:</strong> Banking conferences, executive events, referral from board connections.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Antonio%20Acosta%20Espinosa%20Banco%20Pichincha" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">FE</div>
+                    <div class="exec-title-info">
+                        <h3>Fidel Egas Grijalva</h3>
+                        <div class="role">Chairman / Presidente del Directorio</div>
+                        <div class="tenure">🏦 Grupo Pichincha • Familia fundadora</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Family:</strong> Egas family (founding family)</li>
+                            <li><strong>Role:</strong> Board Chairman</li>
+                            <li><strong>Background:</strong> Multi-decade banking leadership</li>
+                            <li><strong>Influence:</strong> Ultimate strategic direction</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Known For</h4>
+                        <ul>
+                            <li>Long-term vision & stability</li>
+                            <li>Conservative but innovative approach</li>
+                            <li>Regional expansion strategy</li>
+                            <li>Digital banking early adopter</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Board-level only — through CEO or trusted advisors.<br>
+                    <strong>When:</strong> Major strategic partnerships, multi-million dollar transformations.<br>
+                    <strong>Note:</strong> Rarely engages with vendors directly. Build relationship through CEO first.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Fidel%20Egas%20Grijalva%20Banco%20Pichincha" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Technology / CIO (TO VERIFY) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, CIO, Chief Technology Officer, Gerente de Tecnología</li>
+                            <li><strong>Reports to:</strong> CEO directly</li>
+                            <li><strong>Team size:</strong> 200-400 people estimated</li>
+                            <li><strong>Budget:</strong> $60-80M annual estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking platform (Temenos T24)</li>
+                            <li>Data center & infrastructure</li>
+                            <li>Cloud strategy (AWS, hybrid)</li>
+                            <li>IT security & compliance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Direct decision-maker for infrastructure</li>
+                            <li>Owns compute, storage, networking budget</li>
+                            <li>Key for SD-WAN, data platform projects</li>
+                            <li>Technical authority for POCs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "CIO" + "Banco Pichincha"<br>
+                    2. Check company page employees<br>
+                    3. Look for AWS/VMware/IBM event speakers from Pichincha<br>
+                    4. Cross-reference with annual report executive listing</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Banco%20Pichincha&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP Infrastructure (TO VERIFY) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP / Director Infraestructura</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Infrastructure</span>
+                            <span class="exec-tag tech">Data Center</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Infraestructura, Director de Infraestructura, Head of IT Infrastructure</li>
+                            <li><strong>Reports to:</strong> VP Tecnología / CIO</li>
+                            <li><strong>Focus:</strong> Hardware, DC, networks, storage</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Data center operations (Quito + Guayaquil)</li>
+                            <li>Server & compute platforms</li>
+                            <li>Storage (Dell EMC, IBM, NetApp)</li>
+                            <li>Network infrastructure (Cisco)</li>
+                            <li>Branch connectivity (SD-WAN project!)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Direct buyer for infrastructure products</li>
+                            <li>Technical decision-maker for POCs</li>
+                            <li>Owns SD-WAN rollout budget</li>
+                            <li>Storage consolidation project lead</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Infraestructura" + "Banco Pichincha"<br>
+                    2. Look for VMware/Dell/Cisco certifications<br>
+                    3. Check tech conference speaker lists<br>
+                    4. This role is your PRIMARY sales contact for hardware!</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20Banco%20Pichincha&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Digital Banking (TO VERIFY) -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Banca Digital / CDO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">App & UX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Banca Digital, Chief Digital Officer, Director Canales Digitales</li>
+                            <li><strong>Reports to:</strong> CEO or CIO</li>
+                            <li><strong>Focus:</strong> Mobile app, digital CX, omnichannel</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>"Pichincha Móvil" app (3.5M+ users)</li>
+                            <li>Digital onboarding & KYC</li>
+                            <li>API strategy & Open Banking</li>
+                            <li>Customer experience & UX</li>
+                            <li>Digital payments (BIMO integration)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Drives digital transformation budget</li>
+                            <li>Cloud-native approach advocate</li>
+                            <li>Key for app modernization projects</li>
+                            <li>Customer data platform decisions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Digital" OR "Canales" + "Banco Pichincha"<br>
+                    2. Look for fintech event speakers<br>
+                    3. Check "Pichincha Móvil" app store credits<br>
+                    4. Key for digital experience & analytics plays</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Banca%20Banco%20Pichincha&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>SD-WAN for 300+ branches (2025 priority)</li>
+                        <li>Data platform modernization (Oracle → Cloud DW)</li>
+                        <li>Storage consolidation & all-flash migration</li>
+                        <li>Zero Trust security architecture</li>
+                        <li>App modernization & cloud-native</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Regional banking references (Andean region)</li>
+                        <li>TCO & ROI focus (efficiency matters)</li>
+                        <li>POC/pilot approach (prove value first)</li>
+                        <li>Local partner presence valued</li>
+                        <li>Executive briefings > cold pitches</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Direct contact to Chairman without intro</li>
+                        <li>Pricing discussions with CEO</li>
+                        <li>Technical deep-dives with executives</li>
+                        <li>Pushing cloud-only (they're hybrid)</li>
+                        <li>Ignoring local compliance (SB Ecuador)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Sep-Nov</li>
+                        <li><strong>Execution:</strong> Jan-Feb start</li>
+                        <li><strong>RFP threshold:</strong> >$500K</li>
+                        <li><strong>Decision cycle:</strong> 6-12 months</li>
+                        <li><strong>Tech budget:</strong> $60-80M annually</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banco-pichincha/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Banco Pichincha Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banco%20Pichincha&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Banco Pichincha</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Banco%20Pichincha&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Banco%20Pichincha&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">📊 Directors</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_pichincha.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Ecuador Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

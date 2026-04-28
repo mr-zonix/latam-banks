@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scotiabank Colpatria Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.global { border-left-color: #ef4444; }
+        .exec-profile-card.local { border-left-color: #06b6d4; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.global { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        .exec-avatar-large.local { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.global { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.local { background: rgba(6, 182, 212, 0.2); color: #06b6d4; }
+        .exec-tag.canada { background: rgba(220, 38, 38, 0.2); color: #dc2626; }
+        .exec-tag.mexico { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.canada { border-color: #ef4444; background: rgba(239, 68, 68, 0.1); }
+        .org-box.regional { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.local { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        .org-box .location { font-size: 0.65rem; color: var(--text-muted); margin-top: 0.25rem; }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        
+        .global-warning {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .global-warning h4 {
+            color: #ef4444;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .global-warning p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        
+        .decision-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .decision-item {
+            padding: 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+        }
+        .decision-item.global {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+        .decision-item.regional {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        .decision-item.local {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.2 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="scotiabank_colpatria.html" class="back-link">← Back to Scotiabank Colpatria</a>
+        
+        <header class="page-header">
+            <h1>👔 Scotiabank Colpatria — Executive Intelligence</h1>
+            <p class="subtitle">Decision makers & authority structure — Global Bank with Canadian Parent</p>
+        </header>
+
+        <!-- GLOBAL BANK WARNING -->
+        <div class="global-warning">
+            <h4>🌐 Global Bank — Critical Decision Dynamics</h4>
+            <p><strong>Parent:</strong> Bank of Nova Scotia (Toronto, Canada) — 51% ownership<br>
+            <strong>Local Partner:</strong> Mercantil Colpatria — 49% ownership<br>
+            <strong>Regional Hub:</strong> Scotiabank LATAM (Mexico City)<br>
+            <strong>Key Insight:</strong> Most technology decisions flow from Toronto → Mexico → Colombia. Local executives execute but rarely select major vendors. Focus on Colombia-specific needs only.</p>
+        </div>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Executive roles verified from public records where available. Given frequent executive rotation in global banks, verify current incumbents before outreach. Regional/global contacts provided for reference when needed.</p>
+        </div>
+
+        <!-- DECISION AUTHORITY MATRIX -->
+        <section class="section-card">
+            <h2>🎯 Decision Authority Matrix — Who Decides What</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Before engaging, understand where decisions are made:</p>
+            <div class="decision-matrix">
+                <div class="decision-item global">
+                    <h4 style="color: #ef4444; margin: 0 0 0.5rem 0;">🔴 Toronto (Global)</h4>
+                    <ul style="margin: 0; padding-left: 1rem; font-size: 0.8rem;">
+                        <li>Core banking platform (Temenos)</li>
+                        <li>Cloud strategy (GCP global deal)</li>
+                        <li>Security stack (Palo Alto, CrowdStrike)</li>
+                        <li>Data platform (BigQuery)</li>
+                        <li>Enterprise vendor relationships</li>
+                    </ul>
+                </div>
+                <div class="decision-item regional">
+                    <h4 style="color: #f59e0b; margin: 0 0 0.5rem 0;">🟡 Mexico (Regional)</h4>
+                    <ul style="margin: 0; padding-left: 1rem; font-size: 0.8rem;">
+                        <li>LATAM platform standardization</li>
+                        <li>Regional technology initiatives</li>
+                        <li>Pacific Alliance coordination</li>
+                        <li>Major application decisions</li>
+                        <li>Regional vendor contracts</li>
+                    </ul>
+                </div>
+                <div class="decision-item local">
+                    <h4 style="color: var(--accent-green); margin: 0 0 0.5rem 0;">🟢 Colombia (Local)</h4>
+                    <ul style="margin: 0; padding-left: 1rem; font-size: 0.8rem;">
+                        <li>Local regulatory compliance</li>
+                        <li>Colombian payment integrations</li>
+                        <li>Branch-level technology</li>
+                        <li>Local UX customizations</li>
+                        <li>Small vendor contracts (<$100K)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy — Global to Local</h2>
+            <div class="org-level">
+                <div class="org-box canada">
+                    <div class="name">Scotiabank Global Technology</div>
+                    <div class="title">CIO & SVP Technology</div>
+                    <div class="location">📍 Toronto, Canada</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box regional">
+                    <div class="name">Scotiabank LATAM</div>
+                    <div class="title">CIO LATAM / Regional Technology</div>
+                    <div class="location">📍 Mexico City</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box local">
+                    <div class="name">⚠️ CEO Colombia To Verify</div>
+                    <div class="title">Country CEO</div>
+                    <div class="location">📍 Bogotá, Colombia</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director TI Local</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Digital</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Operaciones</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Key Contacts</h2>
+
+            <!-- 1. Regional Tech Leadership -->
+            <div class="exec-profile-card global">
+                <div class="exec-header">
+                    <div class="exec-avatar-large global">🌐</div>
+                    <div class="exec-title-info">
+                        <h3>Scotiabank LATAM Technology Leadership</h3>
+                        <div class="role">CIO LATAM / SVP Technology — Mexico City</div>
+                        <div class="tenure">📍 Controls Colombia tech strategy</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag global">Global Decision</span>
+                            <span class="exec-tag mexico">Mexico City</span>
+                            <span class="exec-tag budget">Regional Budget</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role & Scope</h4>
+                        <ul>
+                            <li><strong>Scope:</strong> All LATAM markets (Mexico, Peru, Chile, Colombia)</li>
+                            <li><strong>Location:</strong> Mexico City headquarters</li>
+                            <li><strong>Reports to:</strong> Global CIO in Toronto</li>
+                            <li><strong>Controls:</strong> Regional platform decisions</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Decision Authority</h4>
+                        <ul>
+                            <li>Pacific Alliance platform standardization</li>
+                            <li>Regional vendor selections ($1M+)</li>
+                            <li>Application modernization roadmap</li>
+                            <li>Cloud migration strategy</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 When to Engage</h4>
+                        <ul>
+                            <li>You have existing Scotiabank global relationship</li>
+                            <li>Deal size >$1M across multiple countries</li>
+                            <li>Platform/infrastructure decisions</li>
+                            <li>Want to expand from another Scotia market</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">⚠️ Important Note</h4>
+                    <p><strong>If you don't have global Scotiabank relationship:</strong> Engaging regional/global execs cold is very difficult. They work with established global vendors. Better to focus on Colombia-specific opportunities.<br>
+                    <strong>If you do have global relationship:</strong> Use it to get introduction to LATAM team. Reference work in other markets.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20Technology%20Scotiabank%20LATAM%20Mexico&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search Regional Tech on LinkedIn</a>
+            </div>
+
+            <!-- 2. Colombia CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Country CEO / Presidente Colombia</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🏦 Scotiabank Colpatria — Reports to LATAM Head</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Country Leader</span>
+                            <span class="exec-tag local">Local Authority</span>
+                            <span class="exec-tag budget">Local P&L</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Title:</strong> Presidente / Country Head Colombia</li>
+                            <li><strong>Reports to:</strong> Head of International Banking (Toronto) or LATAM CEO</li>
+                            <li><strong>Scope:</strong> Full P&L responsibility for Colombia</li>
+                            <li><strong>Background:</strong> Usually banking career, mix of local/international</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Decision Authority</h4>
+                        <ul>
+                            <li>Local business strategy</li>
+                            <li>Country-specific investments</li>
+                            <li>Regulatory and compliance matters</li>
+                            <li>⚠️ Limited tech authority (regional decides)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 When to Engage</h4>
+                        <ul>
+                            <li>Strategic partnerships (not tech)</li>
+                            <li>Local business initiatives</li>
+                            <li>Regulatory compliance projects</li>
+                            <li>Executive sponsorship for local projects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Strategic discussions only — not for tech sales<br>
+                    <strong>When:</strong> Need executive sponsorship for Colombia-specific initiatives<br>
+                    <strong>Note:</strong> Country CEO can champion local needs to regional, but doesn't control tech budget<br>
+                    <strong>Approach:</strong> Business value, regulatory compliance, customer experience angles</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Presidente%20CEO%20Scotiabank%20Colpatria%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 3. Local IT Director -->
+            <div class="exec-profile-card local">
+                <div class="exec-header">
+                    <div class="exec-avatar-large local">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director de Tecnología / IT Director Colombia</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn — KEY LOCAL CONTACT</div>
+                        <div class="tenure">🔍 Executes regional decisions + manages local needs</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag local">Local Tech Lead</span>
+                            <span class="exec-tag tech">Execution Role</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director TI, IT Director, Head of Technology Colombia</li>
+                            <li><strong>Reports to:</strong> Dual — Country CEO + Regional CIO</li>
+                            <li><strong>Role:</strong> Execution, not strategy</li>
+                            <li><strong>Team:</strong> Local IT operations (~100-150 people)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Actual Authority</h4>
+                        <ul>
+                            <li>✅ Local infrastructure operations</li>
+                            <li>✅ Colombian regulatory tech requirements</li>
+                            <li>✅ Local vendor contracts (<$100K)</li>
+                            <li>✅ Branch technology support</li>
+                            <li>❌ Platform decisions (regional)</li>
+                            <li>❌ Major vendor selections (global)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 When to Engage</h4>
+                        <ul>
+                            <li>Colombian regulatory compliance tech</li>
+                            <li>Local payment integrations</li>
+                            <li>Branch-level solutions</li>
+                            <li>Support and services contracts</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(6, 182, 212, 0.1);">
+                    <h4 style="color: #06b6d4;">🎯 Best Local Tech Contact</h4>
+                    <p><strong>Reality:</strong> This person executes global/regional decisions but has budget for Colombia-specific needs.<br>
+                    <strong>Sweet Spot:</strong> Superfinanciera compliance, PSE integration, Transfiya connectivity, branch tech.<br>
+                    <strong>Deal Size:</strong> $50-150K projects<br>
+                    <strong>Approach:</strong> "We specialize in Colombian regulatory requirements that global platforms don't address"</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Tecnolog%C3%ADa%20IT%20Scotiabank%20Colpatria%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. Digital Director -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Digital / Head of Digital Colombia</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Local UX and digital channel customizations</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag local">Local UX</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Digital, Head of Digital, VP Digital Channels</li>
+                            <li><strong>Focus:</strong> App, web, digital customer experience</li>
+                            <li><strong>Challenge:</strong> Localizing regional platform</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Decision Authority</h4>
+                        <ul>
+                            <li>✅ Local UX customizations</li>
+                            <li>✅ Colombia-specific features</li>
+                            <li>✅ Local payment integrations</li>
+                            <li>✅ Customer journey optimizations</li>
+                            <li>❌ Platform architecture (regional)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Opportunities</h4>
+                        <ul>
+                            <li>Colombian payment methods (PSE, Transfiya)</li>
+                            <li>Local customer experience tools</li>
+                            <li>Loyalty program tech (Colpatria cards)</li>
+                            <li>Local analytics and personalization</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> "Colombian customer expectations that regional platform doesn't address"<br>
+                    <strong>Examples:</strong> PSE deep integration, Transfiya optimization, Colombian ID verification<br>
+                    <strong>Deal Size:</strong> $50-100K for local digital enhancements<br>
+                    <strong>Note:</strong> Can champion local needs to regional digital team</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Channels%20Scotiabank%20Colpatria%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. Compliance / Regulatory -->
+            <div class="exec-profile-card local">
+                <div class="exec-header">
+                    <div class="exec-avatar-large local">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Cumplimiento / Chief Compliance Officer</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn — HAS LOCAL BUDGET</div>
+                        <div class="tenure">🔍 Superfinanciera compliance, AML, local regulations</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag local">Regulatory</span>
+                            <span class="exec-tag budget">Local Budget</span>
+                            <span class="exec-tag decision">Compliance Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CCO, Director Cumplimiento, MLRO, Director SARLAFT</li>
+                            <li><strong>Reports to:</strong> CEO + Board Audit Committee</li>
+                            <li><strong>Regulatory:</strong> Superfinanciera, SARLAFT (AML), SAGRILAFT</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Decision Authority</h4>
+                        <ul>
+                            <li>✅ Colombian regulatory compliance tools</li>
+                            <li>✅ SARLAFT (AML) systems</li>
+                            <li>✅ Superfinanciera reporting</li>
+                            <li>✅ Local audit and control tools</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Compliance is LOCAL by nature</li>
+                            <li>Global systems don't cover Colombian specifics</li>
+                            <li>Budget for compliance is protected</li>
+                            <li>Regulatory deadlines create urgency</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(6, 182, 212, 0.1);">
+                    <h4 style="color: #06b6d4;">🎯 BEST LOCAL OPPORTUNITY</h4>
+                    <p><strong>Why Compliance is your best angle:</strong> Global platforms don't fully address Colombian regulations. CCO has protected budget and urgency from Superfinanciera.<br>
+                    <strong>Focus Areas:</strong> SARLAFT compliance, Superfinanciera reporting automation, local AML requirements<br>
+                    <strong>Deal Size:</strong> $50-150K for compliance tools<br>
+                    <strong>Timeline:</strong> Often fast (regulatory deadlines)</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Compliance%20Cumplimiento%20SARLAFT%20Scotiabank%20Colpatria%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. Cards Director (Colpatria strength) -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Tarjetas / Head of Cards</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Credit card franchise is Colpatria's strength</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Cards Business</span>
+                            <span class="exec-tag budget">P&L Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Tarjetas, VP Cards, Head of Cards Colombia</li>
+                            <li><strong>Business:</strong> Strong credit card franchise (Colpatria legacy)</li>
+                            <li><strong>Focus:</strong> Acquisition, usage, loyalty, collections</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Potential Needs</h4>
+                        <ul>
+                            <li>Card acquisition optimization</li>
+                            <li>Loyalty/rewards platform</li>
+                            <li>Collections for card portfolio</li>
+                            <li>Fraud detection (local complement)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Authority Level</h4>
+                        <ul>
+                            <li>🟡 Mixed — card platform is global</li>
+                            <li>✅ Local loyalty programs</li>
+                            <li>✅ Local card marketing tech</li>
+                            <li>✅ Local merchant relationships</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Note:</strong> Card processing/core is global, but local loyalty and marketing tech has local budget.<br>
+                    <strong>Angle:</strong> Colpatria brand loyalty, Colombian merchant integrations, local rewards optimization<br>
+                    <strong>Competition:</strong> Nu Colombia and Rappi cards taking market share<br>
+                    <strong>Deal Size:</strong> $30-100K for local card enhancements</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tarjetas%20Cards%20Scotiabank%20Colpatria%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ Local Opportunity Areas</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Superfinanciera compliance tools</li>
+                        <li>SARLAFT/AML local requirements</li>
+                        <li>PSE, Transfiya integrations</li>
+                        <li>Colombian ID verification</li>
+                        <li>Branch-level technology</li>
+                        <li>Local loyalty programs</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ Don't Bother With</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Core banking (Temenos — regional)</li>
+                        <li>Cloud infrastructure (GCP — global)</li>
+                        <li>Security platforms (global vendors)</li>
+                        <li>Data/analytics platform (BigQuery)</li>
+                        <li>Card processing (global)</li>
+                        <li>Major enterprise software</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">🎯 Best Approach</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>If no global Scotia relationship:</strong></li>
+                        <li>→ Focus only on local regulatory needs</li>
+                        <li>→ Small deals ($50-150K)</li>
+                        <li>→ Or deprioritize entirely</li>
+                        <li><strong>If you have global relationship:</strong></li>
+                        <li>→ Use it to access regional team</li>
+                        <li>→ Pursue multi-country deals</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">📅 Timing</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Fiscal Year:</strong> Nov-Oct (Canadian)</li>
+                        <li><strong>Budget Planning:</strong> Jul-Sep</li>
+                        <li><strong>Local Projects:</strong> Anytime</li>
+                        <li><strong>Regional:</strong> Long cycles (6-12 mo)</li>
+                        <li><strong>Regulatory:</strong> Driven by deadlines</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to find and verify contacts:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/scotiabankcolpatria/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Scotiabank Colpatria</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Scotiabank%20Colpatria%20Colombia&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 Directors Colombia</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Scotiabank%20Colpatria&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Tech Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20Technology%20Scotiabank%20LATAM&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🌐 Regional Tech (Mexico)</a>
+                <a href="https://www.linkedin.com/company/scotiabank/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">🇨🇦 Scotiabank Global</a>
+            </div>
+        </section>
+
+        <!-- STRATEGIC RECOMMENDATION -->
+        <section class="section-card">
+            <h2>💡 Strategic Recommendation</h2>
+            <div style="padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px;">
+                <p style="font-size: 0.95rem; margin: 0; line-height: 1.6;">
+                    <strong>Bottom Line:</strong> Unless you have existing Scotiabank global relationships, your time is better spent on locally-controlled Colombian banks like <strong>Bancolombia</strong> ($200-300M tech budget, local decisions) or <strong>Davivienda</strong> ($100-150M, local decisions). Scotiabank Colpatria's realistic local opportunity is only <strong>$200-500K annually</strong> for Colombia-specific needs.<br><br>
+                    <strong>If you do pursue:</strong> Focus exclusively on compliance (SARLAFT, Superfinanciera), local payment integrations (PSE, Transfiya), and branch services. Contact the CCO and local IT Director. Don't waste time on infrastructure or platform sales.
+                </p>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="scotiabank_colpatria.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Colombia Overview</a>
+            <a href="bancolombia_executives.html" class="btn-primary">Better Target: Bancolombia →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

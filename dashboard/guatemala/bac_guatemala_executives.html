@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAC Guatemala Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.regional { border-left-color: #f97316; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.regional { background: linear-gradient(135deg, #f97316, #ea580c); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.regional { background: rgba(249, 115, 22, 0.2); color: #f97316; }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.regional { border-color: #f97316; background: rgba(249, 115, 22, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+        .regional-note {
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px solid rgba(249, 115, 22, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .regional-note h4 {
+            color: #f97316;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .regional-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.1 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bac_guatemala.html" class="back-link">← Back to BAC Guatemala</a>
+        
+        <header class="page-header">
+            <h1>👔 BAC Guatemala — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales | Part of BAC Credomatic</p>
+        </header>
+
+        <!-- REGIONAL STRUCTURE NOTE -->
+        <div class="regional-note">
+            <h4>🌎 Regional Platform — Critical Context</h4>
+            <p><strong>BAC Guatemala is part of BAC Credomatic</strong> (owned by Grupo Aval, Colombia). Technology decisions are often made at the REGIONAL level in Costa Rica or Colombia. Local Country Manager has operational authority but major tech investments typically require regional approval. Consider a <strong>regional sales approach</strong> for larger deals.</p>
+        </div>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Country Manager role verified. Technology leadership may be regional (Costa Rica HQ). Use LinkedIn searches to identify both local Guatemala contacts AND regional BAC Credomatic technology leaders.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box regional">
+                    <div class="name">BAC Credomatic Regional</div>
+                    <div class="title">Costa Rica / Colombia (Grupo Aval)</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ TBC — Verify</div>
+                    <div class="title">Country Manager Guatemala</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ TBC — Verify</div>
+                    <div class="title">Gerente TI Local</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ Regional</div>
+                    <div class="title">CIO BAC Credomatic</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Regional Context -->
+            <div class="exec-profile-card regional">
+                <div class="exec-header">
+                    <div class="exec-avatar-large regional">RC</div>
+                    <div class="exec-title-info">
+                        <h3>BAC Credomatic Regional Leadership</h3>
+                        <div class="role">Regional HQ — Costa Rica / Colombia</div>
+                        <div class="tenure">🌎 Grupo Aval ownership | 6 countries in Central America</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag regional">Regional Decisions</span>
+                            <span class="exec-tag decision">Tech Strategy</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Structure</h4>
+                        <ul>
+                            <li><strong>Parent:</strong> Grupo Aval (Colombia) via Banco de Bogotá</li>
+                            <li><strong>Regional HQ:</strong> San José, Costa Rica</li>
+                            <li><strong>Countries:</strong> GT, SV, HN, NI, CR, PA</li>
+                            <li><strong>Shared services:</strong> Technology, risk, compliance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Regional Tech Decisions</h4>
+                        <ul>
+                            <li>Core banking platform (regional)</li>
+                            <li>Data center strategy (shared)</li>
+                            <li>Cloud & infrastructure standards</li>
+                            <li>Cybersecurity framework</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(249, 115, 22, 0.1);">
+                    <h4 style="color: #f97316;">🎪 Regional Sales Strategy</h4>
+                    <p><strong>Key insight:</strong> Major technology decisions are made regionally.<br>
+                    <strong>Approach:</strong> Consider engaging BAC Credomatic HQ in Costa Rica for platform-level deals.<br>
+                    <strong>Local:</strong> Country Manager can approve local operational needs.<br>
+                    <strong>Regional contacts:</strong> CIO/CTO level at BAC Credomatic for strategic deals.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20CTO%20BAC%20Credomatic&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search BAC Regional Tech Leaders</a>
+            </div>
+
+            <!-- 2. Country Manager Guatemala (TO VERIFY) -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Country Manager Guatemala</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Local Decision Maker</span>
+                            <span class="exec-tag budget">Country P&L</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Country Manager, Gerente General, CEO Guatemala</li>
+                            <li><strong>Reports to:</strong> Regional CEO BAC Credomatic</li>
+                            <li><strong>Authority:</strong> Local operations, within regional guidelines</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Guatemala market growth</li>
+                            <li>Digital adoption acceleration</li>
+                            <li>Corporate & retail banking</li>
+                            <li>Regional platform execution locally</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Local operational investments</li>
+                            <li>Country-specific initiatives</li>
+                            <li>Recommends to regional for larger deals</li>
+                            <li>Budget execution within guidelines</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive engagement for Guatemala-specific needs.<br>
+                    <strong>Scope:</strong> Can approve local projects; escalates larger deals to regional.<br>
+                    <strong>Angle:</strong> Guatemala market opportunity, local customer experience.<br>
+                    <strong>Note:</strong> Building local relationship helps with regional escalation.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Country%20Manager%20Gerente%20General%20BAC%20Guatemala" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. Gerente TI Local (TO VERIFY) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente de TI Guatemala</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Local Tech Contact</span>
+                            <span class="exec-tag regional">Reports to Regional</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente TI, IT Manager, Director Tecnología Guatemala</li>
+                            <li><strong>Reports to:</strong> Country Manager AND Regional CIO</li>
+                            <li><strong>Team:</strong> 30-60 people estimated (local)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Local infrastructure operations</li>
+                            <li>Branch technology support</li>
+                            <li>Regional platform local deployment</li>
+                            <li>Vendor relationship (local)</li>
+                            <li>Compliance with regional standards</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>First contact for local tech needs</li>
+                            <li>Influences regional recommendations</li>
+                            <li>Owns local branch infrastructure</li>
+                            <li>Gateway to regional tech team</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "IT" OR "Tecnología" + "BAC Guatemala"<br>
+                    2. May have matrix reporting (local + regional)<br>
+                    3. Good entry point for local needs<br>
+                    4. Can introduce you to regional counterparts</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=TI%20Tecnolog%C3%ADa%20BAC%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. Regional CIO BAC Credomatic (TO VERIFY) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large regional">?</div>
+                    <div class="exec-title-info">
+                        <h3>CIO / CTO BAC Credomatic (Regional)</h3>
+                        <div class="role">⚠️ To Verify — Costa Rica HQ</div>
+                        <div class="tenure">🌎 Regional technology strategy</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag regional">Regional Decision</span>
+                            <span class="exec-tag tech">Tech Strategy Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CIO, CTO, VP Tecnología BAC Credomatic</li>
+                            <li><strong>Location:</strong> San José, Costa Rica (HQ)</li>
+                            <li><strong>Scope:</strong> All 6 Central American countries</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Regional Responsibilities</h4>
+                        <ul>
+                            <li>Regional technology strategy</li>
+                            <li>Core banking platform decisions</li>
+                            <li>Cloud & data center strategy</li>
+                            <li>Cybersecurity standards</li>
+                            <li>Regional vendor relationships</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical for Large Deals</h4>
+                        <ul>
+                            <li>Approves regional technology investments</li>
+                            <li>Platform-level decisions</li>
+                            <li>Multi-country deployments</li>
+                            <li>Major vendor partnerships</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(249, 115, 22, 0.1);">
+                    <h4 style="color: #f97316;">🎪 Regional Engagement</h4>
+                    <p><strong>When:</strong> For deals >$500K or multi-country scope.<br>
+                    <strong>Approach:</strong> Regional value proposition, economies of scale.<br>
+                    <strong>Location:</strong> May require travel to Costa Rica or virtual exec briefing.<br>
+                    <strong>Leverage:</strong> Grupo Aval relationship if you have Colombia connections.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20CTO%20Tecnolog%C3%ADa%20BAC%20Credomatic&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search Regional CIO/CTO</a>
+            </div>
+
+            <!-- 5. Gerente Banca Digital (TO VERIFY) -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente Canales Digitales Guatemala</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">BAC App</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente Digital, Director Canales, Product Manager Digital</li>
+                            <li><strong>Note:</strong> Digital platform may be regional</li>
+                            <li><strong>Focus:</strong> Local digital adoption</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>BAC mobile app local promotion</li>
+                            <li>Digital customer adoption</li>
+                            <li>Local digital product features</li>
+                            <li>Customer experience (digital)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Context</h4>
+                        <ul>
+                            <li>BAC has strong regional digital platform</li>
+                            <li>Local role focuses on adoption/experience</li>
+                            <li>Platform development likely regional</li>
+                            <li>Good for digital CX initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Digital" + "BAC Guatemala"<br>
+                    2. Also search regional digital leaders<br>
+                    3. BAC Móvil is strong in the region<br>
+                    4. Local role may be marketing/adoption focused</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Canales%20BAC%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. Gerente Operaciones (TO VERIFY) -->
+            <div class="exec-profile-card">
+                <div class="exec-header">
+                    <div class="exec-avatar-large">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente de Operaciones Guatemala</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Operations</span>
+                            <span class="exec-tag decision">Local Ops</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente Operaciones, VP Ops, COO Guatemala</li>
+                            <li><strong>Reports to:</strong> Country Manager</li>
+                            <li><strong>Focus:</strong> Local operations, branches, processes</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Branch operations oversight</li>
+                            <li>Local process automation needs</li>
+                            <li>Operational technology decisions</li>
+                            <li>Partner for efficiency projects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>When:</strong> For branch-level or operational technology.<br>
+                    <strong>Angle:</strong> Operational efficiency, local process improvements.<br>
+                    <strong>Note:</strong> Works within regional framework but has local authority.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Operaciones%20Gerente%20BAC%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Local infrastructure needs (branches)</li>
+                        <li>Regional platform integration</li>
+                        <li>Multi-country deployment value</li>
+                        <li>Cloud/hybrid optimization</li>
+                        <li>Cybersecurity compliance</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Regional scale messaging</li>
+                        <li>Grupo Aval/Colombia references</li>
+                        <li>Central America experience</li>
+                        <li>Multi-country deployment capability</li>
+                        <li>Regional support presence</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Guatemala-only proposals for platform deals</li>
+                        <li>Ignoring regional decision structure</li>
+                        <li>Solutions not compatible with regional standards</li>
+                        <li>Bypassing local for regional (build both)</li>
+                        <li>Long procurement cycles (regional adds time)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget:</strong> Regional cycle (varies)</li>
+                        <li><strong>Decision cycle:</strong> 9-18 months (regional)</li>
+                        <li><strong>Local authority:</strong> Up to ~$200-300K</li>
+                        <li><strong>Regional required:</strong> >$500K typically</li>
+                        <li><strong>Tech budget:</strong> Regional allocation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Search both local Guatemala AND regional BAC Credomatic contacts:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/bac-credomatic/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 BAC Credomatic (Regional)</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=BAC%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 BAC Guatemala Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20BAC%20Credomatic&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Regional Tech Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20Director%20BAC%20Guatemala&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">📊 Guatemala Leaders</a>
+            </div>
+        </section>
+
+        <!-- REGIONAL CONTEXT -->
+        <section class="section-card">
+            <h2>🌎 Regional Context — Grupo Aval Connection</h2>
+            <div style="background: rgba(249, 115, 22, 0.1); padding: 1rem; border-radius: 8px;">
+                <p style="font-size: 0.9rem; line-height: 1.6; margin: 0;">
+                    <strong>BAC Credomatic</strong> is owned by <strong>Grupo Aval</strong> (Colombia's largest financial group) through Banco de Bogotá. This creates opportunities:
+                </p>
+                <ul style="font-size: 0.85rem; margin-top: 0.75rem; padding-left: 1.2rem;">
+                    <li><strong>Leverage Colombia:</strong> If you have Grupo Aval/Banco de Bogotá relationships, use them</li>
+                    <li><strong>Regional platform:</strong> Technology decisions often follow regional standards</li>
+                    <li><strong>6 countries:</strong> Guatemala, El Salvador, Honduras, Nicaragua, Costa Rica, Panama</li>
+                    <li><strong>Shared services:</strong> Technology, risk, compliance often centralized</li>
+                    <li><strong>Regional CIO:</strong> Key decision-maker for platform investments</li>
+                </ul>
+                <p style="font-size: 0.85rem; margin-top: 0.75rem; font-style: italic;">
+                    💡 <strong>Sales tip:</strong> Position your solution for regional scale. A Guatemala-only deal is smaller; a 6-country BAC Credomatic deal is significant.
+                </p>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bac_guatemala.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Guatemala Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

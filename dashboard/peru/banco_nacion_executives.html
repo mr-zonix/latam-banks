@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de la Nación Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.gov { border-left-color: #7c3aed; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.gov { background: linear-gradient(135deg, #7c3aed, #5b21b6); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.gov { background: rgba(124, 58, 237, 0.2); color: #7c3aed; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.gov { border-color: #7c3aed; background: rgba(124, 58, 237, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        
+        .gov-warning { background: rgba(124, 58, 237, 0.15); border: 2px solid rgba(124, 58, 237, 0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .gov-warning h4 { color: #7c3aed; margin: 0 0 0.75rem 0; font-size: 1.1rem; }
+        .gov-warning p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+        .gov-warning ul { margin: 0.75rem 0 0 0; padding-left: 1.5rem; }
+        .gov-warning li { margin-bottom: 0.5rem; }
+        
+        .seace-box { background: rgba(245, 158, 11, 0.15); border: 2px solid rgba(245, 158, 11, 0.4); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .seace-box h4 { color: #f59e0b; margin: 0 0 0.75rem 0; font-size: 1.1rem; }
+        .seace-box a { color: var(--accent-blue); font-weight: 600; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.2 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_nacion.html" class="back-link">← Back to Banco de la Nación Profile</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco de la Nación — Executive Intelligence</h1>
+            <p class="subtitle">🏛️ State-Owned Bank • 100% Government of Peru • Public procurement required</p>
+        </header>
+
+        <div class="gov-warning">
+            <h4>🏛️ GOVERNMENT BANK — Special Sales Process</h4>
+            <p>Banco de la Nación is 100% owned by the Government of Peru. This fundamentally changes how you sell:</p>
+            <ul>
+                <li><strong>ALL purchases</strong> must go through public tender (licitación pública)</li>
+                <li><strong>No direct sales</strong> — you cannot close a deal through executive relationships alone</li>
+                <li><strong>Executives change</strong> with government administrations (every 5 years max)</li>
+                <li><strong>Budget is government budget</strong> — approved annually by Congress</li>
+                <li><strong>Pitch "citizen service"</strong> not ROI — public impact matters more than profit</li>
+            </ul>
+        </div>
+
+        <div class="seace-box">
+            <h4>📋 SEACE — Required Procurement Portal</h4>
+            <p>ALL Banco de la Nación purchases go through SEACE (Sistema Electrónico de Contrataciones del Estado):</p>
+            <ul>
+                <li>🔗 <a href="https://www.gob.pe/seace" target="_blank">SEACE Portal → gob.pe/seace</a></li>
+                <li>🔍 Search for: "Banco de la Nación" to find active tenders</li>
+                <li>📅 Monitor regularly — tenders have strict deadlines</li>
+                <li>📝 Register as a provider to participate in tenders</li>
+                <li>🤝 Local partner often required for foreign companies</li>
+            </ul>
+            <p style="margin-top: 1rem;"><strong>Strategy:</strong> Build relationships with executives to influence RFP requirements, but the actual sale happens through SEACE tender.</p>
+        </div>
+
+        <div class="verify-note">
+            <h4>⚠️ Research Status — Political Appointees</h4>
+            <p>Banco de la Nación executives are political appointees that change with government administrations. Always verify current leadership before meetings — turnover is high. Last verified: April 2025.</p>
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box gov">
+                    <div class="name">MEF / FONAFE</div>
+                    <div class="title">Ministry of Economy & FONAFE</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Presidente del Directorio</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem; flex-wrap: wrap;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente TI</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente Operaciones</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Key Roles</h2>
+
+            <!-- Government Context -->
+            <div class="exec-profile-card gov">
+                <div class="exec-header">
+                    <div class="exec-avatar-large gov">🇵🇪</div>
+                    <div class="exec-title-info">
+                        <h3>MEF & FONAFE Oversight</h3>
+                        <div class="role">Government Control Structure</div>
+                        <div class="tenure">🏛️ Ministry of Economy & Finance + State Company Holding</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag gov">Government</span>
+                            <span class="exec-tag decision">Ultimate Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Government Structure</h4>
+                        <ul>
+                            <li><strong>MEF:</strong> Ministerio de Economía y Finanzas</li>
+                            <li><strong>FONAFE:</strong> Fondo Nacional de Financiamiento de la Actividad Empresarial del Estado</li>
+                            <li><strong>SBS:</strong> Banking regulator (applies to all banks)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 What This Means</h4>
+                        <ul>
+                            <li>Board appointed by government</li>
+                            <li>Budget approved by Congress annually</li>
+                            <li>Major investments need MEF approval</li>
+                            <li>Public procurement law applies (OSCE/SEACE)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(124, 58, 237, 0.1);">
+                    <h4 style="color: #7c3aed;">🎪 Sales Implication</h4>
+                    <p><strong>Relationships matter for:</strong> Influencing RFP requirements, getting on approved vendor list, understanding priorities.<br>
+                    <strong>But closing requires:</strong> Winning the public tender through SEACE. No exceptions.</p>
+                </div>
+            </div>
+
+            <!-- Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Presidente del Directorio</h3>
+                        <div class="role">⚠️ To Verify — Political Appointee</div>
+                        <div class="tenure">🏛️ Board Chairman — Changes with government</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag gov">Political Appointee</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Context</h4>
+                        <ul>
+                            <li><strong>Type:</strong> Political appointee by government</li>
+                            <li><strong>Tenure:</strong> Typically changes with administration</li>
+                            <li><strong>Background:</strong> Often former MEF official or banker</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Authority</h4>
+                        <ul>
+                            <li>Strategic direction approval</li>
+                            <li>Major investment decisions</li>
+                            <li>Board oversight</li>
+                            <li>Coordinates with MEF/FONAFE</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🔍 How to Verify Current</h4>
+                    <p>Check Banco de la Nación website → "Nosotros" → "Directorio" or search news for recent appointments. Political changes = executive changes.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Presidente%20Directorio%20Banco%20Nacion%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente General</h3>
+                        <div class="role">⚠️ To Verify — May Change with Government</div>
+                        <div class="tenure">🏦 CEO equivalent — Day-to-day operations</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Operational Authority</span>
+                            <span class="exec-tag budget">Budget Execution</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Context</h4>
+                        <ul>
+                            <li><strong>Reports to:</strong> Board / Presidente del Directorio</li>
+                            <li><strong>Focus:</strong> Operations, execution, modernization</li>
+                            <li><strong>Style:</strong> Often career banker or technocrat</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Authority</h4>
+                        <ul>
+                            <li>Operational decisions</li>
+                            <li>Project execution</li>
+                            <li>Tender approval (within budget)</li>
+                            <li>Technology modernization</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Key relationship for understanding priorities and influencing RFP requirements.<br>
+                    <strong>Pitch:</strong> "Serving citizens better" — public impact focus.<br>
+                    <strong>Remember:</strong> They cannot award you a contract directly — must go through SEACE.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20Banco%20Nacion%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- IT Manager -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente de Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Tech Decision Influencer</span>
+                            <span class="exec-tag tech">RFP Requirements</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente TI, CIO, Director Tecnología</li>
+                            <li><strong>Reports to:</strong> Gerente General</li>
+                            <li><strong>Type:</strong> May be career employee (more stable)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking systems</li>
+                            <li>Branch network tech</li>
+                            <li>ATM/Cajeros infrastructure</li>
+                            <li>Digital channels (MultiRed)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Writes technical requirements for RFPs</li>
+                            <li>Evaluates proposals technically</li>
+                            <li>Key influencer even if can't decide alone</li>
+                            <li>More stable than political appointees</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔑 Key Relationship</h4>
+                    <p>This is your most important contact. They influence RFP technical requirements. Build relationship early, before tender is published. Help them understand what's possible.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20TI%20Banco%20Nacion%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- Operations -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente de Operaciones</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Operations</span>
+                            <span class="exec-tag tech">Branch Network</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente Operaciones, COO</li>
+                            <li><strong>Focus:</strong> 600+ branches, operations</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Branch network operations</li>
+                            <li>Payment operations (government payroll)</li>
+                            <li>ATM network (large rural presence)</li>
+                            <li>Service quality</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>💡 Opportunity</h4>
+                    <p>Banco de la Nación has the largest rural branch network in Peru (600+ locations). Solutions for remote branch connectivity, offline-capable systems, and rural banking tech are relevant.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Operaciones%20Banco%20Nacion%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- Procurement -->
+            <div class="exec-profile-card">
+                <div class="exec-header">
+                    <div class="exec-avatar-large">📋</div>
+                    <div class="exec-title-info">
+                        <h3>Jefe de Logística / Procurement</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Critical for tender process</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag gov">Procurement</span>
+                            <span class="exec-tag decision">Tender Process</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Jefe Logística, Compras, Procurement</li>
+                            <li><strong>Focus:</strong> SEACE process, tender management</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>Manages tender publication process</li>
+                            <li>Knows upcoming procurement calendar</li>
+                            <li>Can clarify requirements during Q&A</li>
+                            <li>Registration as approved vendor</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Tactical Contact</h4>
+                    <p>While not a decision maker on what to buy, this role is critical for the HOW of selling. Build relationship to understand tender timelines and requirements.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Log%C3%ADstica%20Compras%20Banco%20Nacion%20Peru" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- PROCUREMENT GUIDE -->
+        <section class="section-card">
+            <h2>📋 Public Procurement Guide — How to Win</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue);">📅 Timeline</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Jul-Oct (for next year)</li>
+                        <li><strong>Tender publication:</strong> Varies (monitor SEACE)</li>
+                        <li><strong>Q&A period:</strong> 1-2 weeks typically</li>
+                        <li><strong>Proposal deadline:</strong> Strict — no extensions</li>
+                        <li><strong>Contract to award:</strong> 3-6 months</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green);">✅ How to Win</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Build relationships BEFORE tender</li>
+                        <li>Help shape RFP requirements</li>
+                        <li>Register on SEACE early</li>
+                        <li>Local partner for foreign companies</li>
+                        <li>Competitive pricing (often lowest bid wins)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444;">❌ Common Mistakes</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Trying to close deals directly</li>
+                        <li>Ignoring SEACE registration</li>
+                        <li>Missing tender deadlines</li>
+                        <li>Incomplete documentation</li>
+                        <li>Underestimating local partners</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b;">💡 Pro Tips</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Pitch "citizen impact" not ROI</li>
+                        <li>Reference other government clients</li>
+                        <li>Financial stability matters (bonds)</li>
+                        <li>Spanish documentation required</li>
+                        <li>Expect 6-18 month sales cycles</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN SEARCHES -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banco-de-la-nacion/people/" target="_blank" class="linkedin-btn">👥 All Banco de la Nación Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20Banco%20Nacion%20Peru" target="_blank" class="linkedin-btn">🔍 Gerentes</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Banco%20Nacion" target="_blank" class="linkedin-btn">💻 Technology Team</a>
+                <a href="https://www.gob.pe/seace" target="_blank" class="linkedin-btn" style="background: #7c3aed;">📋 SEACE Portal</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_nacion.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Peru Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

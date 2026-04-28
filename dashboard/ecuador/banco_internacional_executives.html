@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Internacional Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.chairman { border-left-color: #f59e0b; }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.security { border-left-color: #ef4444; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-photo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            border: 3px solid var(--border);
+        }
+        .exec-photo-placeholder.chairman { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-photo-placeholder.ceo { background: linear-gradient(135deg, var(--accent-blue), #2563eb); }
+        .exec-photo-placeholder.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-photo-placeholder.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-photo-placeholder.security { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.3rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 1rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .exec-tag { padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.security { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.verify { background: rgba(107, 114, 128, 0.2); color: #6b7280; }
+        .exec-tag.private { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .exec-detail-section h4 { font-size: 0.9rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; }
+        .exec-detail-section li { margin-bottom: 0.35rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1.25rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.95rem; }
+        .approach-box p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: #0077b5; color: white; border-radius: 6px; font-size: 0.85rem; text-decoration: none; margin-top: 0.75rem; transition: background 0.2s; }
+        .linkedin-btn:hover { background: #005885; color: white; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: center; }
+        .org-level { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 180px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .org-connector { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+        .verified-badge { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block; }
+        .update-badge { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.5rem; display: block; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.1 • Apr 2025</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_internacional.html" class="back-link">← Back to Banco Internacional</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Internacional — Executive Intelligence</h1>
+            <p class="subtitle">Key decision makers for technology & infrastructure sales</p>
+        </header>
+
+        <div class="verified-badge">✅ <strong>Private Bank:</strong> Full local decision-making autonomy — no regional or government constraints</div>
+        
+        <div class="update-badge">
+            📌 <strong>Key Note:</strong> Conservative, relationship-focused culture. Values long-term partnerships. Decision cycles 4-8 months. Sweet spot: Large enough to invest, agile enough to move quickly.
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Board of Directors</div>
+                    <div class="title">Independent Board</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CIO / Gerente TI</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente Canales</div>
+                </div>
+                <div class="org-box tech" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CISO</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Key Decision Makers</h2>
+
+            <!-- 1. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder ceo">CEO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — CEO / Gerente General</h3>
+                        <div class="role">Gerente General (CEO)</div>
+                        <div class="tenure">🏦 Full Local Autonomy • Private Bank</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag private">Private Bank</span>
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> CEO / Gerente General</li>
+                            <li><strong>Reports to:</strong> Board of Directors</li>
+                            <li><strong>Authority:</strong> Full operational decisions</li>
+                            <li><strong>Budget:</strong> ~$25-35M annual tech spend</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important</h4>
+                        <ul>
+                            <li>Final approval for strategic tech investments</li>
+                            <li>Champions innovation initiatives</li>
+                            <li>Relationship-focused decision style</li>
+                            <li>Values long-term partnerships</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — build relationship first.<br>
+                    <strong>Angle:</strong> Efficiency (reduce 52% CIR), competitive positioning, customer service excellence.<br>
+                    <strong>Style:</strong> Conservative, relationship-driven. Earn trust before pitching.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CEO%20Gerente%20General%20Banco%20Internacional%20Ecuador" target="_blank" class="linkedin-btn">🔗 Search CEO on LinkedIn</a>
+            </div>
+
+            <!-- 2. CIO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder tech">CIO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — CIO / Gerente de TI</h3>
+                        <div class="role">CIO / Gerente de Tecnología</div>
+                        <div class="tenure">🏦 Infrastructure & IT Operations</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag tech">CIO</span>
+                            <span class="exec-tag budget">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Role Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> CIO / Gerente de TI</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Authority:</strong> Tech decisions with CEO approval</li>
+                            <li><strong>Budget:</strong> ~$25-35M annually</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data center & infrastructure</li>
+                            <li>Core banking (FIS Profile)</li>
+                            <li>Cloud strategy (AWS evaluation)</li>
+                            <li>SD-WAN rollout (decision imminent)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li><strong>PRIMARY CONTACT</strong> for tech deals</li>
+                            <li>SD-WAN project decision maker</li>
+                            <li>Cloud journey starting — good timing</li>
+                            <li>Technical authority for POCs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Technical + Strategic — values practical solutions.<br>
+                    <strong>Hot topics:</strong> SD-WAN for 100+ branches, data platform modernization, cloud evaluation.<br>
+                    <strong>Timing:</strong> SD-WAN decision imminent (Q1-Q2 2025).</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20Gerente%20TI%20Banco%20Internacional%20Ecuador" target="_blank" class="linkedin-btn">🔗 Search CIO on LinkedIn</a>
+            </div>
+
+            <!-- 3. JEFE INFRAESTRUCTURA -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder tech">JI</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Jefe de Infraestructura</h3>
+                        <div class="role">Jefe de Infraestructura</div>
+                        <div class="tenure">🏦 Data Centers, Networks, Servers</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag tech">Infrastructure</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data center operations (Quito/Guayaquil)</li>
+                            <li>Server & storage management</li>
+                            <li>Network infrastructure</li>
+                            <li>VMware environment</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Day-to-day infrastructure decisions</li>
+                            <li>Storage consolidation projects</li>
+                            <li>VMware alternatives evaluation</li>
+                            <li>POC execution partner</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Infraestructura%20Banco%20Internacional%20Ecuador" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. GERENTE CANALES -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder digital">GC</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Gerente de Canales</h3>
+                        <div class="role">Gerente de Canales / VP Digital</div>
+                        <div class="tenure">🏦 Digital Banking & Customer Experience</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag digital">Digital Channels</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Mobile banking (InterMovil)</li>
+                            <li>Internet banking platform</li>
+                            <li>Customer experience</li>
+                            <li>Digital onboarding</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>App enhancement project planned</li>
+                            <li>UX modernization initiatives</li>
+                            <li>BIMO integration decisions</li>
+                            <li>Corporate digital platform upgrade</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Customer experience, competitive differentiation, digital excellence.<br>
+                    <strong>Hot topics:</strong> App UX improvement, digital onboarding, corporate banking portal.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Canales%20Digital%20Banco%20Internacional%20Ecuador" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. CISO -->
+            <div class="exec-profile-card security">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder security">CISO</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — CISO</h3>
+                        <div class="role">CISO / Jefe de Seguridad Informática</div>
+                        <div class="tenure">🏦 Security Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag security">CISO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Security architecture</li>
+                            <li>SIEM operations (AlienVault)</li>
+                            <li>Compliance (SB Ecuador)</li>
+                            <li>Zero Trust evaluation</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>SIEM modernization (Splunk/Sentinel)</li>
+                            <li>Security posture improvement</li>
+                            <li>Zero Trust initiative</li>
+                            <li>Can enable or block infrastructure deals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Risk reduction, compliance, modern security posture.<br>
+                    <strong>Hot topics:</strong> SIEM upgrade from AlienVault, Zero Trust, endpoint security consolidation.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CISO%20Seguridad%20Banco%20Internacional%20Ecuador" target="_blank" class="linkedin-btn">🔗 Search CISO on LinkedIn</a>
+            </div>
+
+            <!-- 6. HEAD OF DATA -->
+            <div class="exec-profile-card" style="border-left-color: #06b6d4;">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">HD</div>
+                    <div class="exec-title-info">
+                        <h3>⚠️ To Verify — Head of Data/BI</h3>
+                        <div class="role">Jefe de Datos / Head of BI</div>
+                        <div class="tenure">🏦 Data & Analytics</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag verify">⚠️ To Verify</span>
+                            <span class="exec-tag" style="background: rgba(6, 182, 212, 0.2); color: #06b6d4;">Data & Analytics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data warehouse (SQL Server)</li>
+                            <li>BI & reporting (Power BI)</li>
+                            <li>Data governance</li>
+                            <li>ML/AI evaluation</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Cloud DW evaluation active</li>
+                            <li>Snowflake/Databricks opportunity</li>
+                            <li>Analytics platform upgrade</li>
+                            <li>Customer 360 initiative</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Data%20BI%20Banco%20Internacional%20Ecuador" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- MEETING PREP -->
+        <section class="section-card">
+            <h2>📋 Meeting Preparation Guide</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics by Role</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>CEO:</strong> Efficiency, customer service, partnerships</li>
+                        <li><strong>CIO:</strong> SD-WAN, cloud, data platform</li>
+                        <li><strong>Jefe Infra:</strong> Storage, VMware, servers</li>
+                        <li><strong>Gerente Canales:</strong> App UX, digital banking</li>
+                        <li><strong>CISO:</strong> SIEM upgrade, Zero Trust</li>
+                        <li><strong>Head Data:</strong> Cloud DW, analytics</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Relationship-first approach</li>
+                        <li>Practical ROI-focused solutions</li>
+                        <li>Long-term partnership positioning</li>
+                        <li>Local references and support</li>
+                        <li>POC/pilot approach valued</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Sep-Nov</li>
+                        <li><strong>Tech budget:</strong> $25-35M annually</li>
+                        <li><strong>Decision speed:</strong> 4-8 months</li>
+                        <li><strong>Hot now:</strong> SD-WAN decision (Q1-Q2)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--surface); border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
+            <strong>Research Sources:</strong> 
+            <a href="https://www.bancointernacional.com.ec" target="_blank">Banco Internacional Official</a> • 
+            <a href="https://www.linkedin.com/company/banco-internacional/people/" target="_blank">LinkedIn</a><br>
+            <strong>⚠️ Note:</strong> Executives marked "To Verify" should be confirmed via LinkedIn or official sources before outreach.<br>
+            <strong>Last updated:</strong> April 2025
+        </div>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_internacional.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Ecuador Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

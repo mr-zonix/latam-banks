@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco General Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 {
+            margin: 0 0 0.25rem 0;
+            font-size: 1.25rem;
+        }
+        .exec-title-info .role {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+        .exec-title-info .tenure {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+        
+        .exec-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: 0.5rem;
+        }
+        .exec-tag {
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 500;
+        }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        .exec-detail-section h4 {
+            font-size: 0.85rem;
+            color: var(--accent-blue);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .exec-detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: 0.85rem;
+        }
+        .exec-detail-section li {
+            margin-bottom: 0.3rem;
+        }
+        
+        .approach-box {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        .approach-box h4 {
+            color: var(--accent-blue);
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .approach-box p {
+            margin: 0;
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+        
+        .linkedin-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.4rem 0.8rem;
+            background: #0077b5;
+            color: white;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-decoration: none;
+            margin-top: 0.5rem;
+        }
+        .linkedin-btn:hover {
+            background: #005885;
+        }
+        
+        .org-chart-visual {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .org-level {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        .org-level::after {
+            content: '';
+            position: absolute;
+            bottom: -0.75rem;
+            left: 50%;
+            width: 2px;
+            height: 0.75rem;
+            background: var(--border);
+        }
+        .org-level:last-child::after {
+            display: none;
+        }
+        .org-box {
+            background: var(--background);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            padding: 0.75rem 1.25rem;
+            text-align: center;
+            min-width: 150px;
+        }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        .verify-note h4 {
+            color: #f59e0b;
+            margin: 0 0 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .verify-note p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.1 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_general.html" class="back-link">← Back to Banco General</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco General — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — Panama's #1 Bank</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Chairman and CEO verified from public sources and annual reports. VP-level technology roles need LinkedIn verification. Banco General is family-controlled (Familia Motta) with conservative, long-term decision making.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Federico Humbert</div>
+                    <div class="title">Chairman / Presidente</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Raúl Alemán Zubieta</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología / CIO</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Operaciones</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Banca Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">FH</div>
+                    <div class="exec-title-info">
+                        <h3>Federico Humbert</h3>
+                        <div class="role">Chairman / Presidente del Directorio</div>
+                        <div class="tenure">🏦 Banco General • Directivo histórico</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Position:</strong> Chairman del Directorio</li>
+                            <li><strong>Role:</strong> Dirección estratégica del grupo</li>
+                            <li><strong>Background:</strong> Décadas de experiencia bancaria</li>
+                            <li><strong>Influence:</strong> Máxima autoridad estratégica</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Known For</h4>
+                        <ul>
+                            <li>Estabilidad y crecimiento sostenido</li>
+                            <li>Expansión regional conservadora</li>
+                            <li>Inversión en tecnología de largo plazo</li>
+                            <li>Gobierno corporativo ejemplar</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Board-level only — a través del CEO o asesores de confianza.<br>
+                    <strong>When:</strong> Alianzas estratégicas mayores, transformaciones multimillonarias.<br>
+                    <strong>Note:</strong> Raramente interactúa con vendors. Construir relación a través del CEO primero.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Federico%20Humbert%20Banco%20General%20Panama" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">RA</div>
+                    <div class="exec-title-info">
+                        <h3>Raúl Alemán Zubieta</h3>
+                        <div class="role">CEO / Gerente General</div>
+                        <div class="tenure">🏦 Banco General • 30+ años en el grupo</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Position:</strong> Gerente General desde 2016</li>
+                            <li><strong>Background:</strong> Carrera completa en Banco General</li>
+                            <li><strong>Education:</strong> MBA, ingeniero industrial</li>
+                            <li><strong>Style:</strong> Conservador, orientado a resultados</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Liderazgo en banca digital Panamá</li>
+                            <li>Eficiencia operacional</li>
+                            <li>Expansión en Centroamérica</li>
+                            <li>Innovación con prudencia</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Inversiones estratégicas >$1M</li>
+                            <li>Decisiones tecnológicas a nivel board</li>
+                            <li>Partnerships y alianzas vendor</li>
+                            <li>Programas de transformación</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — no pitch directo, compartir visión estratégica.<br>
+                    <strong>Angle:</strong> ROI comprobado, referencias regionales, eficiencia operacional.<br>
+                    <strong>Don't:</strong> Detalles técnicos, discusiones de pricing a este nivel.<br>
+                    <strong>Best timing:</strong> Conferencias bancarias, eventos ejecutivos, referido de conexiones de directorio.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Raul%20Aleman%20Zubieta%20Banco%20General" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Technology / CIO (TO VERIFY) -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, CIO, Chief Technology Officer, Gerente de Tecnología</li>
+                            <li><strong>Reports to:</strong> CEO directly</li>
+                            <li><strong>Team size:</strong> 300-500 people estimated</li>
+                            <li><strong>Budget:</strong> $80-120M annual estimated</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Core banking platform</li>
+                            <li>Data centers (Panamá + DR site)</li>
+                            <li>Cloud strategy (AWS/Azure hybrid)</li>
+                            <li>Ciberseguridad & compliance SBP</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Decision-maker directo para infraestructura</li>
+                            <li>Owner de presupuesto compute, storage, red</li>
+                            <li>Key para proyectos SD-WAN, data platform</li>
+                            <li>Autoridad técnica para POCs</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "CIO" + "Banco General Panama"<br>
+                    2. Check company page employees<br>
+                    3. Look for AWS/Microsoft/VMware event speakers from Banco General<br>
+                    4. Cross-reference with memoria anual</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Banco%20General%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP Operations -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Operaciones / COO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Infrastructure</span>
+                            <span class="exec-tag tech">Operations</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Operaciones, COO, Director de Operaciones</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Focus:</strong> Operaciones, eficiencia, procesos</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Red de 80+ sucursales</li>
+                            <li>Operaciones centralizadas</li>
+                            <li>Procesamiento de transacciones</li>
+                            <li>Continuidad de negocio</li>
+                            <li>Conectividad de sucursales</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Influencer para proyectos de eficiencia</li>
+                            <li>Automatización y BPM</li>
+                            <li>SD-WAN para sucursales</li>
+                            <li>Proyectos de consolidación</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Operaciones" + "Banco General Panama"<br>
+                    2. Buscar en memoria anual sección operaciones<br>
+                    3. Key para proyectos de eficiencia operacional</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Operaciones%20Banco%20General%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Digital Banking -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Banca Digital / CDO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Banca Digital, Chief Digital Officer, Director Canales Digitales</li>
+                            <li><strong>Reports to:</strong> CEO o CIO</li>
+                            <li><strong>Focus:</strong> App móvil, digital CX, omnichannel</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>App "Banca en Línea" (líder en Panamá)</li>
+                            <li>Yappy - wallet digital (#1 en Panamá)</li>
+                            <li>Onboarding digital & KYC</li>
+                            <li>API strategy & Open Banking</li>
+                            <li>Customer experience digital</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Drives digital transformation budget</li>
+                            <li>Cloud-native approach advocate</li>
+                            <li>Key for app modernization projects</li>
+                            <li>Analytics & data platform decisions</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Digital" OR "Yappy" + "Banco General Panama"<br>
+                    2. Look for fintech event speakers<br>
+                    3. Check CADE Ejecutivos speakers<br>
+                    4. Key para digital experience & analytics plays</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Banca%20Banco%20General%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. VP Risk / CISO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Riesgos / CISO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Security</span>
+                            <span class="exec-tag decision">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Riesgos, CISO, Director Seguridad Informática</li>
+                            <li><strong>Reports to:</strong> CEO o CIO</li>
+                            <li><strong>Focus:</strong> Ciberseguridad, compliance, riesgo operativo</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Ciberseguridad & SOC</li>
+                            <li>Cumplimiento SBP</li>
+                            <li>Prevención de fraude</li>
+                            <li>Gestión de riesgos tecnológicos</li>
+                            <li>Auditoría IT</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Influencer para security projects</li>
+                            <li>Zero Trust architecture</li>
+                            <li>SIEM, EDR, threat intel</li>
+                            <li>Identity & Access Management</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Seguridad" OR "CISO" + "Banco General Panama"<br>
+                    2. Buscar speakers en eventos de ciberseguridad<br>
+                    3. Key para proyectos de security & compliance</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CISO%20Seguridad%20Riesgos%20Banco%20General%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics to Discuss</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Evolución de Yappy & ecosistema digital</li>
+                        <li>Modernización core banking</li>
+                        <li>SD-WAN para 80+ sucursales</li>
+                        <li>Data platform & analytics avanzado</li>
+                        <li>Ciberseguridad next-gen</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Referencias de bancos tier-1 regionales</li>
+                        <li>ROI comprobado & TCO claro</li>
+                        <li>Approach de POC/piloto</li>
+                        <li>Presencia local en Panamá valorada</li>
+                        <li>Relaciones de largo plazo</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Contacto directo a Chairman sin intro</li>
+                        <li>Discusiones de pricing con CEO</li>
+                        <li>Deep-dives técnicos con ejecutivos</li>
+                        <li>Pushing cloud-only (son híbridos)</li>
+                        <li>Ignorar compliance SBP</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Sep-Nov</li>
+                        <li><strong>Ejecución:</strong> Ene-Feb start</li>
+                        <li><strong>RFP threshold:</strong> >$500K</li>
+                        <li><strong>Decision cycle:</strong> 6-12 meses</li>
+                        <li><strong>Tech budget:</strong> $80-120M annually</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem;">Use these pre-built searches to verify and enrich executive profiles:</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banco-general-panama/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Banco General Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banco%20General%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Banco General</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Banco%20General%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Banco%20General%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">📊 Directors</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banco_general.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Panama Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

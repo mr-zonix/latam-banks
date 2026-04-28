@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Platforms & CRM | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .isv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .isv-card { background: var(--surface); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border); transition: transform 0.2s, box-shadow 0.2s; }
+        .isv-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+        .isv-logo { width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 0.75rem; }
+        .isv-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 8px; }
+        .isv-name { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem; }
+        .isv-category { font-size: 0.75rem; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+        .isv-description { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.5; }
+        .isv-stats { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+        .isv-stat { background: var(--background); padding: 0.4rem 0.6rem; border-radius: 6px; font-size: 0.75rem; }
+        .isv-stat strong { color: var(--accent-green); }
+        .country-badge { display: inline-flex; align-items: center; gap: 0.25rem; background: rgba(61, 80, 252, 0.1); padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; margin: 0.1rem; }
+        .client-badge { display: inline-block; background: rgba(61, 80, 252, 0.15); color: var(--accent-blue); padding: 0.25rem 0.5rem; border-radius: 4px; font-size: 0.75rem; margin: 0.15rem; }
+        .verified { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .reported { background: rgba(251, 191, 36, 0.15); color: #fbbf24; }
+        .presence-strong { color: var(--accent-green); font-weight: 600; }
+        .presence-growing { color: #fbbf24; font-weight: 600; }
+        .presence-limited { color: var(--text-secondary); }
+        .section-intro { max-width: 800px; margin-bottom: 2rem; }
+        .legend { display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; }
+        .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; }
+        .legend-dot { width: 12px; height: 12px; border-radius: 50%; }
+        .legend-dot.verified { background: var(--accent-green); }
+        .legend-dot.reported { background: #fbbf24; }
+        .legend-dot.investigating { background: var(--accent-blue); }
+        .tier-header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+        .tier-badge { background: var(--accent-blue); color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
+        .tier-badge.gold { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .tier-badge.silver { background: linear-gradient(135deg, #6b7280, #4b5563); }
+        .use-cases { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; }
+        .use-case { background: rgba(139, 92, 246, 0.1); color: #a78bfa; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.7rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🤝</span>
+                <span>ISV Ecosystem</span>
+            </li>
+            <li class="nav-item active">
+                <span class="nav-icon">📀</span>
+                <span>Data & CRM</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.5 • Apr 2026</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <h1>📀 Data Platforms & CRM</h1>
+        <p class="subtitle">Vendors de Data Analytics, AI/ML y Customer Relationship Management en Banca LATAM</p>
+        
+        <div class="section-intro">
+            <p>Mapeo de vendors de plataformas de datos y CRM con presencia en bancos de <strong>Ecuador, Perú, Colombia, Guatemala y Panamá</strong>. Enfocado en oportunidades de infraestructura y transformación digital.</p>
+            <div class="legend">
+                <div class="legend-item"><span class="legend-dot verified"></span> Verificado (fuente pública)</div>
+                <div class="legend-item"><span class="legend-dot reported"></span> Reportado (por confirmar)</div>
+                <div class="legend-item"><span class="legend-dot investigating"></span> En investigación</div>
+            </div>
+        </div>
+
+        <!-- ============================================ -->
+        <!-- DATA PLATFORMS - TIER 1: LEADERS -->
+        <!-- ============================================ -->
+        <section class="section-card">
+            <div class="tier-header">
+                <h2>📊 Data Platforms</h2>
+                <span class="tier-badge gold">Tier 1 • Líderes</span>
+            </div>
+            <div class="isv-grid">
+                
+                <!-- DATABRICKS -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #FF3621, #FF6B4A);">
+                        <span style="color: white; font-weight: bold;">DB</span>
+                    </div>
+                    <div class="isv-name">Databricks</div>
+                    <div class="isv-category">Lakehouse • ML/AI • Delta Lake</div>
+                    <div class="isv-description">Plataforma de datos unificada. Data + AI en una sola plataforma. Fundada por creadores de Apache Spark.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>San Francisco</strong></div>
+                        <div class="isv-stat">Val: <strong>$43B</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-growing">Creciendo</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Países Activos:</strong><br>
+                        <span class="country-badge">🇧🇷 Brasil</span>
+                        <span class="country-badge">🇲🇽 México</span>
+                        <span class="country-badge">🇨🇴 Colombia</span>
+                        <span class="country-badge">🇵🇪 Perú</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (investigando):</strong><br>
+                        <span class="client-badge reported">🇨🇴 Bancolombia</span>
+                        <span class="client-badge reported">🇵🇪 BCP</span>
+                    </div>
+                    <div class="use-cases">
+                        <span class="use-case">Risk Analytics</span>
+                        <span class="use-case">Fraud Detection</span>
+                        <span class="use-case">Customer 360</span>
+                    </div>
+                </div>
+
+                <!-- SNOWFLAKE -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #29B5E8, #00D4FF);">
+                        <span style="color: white; font-weight: bold;">❄️</span>
+                    </div>
+                    <div class="isv-name">Snowflake</div>
+                    <div class="isv-category">Cloud Data Warehouse • Data Sharing</div>
+                    <div class="isv-description">Data Cloud multi-cloud. Separación compute/storage. Data Marketplace y Data Sharing nativo.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Montana, USA</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$2.8B</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-growing">Agresivo</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Países Activos:</strong><br>
+                        <span class="country-badge">🇧🇷 Brasil</span>
+                        <span class="country-badge">🇲🇽 México</span>
+                        <span class="country-badge">🇨🇴 Colombia</span>
+                        <span class="country-badge">🇵🇪 Perú</span>
+                        <span class="country-badge">🇨🇱 Chile</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (investigando):</strong><br>
+                        <span class="client-badge reported">🇨🇴 Davivienda</span>
+                        <span class="client-badge reported">🇵🇪 Interbank</span>
+                    </div>
+                    <div class="use-cases">
+                        <span class="use-case">Data Warehouse</span>
+                        <span class="use-case">Regulatory Reporting</span>
+                        <span class="use-case">Data Sharing</span>
+                    </div>
+                </div>
+
+                <!-- CLOUDERA -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #F96702, #FF8C00);">
+                        <span style="color: white; font-weight: bold;">C</span>
+                    </div>
+                    <div class="isv-name">Cloudera</div>
+                    <div class="isv-category">Hybrid Data Platform • On-Prem + Cloud</div>
+                    <div class="isv-description">Plataforma de datos híbrida. Fuerte en bancos tradicionales con requisitos on-premise. CDP (Cloudera Data Platform).</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Santa Clara</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$900M</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Muy Fuerte</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Países Activos:</strong><br>
+                        <span class="country-badge">🇧🇷 Brasil</span>
+                        <span class="country-badge">🇲🇽 México</span>
+                        <span class="country-badge">🇨🇴 Colombia</span>
+                        <span class="country-badge">🇵🇪 Perú</span>
+                        <span class="country-badge">🇪🇨 Ecuador</span>
+                        <span class="country-badge">🇨🇱 Chile</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (verificando):</strong><br>
+                        <span class="client-badge verified">🇵🇪 BCP</span>
+                        <span class="client-badge reported">🇨🇴 Banco de Bogotá</span>
+                        <span class="client-badge reported">🇪🇨 Banco Pichincha</span>
+                    </div>
+                    <div class="use-cases">
+                        <span class="use-case">Big Data On-Prem</span>
+                        <span class="use-case">Data Lake</span>
+                        <span class="use-case">ML Ops</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DATA PLATFORMS - TIER 2: HYPERSCALERS -->
+        <section class="section-card">
+            <div class="tier-header">
+                <h2>☁️ Cloud Data (Hyperscalers)</h2>
+                <span class="tier-badge silver">Tier 2 • Hyperscalers</span>
+            </div>
+            <div class="isv-grid">
+
+                <!-- AWS -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #FF9900, #FFB84D);">
+                        <span style="color: #232F3E; font-weight: bold;">AWS</span>
+                    </div>
+                    <div class="isv-name">AWS Data Services</div>
+                    <div class="isv-category">Redshift • EMR • Athena • Glue</div>
+                    <div class="isv-description">Suite completa de servicios de datos en AWS. Redshift (DW), EMR (Spark), Athena (serverless query), Glue (ETL).</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Seattle</strong></div>
+                        <div class="isv-stat">Cloud #: <strong>1</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Dominante</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Regiones LATAM:</strong><br>
+                        <span class="country-badge">🇧🇷 São Paulo</span>
+                        <span class="country-badge">🇲🇽 Querétaro (pronto)</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (probables):</strong><br>
+                        <span class="client-badge reported">🇨🇴 Bancolombia</span>
+                        <span class="client-badge reported">🇵🇪 Interbank</span>
+                        <span class="client-badge reported">🇬🇹 BAC Guatemala</span>
+                    </div>
+                </div>
+
+                <!-- AZURE -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #0078D4, #00BCF2);">
+                        <span style="color: white; font-weight: bold;">Az</span>
+                    </div>
+                    <div class="isv-name">Azure Synapse + Fabric</div>
+                    <div class="isv-category">Synapse Analytics • Data Factory • Fabric</div>
+                    <div class="isv-description">Plataforma de analytics unificada Microsoft. Integración nativa con Power BI, Office 365, Dynamics.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Redmond</strong></div>
+                        <div class="isv-stat">Cloud #: <strong>2</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Fuerte</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Regiones LATAM:</strong><br>
+                        <span class="country-badge">🇧🇷 Brasil (2)</span>
+                        <span class="country-badge">🇲🇽 México</span>
+                        <span class="country-badge">🇨🇱 Chile</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (probables):</strong><br>
+                        <span class="client-badge reported">🇵🇪 BBVA Perú</span>
+                        <span class="client-badge reported">🇨🇴 BBVA Colombia</span>
+                        <span class="client-badge reported">🇵🇦 Banistmo</span>
+                    </div>
+                </div>
+
+                <!-- GOOGLE CLOUD -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #4285F4, #34A853);">
+                        <span style="color: white; font-weight: bold;">GC</span>
+                    </div>
+                    <div class="isv-name">Google BigQuery</div>
+                    <div class="isv-category">Serverless DW • Vertex AI</div>
+                    <div class="isv-description">Data warehouse serverless. ML integrado con Vertex AI. Looker para BI.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Mountain View</strong></div>
+                        <div class="isv-stat">Cloud #: <strong>3</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-growing">Creciendo</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Regiones LATAM:</strong><br>
+                        <span class="country-badge">🇧🇷 São Paulo</span>
+                        <span class="country-badge">🇨🇱 Santiago</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard:</strong><br>
+                        <span class="client-badge">En investigación</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- DATA PLATFORMS - TIER 3: LEGACY/ESPECIALISTAS -->
+        <section class="section-card">
+            <div class="tier-header">
+                <h2>🏛️ Legacy & Especialistas</h2>
+                <span class="tier-badge">Tier 3 • Establecidos</span>
+            </div>
+            <div class="isv-grid">
+
+                <!-- TERADATA -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #F37440, #FF8C00);">
+                        <span style="color: white; font-weight: bold;">TD</span>
+                    </div>
+                    <div class="isv-name">Teradata</div>
+                    <div class="isv-category">Enterprise Data Warehouse</div>
+                    <div class="isv-description">Legacy dominante en mega-bancos. Vantage platform. Alta performance para workloads críticos.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>San Diego</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$1.8B</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Instalado</span></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (legacy probable):</strong><br>
+                        <span class="client-badge reported">🇵🇪 BCP</span>
+                        <span class="client-badge reported">🇨🇴 Bancolombia</span>
+                        <span class="client-badge reported">🇵🇦 Banco General</span>
+                    </div>
+                </div>
+
+                <!-- SAS -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #0066CC, #003D7A);">
+                        <span style="color: white; font-weight: bold;">SAS</span>
+                    </div>
+                    <div class="isv-name">SAS Viya</div>
+                    <div class="isv-category">Advanced Analytics • Risk • Fraud</div>
+                    <div class="isv-description">Analytics avanzado. Muy fuerte en riesgo crediticio, fraude y compliance bancario. Modelos validados reguladores.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>North Carolina</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$3B</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Muy Fuerte</span></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (verificando):</strong><br>
+                        <span class="client-badge verified">🇵🇪 BCP</span>
+                        <span class="client-badge reported">🇨🇴 Davivienda</span>
+                        <span class="client-badge reported">🇪🇨 Banco Pichincha</span>
+                        <span class="client-badge reported">🇬🇹 Banco Industrial</span>
+                    </div>
+                    <div class="use-cases">
+                        <span class="use-case">Credit Risk</span>
+                        <span class="use-case">Fraud Detection</span>
+                        <span class="use-case">AML/KYC</span>
+                    </div>
+                </div>
+
+                <!-- ORACLE -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #F80000, #C74634);">
+                        <span style="color: white; font-weight: bold;">O</span>
+                    </div>
+                    <div class="isv-name">Oracle Analytics</div>
+                    <div class="isv-category">Analytics • Autonomous DW</div>
+                    <div class="isv-description">Oracle Analytics Cloud. Autonomous Data Warehouse. Integración nativa con stack Oracle.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Austin</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$50B+</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Fuerte</span></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (donde hay Oracle EBS):</strong><br>
+                        <span class="client-badge reported">🇪🇨 Bancos con Oracle</span>
+                        <span class="client-badge reported">🇵🇪 Bancos con Oracle</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- CRM SECTION -->
+        <!-- ============================================ -->
+        <section class="section-card">
+            <div class="tier-header">
+                <h2>🎯 CRM & Customer Engagement</h2>
+                <span class="tier-badge gold">Enterprise</span>
+            </div>
+            <div class="isv-grid">
+
+                <!-- SALESFORCE -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #00A1E0, #1798C1);">
+                        <span style="color: white; font-weight: bold;">SF</span>
+                    </div>
+                    <div class="isv-name">Salesforce Financial Services Cloud</div>
+                    <div class="isv-category">CRM • FSC • Marketing Cloud</div>
+                    <div class="isv-description">Líder absoluto en CRM. Financial Services Cloud especializado para banca. Einstein AI integrado.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>San Francisco</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$31B</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Dominante</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Países con Oficina:</strong><br>
+                        <span class="country-badge">🇧🇷 Brasil</span>
+                        <span class="country-badge">🇲🇽 México</span>
+                        <span class="country-badge">🇨🇴 Colombia</span>
+                        <span class="country-badge">🇦🇷 Argentina</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (verificando):</strong><br>
+                        <span class="client-badge verified">🇨🇴 Bancolombia</span>
+                        <span class="client-badge reported">🇵🇪 BCP</span>
+                        <span class="client-badge reported">🇵🇪 Interbank</span>
+                        <span class="client-badge reported">🇪🇨 Banco Pichincha</span>
+                        <span class="client-badge reported">🇵🇦 Banco General</span>
+                    </div>
+                    <div class="use-cases">
+                        <span class="use-case">Sales Cloud</span>
+                        <span class="use-case">Service Cloud</span>
+                        <span class="use-case">Marketing Cloud</span>
+                    </div>
+                </div>
+
+                <!-- MICROSOFT DYNAMICS -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #0078D4, #50E6FF);">
+                        <span style="color: white; font-weight: bold;">D365</span>
+                    </div>
+                    <div class="isv-name">Microsoft Dynamics 365</div>
+                    <div class="isv-category">CRM • ERP • Power Platform</div>
+                    <div class="isv-description">CRM integrado con ecosistema Microsoft. Power Platform, Teams, Office 365. Copilot AI.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Redmond</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$5B+</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Fuerte</span></div>
+                    </div>
+                    <div style="margin-bottom: 0.75rem;">
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Países con Partners:</strong><br>
+                        <span class="country-badge">🌎 Todos LATAM</span>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (donde hay MS footprint):</strong><br>
+                        <span class="client-badge reported">🇵🇪 BBVA Perú</span>
+                        <span class="client-badge reported">🇨🇴 BBVA Colombia</span>
+                        <span class="client-badge reported">🇵🇦 Banistmo</span>
+                    </div>
+                </div>
+
+                <!-- PEGASYSTEMS -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #0076CE, #00A3E0);">
+                        <span style="color: white; font-weight: bold;">P</span>
+                    </div>
+                    <div class="isv-name">Pegasystems</div>
+                    <div class="isv-category">BPM + CRM • Decisioning</div>
+                    <div class="isv-description">Customer Decision Hub. BPM + CRM integrado. Muy fuerte en procesos bancarios complejos.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>Cambridge, MA</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$1.3B</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-growing">Presente</span></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (investigando):</strong><br>
+                        <span class="client-badge reported">🇨🇴 Bancos grandes</span>
+                        <span class="client-badge reported">🇵🇪 Bancos grandes</span>
+                    </div>
+                    <div class="use-cases">
+                        <span class="use-case">Customer Service</span>
+                        <span class="use-case">Onboarding</span>
+                        <span class="use-case">Next-Best-Action</span>
+                    </div>
+                </div>
+
+                <!-- GENESYS -->
+                <div class="isv-card">
+                    <div class="isv-logo" style="background: linear-gradient(135deg, #FF4F1F, #FF7F50);">
+                        <span style="color: white; font-weight: bold;">G</span>
+                    </div>
+                    <div class="isv-name">Genesys Cloud CX</div>
+                    <div class="isv-category">Contact Center • CX Platform</div>
+                    <div class="isv-description">Plataforma de contact center cloud. Omnicanalidad. AI para customer experience.</div>
+                    <div class="isv-stats">
+                        <div class="isv-stat">HQ: <strong>San Francisco</strong></div>
+                        <div class="isv-stat">Revenue: <strong>$2B</strong></div>
+                        <div class="isv-stat">LATAM: <span class="presence-strong">Fuerte</span></div>
+                    </div>
+                    <div>
+                        <strong style="font-size: 0.75rem; color: var(--text-secondary);">Bancos Dashboard (contact centers):</strong><br>
+                        <span class="client-badge reported">🇨🇴 Bancolombia</span>
+                        <span class="client-badge reported">🇵🇪 BCP</span>
+                        <span class="client-badge reported">🇵🇦 Banco General</span>
+                    </div>
+                    <div class="use-cases">
+                        <span class="use-case">Contact Center</span>
+                        <span class="use-case">IVR/Chatbot</span>
+                        <span class="use-case">WFM</span>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SUMMARY MATRIX -->
+        <section class="section-card" style="background: rgba(61, 80, 252, 0.05); border-left: 4px solid var(--accent-blue);">
+            <h3>📋 Resumen: Cobertura por País</h3>
+            <div style="overflow-x: auto; margin-top: 1rem;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                    <thead>
+                        <tr style="background: var(--surface); text-align: left;">
+                            <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">Vendor</th>
+                            <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">🇪🇨</th>
+                            <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">🇵🇪</th>
+                            <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">🇨🇴</th>
+                            <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">🇬🇹</th>
+                            <th style="padding: 0.75rem; border-bottom: 2px solid var(--border);">🇵🇦</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>Databricks</strong></td><td>🔶</td><td>🔶</td><td>✅</td><td>🔶</td><td>🔶</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>Snowflake</strong></td><td>🔶</td><td>✅</td><td>✅</td><td>🔶</td><td>🔶</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>Cloudera</strong></td><td>✅</td><td>✅</td><td>✅</td><td>🔶</td><td>🔶</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>AWS</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>Azure</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>SAS</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>🔶</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>Salesforce</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>Dynamics 365</strong></td><td>✅</td><td>✅</td><td>✅</td><td>✅</td><td>✅</td></tr>
+                        <tr><td style="padding: 0.5rem; border-bottom: 1px solid var(--border);"><strong>Genesys</strong></td><td>🔶</td><td>✅</td><td>✅</td><td>🔶</td><td>✅</td></tr>
+                    </tbody>
+                </table>
+                <p style="margin-top: 0.75rem; font-size: 0.75rem; color: var(--text-secondary);">
+                    ✅ Presencia confirmada/fuerte &nbsp;&nbsp; 🔶 Creciendo/Por confirmar
+                </p>
+            </div>
+        </section>
+
+        <!-- RESEARCH STATUS -->
+        <section class="section-card" style="background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green);">
+            <h3>🔍 Estado de Investigación</h3>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">
+                <strong>Verificados con fuente pública:</strong> Cloudera-BCP, SAS-BCP, Salesforce-Bancolombia<br>
+                <strong>Reportados (por verificar):</strong> Databricks, Snowflake en bancos grandes<br>
+                <strong>En investigación:</strong> Relaciones específicas banco por banco
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+                <strong>Próximos pasos:</strong> Verificar instalaciones via LinkedIn, press releases, y case studies oficiales.
+            </p>
+        </section>
+
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

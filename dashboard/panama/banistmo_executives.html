@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banistmo Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        
+        .bancolombia-badge { background: linear-gradient(135deg, #ffc107, #ff9800); color: #1a1a2e; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-left: 0.5rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.1 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banistmo.html" class="back-link">← Back to Banistmo</a>
+        
+        <header class="page-header">
+            <h1>👔 Banistmo — Executive Intelligence <span class="bancolombia-badge">Grupo Bancolombia</span></h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — Colombia-backed, Panama's #2</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO verified from public sources. Banistmo is part of Grupo Bancolombia — many tech decisions align with corporate strategy from Colombia. VP-level positions need LinkedIn verification. Key: understand Bancolombia's regional tech standards.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Aimeé Sentmat de Grimaldo</div>
+                    <div class="title">Presidente del Directorio</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Operaciones</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">VP Transformación Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Chairman -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">AS</div>
+                    <div class="exec-title-info">
+                        <h3>Aimeé Sentmat de Grimaldo</h3>
+                        <div class="role">Presidente del Directorio</div>
+                        <div class="tenure">🏦 Banistmo • Líder empresarial panameña</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Position:</strong> Presidente del Directorio</li>
+                            <li><strong>Background:</strong> Reconocida líder empresarial de Panamá</li>
+                            <li><strong>Style:</strong> Orientada a innovación y transformación</li>
+                            <li><strong>Network:</strong> Alta conexión con élite empresarial panameña</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Known For</h4>
+                        <ul>
+                            <li>Liderazgo en diversidad corporativa</li>
+                            <li>Visión de sostenibilidad</li>
+                            <li>Integración con Grupo Bancolombia</li>
+                            <li>Innovación en servicios financieros</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Board-level only — a través del CEO o eventos de alto nivel.<br>
+                    <strong>When:</strong> Partnerships estratégicos, iniciativas de innovación regional.<br>
+                    <strong>Note:</strong> Muy activa en foros empresariales — puede ser contacto en eventos CADE o AmCham.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Aimee%20Sentmat%20Grimaldo%20Banistmo" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>CEO / Gerente General</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Rotación con Bancolombia</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente General, CEO, Presidente Ejecutivo</li>
+                            <li><strong>Reports to:</strong> Directorio / Grupo Bancolombia</li>
+                            <li><strong>Note:</strong> Puede ser ejecutivo rotado desde Colombia</li>
+                            <li><strong>Authority:</strong> Decisiones locales, alineado con corporate</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Focus</h4>
+                        <ul>
+                            <li>Integración con plataforma Bancolombia</li>
+                            <li>Crecimiento market share en Panamá</li>
+                            <li>Eficiencia operacional</li>
+                            <li>Transformación digital alineada con grupo</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Context</h4>
+                        <ul>
+                            <li>Proyectos >$500K suelen involucrar Colombia</li>
+                            <li>Tech stack definido por corporate</li>
+                            <li>Autonomía en proyectos locales menores</li>
+                            <li>Vendors globales preferidos del grupo</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing con contexto regional.<br>
+                    <strong>Angle:</strong> Casos de éxito en Bancolombia, sinergias regionales.<br>
+                    <strong>Key:</strong> Si ya vendes a Bancolombia Colombia, usar esa relación como puerta.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20CEO%20Banistmo%20Panama" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. VP Technology -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Tecnología / CIO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Alineado con IT Bancolombia</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag decision">Tech Budget Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Tecnología, CIO, Director TI</li>
+                            <li><strong>Reports to:</strong> CEO local + dotted line Colombia</li>
+                            <li><strong>Budget:</strong> $40-60M annual estimated</li>
+                            <li><strong>Context:</strong> Sigue estándares de Grupo Bancolombia</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Operación de plataforma core (compartida con grupo)</li>
+                            <li>Infraestructura local Panamá</li>
+                            <li>Integración con sistemas Bancolombia</li>
+                            <li>Ciberseguridad local</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Gatekeeper para proyectos locales</li>
+                            <li>Puede escalar oportunidades a Colombia</li>
+                            <li>Owner de infraestructura Panamá</li>
+                            <li>Key para POCs y pilotos locales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "VP Tecnología" OR "CIO" + "Banistmo"<br>
+                    2. Check Bancolombia Panama employees<br>
+                    3. Look for AWS/Azure event speakers<br>
+                    4. Verificar rotaciones desde Colombia</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CIO%20VP%20Tecnolog%C3%ADa%20Banistmo&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP Operations -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Operaciones</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Operations</span>
+                            <span class="exec-tag tech">Efficiency</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Operaciones, COO, Director Operaciones</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Focus:</strong> Eficiencia, procesos, sucursales</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Red de 50+ sucursales</li>
+                            <li>Operaciones centralizadas</li>
+                            <li>Contact center y servicio</li>
+                            <li>Procesamiento back-office</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Automatización y BPM projects</li>
+                            <li>SD-WAN para sucursales</li>
+                            <li>Eficiencia operacional</li>
+                            <li>Proyectos de optimización</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Operaciones%20Banistmo&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. VP Digital -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>VP Transformación Digital</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Channels</span>
+                            <span class="exec-tag digital">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> VP Digital, CDO, Director Canales Digitales</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Context:</strong> App Banistmo alineada con Bancolombia App</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>App móvil Banistmo</li>
+                            <li>Banca en línea</li>
+                            <li>Onboarding digital</li>
+                            <li>Integración con Nequi (wallet de Bancolombia)</li>
+                            <li>Customer experience digital</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Digital transformation budget</li>
+                            <li>Mobile-first initiatives</li>
+                            <li>API & Open Banking</li>
+                            <li>Data analytics projects</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Digital" OR "Transformación" + "Banistmo"<br>
+                    2. Check fintech event speakers<br>
+                    3. Look for Bancolombia digital team connections</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Transformacion%20Banistmo&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. CISO -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>CISO / VP Seguridad</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Security</span>
+                            <span class="exec-tag decision">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> CISO, VP Seguridad, Director Seguridad Informática</li>
+                            <li><strong>Reports to:</strong> CIO o CEO</li>
+                            <li><strong>Context:</strong> Estándares de seguridad Bancolombia</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Ciberseguridad & SOC</li>
+                            <li>Cumplimiento SBP Panamá</li>
+                            <li>Alineación con security Bancolombia</li>
+                            <li>Prevención de fraude</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CISO%20Seguridad%20Banistmo&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- BANCOLOMBIA CONNECTION -->
+        <section class="section-card" style="border: 2px solid #ffc107;">
+            <h2>🇨🇴 Bancolombia Connection — Key Intel</h2>
+            <div style="background: rgba(255, 193, 7, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <p style="margin: 0; font-size: 0.9rem;"><strong>Critical:</strong> Banistmo es subsidiaria de Grupo Bancolombia. Muchas decisiones tecnológicas se toman en Colombia o requieren aprobación de Medellín.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue);">🎯 How to Leverage</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Si ya vendes a Bancolombia Colombia → referencia directa</li>
+                        <li>Usar contactos de Medellín para intro en Panamá</li>
+                        <li>Alinear propuesta con estándares del grupo</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-green);">✅ Advantages</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Una venta puede abrir puertas regionales</li>
+                        <li>Budget consolidado del grupo</li>
+                        <li>Tech stack más moderno</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #ef4444;">⚠️ Challenges</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Decisiones más lentas (múltiples stakeholders)</li>
+                        <li>Vendors pre-aprobados por corporate</li>
+                        <li>Menos autonomía local</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Integración regional con Bancolombia</li>
+                        <li>Modernización de infraestructura local</li>
+                        <li>App móvil y canales digitales</li>
+                        <li>Ciberseguridad & compliance</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Referencias de Bancolombia Colombia</li>
+                        <li>Soluciones ya desplegadas en el grupo</li>
+                        <li>Casos regionales LATAM</li>
+                        <li>Propuestas alineadas con corporate</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Ignorar la conexión con Colombia</li>
+                        <li>Proponer stack incompatible con grupo</li>
+                        <li>Saltarse proceso de aprobación regional</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget:</strong> Alineado con ciclo Bancolombia</li>
+                        <li><strong>Decision:</strong> 6-12 meses (con Colombia)</li>
+                        <li><strong>Local budget:</strong> $40-60M annually</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/banistmo/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 All Banistmo Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=VP%20Banistmo&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 VPs at Banistmo</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tecnolog%C3%ADa%20Banistmo&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">💻 Technology Team</a>
+                <a href="https://www.linkedin.com/company/bancolombia/people/" target="_blank" class="linkedin-btn" style="background: #ffc107; color: #1a1a2e;">🇨🇴 Bancolombia (Parent)</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="banistmo.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Panama Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

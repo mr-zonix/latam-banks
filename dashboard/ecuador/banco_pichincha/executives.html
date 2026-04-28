@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Pichincha Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.chairman { border-left-color: #f59e0b; }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.security { border-left-color: #ef4444; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-photo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--border);
+            flex-shrink: 0;
+        }
+        .exec-photo-placeholder {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+            border: 3px solid var(--border);
+        }
+        .exec-photo-placeholder.chairman { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-photo-placeholder.ceo { background: linear-gradient(135deg, var(--accent-blue), #2563eb); }
+        .exec-photo-placeholder.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-photo-placeholder.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-photo-placeholder.security { background: linear-gradient(135deg, #ef4444, #dc2626); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.3rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 1rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.75rem; }
+        .exec-tag { padding: 0.25rem 0.7rem; border-radius: 20px; font-size: 0.75rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.interim { background: rgba(107, 114, 128, 0.2); color: #6b7280; }
+        .exec-tag.security { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.new { background: rgba(16, 185, 129, 0.3); color: var(--accent-green); font-weight: 600; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.25rem; margin-top: 1.25rem; }
+        .exec-detail-section h4 { font-size: 0.9rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.9rem; }
+        .exec-detail-section li { margin-bottom: 0.35rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1.25rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.95rem; }
+        .approach-box p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: #0077b5; color: white; border-radius: 6px; font-size: 0.85rem; text-decoration: none; margin-top: 0.75rem; transition: background 0.2s; }
+        .linkedin-btn:hover { background: #005885; color: white; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; text-align: center; }
+        .org-level { display: flex; justify-content: center; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 180px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .org-connector { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+        .verified-badge { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1rem; display: inline-block; }
+        .update-badge { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.5rem; display: block; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item active" onclick="window.location.href='../index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.1 • Apr 2025</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="index.html" class="back-link">← Back to Banco Pichincha</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Pichincha — Executive Intelligence</h1>
+            <p class="subtitle">Key decision makers for technology & infrastructure sales</p>
+        </header>
+
+        <div class="verified-badge">✅ Verified: <a href="https://www.pichincha.com/conoce-tu-banco/alta-direccion" target="_blank" style="color: var(--accent-green);">pichincha.com/alta-direccion</a></div>
+        
+        <div class="update-badge">
+            🆕 <strong>CEO Update (Feb 2026):</strong> Alejandro Ribadeneira Jaramillo replaced Santiago Bayas Paredes as CEO. 
+            <a href="https://www.forbes.com.ec/today/alejandro-ribadeneira-jaramillo-elnuevo-gerente-general-banco-pichincha-n85231" target="_blank" style="color: var(--accent-blue);">Source: Forbes Ecuador</a>
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Antonio Acosta Espinosa</div>
+                    <div class="title">Presidente del Directorio</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Alejandro Ribadeneira J. 🆕</div>
+                    <div class="title">Gerente General (CEO)</div>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">Hernán Pablo Giménez</div>
+                    <div class="title">VP Tecnología y Operaciones</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">Juan Ignacio Maturana</div>
+                    <div class="title">VP Transformación</div>
+                </div>
+                <div class="org-box tech" style="border-color: #ef4444; background: rgba(239, 68, 68, 0.1);">
+                    <div class="name">Felipe Gómez Bustos</div>
+                    <div class="title">Gerente Ciberseguridad</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6 Decision Makers</h2>
+
+            <!-- 1. CHAIRMAN -->
+            <div class="exec-profile-card chairman">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder chairman">AA</div>
+                    <div class="exec-title-info">
+                        <h3>Antonio Acosta Espinosa</h3>
+                        <div class="role">Presidente del Directorio (Chairman)</div>
+                        <div class="tenure">🏦 Familia controladora Acosta-Espinosa</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Board Level</span>
+                            <span class="exec-tag budget">Strategic Vision</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> Chairman of the Board</li>
+                            <li><strong>Family:</strong> Acosta-Espinosa (controlling)</li>
+                            <li><strong>Authority:</strong> Ultimate strategic decisions</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Strategic Focus</h4>
+                        <ul>
+                            <li>Long-term bank vision & stability</li>
+                            <li>Regional expansion strategy</li>
+                            <li>Major partnership approvals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(245, 158, 11, 0.1);">
+                    <h4 style="color: #f59e0b;">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Board-level only — requires CEO introduction.<br>
+                    <strong>Don't:</strong> Approach directly. Build relationship through CEO first.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Antonio%20Acosta%20Espinosa%20Banco%20Pichincha" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 2. NEW CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <img src="https://statics.forbes.com.ec/2026/01/crop/6973d7082d191__980x549.webp" alt="Alejandro Ribadeneira" class="exec-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+                    <div class="exec-photo-placeholder ceo" style="display:none;">AR</div>
+                    <div class="exec-title-info">
+                        <h3>Alejandro Ribadeneira Jaramillo</h3>
+                        <div class="role">Gerente General (CEO)</div>
+                        <div class="tenure">🏦 Desde Febrero 2026 • Ex-VP Finanzas • Ex-CEO BGR</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag new">🆕 NEW CEO</span>
+                            <span class="exec-tag decision">Final Decision Maker</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> CEO / Gerente General</li>
+                            <li><strong>Since:</strong> February 27, 2026</li>
+                            <li><strong>Education:</strong> Ing. Comercial PUCE, MBA U. Portland</li>
+                            <li><strong>Experience:</strong> 30+ years in financial sector</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Background</h4>
+                        <ul>
+                            <li><strong>Previous:</strong> VP Finanzas Banco Pichincha (2018-2026)</li>
+                            <li><strong>Before:</strong> CEO Banco General Rumiñahui (11 years)</li>
+                            <li><strong>Strength:</strong> Financial strategy, governance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Important</h4>
+                        <ul>
+                            <li>🆕 <strong>New in role</strong> — opportunity to establish relationship</li>
+                            <li>Finance background — ROI/TCO arguments resonate</li>
+                            <li>Knows the bank deeply from VP Finanzas role</li>
+                            <li>Will want to make his mark with strategic initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Executive Briefing — strategic vision, not product pitches.<br>
+                    <strong>Angle:</strong> As new CEO, open to new partnerships. Lead with ROI/financial impact (his background).<br>
+                    <strong>Timing:</strong> First 6 months of new role = window of opportunity for strategic discussions.</p>
+                </div>
+                <a href="https://ec.linkedin.com/in/alejandro-ribadeneira-jaramillo" target="_blank" class="linkedin-btn">🔗 LinkedIn Profile</a>
+            </div>
+
+            <!-- 3. VP TECH -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder tech">HG</div>
+                    <div class="exec-title-info">
+                        <h3>Hernán Pablo Giménez</h3>
+                        <div class="role">VP Ejecutivo Tecnología y Operaciones</div>
+                        <div class="tenure">🏦 (Encargado / Acting)</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">CTO/CIO</span>
+                            <span class="exec-tag budget">Tech Budget Owner</span>
+                            <span class="exec-tag interim">Interim</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Profile</h4>
+                        <ul>
+                            <li><strong>Role:</strong> VP Ejecutivo Tecnología y Operaciones</li>
+                            <li><strong>Status:</strong> Encargado (Acting/Interim)</li>
+                            <li><strong>Reports to:</strong> CEO</li>
+                            <li><strong>Budget:</strong> ~$60-80M annually</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Core banking (Temenos T24)</li>
+                            <li>Data centers & infrastructure</li>
+                            <li>Cloud strategy (AWS, hybrid)</li>
+                            <li>IT operations & vendor mgmt</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li><strong>PRIMARY CONTACT</strong> for infrastructure</li>
+                            <li>Interim = motivated for quick wins</li>
+                            <li>Key for SD-WAN, storage, compute</li>
+                            <li>Technical authority for POCs</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Technical + Strategic — can go deep but needs business case.<br>
+                    <strong>Note:</strong> As "Encargado", may want quick wins to secure permanent role.<br>
+                    <strong>Hot topics:</strong> SD-WAN rollout, storage consolidation, cloud migration.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Hern%C3%A1n%20Gim%C3%A9nez%20Banco%20Pichincha" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 4. VP TRANSFORMATION -->
+            <div class="exec-profile-card digital">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder digital">JM</div>
+                    <div class="exec-title-info">
+                        <h3>Juan Ignacio Maturana Lazo</h3>
+                        <div class="role">Vicepresidente Transformación</div>
+                        <div class="tenure">🏦 Digital & Innovation</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Transformation</span>
+                            <span class="exec-tag digital">Innovation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Digital banking transformation</li>
+                            <li>Process automation</li>
+                            <li>Customer experience</li>
+                            <li>Innovation & fintech partnerships</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Drives digital transformation budget</li>
+                            <li>Key for app modernization</li>
+                            <li>Innovation & POC sponsor</li>
+                            <li>Cloud-native adoption advocate</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(139, 92, 246, 0.1);">
+                    <h4 style="color: var(--accent-purple);">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Digital transformation, customer experience, competitive advantage.<br>
+                    <strong>Hot topics:</strong> API modernization, GenAI, low-code platforms, digital onboarding.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Juan%20Ignacio%20Maturana%20Banco%20Pichincha" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 5. CISO -->
+            <div class="exec-profile-card security">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder security">FG</div>
+                    <div class="exec-title-info">
+                        <h3>Felipe Ignacio Gómez Bustos</h3>
+                        <div class="role">Gerente Ciberseguridad (CISO)</div>
+                        <div class="tenure">🏦 Security Leadership</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag security">CISO</span>
+                            <span class="exec-tag security">Security Budget</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Security architecture & strategy</li>
+                            <li>Threat detection (IBM QRadar)</li>
+                            <li>Identity & access management</li>
+                            <li>Compliance & audit</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Key for Zero Trust projects</li>
+                            <li>Endpoint security decisions</li>
+                            <li>SIEM/SOAR modernization</li>
+                            <li>Can block or enable deals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box" style="background: rgba(239, 68, 68, 0.1);">
+                    <h4 style="color: #ef4444;">🎪 Engagement Strategy</h4>
+                    <p><strong>Angle:</strong> Risk reduction, compliance, threat intelligence.<br>
+                    <strong>Hot topics:</strong> Zero Trust, SASE, XDR, cloud security posture management.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Felipe%20G%C3%B3mez%20Bustos%20Banco%20Pichincha" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+            <!-- 6. DATA -->
+            <div class="exec-profile-card" style="border-left-color: #06b6d4;">
+                <div class="exec-header">
+                    <div class="exec-photo-placeholder" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">JD</div>
+                    <div class="exec-title-info">
+                        <h3>Juan Esteban Díaz Leiva</h3>
+                        <div class="role">Gerente COE Datos y Analítica</div>
+                        <div class="tenure">🏦 (Encargado / Acting)</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag" style="background: rgba(6, 182, 212, 0.2); color: #06b6d4;">Data & Analytics</span>
+                            <span class="exec-tag interim">Interim</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>🎯 Responsibilities</h4>
+                        <ul>
+                            <li>Data platform (Oracle → Cloud)</li>
+                            <li>Analytics & BI (Tableau, Power BI)</li>
+                            <li>AI/ML initiatives</li>
+                            <li>Data governance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Data platform modernization</li>
+                            <li>Snowflake/Databricks opportunity</li>
+                            <li>GenAI & ML platform decisions</li>
+                            <li>CDP evaluations</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Juan%20Esteban%20D%C3%ADaz%20Leiva%20Banco%20Pichincha" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics by Role</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Alejandro (CEO):</strong> ROI, strategic value, competitive positioning</li>
+                        <li><strong>Hernán (Tech):</strong> SD-WAN, storage, compute, cloud</li>
+                        <li><strong>Juan I. (Transform):</strong> Digital, APIs, innovation</li>
+                        <li><strong>Felipe (Security):</strong> Zero Trust, SIEM, compliance</li>
+                        <li><strong>Juan E. (Data):</strong> Cloud DW, analytics, AI</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>ROI/TCO focus (new CEO is ex-Finance)</li>
+                        <li>Regional banking references</li>
+                        <li>POC/pilot approach</li>
+                        <li>Executive briefings > cold pitches</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget planning:</strong> Sep-Nov</li>
+                        <li><strong>Tech budget:</strong> $60-80M annually</li>
+                        <li><strong>🆕 New CEO:</strong> First 6 months = opportunity window</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div style="margin-top: 2rem; padding: 1rem; background: var(--surface); border-radius: 8px; font-size: 0.85rem; color: var(--text-muted);">
+            <strong>Sources:</strong> 
+            <a href="https://www.pichincha.com/conoce-tu-banco/alta-direccion" target="_blank">Banco Pichincha Official</a> • 
+            <a href="https://www.forbes.com.ec/today/alejandro-ribadeneira-jaramillo-elnuevo-gerente-general-banco-pichincha-n85231" target="_blank">Forbes Ecuador</a><br>
+            <strong>Last updated:</strong> April 2025
+        </div>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="index.html" class="btn-secondary">← Bank Profile</a>
+            <a href="../index.html" class="btn-secondary">Ecuador Overview</a>
+            <a href="../../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../../js/version.js"></script>
+</body>
+</html>

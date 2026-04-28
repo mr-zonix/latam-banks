@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAC Panamá Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
+        .exec-avatar-large { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; flex-shrink: 0; }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        
+        .bac-badge { background: linear-gradient(135deg, #e31837, #c41230); color: white; padding: 0.3rem 0.6rem; border-radius: 4px; font-size: 0.7rem; font-weight: 600; margin-left: 0.5rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.1 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bac_panama.html" class="back-link">← Back to BAC Panamá</a>
+        
+        <header class="page-header">
+            <h1>👔 BAC Panamá — Executive Intelligence <span class="bac-badge">BAC Credomatic</span></h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure — Regional CA powerhouse</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>BAC Panamá es parte de BAC Credomatic (Grupo AVAL Colombia). Decisiones tecnológicas mayores coordinadas regionalmente desde Costa Rica/Colombia. VP-level positions need LinkedIn verification. Tech stack centralizado para la región.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Presidente Directorio</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Gerente General Panamá</div>
+                </div>
+            </div>
+            <div class="org-level" style="gap: 1rem;">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Operaciones</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Director Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles — Top 6</h2>
+
+            <!-- 1. Country Manager / CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Gerente General / Country Manager</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Reports to BAC Regional</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Country Decision Maker</span>
+                            <span class="exec-tag budget">Local Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Gerente General, Country Manager, CEO Panamá</li>
+                            <li><strong>Reports to:</strong> CEO Regional BAC Credomatic</li>
+                            <li><strong>Authority:</strong> Decisiones locales, alineado con regional</li>
+                            <li><strong>Note:</strong> Puede ser ejecutivo rotado regionalmente</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Focus</h4>
+                        <ul>
+                            <li>Market share en Panamá (tarjetas líder)</li>
+                            <li>Banca de consumo y PyME</li>
+                            <li>Eficiencia operacional</li>
+                            <li>Experiencia cliente omnicanal</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Context</h4>
+                        <ul>
+                            <li>Proyectos >$300K involucran regional</li>
+                            <li>Tech stack definido por BAC Central</li>
+                            <li>Autonomía en operaciones locales</li>
+                            <li>Presupuesto local: $30-50M est.</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p><strong>Level:</strong> Country-level briefings con contexto regional.<br>
+                    <strong>Angle:</strong> Casos de éxito en BAC Centroamérica, sinergias regionales.<br>
+                    <strong>Key:</strong> Si ya vendes a BAC Costa Rica/Guatemala → leveragear esa relación.</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gerente%20General%20BAC%20Panama" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 2. Director Tecnología -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Tecnología / CIO Local</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Coordinado con TI Regional</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Primary Tech Contact</span>
+                            <span class="exec-tag tech">Local IT Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director TI, Gerente Tecnología, IT Manager</li>
+                            <li><strong>Reports to:</strong> Country Manager + dotted to Regional IT</li>
+                            <li><strong>Team:</strong> 50-100 personas local</li>
+                            <li><strong>Context:</strong> Ejecuta estándares de BAC Regional</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Operación infraestructura local</li>
+                            <li>Soporte a core banking (centralizado)</li>
+                            <li>Conectividad de sucursales</li>
+                            <li>Ciberseguridad local</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Gatekeeper para proyectos locales</li>
+                            <li>Puede escalar a regional si hay fit</li>
+                            <li>Owner de infra Panamá</li>
+                            <li>POCs y pilotos locales</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="approach-box" style="background: rgba(16, 185, 129, 0.1);">
+                    <h4 style="color: var(--accent-green);">🔍 How to Find & Verify</h4>
+                    <p>1. Search LinkedIn: "Tecnología" OR "IT" + "BAC Panama"<br>
+                    2. Check BAC Credomatic company page<br>
+                    3. Look for connections con IT de otros países BAC</p>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Tecnologia%20IT%20BAC%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 3. Director Operaciones -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Operaciones</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Operations</span>
+                            <span class="exec-tag tech">Branches</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Operaciones, Gerente Operaciones</li>
+                            <li><strong>Reports to:</strong> Country Manager</li>
+                            <li><strong>Focus:</strong> Sucursales, procesamiento, eficiencia</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Red de sucursales Panamá</li>
+                            <li>Procesamiento tarjetas (fuerte en tarjetas)</li>
+                            <li>Contact center</li>
+                            <li>Operaciones back-office</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>SD-WAN para sucursales</li>
+                            <li>Automatización procesos</li>
+                            <li>Eficiencia operacional</li>
+                            <li>Proyectos de cards processing</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20Operaciones%20BAC%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 4. Director Digital -->
+            <div class="exec-profile-card digital" style="border-left-color: var(--accent-purple);">
+                <div class="exec-header">
+                    <div class="exec-avatar-large digital">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Digital / Canales</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag digital">Digital Banking</span>
+                            <span class="exec-tag digital">Cards Platform</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Digital, Gerente Canales, Head of Digital</li>
+                            <li><strong>Reports to:</strong> Country Manager</li>
+                            <li><strong>Context:</strong> BAC App unificada regionalmente</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>App móvil BAC (plataforma regional)</li>
+                            <li>Banca en línea</li>
+                            <li>Tarjetas digitales & wallet</li>
+                            <li>Customer experience digital</li>
+                            <li>Pagos sin contacto</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Digital experience projects</li>
+                            <li>Cards innovation</li>
+                            <li>Customer analytics</li>
+                            <li>Mobile-first initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Digital%20Canales%20BAC%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 5. Director Riesgos -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Riesgos / CISO</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Security</span>
+                            <span class="exec-tag decision">Compliance</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Riesgos, CISO, Gerente Seguridad</li>
+                            <li><strong>Reports to:</strong> Country Manager + Regional Risk</li>
+                            <li><strong>Focus:</strong> Fraude tarjetas, ciberseguridad, compliance</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Prevención fraude (crítico para cards)</li>
+                            <li>Ciberseguridad</li>
+                            <li>Cumplimiento SBP</li>
+                            <li>PCI-DSS compliance</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Riesgos%20Seguridad%20BAC%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+            <!-- 6. Director Tarjetas -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">?</div>
+                    <div class="exec-title-info">
+                        <h3>Director Tarjetas / Cards</h3>
+                        <div class="role">⚠️ To Verify on LinkedIn</div>
+                        <div class="tenure">🔍 Search required — Core business BAC</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Core Revenue</span>
+                            <span class="exec-tag decision">Key P&L Owner</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 What to Look For</h4>
+                        <ul>
+                            <li><strong>Titles:</strong> Director Tarjetas, Gerente Productos Cards</li>
+                            <li><strong>Reports to:</strong> Country Manager</li>
+                            <li><strong>Focus:</strong> Tarjetas crédito/débito (fortaleza BAC)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Likely Responsibilities</h4>
+                        <ul>
+                            <li>Portafolio tarjetas crédito/débito</li>
+                            <li>Rewards & loyalty programs</li>
+                            <li>Adquirencia y POS</li>
+                            <li>Alianzas comerciales</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Why Critical</h4>
+                        <ul>
+                            <li>Cards processing technology</li>
+                            <li>Fraud prevention systems</li>
+                            <li>Loyalty platform</li>
+                            <li>POS & acquiring tech</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Tarjetas%20Cards%20BAC%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn">🔗 Search on LinkedIn</a>
+            </div>
+
+        </section>
+
+        <!-- BAC REGIONAL CONNECTION -->
+        <section class="section-card" style="border: 2px solid #e31837;">
+            <h2>🌎 BAC Credomatic Regional — Key Intel</h2>
+            <div style="background: rgba(227, 24, 55, 0.1); padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+                <p style="margin: 0; font-size: 0.9rem;"><strong>Critical:</strong> BAC Panamá es parte de BAC Credomatic (controlado por Grupo AVAL, Colombia). Presencia en 7 países CA. Tech decisions coordinadas regionalmente.</p>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                <div>
+                    <h4 style="color: var(--accent-blue);">🎯 Regional Footprint</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Guatemala, El Salvador, Honduras</li>
+                        <li>Nicaragua, Costa Rica, Panamá</li>
+                        <li>Tech hub en Costa Rica</li>
+                        <li>Decisiones coordinadas regionalmente</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: var(--accent-green);">✅ Opportunities</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Venta a un país puede expandir a 7</li>
+                        <li>Strong cards business = fraud prevention</li>
+                        <li>Budget regional consolidado</li>
+                        <li>Tech modernization in progress</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #ef4444;">⚠️ Challenges</h4>
+                    <ul style="font-size: 0.85rem; padding-left: 1.2rem;">
+                        <li>Decisiones centralizadas (más lento)</li>
+                        <li>Vendors pre-aprobados regionales</li>
+                        <li>Procurement regional</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- QUICK REFERENCE -->
+        <section class="section-card">
+            <h2>⚡ Quick Reference — Meeting Prep</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-blue); margin-bottom: 0.75rem;">🎯 Key Topics</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Cards processing & fraud prevention</li>
+                        <li>Branch connectivity (SD-WAN)</li>
+                        <li>Mobile banking evolution</li>
+                        <li>POS & acquiring technology</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">✅ What Works</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Referencias de BAC otros países</li>
+                        <li>Cards industry expertise</li>
+                        <li>Fraud prevention solutions</li>
+                        <li>Regional deployment capability</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #ef4444; margin-bottom: 0.75rem;">❌ What to Avoid</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li>Ignorar estructura regional</li>
+                        <li>Proponer sin considerar otros países</li>
+                        <li>Pricing sin escala regional</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #f59e0b; margin-bottom: 0.75rem;">📅 Timing & Budget</h4>
+                    <ul style="font-size: 0.85rem; margin: 0; padding-left: 1.2rem;">
+                        <li><strong>Budget:</strong> Ciclo regional Sep-Nov</li>
+                        <li><strong>Decision:</strong> 6-9 meses</li>
+                        <li><strong>Local budget:</strong> $30-50M est.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- LINKEDIN RESEARCH LINKS -->
+        <section class="section-card">
+            <h2>🔗 Quick LinkedIn Searches</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.75rem;">
+                <a href="https://www.linkedin.com/company/baborgen-ral-credomatic/people/" target="_blank" class="linkedin-btn" style="background: #0077b5;">👥 BAC Credomatic Employees</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=BAC%20Panama&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">🔍 BAC Panama Team</a>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Director%20BAC%20Credomatic&origin=GLOBAL_SEARCH_HEADER" target="_blank" class="linkedin-btn" style="background: #0077b5;">📊 Directors BAC Regional</a>
+            </div>
+        </section>
+
+        <div class="exec-navigation" style="margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="bac_panama.html" class="btn-secondary">← Bank Profile</a>
+            <a href="index.html" class="btn-secondary">Panama Overview</a>
+            <a href="../executives/index.html" class="btn-primary">All Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>
