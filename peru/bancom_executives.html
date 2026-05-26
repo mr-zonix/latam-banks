@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANCOM Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.ceo { border-left-color: #f59e0b; }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        .exec-profile-card.innovation { border-left-color: #06b6d4; }
+        .exec-profile-card.owner { border-left-color: #00a19b; }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        .exec-avatar-large.innovation { background: linear-gradient(135deg, #06b6d4, #0891b2); }
+        .exec-avatar-large.owner { background: linear-gradient(135deg, #00a19b, #007d78); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.digital { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-tag.innovation { background: rgba(6, 182, 212, 0.2); color: #06b6d4; }
+        .exec-tag.owner { background: rgba(0, 161, 155, 0.2); color: #00a19b; }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; gap: 2rem; margin-bottom: 1.5rem; position: relative; flex-wrap: wrap; }
+        .org-level::after { content: ''; position: absolute; bottom: -0.75rem; left: 50%; width: 2px; height: 0.75rem; background: var(--border); }
+        .org-level:last-child::after { display: none; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box.innovation { border-color: #06b6d4; background: rgba(6, 182, 212, 0.1); }
+        .org-box.owner { border-color: #00a19b; background: rgba(0, 161, 155, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        
+        .cpmp-note { background: rgba(245, 158, 11, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .cpmp-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .cpmp-note p { margin: 0; font-size: 0.85rem; }
+
+        .key-contact-box { background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(6, 182, 212, 0.1)); border: 2px solid var(--accent-green); border-radius: 12px; padding: 1.5rem; margin: 2rem 0; }
+        .key-contact-box h3 { color: var(--accent-green); margin: 0 0 1rem 0; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item active" onclick="window.location.href='index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.2 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="bancom.html" class="back-link">← Back to BANCOM Profile</a>
+        
+        <header class="page-header">
+            <h1>👔 BANCOM — Executive Intelligence</h1>
+            <p class="subtitle">Banco de Comercio • 🎖️ Military/Police Niche Bank • CPMP Owned</p>
+        </header>
+
+        <!-- CPMP OWNERSHIP CONTEXT -->
+        <div class="cpmp-note">
+            <h4>🎖️ CPMP Ownership — Key Context</h4>
+            <p>BANCOM is 99.99% owned by Caja de Pensiones Militar Policial (CPMP), the pension fund for Peru's Armed Forces and National Police. The Board is appointed by CPMP, creating a quasi-institutional governance structure. Technology decisions may require CPMP board approval for significant investments. This is NOT a typical private bank — understand the military/institutional culture.</p>
+        </div>
+
+        <div class="verify-note">
+            <h4>✅ Research Status</h4>
+            <p>Key technology leadership confirmed. Board composition and CFO require additional verification. Small bank = lean leadership team with executives wearing multiple hats.</p>
+        </div>
+
+        <!-- ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            
+            <div class="org-level">
+                <div class="org-box owner">
+                    <div class="name">CPMP Board</div>
+                    <div class="title">Caja de Pensiones Militar Policial</div>
+                </div>
+            </div>
+            
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Aron Kisner</div>
+                    <div class="title">Gerente General (CEO)</div>
+                </div>
+            </div>
+            
+            <div class="org-level">
+                <div class="org-box innovation">
+                    <div class="name">Paul Iparraguirre</div>
+                    <div class="title">Gerente de Innovación</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">Paul Manco</div>
+                    <div class="title">Gerente de Arquitectura</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY TECH CONTACTS BOX -->
+        <div class="key-contact-box">
+            <h3>🎯 Primary Technology Contacts for Infrastructure Sales</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                <div>
+                    <strong style="color: #06b6d4;">Paul Iparraguirre</strong>
+                    <p style="margin: 0.25rem 0; font-size: 0.9rem;">Gerente de Innovación</p>
+                    <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Digital transformation, new technologies, fintech partnerships</p>
+                    <a href="https://www.linkedin.com/search/results/people/?keywords=paul%20iparraguirre%20banco%20comercio" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+                </div>
+                <div>
+                    <strong style="color: var(--accent-green);">Paul Manco</strong>
+                    <p style="margin: 0.25rem 0; font-size: 0.9rem;">Gerente de Arquitectura</p>
+                    <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Infrastructure, systems architecture, technical decisions</p>
+                    <a href="https://www.linkedin.com/search/results/people/?keywords=paul%20manco%20banco%20comercio" target="_blank" class="linkedin-btn">🔗 Find on LinkedIn</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- CEO PROFILE -->
+        <h2 style="margin-top: 2rem;">🏆 C-Suite Leadership</h2>
+        
+        <div class="exec-profile-card ceo">
+            <div class="exec-header">
+                <div class="exec-avatar-large ceo">AK</div>
+                <div class="exec-title-info">
+                    <h3>Aron Kisner</h3>
+                    <div class="role">Gerente General (CEO)</div>
+                    <div class="exec-tags">
+                        <span class="exec-tag decision">FINAL DECISION</span>
+                        <span class="exec-tag budget">BUDGET AUTHORITY</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exec-details">
+                <div class="exec-detail-section">
+                    <h4>📋 Role & Responsibilities</h4>
+                    <ul>
+                        <li>Overall bank strategy and operations</li>
+                        <li>Reports to CPMP Board of Directors</li>
+                        <li>Final authority on major investments</li>
+                        <li>Relationship with military/police stakeholders</li>
+                    </ul>
+                </div>
+                <div class="exec-detail-section">
+                    <h4>🎯 Likely Priorities</h4>
+                    <ul>
+                        <li>Operational efficiency (CIR improvement)</li>
+                        <li>Digital modernization (2023 rebrand)</li>
+                        <li>Service quality for CPMP beneficiaries</li>
+                        <li>Regulatory compliance with SBS</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="approach-box">
+                <h4>💡 Approach Strategy</h4>
+                <p>As CEO of a niche bank, Aron Kisner likely wears multiple hats and is involved in key technology decisions. Frame conversations around efficiency gains and ROI — the bank's recent financial turnaround (+183% pre-tax profit) suggests he's results-oriented. Emphasize solutions that serve the military/police customer base better. Request intro through Paul Iparraguirre or Paul Manco for technology discussions.</p>
+            </div>
+            
+            <a href="https://www.linkedin.com/search/results/people/?keywords=aron%20kisner%20banco%20comercio%20peru" target="_blank" class="linkedin-btn">🔗 Search LinkedIn Profile</a>
+        </div>
+
+        <!-- TECHNOLOGY LEADERSHIP -->
+        <h2 style="margin-top: 2rem;">💻 Technology Leadership</h2>
+        
+        <!-- Paul Iparraguirre -->
+        <div class="exec-profile-card innovation">
+            <div class="exec-header">
+                <div class="exec-avatar-large innovation">PI</div>
+                <div class="exec-title-info">
+                    <h3>Paul Iparraguirre</h3>
+                    <div class="role">Gerente de Innovación</div>
+                    <div class="exec-tags">
+                        <span class="exec-tag innovation">INNOVATION</span>
+                        <span class="exec-tag digital">DIGITAL</span>
+                        <span class="exec-tag tech">TECH DECISION</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exec-details">
+                <div class="exec-detail-section">
+                    <h4>📋 Role & Responsibilities</h4>
+                    <ul>
+                        <li>Digital transformation initiatives</li>
+                        <li>New product/service development</li>
+                        <li>Fintech partnerships evaluation</li>
+                        <li>Innovation roadmap and strategy</li>
+                        <li>Customer experience modernization</li>
+                    </ul>
+                </div>
+                <div class="exec-detail-section">
+                    <h4>🎯 Likely Focus Areas</h4>
+                    <ul>
+                        <li>Mobile banking app enhancement</li>
+                        <li>Pension self-service digitization</li>
+                        <li>Process automation (RPA)</li>
+                        <li>Digital onboarding for new customers</li>
+                        <li>API/Open Banking capabilities</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="approach-box">
+                <h4>💡 Approach Strategy</h4>
+                <p><strong>KEY CONTACT for digital/innovation solutions.</strong> Paul Iparraguirre is your entry point for digital banking platforms, mobile apps, automation, and customer experience solutions. The 2023 rebrand to "BANCOM" likely involved his team. Lead with: "How can we help BANCOM deliver a modern digital experience to military and police personnel without the complexity of enterprise solutions?" Focus on quick wins and phased implementation given budget constraints.</p>
+            </div>
+            
+            <a href="https://www.linkedin.com/search/results/people/?keywords=paul%20iparraguirre%20banco%20comercio" target="_blank" class="linkedin-btn">🔗 Search LinkedIn Profile</a>
+        </div>
+
+        <!-- Paul Manco -->
+        <div class="exec-profile-card tech">
+            <div class="exec-header">
+                <div class="exec-avatar-large tech">PM</div>
+                <div class="exec-title-info">
+                    <h3>Paul Manco</h3>
+                    <div class="role">Gerente de Arquitectura</div>
+                    <div class="exec-tags">
+                        <span class="exec-tag tech">ARCHITECTURE</span>
+                        <span class="exec-tag tech">INFRASTRUCTURE</span>
+                        <span class="exec-tag decision">TECH DECISION</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exec-details">
+                <div class="exec-detail-section">
+                    <h4>📋 Role & Responsibilities</h4>
+                    <ul>
+                        <li>Enterprise architecture strategy</li>
+                        <li>Infrastructure design and planning</li>
+                        <li>Technology stack decisions</li>
+                        <li>System integration oversight</li>
+                        <li>Technical standards and governance</li>
+                    </ul>
+                </div>
+                <div class="exec-detail-section">
+                    <h4>🎯 Likely Focus Areas</h4>
+                    <ul>
+                        <li>Cloud migration strategy</li>
+                        <li>Infrastructure modernization</li>
+                        <li>Security architecture</li>
+                        <li>Core banking integration</li>
+                        <li>Data architecture and analytics</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="approach-box">
+                <h4>💡 Approach Strategy</h4>
+                <p><strong>KEY CONTACT for infrastructure solutions.</strong> Paul Manco evaluates compute, storage, networking, and architecture decisions. He's your technical validator — if he's convinced, the deal moves forward. Lead with architecture discussions: "How are you thinking about cloud vs. on-prem for your next infrastructure cycle?" Focus on efficiency, security (important for military/police data), and modernization without disruption. He likely values technical depth over sales pitches.</p>
+            </div>
+            
+            <a href="https://www.linkedin.com/search/results/people/?keywords=paul%20manco%20banco%20comercio%20arquitectura" target="_blank" class="linkedin-btn">🔗 Search LinkedIn Profile</a>
+        </div>
+
+        <!-- OTHER ROLES TO IDENTIFY -->
+        <h2 style="margin-top: 2rem;">🔍 Additional Roles to Identify</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+            <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border: 1px dashed var(--border);">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-muted);">💰 CFO / Gerente de Finanzas</h4>
+                <p style="margin: 0; font-size: 0.85rem;">Budget holder for technology investments. Key for ROI discussions and procurement approval.</p>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CFO%20banco%20comercio%20peru%20finanzas" target="_blank" class="linkedin-btn" style="margin-top: 0.5rem;">🔗 Search LinkedIn</a>
+            </div>
+            
+            <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border: 1px dashed var(--border);">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-muted);">🔒 CISO / Seguridad</h4>
+                <p style="margin: 0; font-size: 0.85rem;">Critical for military/police bank. Security decisions require this stakeholder.</p>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=seguridad%20banco%20comercio%20peru%20CISO" target="_blank" class="linkedin-btn" style="margin-top: 0.5rem;">🔗 Search LinkedIn</a>
+            </div>
+            
+            <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border: 1px dashed var(--border);">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--text-muted);">⚙️ Gerente de Operaciones</h4>
+                <p style="margin: 0; font-size: 0.85rem;">Pension processing, branch operations. Key for automation and efficiency plays.</p>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=operaciones%20banco%20comercio%20peru" target="_blank" class="linkedin-btn" style="margin-top: 0.5rem;">🔗 Search LinkedIn</a>
+            </div>
+        </div>
+
+        <!-- ENGAGEMENT STRATEGY -->
+        <section style="margin-top: 2rem; background: var(--surface); padding: 1.5rem; border-radius: 12px;">
+            <h2>🎯 Engagement Strategy Summary</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+                <div>
+                    <h4 style="color: var(--accent-green);">✅ Recommended Entry Point</h4>
+                    <p style="font-size: 0.9rem;"><strong>Paul Iparraguirre</strong> (Innovation) or <strong>Paul Manco</strong> (Architecture) depending on your solution:</p>
+                    <ul style="font-size: 0.85rem; margin-top: 0.5rem;">
+                        <li><strong>Digital/Apps/Automation →</strong> Paul Iparraguirre</li>
+                        <li><strong>Infrastructure/Cloud/Security →</strong> Paul Manco</li>
+                        <li><strong>Both will need CEO approval</strong> for significant deals</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent-yellow);">⚠️ Decision Process</h4>
+                    <ul style="font-size: 0.85rem;">
+                        <li>Small bank = shorter decision cycles</li>
+                        <li>BUT CPMP board oversight for large investments</li>
+                        <li>Quasi-governmental culture — formal proposals</li>
+                        <li>ROI and efficiency focus (see financial turnaround)</li>
+                        <li>Security is paramount (military/police data)</li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="color: var(--accent);">💡 Messaging That Resonates</h4>
+                    <ul style="font-size: 0.85rem;">
+                        <li>"Right-sized for focused institutions"</li>
+                        <li>"Efficiency without complexity"</li>
+                        <li>"Secure enough for military/police data"</li>
+                        <li>"Modern experience for your beneficiaries"</li>
+                        <li>"Quick ROI, phased implementation"</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- CPMP EXPANSION OPPORTUNITY -->
+        <section style="margin-top: 2rem; background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(0, 161, 155, 0.1)); padding: 1.5rem; border-radius: 12px; border: 1px solid rgba(245, 158, 11, 0.3);">
+            <h2 style="color: #f59e0b;">🎖️ CPMP Ecosystem Expansion Opportunity</h2>
+            <p style="font-size: 0.9rem; margin-bottom: 1rem;">Remember: CPMP owns both BANCOM (the bank) AND manages the pension fund itself. A successful engagement at BANCOM could lead to:</p>
+            <ul style="font-size: 0.9rem;">
+                <li><strong>CPMP Pension Administration:</strong> Separate systems for pension management, beneficiary records, payments</li>
+                <li><strong>Ministry of Defense / Interior:</strong> Related government entities with similar needs</li>
+                <li><strong>Military/Police Health Systems:</strong> Related institutional buyers</li>
+            </ul>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1rem;"><em>Position BANCOM as a "proof of concept" for the broader CPMP institutional ecosystem.</em></p>
+        </section>
+
+        <!-- NAVIGATION -->
+        <div style="display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+            <a href="bancom.html" style="padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; background: var(--bg-secondary); color: var(--text);">← Back to BANCOM Profile</a>
+            <a href="index.html" style="padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; background: var(--accent); color: white;">Peru Overview →</a>
+        </div>
+
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

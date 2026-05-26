@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BANCOM (Banco de Comercio) | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .lang-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+        }
+        .lang-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .lang-btn.active {
+            background: var(--accent);
+            color: white;
+        }
+        .lang-btn:hover:not(.active) {
+            background: rgba(99, 102, 241, 0.2);
+        }
+        .key-metrics {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+        .key-metrics .metric-item {
+            flex: 1;
+            min-width: 120px;
+            padding: 0.75rem;
+        }
+        .key-metrics .metric-item .value {
+            font-size: 1.25rem;
+        }
+        .key-metrics .metric-item .label {
+            font-size: 0.7rem;
+        }
+        .niche-badge {
+            background: linear-gradient(135deg, #4b5563, #1f2937);
+            color: #f59e0b;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Toggle -->
+    <div class="lang-toggle">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item active">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.2 • Apr 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="index.html" class="back-link">← Back to Peru</a>
+        
+        <div class="bank-header">
+            <div class="bank-title">
+                <h1>🏦 BANCOM (Banco de Comercio)</h1>
+                <p class="subtitle">Private Niche Bank • Lima, Peru • Military & Police Pension Fund Owned</p>
+            </div>
+            <div class="bank-badges">
+                <span class="badge medium">🟡 MEDIUM OPPORTUNITY</span>
+                <span class="badge tier">TIER 3</span>
+                <span class="niche-badge">🎖️ MILITARY/POLICE NICHE</span>
+            </div>
+        </div>
+
+        <a href="bancom_executives.html" style="display: inline-block; background: #f59e0b; color: white; padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; font-weight: 600; margin-bottom: 1.5rem; transition: background 0.2s;">👔 Executive Intelligence →</a>
+
+        <!-- SPECIAL CONTEXT BOX -->
+        <div class="alert-box" style="background: rgba(245, 158, 11, 0.15); border-left: 4px solid #f59e0b; padding: 1rem; margin-bottom: 1.5rem;">
+            <h4 style="margin: 0 0 0.5rem 0; color: #f59e0b;">🎖️ Unique Positioning: Military & Police Bank</h4>
+            <p style="margin: 0;" data-en="BANCOM is owned by the Caja de Pensiones Militar Policial (CPMP) — the pension fund for Peru's Armed Forces and National Police. This gives them a captive customer base but also limits growth potential. Key clients: military personnel, police officers, retirees, and related government entities." data-es="BANCOM es propiedad de la Caja de Pensiones Militar Policial (CPMP) — el fondo de pensiones de las Fuerzas Armadas y Policía Nacional del Perú. Esto les da una base de clientes cautiva pero también limita el potencial de crecimiento. Clientes clave: personal militar, oficiales de policía, jubilados y entidades gubernamentales relacionadas.">BANCOM is owned by the Caja de Pensiones Militar Policial (CPMP) — the pension fund for Peru's Armed Forces and National Police. This gives them a captive customer base but also limits growth potential. Key clients: military personnel, police officers, retirees, and related government entities.</p>
+        </div>
+
+        <!-- PROFILE SECTION -->
+        <section class="section-card">
+            <h2 data-en="🏢 Bank Profile" data-es="🏢 Perfil del Banco">🏢 Bank Profile</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                <!-- General Information -->
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.75rem;">📋 General Information</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Founded:</strong> 1967 (as BANPECO), 2004 (reorganized)</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Headquarters:</strong> Av. Canaval y Moreyra 452, San Isidro, Lima</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Type:</strong> Private Niche Bank</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>License:</strong> Full Commercial Bank (SBS)</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Listed:</strong> BVL (BCOMPC1)</li>
+                        <li><strong>Rebrand:</strong> "BANCOM" since 2023</li>
+                    </ul>
+                </div>
+                
+                <!-- Ownership & Control -->
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.75rem;">👥 Ownership & Control</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Control:</strong> Caja de Pensiones Militar Policial (CPMP)</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Ownership:</strong> 99.99% CPMP</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Structure:</strong> Single institutional owner</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Decision Authority:</strong> Board appointed by CPMP</li>
+                        <li><strong>Public Float:</strong> ~0.01% (minimal)</li>
+                    </ul>
+                </div>
+                
+                <!-- Scale & Footprint -->
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.75rem;">📍 Scale & Footprint</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;"><strong>Employees:</strong> 726 (2024)</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Branches:</strong> ~35-40 offices</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>ATMs:</strong> ~100 (estimated)</li>
+                        <li style="margin-bottom: 0.5rem;"><strong>Market Position:</strong> #10-11 in Peru</li>
+                        <li><strong>Focus:</strong> Military bases, police stations, pension offices</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="alert-box" style="margin-top: 1rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Strategic Position</h4>
+                <p style="margin: 0;" data-en="BANCOM operates as a captive bank for Peru's military and police pension system. While small (~1-2% market share), they have guaranteed revenue from pension payments, salary processing, and loans to armed forces personnel. Low competition risk in their niche, but limited growth potential outside it." data-es="BANCOM opera como un banco cautivo para el sistema de pensiones militar y policial de Perú. Aunque pequeño (~1-2% de participación de mercado), tienen ingresos garantizados de pagos de pensiones, procesamiento de salarios y préstamos al personal de las fuerzas armadas. Bajo riesgo de competencia en su nicho, pero potencial de crecimiento limitado fuera de él.">BANCOM operates as a captive bank for Peru's military and police pension system. While small (~1-2% market share), they have guaranteed revenue from pension payments, salary processing, and loans to armed forces personnel. Low competition risk in their niche, but limited growth potential outside it.</p>
+            </div>
+        </section>
+
+        <!-- KEY METRICS -->
+        <section class="section-card">
+            <h2 data-en="📊 Key Metrics 2024 (Source: SBS Peru / EMIS / Moody's Local)" data-es="📊 Métricas Clave 2024 (Fuente: SBS Perú / EMIS / Moody's Local)">📊 Key Metrics 2024 (Source: SBS Peru / EMIS / Moody's Local)</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">PEN/USD: 3.72 | <span data-en="Estimated values based on public data" data-es="Valores estimados basados en datos públicos">Estimated values based on public data</span></p>
+            <div class="key-metrics">
+                <div class="metric-item">
+                    <div class="value">~$1.8B</div>
+                    <div class="label" data-en="Total Assets (Est.)" data-es="Activos Totales (Est.)">Total Assets (Est.)</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">~$25M</div>
+                    <div class="label" data-en="Net Income (Est.)" data-es="Utilidad Neta (Est.)">Net Income (Est.)</div>
+                </div>
+                <div class="metric-item" style="background: rgba(245, 158, 11, 0.15); border: 1px solid var(--accent-yellow);">
+                    <div class="value" style="color: var(--accent-yellow);">~10%</div>
+                    <div class="label">ROAE (Est.)</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">~1.5%</div>
+                    <div class="label" data-en="Market Share" data-es="Market Share">Market Share</div>
+                </div>
+                <div class="metric-item">
+                    <div class="value">726</div>
+                    <div class="label" data-en="Employees" data-es="Empleados">Employees</div>
+                </div>
+            </div>
+            <p style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);"><em>Note: Exact figures require verification from SBS quarterly reports. Net income increased +17.23% in Q1 2025 vs prior year (source: EMIS).</em></p>
+        </section>
+
+        <!-- FINANCIAL ANALYSIS -->
+        <section class="section-card">
+            <h2>📈 Financial Analysis (Recent Trends)</h2>
+            <div class="table-container">
+                <table class="bank-table" style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th data-en="Metric" data-es="Métrica">Metric</th>
+                            <th>2024</th>
+                            <th>Trend</th>
+                            <th data-en="Signal" data-es="Señal">Signal</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Net Income Growth</strong></td>
+                            <td>+17.23%</td>
+                            <td style="color: var(--accent-green);">📈</td>
+                            <td data-en="Strong recovery" data-es="Recuperación fuerte">Strong recovery</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Assets</strong></td>
+                            <td>-5.68%</td>
+                            <td style="color: var(--accent-red);">📉</td>
+                            <td data-en="Contraction" data-es="Contracción">Contraction</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Equity</strong></td>
+                            <td>-1.53%</td>
+                            <td style="color: var(--accent-yellow);">➡️</td>
+                            <td data-en="Slight decline" data-es="Ligera caída">Slight decline</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operating Income</strong></td>
+                            <td>+65.64%</td>
+                            <td style="color: var(--accent-green);">📈</td>
+                            <td data-en="Efficiency gains" data-es="Ganancias de eficiencia">Efficiency gains</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pre-tax Profit</strong></td>
+                            <td>+183.73%</td>
+                            <td style="color: var(--accent-green);">📈</td>
+                            <td data-en="Strong turnaround" data-es="Fuerte recuperación">Strong turnaround</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1.5rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">💡 Commercial Interpretation</h4>
+                <p style="margin: 0;" data-en="BANCOM shows PROFITABILITY IMPROVEMENT despite ASSET CONTRACTION. This suggests: (1) cost-cutting or efficiency initiatives, (2) portfolio quality cleanup, (3) possible loan book reduction. The +183% pre-tax profit growth indicates strong operational turnaround. They're doing more with less — efficiency-focused sales messaging will resonate." data-es="BANCOM muestra MEJORA DE RENTABILIDAD a pesar de CONTRACCIÓN DE ACTIVOS. Esto sugiere: (1) recorte de costos o iniciativas de eficiencia, (2) limpieza de calidad de cartera, (3) posible reducción de libro de préstamos. El crecimiento de +183% en utilidad antes de impuestos indica fuerte recuperación operacional. Están haciendo más con menos — mensajes de venta enfocados en eficiencia resonarán.">BANCOM shows PROFITABILITY IMPROVEMENT despite ASSET CONTRACTION. This suggests: (1) cost-cutting or efficiency initiatives, (2) portfolio quality cleanup, (3) possible loan book reduction. The +183% pre-tax profit growth indicates strong operational turnaround. They're doing more with less — efficiency-focused sales messaging will resonate.</p>
+            </div>
+        </section>
+
+        <!-- CPMP ECOSYSTEM -->
+        <section class="section-card" style="border: 2px solid var(--accent);">
+            <h2 data-en="🎖️ CPMP Ecosystem — Understanding the Owner" data-es="🎖️ Ecosistema CPMP — Entendiendo al Propietario">🎖️ CPMP Ecosystem — Understanding the Owner</h2>
+            <p data-en="BANCOM's owner, the Caja de Pensiones Militar Policial (CPMP), manages pensions for:" data-es="El propietario de BANCOM, la Caja de Pensiones Militar Policial (CPMP), administra pensiones para:">BANCOM's owner, the Caja de Pensiones Militar Policial (CPMP), manages pensions for:</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: #22c55e;">🪖 Armed Forces</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>Army (Ejército)</li>
+                        <li>Navy (Marina)</li>
+                        <li>Air Force (FAP)</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: #3b82f6;">👮 National Police</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>Policía Nacional del Perú (PNP)</li>
+                        <li>Active & retired officers</li>
+                    </ul>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: #f59e0b;">👴 Retirees & Families</strong>
+                    <ul style="margin: 0.5rem 0 0 0; padding-left: 1rem; font-size: 0.85rem;">
+                        <li>Pension recipients</li>
+                        <li>Survivor benefits</li>
+                        <li>Family members</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="alert-box" style="margin-top: 1rem; background: rgba(245, 158, 11, 0.1); border-left: 4px solid var(--accent-yellow); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-yellow);">💡 Sales Angle</h4>
+                <p style="margin: 0;" data-en="CPMP controls both the bank AND the pension fund. Infrastructure decisions may be made at CPMP level for both entities. A solution sold to BANCOM could potentially expand to CPMP's pension management systems. Consider positioning for the broader CPMP ecosystem, not just the bank." data-es="CPMP controla tanto el banco COMO el fondo de pensiones. Las decisiones de infraestructura pueden tomarse a nivel de CPMP para ambas entidades. Una solución vendida a BANCOM podría potencialmente expandirse a los sistemas de gestión de pensiones de CPMP. Considera posicionarte para el ecosistema más amplio de CPMP, no solo el banco.">CPMP controls both the bank AND the pension fund. Infrastructure decisions may be made at CPMP level for both entities. A solution sold to BANCOM could potentially expand to CPMP's pension management systems. Consider positioning for the broader CPMP ecosystem, not just the bank.</p>
+            </div>
+        </section>
+
+        <!-- INFRASTRUCTURE STACK - 6 LAYERS -->
+        <section class="section-card">
+            <h2 data-en="🔧 Infrastructure Stack — 6 Layers Deep Dive" data-es="🔧 Stack de Infraestructura — 6 Capas en Profundidad">🔧 Infrastructure Stack — 6 Layers Deep Dive</h2>
+            <p class="section-intro" style="color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem;">
+                <span style="color: var(--accent-green);">●</span> <span data-en="Confirmed" data-es="Confirmado">Confirmed</span> &nbsp;
+                <span style="color: var(--accent-yellow);">●</span> <span data-en="Likely/Estimated" data-es="Probable/Estimado">Likely/Estimated</span> &nbsp;
+                <span style="color: var(--accent);">●</span> <span data-en="To verify" data-es="Por verificar">To verify</span>
+            </p>
+            
+            <div class="infra-stack">
+                <!-- LAYER 1: Processing & Compute -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💻</span>
+                        <span class="infra-layer-name">Layer 1: Processing & Compute</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">On-premise DC</span>
+                        <span class="brand-tag likely">VMware</span>
+                        <span class="brand-tag likely">Dell/HP Servers</span>
+                        <span class="brand-tag confirmed">Microsoft Azure (WAF)</span>
+                    </div>
+                    <p class="infra-notes" data-en="Small bank = likely modest on-premise infrastructure. Website protected by Azure WAF suggests some Microsoft cloud adoption. 726 employees indicates limited IT team. Infrastructure likely aging — efficiency gains in financials may indicate recent modernization or consolidation. LOCAL decision authority — no global parent constraints." data-es="Banco pequeño = infraestructura on-premise probablemente modesta. Sitio web protegido por Azure WAF sugiere algo de adopción de cloud Microsoft. 726 empleados indica equipo de TI limitado. Infraestructura probablemente envejeciendo — ganancias de eficiencia en finanzas pueden indicar modernización reciente o consolidación. Autoridad de decisión LOCAL — sin restricciones de casa matriz global.">Small bank = likely modest on-premise infrastructure. Website protected by Azure WAF suggests some Microsoft cloud adoption. 726 employees indicates limited IT team. Infrastructure likely aging — efficiency gains in financials may indicate recent modernization or consolidation. LOCAL decision authority — no global parent constraints.</p>
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent);">💡 Opportunity:</strong> Infrastructure consolidation, cloud migration for cost reduction, server refresh/virtualization modernization.
+                    </div>
+                </div>
+
+                <!-- LAYER 2: Storage -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">💾</span>
+                        <span class="infra-layer-name">Layer 2: Enterprise Storage</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Mid-range SAN</span>
+                        <span class="brand-tag likely">Dell EMC / NetApp</span>
+                        <span class="brand-tag likely">Backup appliance</span>
+                        <span class="brand-tag">Azure Blob (potential)</span>
+                    </div>
+                    <p class="infra-notes" data-en="Pension-related data requires long-term retention (military/police records span decades). SBS mandates 10-year data retention. Small bank but high compliance requirements = storage optimization opportunity. Asset contraction (-5.68%) may mean reduced CAPEX appetite, but operational efficiency gains suggest willingness to invest for ROI." data-es="Datos relacionados con pensiones requieren retención a largo plazo (registros militares/policiales abarcan décadas). SBS exige retención de datos por 10 años. Banco pequeño pero altos requerimientos de compliance = oportunidad de optimización de almacenamiento. Contracción de activos (-5.68%) puede significar apetito reducido de CAPEX, pero ganancias de eficiencia operativa sugieren disposición a invertir por ROI.">Pension-related data requires long-term retention (military/police records span decades). SBS mandates 10-year data retention. Small bank but high compliance requirements = storage optimization opportunity. Asset contraction (-5.68%) may mean reduced CAPEX appetite, but operational efficiency gains suggest willingness to invest for ROI.</p>
+                </div>
+
+                <!-- LAYER 3: Networking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🌐</span>
+                        <span class="infra-layer-name">Layer 3: Networking</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Cisco / Fortinet</span>
+                        <span class="brand-tag likely">Basic WAN</span>
+                        <span class="brand-tag">SD-WAN (potential)</span>
+                        <span class="brand-tag likely">VPN for military bases</span>
+                    </div>
+                    <p class="infra-notes" data-en="Branch locations likely include military bases and police facilities with special security requirements. Connectivity to government networks (Ministry of Defense, Interior) may require specific compliance. ~35-40 branches = manageable WAN but may lack modern SD-WAN. Security-focused customer base = higher bar for network security." data-es="Ubicaciones de sucursales probablemente incluyen bases militares e instalaciones policiales con requerimientos especiales de seguridad. Conectividad a redes gubernamentales (Ministerio de Defensa, Interior) puede requerir compliance específico. ~35-40 sucursales = WAN manejable pero puede carecer de SD-WAN moderno. Base de clientes enfocada en seguridad = barra más alta para seguridad de red.">Branch locations likely include military bases and police facilities with special security requirements. Connectivity to government networks (Ministry of Defense, Interior) may require specific compliance. ~35-40 branches = manageable WAN but may lack modern SD-WAN. Security-focused customer base = higher bar for network security.</p>
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-green);">💡 Angle:</strong> "Secure connectivity for military/police facilities" — frame network solutions around security and compliance.
+                    </div>
+                </div>
+
+                <!-- LAYER 4: Core Banking -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">🏛️</span>
+                        <span class="infra-layer-name">Layer 4: Core Banking</span>
+                        <span class="infra-layer-opp low">LOW OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Legacy Core (local vendor)</span>
+                        <span class="brand-tag likely">Custom pension modules</span>
+                        <span class="brand-tag">Integration with CPMP systems</span>
+                    </div>
+                    <p class="infra-notes" data-en="Small bank likely runs older core banking system, possibly from local Peruvian vendor or in-house developed. Pension processing integration with CPMP is critical — custom interfaces likely exist. Core banking change is HIGH RISK for a small institution. More likely to invest in modernization layers (APIs, middleware) than full core replacement." data-es="Banco pequeño probablemente corre sistema de core banking antiguo, posiblemente de vendor peruano local o desarrollado in-house. Integración de procesamiento de pensiones con CPMP es crítica — interfaces custom probablemente existen. Cambio de core banking es ALTO RIESGO para una institución pequeña. Más probable que inviertan en capas de modernización (APIs, middleware) que reemplazo completo de core.">Small bank likely runs older core banking system, possibly from local Peruvian vendor or in-house developed. Pension processing integration with CPMP is critical — custom interfaces likely exist. Core banking change is HIGH RISK for a small institution. More likely to invest in modernization layers (APIs, middleware) than full core replacement.</p>
+                    <div style="background: rgba(239, 68, 68, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-red);">⚠️ Low Priority:</strong> Core banking replacement unlikely. Focus on integration/middleware opportunities instead.
+                    </div>
+                </div>
+
+                <!-- LAYER 5: Digital Banking Platform -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📱</span>
+                        <span class="infra-layer-name">Layer 5: Digital Banking Platform</span>
+                        <span class="infra-layer-opp high">HIGH OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag confirmed">BANCOM App (basic)</span>
+                        <span class="brand-tag likely">Internet Banking</span>
+                        <span class="brand-tag">Mobile pending upgrade</span>
+                    </div>
+                    <p class="infra-notes" data-en="BANCOM likely lags digital leaders (BCP, Interbank) in mobile banking. Military/police customers may be less digitally demanding BUT younger personnel expect modern apps. 2023 rebrand to 'BANCOM' suggests digital transformation awareness. Opportunity: help them catch up on digital without massive investment. Pension self-service, mobile statements, benefit queries are key use cases." data-es="BANCOM probablemente está detrás de líderes digitales (BCP, Interbank) en banca móvil. Clientes militares/policías pueden ser menos exigentes digitalmente PERO personal más joven espera apps modernas. Rebrand 2023 a 'BANCOM' sugiere conciencia de transformación digital. Oportunidad: ayudarles a ponerse al día en digital sin inversión masiva. Autoservicio de pensiones, estados de cuenta móviles, consultas de beneficios son casos de uso clave.">BANCOM likely lags digital leaders (BCP, Interbank) in mobile banking. Military/police customers may be less digitally demanding BUT younger personnel expect modern apps. 2023 rebrand to 'BANCOM' suggests digital transformation awareness. Opportunity: help them catch up on digital without massive investment. Pension self-service, mobile statements, benefit queries are key use cases.</p>
+                    <div style="background: rgba(16, 185, 129, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent-green);">🎯 Key Opportunity:</strong> Digital banking modernization, mobile app upgrade, pension self-service portal, omnichannel platform.
+                    </div>
+                </div>
+
+                <!-- LAYER 6: Data, Analytics & AI -->
+                <div class="infra-layer">
+                    <div class="infra-layer-header">
+                        <span class="infra-layer-icon">📊</span>
+                        <span class="infra-layer-name">Layer 6: Data, Analytics & AI</span>
+                        <span class="infra-layer-opp medium">MED OPP</span>
+                    </div>
+                    <div class="infra-brands">
+                        <span class="brand-tag likely">Basic BI (Excel/Reports)</span>
+                        <span class="brand-tag likely">Regulatory reporting</span>
+                        <span class="brand-tag">Power BI / Tableau (potential)</span>
+                    </div>
+                    <p class="infra-notes" data-en="Small bank likely has basic analytics capabilities. Key use cases: (1) Pension payment forecasting, (2) Credit risk for military loans, (3) Regulatory reporting to SBS, (4) CPMP reporting requirements. AI/ML likely minimal but could benefit from: fraud detection on pension payments, credit scoring for personal loans to military personnel, document processing automation." data-es="Banco pequeño probablemente tiene capacidades de analytics básicas. Casos de uso clave: (1) Pronóstico de pagos de pensiones, (2) Riesgo crediticio para préstamos militares, (3) Reportes regulatorios a SBS, (4) Requerimientos de reportes de CPMP. AI/ML probablemente mínimo pero podría beneficiarse de: detección de fraude en pagos de pensiones, scoring crediticio para préstamos personales a personal militar, automatización de procesamiento de documentos.">Small bank likely has basic analytics capabilities. Key use cases: (1) Pension payment forecasting, (2) Credit risk for military loans, (3) Regulatory reporting to SBS, (4) CPMP reporting requirements. AI/ML likely minimal but could benefit from: fraud detection on pension payments, credit scoring for personal loans to military personnel, document processing automation.</p>
+                    <div style="background: rgba(99, 102, 241, 0.1); padding: 0.75rem; border-radius: 6px; margin-top: 0.75rem;">
+                        <strong style="color: var(--accent);">💡 Angle:</strong> "Modernize reporting and risk management" — regulatory compliance and pension management analytics.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE INTELLIGENCE -->
+        <section class="section-card">
+            <h2 data-en="👔 Executive Intelligence" data-es="👔 Inteligencia Ejecutiva">👔 Executive Intelligence</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent); margin-bottom: 0.75rem;">🏛️ Board & C-Suite</h4>
+                    <ul style="list-style: none; padding: 0; margin: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 0.5rem;">• <strong>Board:</strong> Appointed by CPMP</li>
+                        <li style="margin-bottom: 0.5rem; padding: 0.5rem; background: rgba(245, 158, 11, 0.1); border-radius: 4px;">
+                            <strong style="color: #f59e0b;">Aron Kisner</strong><br>
+                            <span style="font-size: 0.85rem;">Gerente General (CEO)</span>
+                        </li>
+                        <li>• <strong>CFO:</strong> <em>To verify</em></li>
+                    </ul>
+                </div>
+                
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: #06b6d4; margin-bottom: 0.75rem;">💡 Innovation</h4>
+                    <div style="padding: 0.5rem; background: rgba(6, 182, 212, 0.1); border-radius: 4px; margin-bottom: 0.5rem;">
+                        <strong style="color: #06b6d4;">Paul Iparraguirre</strong><br>
+                        <span style="font-size: 0.85rem;">Gerente de Innovación</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Digital transformation, fintech, customer experience modernization</p>
+                </div>
+                
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <h4 style="color: var(--accent-green); margin-bottom: 0.75rem;">🔧 Architecture</h4>
+                    <div style="padding: 0.5rem; background: rgba(16, 185, 129, 0.1); border-radius: 4px; margin-bottom: 0.5rem;">
+                        <strong style="color: var(--accent-green);">Paul Manco</strong><br>
+                        <span style="font-size: 0.85rem;">Gerente de Arquitectura</span>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin: 0;">Infrastructure, cloud strategy, technical decisions, systems integration</p>
+                </div>
+            </div>
+
+            <div class="alert-box" style="margin-top: 1rem; background: rgba(16, 185, 129, 0.1); border-left: 4px solid var(--accent-green); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent-green);">🎯 Key Contacts for Tech Sales</h4>
+                <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                    <li><strong>Digital/Apps/Automation →</strong> Paul Iparraguirre (Innovación)</li>
+                    <li><strong>Infrastructure/Cloud/Security →</strong> Paul Manco (Arquitectura)</li>
+                    <li><strong>Final approval →</strong> Aron Kisner (CEO) + CPMP Board for large deals</li>
+                </ul>
+            </div>
+
+            <div class="alert-box" style="margin-top: 1rem; background: rgba(99, 102, 241, 0.1); border-left: 4px solid var(--accent); padding: 1rem;">
+                <h4 style="margin: 0 0 0.5rem 0; color: var(--accent);">📋 Engagement Notes</h4>
+                <ul style="margin: 0; padding-left: 1.5rem; font-size: 0.9rem;">
+                    <li><strong>Decision Structure:</strong> CEO + CPMP Board for significant investments</li>
+                    <li><strong>Procurement:</strong> Quasi-governmental practices given CPMP ownership</li>
+                    <li><strong>Budget Cycle:</strong> Annual, aligned with CPMP fiscal year</li>
+                    <li><strong>Culture:</strong> Formal approach; reference military/government banking experience</li>
+                </ul>
+            </div>
+            
+            <p style="margin-top: 1rem; text-align: center;">
+                <a href="bancom_executives.html" style="color: var(--accent); font-weight: 600;">📄 View Full Executive Profiles →</a>
+            </p>
+        </section>
+
+        <!-- COMMERCIAL SYNTHESIS -->
+        <section class="section-card" style="border: 2px solid var(--accent-yellow);">
+            <h2 data-en="🎯 Commercial Synthesis" data-es="🎯 Síntesis Comercial">🎯 Commercial Synthesis</h2>
+            
+            <div class="priority-list">
+                <div class="priority-item high">
+                    <span class="priority-num">1</span>
+                    <div class="priority-content">
+                        <h4 data-en="Primary Opportunity: Digital Banking Modernization" data-es="Oportunidad Principal: Modernización de Banca Digital">Primary Opportunity: Digital Banking Modernization</h4>
+                        <p data-en="BANCOM's 2023 rebrand signals digital transformation intent. Military/police personnel (especially younger) expect modern banking apps. Pension self-service, mobile statements, benefit queries. Position as 'catch up to BCP/Interbank without their budget' — right-sized digital solution." data-es="El rebrand 2023 de BANCOM señala intención de transformación digital. Personal militar/policial (especialmente más joven) espera apps bancarias modernas. Autoservicio de pensiones, estados de cuenta móviles, consultas de beneficios. Posiciona como 'alcanzar a BCP/Interbank sin su presupuesto' — solución digital del tamaño correcto.">BANCOM's 2023 rebrand signals digital transformation intent. Military/police personnel (especially younger) expect modern banking apps. Pension self-service, mobile statements, benefit queries. Position as "catch up to BCP/Interbank without their budget" — right-sized digital solution.</p>
+                    </div>
+                </div>
+                <div class="priority-item medium">
+                    <span class="priority-num">2</span>
+                    <div class="priority-content">
+                        <h4 data-en="Secondary Opportunity: Operational Efficiency Tools" data-es="Oportunidad Secundaria: Herramientas de Eficiencia Operativa">Secondary Opportunity: Operational Efficiency Tools</h4>
+                        <p data-en="Financial results show strong efficiency gains (+183% pre-tax profit, +65% operating income). They're focused on doing more with less. RPA/automation, document processing, workflow optimization. Frame around continued efficiency improvement and cost reduction." data-es="Resultados financieros muestran fuertes ganancias de eficiencia (+183% utilidad antes de impuestos, +65% ingreso operativo). Están enfocados en hacer más con menos. RPA/automatización, procesamiento de documentos, optimización de workflows. Enmarca alrededor de mejora continua de eficiencia y reducción de costos.">Financial results show strong efficiency gains (+183% pre-tax profit, +65% operating income). They're focused on doing more with less. RPA/automation, document processing, workflow optimization. Frame around continued efficiency improvement and cost reduction.</p>
+                    </div>
+                </div>
+                <div class="priority-item medium">
+                    <span class="priority-num">3</span>
+                    <div class="priority-content">
+                        <h4 data-en="Tertiary Opportunity: Security & Compliance" data-es="Oportunidad Terciaria: Seguridad y Compliance">Tertiary Opportunity: Security & Compliance</h4>
+                        <p data-en="Military/police customer base = heightened security expectations. SBS regulatory compliance. Data protection for sensitive personnel records. Position security solutions as 'meeting the standards your customers expect from a military/police bank.'" data-es="Base de clientes militar/policial = expectativas de seguridad elevadas. Compliance regulatorio de SBS. Protección de datos para registros sensibles de personal. Posiciona soluciones de seguridad como 'cumpliendo los estándares que tus clientes esperan de un banco militar/policial.'">Military/police customer base = heightened security expectations. SBS regulatory compliance. Data protection for sensitive personnel records. Position security solutions as "meeting the standards your customers expect from a military/police bank."</p>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem;">
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Entry Strategy</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="Lead with efficiency and right-sizing message. 'Solutions designed for focused banks, not one-size-fits-all enterprise products.' Reference any military/government banking clients. Understand CPMP relationship and decision dynamics first." data-es="Lidera con mensaje de eficiencia y dimensionamiento correcto. 'Soluciones diseñadas para bancos enfocados, no productos empresariales de talla única.' Referencia cualquier cliente bancario militar/gubernamental. Entiende primero la relación con CPMP y la dinámica de decisiones.">Lead with efficiency and right-sizing message. "Solutions designed for focused banks, not one-size-fits-all enterprise products." Reference any military/government banking clients. Understand CPMP relationship and decision dynamics first.</p>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Deal Size Estimate</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                        • <strong>Small deals:</strong> $50K-150K<br>
+                        • <strong>Medium deals:</strong> $150K-500K<br>
+                        • <strong>Larger transformation:</strong> $500K-1M<br>
+                        <em style="font-size: 0.8rem;">Budget constrained vs. top-tier banks</em>
+                    </p>
+                </div>
+                <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+                    <strong style="color: var(--accent);">Timing</strong>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 0.9rem;" data-en="Efficiency focus in financials suggests ACTIVE cost/benefit evaluation mindset. 2023 rebrand may have budget allocated for modernization. Full local decision authority (no global parent) but CPMP may require board approval." data-es="Foco en eficiencia en finanzas sugiere mentalidad ACTIVA de evaluación costo/beneficio. Rebrand 2023 puede tener presupuesto asignado para modernización. Autoridad de decisión local completa (sin matriz global) pero CPMP puede requerir aprobación del directorio.">Efficiency focus in financials suggests ACTIVE cost/benefit evaluation mindset. 2023 rebrand may have budget allocated for modernization. Full local decision authority (no global parent) but CPMP may require board approval.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOP 3 PRIORITY PLAYS -->
+        <section class="section-card" style="background: linear-gradient(135deg, rgba(245, 158, 11, 0.1), rgba(99, 102, 241, 0.1));">
+            <h2>🏆 Top 3 Priority Plays</h2>
+            
+            <div style="display: grid; gap: 1rem; margin-top: 1rem;">
+                <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h4 style="color: var(--accent-green); margin: 0 0 0.5rem 0;">1. Digital Banking Platform Upgrade</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">Mobile app modernization + pension self-service portal + omnichannel messaging</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="color: var(--accent-green); font-weight: 600;">$200K-500K</span>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">6-12 months</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-yellow);">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h4 style="color: var(--accent-yellow); margin: 0 0 0.5rem 0;">2. Process Automation / RPA</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">Document processing, pension payment verification, regulatory reporting automation</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="color: var(--accent-yellow); font-weight: 600;">$100K-250K</span>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">3-6 months</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="background: var(--card-bg); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent);">
+                    <div style="display: flex; justify-content: space-between; align-items: start;">
+                        <div>
+                            <h4 style="color: var(--accent); margin: 0 0 0.5rem 0;">3. Infrastructure Consolidation</h4>
+                            <p style="margin: 0; font-size: 0.9rem;">Cloud migration assessment, server refresh, storage optimization</p>
+                        </div>
+                        <div style="text-align: right;">
+                            <span style="color: var(--accent); font-weight: 600;">$150K-400K</span>
+                            <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">6-9 months</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- KEY OBJECTION -->
+        <section class="section-card">
+            <h2 data-en="⚠️ Key Objection to Prepare For" data-es="⚠️ Objeción Clave a Preparar">⚠️ Key Objection to Prepare For</h2>
+            <p><strong data-en="&quot;We're a small bank — we can't afford enterprise solutions.&quot;" data-es="&quot;Somos un banco pequeño — no podemos costear soluciones empresariales.&quot;">"We're a small bank — we can't afford enterprise solutions."</strong></p>
+            <p data-en="Response: &quot;That's exactly our approach. You've shown impressive efficiency gains — 183% pre-tax profit growth — by doing more with less. We specialize in right-sized solutions for focused institutions. You don't need BCP's budget to get competitive digital banking. Let us show you how banks your size are modernizing efficiently, with quick ROI and manageable investment. Your military and police customers deserve the same digital experience as anyone else.&quot;" data-es="Respuesta: &quot;Ese es exactamente nuestro enfoque. Han mostrado ganancias de eficiencia impresionantes — 183% de crecimiento en utilidad antes de impuestos — haciendo más con menos. Nos especializamos en soluciones del tamaño correcto para instituciones enfocadas. No necesitan el presupuesto de BCP para tener banca digital competitiva. Permítanos mostrarle cómo bancos de su tamaño están modernizándose eficientemente, con ROI rápido e inversión manejable. Sus clientes militares y policiales merecen la misma experiencia digital que cualquier otra persona.&quot;">Response: "That's exactly our approach. You've shown impressive efficiency gains — 183% pre-tax profit growth — by doing more with less. We specialize in right-sized solutions for focused institutions. You don't need BCP's budget to get competitive digital banking. Let us show you how banks your size are modernizing efficiently, with quick ROI and manageable investment. Your military and police customers deserve the same digital experience as anyone else."</p>
+        </section>
+
+        <!-- INVESTMENT APPETITE -->
+        <section class="section-card">
+            <h2 data-en="💡 Investment Appetite Assessment" data-es="💡 Evaluación del Apetito de Inversión">💡 Investment Appetite Assessment</h2>
+            <p><strong>Rating: 🟡 MEDIUM</strong></p>
+            <ul>
+                <li><strong data-en="Financial capacity:" data-es="Capacidad financiera:">Financial capacity:</strong> ⚠️ <span data-en="Limited vs. top-tier, but improving profitability (+183% pre-tax profit)" data-es="Limitada vs. top-tier, pero mejorando rentabilidad (+183% utilidad antes de impuestos)">Limited vs. top-tier, but improving profitability (+183% pre-tax profit)</span></li>
+                <li><strong data-en="Local autonomy:" data-es="Autonomía local:">Local autonomy:</strong> ✅ <span data-en="FULL — No global parent, but CPMP board oversight" data-es="COMPLETA — Sin matriz global, pero supervisión del directorio de CPMP">FULL — No global parent, but CPMP board oversight</span></li>
+                <li><strong data-en="Technology appetite:" data-es="Apetito tecnológico:">Technology appetite:</strong> 🟡 <span data-en="Moderate — 2023 rebrand signals modernization awareness" data-es="Moderado — Rebrand 2023 señala conciencia de modernización">Moderate — 2023 rebrand signals modernization awareness</span></li>
+                <li><strong data-en="Efficiency focus:" data-es="Foco en eficiencia:">Efficiency focus:</strong> ✅ <span data-en="HIGH — Financial results show strong operational improvement" data-es="ALTO — Resultados financieros muestran fuerte mejora operacional">HIGH — Financial results show strong operational improvement</span></li>
+                <li><strong data-en="Best approach:" data-es="Mejor enfoque:">Best approach:</strong> <span data-en="Right-sized solutions with clear ROI, phased implementation, efficiency-focused messaging" data-es="Soluciones del tamaño correcto con ROI claro, implementación por fases, mensajes enfocados en eficiencia">Right-sized solutions with clear ROI, phased implementation, efficiency-focused messaging</span></li>
+            </ul>
+        </section>
+
+        <!-- NAVIGATION -->
+        <div class="exec-navigation" style="display: flex; justify-content: space-between; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--border);">
+            <a href="index.html" class="btn-secondary" style="padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; background: var(--bg-secondary); color: var(--text);">← Back to Peru</a>
+            <a href="bcp.html" class="btn-primary" style="padding: 0.75rem 1.5rem; border-radius: 8px; text-decoration: none; background: var(--accent); color: white;">Next: BCP →</a>
+        </div>
+
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>
