@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Atlas Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent-blue); transition: transform 0.2s, box-shadow 0.2s; }
+        .exec-profile-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
+        .exec-avatar-large { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; flex-shrink: 0; }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, var(--accent-blue), #1d4ed8); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.fast { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+        .fast-decision { background: rgba(16, 185, 129, 0.1); border: 1px solid var(--accent-green); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .fast-decision h4 { color: var(--accent-green); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item active" onclick="window.location.href='../paraguay/index.html'"><span class="nav-icon">🇵🇾</span><span>Paraguay</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.7 • Jun 2025</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_atlas.html" class="back-link">← Back to Banco Atlas</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Atlas — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers — Independent bank with fast decision cycle</p>
+        </header>
+
+        <div class="fast-decision">
+            <h4>🚀 Fast Mover Bank</h4>
+            <p>Atlas is an independent bank with entrepreneurial culture. CEO is hands-on and often directly involved in vendor meetings. Smaller org = faster decisions (2-4 months vs 6+ at larger banks). Direct CEO engagement works here.</p>
+        </div>
+
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>CEO identified. Smaller organization — may not have formal CTO title. IT typically reports to COO. Verify exact structure via LinkedIn before outreach.</p>
+        </div>
+
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy — Flat Structure</h2>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Enrique García</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">IT Manager / Gerente de Sistemas</div>
+                </div>
+                <div class="org-box">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">COO</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>📋 Executive Profiles</h2>
+
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">EG</div>
+                    <div class="exec-title-info">
+                        <h3>Enrique García</h3>
+                        <div class="role">CEO / Gerente General</div>
+                        <div class="tenure">🏦 Banco Atlas • Hands-on leader</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Primary Decision Maker</span>
+                            <span class="exec-tag fast">Fast Decisions</span>
+                            <span class="exec-tag tech">Tech-Curious</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Background</h4>
+                        <ul>
+                            <li>Hands-on CEO, involved in key decisions</li>
+                            <li>Entrepreneurial mindset</li>
+                            <li>Sees tech as competitive differentiator</li>
+                            <li>Accessible to vendors</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Final decision on most purchases</li>
+                            <li>Directly involved in tech strategy</li>
+                            <li>Quick turnaround on proposals</li>
+                            <li>Board approval only for major investments</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Approach Notes</h4>
+                        <ul>
+                            <li>CAN be approached directly</li>
+                            <li>Values practical, ROI-focused proposals</li>
+                            <li>Appreciates phased approaches</li>
+                            <li>Quick wins build trust for larger deals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p>Unlike larger banks, you CAN engage CEO directly at Atlas. Start with infrastructure quick wins (storage, backup) to build relationship and prove value. Then expand to larger deals (core banking, digital). He's ROI-focused — have clear business case ready. Phased approaches work well given budget constraints.</p>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Enrique%20Garcia%20Banco%20Atlas%20Paraguay" target="_blank" class="linkedin-btn">🔗 Search LinkedIn</a>
+            </div>
+
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>IT Manager / Gerente de Sistemas</h3>
+                        <div class="role">⚠️ Position exists — name to verify</div>
+                        <div class="tenure">🔍 May report to COO, not formal CTO</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Technical Evaluation</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Expected Responsibilities</h4>
+                        <ul>
+                            <li>Day-to-day IT operations</li>
+                            <li>Vendor technical evaluation</li>
+                            <li>Infrastructure management</li>
+                            <li>Core banking support</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important</h4>
+                        <ul>
+                            <li>Technical due diligence</li>
+                            <li>Implementation partner</li>
+                            <li>CEO relies on their input</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=IT%20Banco%20Atlas%20Paraguay%20sistemas" target="_blank" class="linkedin-btn">🔗 Search LinkedIn to Identify</a>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🎯 Engagement Strategy Summary</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                    <h4 style="color: var(--accent-green);">✅ Do</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Engage CEO directly — it works here</li>
+                        <li>Start with quick wins (storage/backup)</li>
+                        <li>Show clear ROI and phased approach</li>
+                        <li>Build relationship before big deals</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+                    <h4 style="color: #ef4444;">❌ Don't</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Over-complicate proposals</li>
+                        <li>Push for huge upfront commitment</li>
+                        <li>Ignore budget constraints</li>
+                        <li>Expect enterprise-level process</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                    <h4 style="color: var(--accent-blue);">📅 Timeline</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Storage: Immediate need</li>
+                        <li>Core evaluation: Active now</li>
+                        <li>Decision: 2-4 months (fast!)</li>
+                        <li>Budget: Flexible, opportunistic</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="exec-navigation">
+            <a href="banco_atlas.html" class="btn-secondary">← Back to Bank Profile</a>
+            <a href="banco_continental_executives.html" class="btn-primary">Next: Continental Executives →</a>
+        </div>
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

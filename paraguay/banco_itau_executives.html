@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Itaú Paraguay Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent-blue); transition: transform 0.2s, box-shadow 0.2s; }
+        .exec-profile-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .exec-profile-card.local { border-left-color: var(--accent-blue); }
+        .exec-profile-card.brazil { border-left-color: #f59e0b; }
+        .exec-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
+        .exec-avatar-large { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; flex-shrink: 0; }
+        .exec-avatar-large.local { background: linear-gradient(135deg, var(--accent-blue), #1d4ed8); }
+        .exec-avatar-large.brazil { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.local { background: rgba(59, 130, 246, 0.2); color: var(--accent-blue); }
+        .exec-tag.notech { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.brazil { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        .warning-box { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .warning-box h4 { color: #ef4444; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .warning-box p { margin: 0; font-size: 0.85rem; }
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.brazil { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.local { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item active" onclick="window.location.href='../paraguay/index.html'"><span class="nav-icon">🇵🇾</span><span>Paraguay</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.7 • Jun 2025</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_itau.html" class="back-link">← Back to Itaú Paraguay</a>
+        
+        <header class="page-header">
+            <h1>👔 Itaú Paraguay — Executive Intelligence</h1>
+            <p class="subtitle">Local leadership vs. real tech decision makers in São Paulo</p>
+        </header>
+
+        <div class="warning-box">
+            <h4>⚠️ Critical: Tech Decisions Made in Brazil</h4>
+            <p>Itaú Paraguay is a 100% subsidiary of Itaú Unibanco (Brazil). ALL technology decisions are centralized in São Paulo. Local executives have NO authority over tech purchases. If pursuing Itaú, you must engage the Brazil headquarters directly. Local team only handles operations and compliance.</p>
+        </div>
+
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy — Centralized in Brazil</h2>
+            <div class="org-level">
+                <div class="org-box brazil">
+                    <div class="name">Itaú Unibanco CTO</div>
+                    <div class="title">São Paulo, Brazil</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box brazil">
+                    <div class="name">Itaú LATAM Regional IT</div>
+                    <div class="title">Covers: Chile, Colombia, Paraguay, Uruguay</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box local">
+                    <div class="name">Gustavo Arriola</div>
+                    <div class="title">CEO Paraguay (Local Ops Only)</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>📋 Executive Profiles</h2>
+
+            <div class="exec-profile-card local">
+                <div class="exec-header">
+                    <div class="exec-avatar-large local">GA</div>
+                    <div class="exec-title-info">
+                        <h3>Gustavo Arriola</h3>
+                        <div class="role">CEO Paraguay / Country Manager</div>
+                        <div class="tenure">🏦 Itaú Paraguay • Reports to Itaú LATAM</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag local">Local Operations</span>
+                            <span class="exec-tag notech">No Tech Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Responsibilities</h4>
+                        <ul>
+                            <li>Local market strategy</li>
+                            <li>Regulatory relationships (BCP)</li>
+                            <li>Commercial operations</li>
+                            <li>P&L for Paraguay</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>❌ NOT Responsible For</h4>
+                        <ul>
+                            <li>Technology decisions</li>
+                            <li>Infrastructure purchases</li>
+                            <li>Vendor selection</li>
+                            <li>Digital platform</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 When to Engage</h4>
+                        <ul>
+                            <li>ONLY if you already have Itaú Brazil</li>
+                            <li>For local compliance requirements</li>
+                            <li>As reference for regional deployment</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Gustavo%20Arriola%20Itau%20Paraguay" target="_blank" class="linkedin-btn">🔗 Search LinkedIn</a>
+            </div>
+
+            <div class="exec-profile-card brazil">
+                <div class="exec-header">
+                    <div class="exec-avatar-large brazil">🇧🇷</div>
+                    <div class="exec-title-info">
+                        <h3>Itaú Unibanco Tech Leadership</h3>
+                        <div class="role">The REAL Decision Makers — São Paulo</div>
+                        <div class="tenure">🏦 Itaú Unibanco HQ • Technology Central</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag brazil">Tech Decision Makers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Who to Engage (in Brazil)</h4>
+                        <ul>
+                            <li>CTO / Chief Technology Officer</li>
+                            <li>VP of Infrastructure</li>
+                            <li>LATAM Regional IT Director</li>
+                            <li>Procurement / Strategic Sourcing</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>ALL technology investments</li>
+                            <li>Vendor relationships (enterprise)</li>
+                            <li>Regional platform decisions</li>
+                            <li>Cloud and infrastructure strategy</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Approach</h4>
+                        <ul>
+                            <li>Enterprise sales motion in São Paulo</li>
+                            <li>Global/regional account team</li>
+                            <li>Paraguay = deployment reference</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CTO%20Itau%20Unibanco%20technology" target="_blank" class="linkedin-btn">🔗 Search Itaú Brazil Tech on LinkedIn</a>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🎯 Bottom Line</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: rgba(16, 185, 129, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                    <h4 style="color: var(--accent-green);">✅ If You Have Itaú Brazil</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Paraguay = additional deployment</li>
+                        <li>Engage local CEO for rollout support</li>
+                        <li>Use Paraguay as regional reference</li>
+                        <li>Coordinate through São Paulo account team</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(239, 68, 68, 0.1); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+                    <h4 style="color: #ef4444;">❌ If You Don't Have Itaú Brazil</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Skip Itaú Paraguay completely</li>
+                        <li>Focus on local banks instead:</li>
+                        <li>→ <a href="banco_continental.html">Banco Continental</a></li>
+                        <li>→ <a href="banco_sudameris.html">Sudameris Bank</a></li>
+                        <li>→ <a href="banco_atlas.html">Banco Atlas</a></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="exec-navigation">
+            <a href="banco_itau.html" class="btn-secondary">← Back to Bank Profile</a>
+            <a href="banco_sudameris_executives.html" class="btn-primary">Next: Sudameris Executives →</a>
+        </div>
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>

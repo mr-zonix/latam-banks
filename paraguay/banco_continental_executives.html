@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco Continental Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--accent-blue);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .exec-profile-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .exec-profile-card.chairman { border-left-color: #f59e0b; }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-profile-card.digital { border-left-color: var(--accent-purple); }
+        
+        .exec-header {
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .exec-avatar-large {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+        .exec-avatar-large.chairman { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, var(--accent-blue), #1d4ed8); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-avatar-large.digital { background: linear-gradient(135deg, var(--accent-purple), #7c3aed); }
+        
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.political { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; position: relative; gap: 1rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-icon">🏦</span>
+            <span class="logo-text">LATAM Intel</span>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'">
+                <span class="nav-icon">📊</span>
+                <span>Dashboard</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'">
+                <span class="nav-icon">📋</span>
+                <span>Ranking</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'">
+                <span class="nav-icon">🇪🇨</span>
+                <span>Ecuador</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'">
+                <span class="nav-icon">🇵🇪</span>
+                <span>Peru</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'">
+                <span class="nav-icon">🇨🇴</span>
+                <span>Colombia</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'">
+                <span class="nav-icon">🇬🇹</span>
+                <span>Guatemala</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'">
+                <span class="nav-icon">🇵🇦</span>
+                <span>Panamá</span>
+            </li>
+            <li class="nav-item active" onclick="window.location.href='../paraguay/index.html'">
+                <span class="nav-icon">🇵🇾</span>
+                <span>Paraguay</span>
+            </li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'">
+                <span class="nav-icon">👔</span>
+                <span>Executives</span>
+            </li>
+        </ul>
+        <div class="nav-footer">
+            <p>Built by Mr Zonix</p>
+            <p class="version">v4.7 • Jun 2025</p>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_continental.html" class="back-link">← Back to Banco Continental</a>
+        
+        <header class="page-header">
+            <h1>👔 Banco Continental — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — #1 Bank in Paraguay</p>
+        </header>
+
+        <!-- VERIFICATION NOTE -->
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Chairman (Horacio Cartes) verified from public records. CEO verified from bank filings. Technology leadership requires LinkedIn verification before outreach. Grupo Cartes structure is well-documented.</p>
+        </div>
+
+        <!-- MINI ORG CHART -->
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Horacio Cartes</div>
+                    <div class="title">Chairman / Ex-Presidente de Paraguay</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Carlos Palacín Becker</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CTO / Gerente de Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CISO / Seguridad</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Head of Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- EXECUTIVE PROFILES -->
+        <section class="section-card">
+            <h2>📋 Executive Profiles</h2>
+
+            <!-- 1. Chairman -->
+            <div class="exec-profile-card chairman">
+                <div class="exec-header">
+                    <div class="exec-avatar-large chairman">HC</div>
+                    <div class="exec-title-info">
+                        <h3>Horacio Manuel Cartes Jara</h3>
+                        <div class="role">Chairman / Presidente del Directorio</div>
+                        <div class="tenure">🏦 Grupo Cartes founder • Ex-Presidente de Paraguay (2013-2018)</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Ultimate Decision Maker</span>
+                            <span class="exec-tag political">Political Figure</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Background</h4>
+                        <ul>
+                            <li>Presidente de Paraguay 2013-2018</li>
+                            <li>Fundador de Grupo Cartes (tobacco, agribusiness, finance)</li>
+                            <li>Dueño de Club Libertad (fútbol)</li>
+                            <li>Empresario más influyente de Paraguay</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Final say on ALL major investments</li>
+                            <li>Strategic direction of the bank</li>
+                            <li>Approval required for deals >$1M</li>
+                            <li>Direct involvement in key vendor relationships</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Approach Notes</h4>
+                        <ul>
+                            <li>Access through CEO or board relationships</li>
+                            <li>Values long-term strategic partnerships</li>
+                            <li>Interested in tech that drives competitiveness vs Itaú</li>
+                            <li>Regional references important (similar-sized LATAM banks)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p>Do NOT approach directly initially. Build relationship with tech leadership and CEO first. Chairman involvement comes at final stages for major deals. When presenting to him: focus on competitive advantage vs Itaú, regional leadership positioning, and ROI. He's a businessman first — speak in business outcomes, not tech specs.</p>
+                </div>
+            </div>
+
+            <!-- 2. CEO -->
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">CP</div>
+                    <div class="exec-title-info">
+                        <h3>Carlos Palacín Becker</h3>
+                        <div class="role">CEO / Gerente General</div>
+                        <div class="tenure">🏦 Banco Continental • Reports to Chairman Cartes</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Operational Decision Maker</span>
+                            <span class="exec-tag budget">Budget Recommender</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Background</h4>
+                        <ul>
+                            <li>Long-time banking executive</li>
+                            <li>Operational focus</li>
+                            <li>Close relationship with Cartes family</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Day-to-day operations</li>
+                            <li>Vendor relationship management</li>
+                            <li>Budget recommendations to board</li>
+                            <li>Tech project prioritization</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Approach Notes</h4>
+                        <ul>
+                            <li>Key gatekeeper to Chairman</li>
+                            <li>Focus on operational efficiency gains</li>
+                            <li>Competitive positioning vs Itaú resonates</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Carlos%20Palacin%20Banco%20Continental%20Paraguay" target="_blank" class="linkedin-btn">🔗 Search LinkedIn</a>
+            </div>
+
+            <!-- 3. CTO/IT Director - To Verify -->
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>CTO / Gerente de Tecnología</h3>
+                        <div class="role">⚠️ Position exists — name to verify</div>
+                        <div class="tenure">🔍 Research needed via LinkedIn</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Technical Decision Maker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Expected Responsibilities</h4>
+                        <ul>
+                            <li>Technology strategy and roadmap</li>
+                            <li>Infrastructure decisions</li>
+                            <li>Vendor technical evaluation</li>
+                            <li>Core banking modernization lead</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important</h4>
+                        <ul>
+                            <li>First contact for tech sales</li>
+                            <li>Technical due diligence owner</li>
+                            <li>RFP process leader</li>
+                            <li>Reports to CEO</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CTO%20Banco%20Continental%20Paraguay%20tecnologia" target="_blank" class="linkedin-btn">🔗 Search LinkedIn to Identify</a>
+            </div>
+
+            <!-- 4. CFO -->
+            <div class="exec-profile-card">
+                <div class="exec-header">
+                    <div class="exec-avatar-large">RR</div>
+                    <div class="exec-title-info">
+                        <h3>Ricardo Rodríguez</h3>
+                        <div class="role">CFO / Gerente de Finanzas</div>
+                        <div class="tenure">🏦 Banco Continental</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag budget">Budget Control</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Budget allocation</li>
+                            <li>ROI analysis for investments</li>
+                            <li>Financial due diligence</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Approach Notes</h4>
+                        <ul>
+                            <li>Involved in major purchase decisions</li>
+                            <li>Focus on TCO and ROI messaging</li>
+                            <li>Partner with CTO for business case</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CFO%20Banco%20Continental%20Paraguay" target="_blank" class="linkedin-btn">🔗 Search LinkedIn</a>
+            </div>
+        </section>
+
+        <!-- ENGAGEMENT STRATEGY -->
+        <section class="section-card">
+            <h2>🎯 Engagement Strategy Summary</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                    <h4 style="color: var(--accent-green);">✅ Do</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Start with tech leadership</li>
+                        <li>Build business case with CEO</li>
+                        <li>Reference similar LATAM banks</li>
+                        <li>Emphasize competitive advantage vs Itaú</li>
+                        <li>Offer phased approach</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+                    <h4 style="color: #ef4444;">❌ Don't</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Go directly to Chairman initially</li>
+                        <li>Ignore local partner relationships</li>
+                        <li>Underestimate political sensitivities</li>
+                        <li>Push for quick decisions</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                    <h4 style="color: var(--accent-blue);">📅 Timeline</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Budget planning: Oct-Dec</li>
+                        <li>Decision cycle: 3-6 months</li>
+                        <li>Core RFP expected: Late 2025</li>
+                        <li>Best entry: Q3-Q4 2025</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="exec-navigation">
+            <a href="banco_continental.html" class="btn-secondary">← Back to Bank Profile</a>
+            <a href="banco_itau_executives.html" class="btn-primary">Next: Itaú Executives →</a>
+        </div>
+    </main>
+
+    <script src="../js/version.js"></script>
+</body>
+</html>

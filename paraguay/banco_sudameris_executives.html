@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudameris Bank Executives | LATAM Bank Intelligence</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .exec-profile-card { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid var(--accent-blue); transition: transform 0.2s, box-shadow 0.2s; }
+        .exec-profile-card:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .exec-profile-card.chairman { border-left-color: #f59e0b; }
+        .exec-profile-card.ceo { border-left-color: var(--accent-blue); }
+        .exec-profile-card.tech { border-left-color: var(--accent-green); }
+        .exec-header { display: flex; gap: 1.5rem; align-items: flex-start; margin-bottom: 1rem; }
+        .exec-avatar-large { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; color: white; flex-shrink: 0; }
+        .exec-avatar-large.chairman { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .exec-avatar-large.ceo { background: linear-gradient(135deg, var(--accent-blue), #1d4ed8); }
+        .exec-avatar-large.tech { background: linear-gradient(135deg, var(--accent-green), #059669); }
+        .exec-title-info h3 { margin: 0 0 0.25rem 0; font-size: 1.25rem; }
+        .exec-title-info .role { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.5rem; }
+        .exec-title-info .tenure { font-size: 0.8rem; color: var(--text-muted); }
+        .exec-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem; }
+        .exec-tag { padding: 0.2rem 0.6rem; border-radius: 20px; font-size: 0.7rem; font-weight: 500; }
+        .exec-tag.decision { background: rgba(239, 68, 68, 0.2); color: #ef4444; }
+        .exec-tag.tech { background: rgba(16, 185, 129, 0.2); color: var(--accent-green); }
+        .exec-tag.budget { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+        .exec-tag.media { background: rgba(139, 92, 246, 0.2); color: var(--accent-purple); }
+        .exec-details { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-top: 1rem; }
+        .exec-detail-section h4 { font-size: 0.85rem; color: var(--accent-blue); margin-bottom: 0.5rem; }
+        .exec-detail-section ul { margin: 0; padding-left: 1.2rem; font-size: 0.85rem; }
+        .exec-detail-section li { margin-bottom: 0.3rem; }
+        .approach-box { background: rgba(59, 130, 246, 0.1); border-radius: 8px; padding: 1rem; margin-top: 1rem; }
+        .approach-box h4 { color: var(--accent-blue); margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .approach-box p { margin: 0; font-size: 0.85rem; line-height: 1.5; }
+        .linkedin-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.8rem; background: #0077b5; color: white; border-radius: 4px; font-size: 0.8rem; text-decoration: none; margin-top: 0.5rem; }
+        .linkedin-btn:hover { background: #005885; }
+        .org-chart-visual { background: var(--surface); border-radius: 12px; padding: 1.5rem; margin-bottom: 2rem; }
+        .org-level { display: flex; justify-content: center; margin-bottom: 1.5rem; gap: 1rem; flex-wrap: wrap; }
+        .org-box { background: var(--background); border: 2px solid var(--border); border-radius: 8px; padding: 0.75rem 1.25rem; text-align: center; min-width: 150px; }
+        .org-box.chairman { border-color: #f59e0b; background: rgba(245, 158, 11, 0.1); }
+        .org-box.ceo { border-color: var(--accent-blue); background: rgba(59, 130, 246, 0.1); }
+        .org-box.tech { border-color: var(--accent-green); background: rgba(16, 185, 129, 0.1); }
+        .org-box .name { font-weight: 600; font-size: 0.9rem; }
+        .org-box .title { font-size: 0.75rem; color: var(--text-secondary); }
+        .verify-note { background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; }
+        .verify-note h4 { color: #f59e0b; margin: 0 0 0.5rem 0; font-size: 0.9rem; }
+        .verify-note p { margin: 0; font-size: 0.85rem; }
+    </style>
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="logo"><span class="logo-icon">🏦</span><span class="logo-text">LATAM Intel</span></div>
+        <ul class="nav-menu">
+            <li class="nav-item" onclick="window.location.href='../index.html'"><span class="nav-icon">📊</span><span>Dashboard</span></li>
+            <li class="nav-item" onclick="window.location.href='../ranking/index.html'"><span class="nav-icon">📋</span><span>Ranking</span></li>
+            <li class="nav-item" onclick="window.location.href='../ecuador/index.html'"><span class="nav-icon">🇪🇨</span><span>Ecuador</span></li>
+            <li class="nav-item" onclick="window.location.href='../peru/index.html'"><span class="nav-icon">🇵🇪</span><span>Peru</span></li>
+            <li class="nav-item" onclick="window.location.href='../colombia/index.html'"><span class="nav-icon">🇨🇴</span><span>Colombia</span></li>
+            <li class="nav-item" onclick="window.location.href='../guatemala/index.html'"><span class="nav-icon">🇬🇹</span><span>Guatemala</span></li>
+            <li class="nav-item" onclick="window.location.href='../panama/index.html'"><span class="nav-icon">🇵🇦</span><span>Panamá</span></li>
+            <li class="nav-item active" onclick="window.location.href='../paraguay/index.html'"><span class="nav-icon">🇵🇾</span><span>Paraguay</span></li>
+            <li class="nav-item" onclick="window.location.href='../executives/index.html'"><span class="nav-icon">👔</span><span>Executives</span></li>
+        </ul>
+        <div class="nav-footer"><p>Built by Mr Zonix</p><p class="version">v4.7 • Jun 2025</p></div>
+    </nav>
+
+    <main class="main-content">
+        <a href="banco_sudameris.html" class="back-link">← Back to Sudameris Bank</a>
+        
+        <header class="page-header">
+            <h1>👔 Sudameris Bank — Executive Intelligence</h1>
+            <p class="subtitle">Top decision makers for technology & infrastructure sales — #3 Bank in Paraguay</p>
+        </header>
+
+        <div class="verify-note">
+            <h4>⚠️ Research Status</h4>
+            <p>Chairman (Aldo Zuccolillo) verified as ABC Color founder and majority shareholder. CEO verified from bank filings. Technology leadership requires LinkedIn verification.</p>
+        </div>
+
+        <section class="org-chart-visual">
+            <h2 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Decision Hierarchy</h2>
+            <div class="org-level">
+                <div class="org-box chairman">
+                    <div class="name">Aldo Zuccolillo</div>
+                    <div class="title">Chairman / Fundador ABC Color</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box ceo">
+                    <div class="name">Antonio Valinotti</div>
+                    <div class="title">CEO / Gerente General</div>
+                </div>
+            </div>
+            <div class="org-level">
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">CTO / Gerente de Tecnología</div>
+                </div>
+                <div class="org-box tech">
+                    <div class="name">⚠️ To Verify</div>
+                    <div class="title">Head of Digital</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>📋 Executive Profiles</h2>
+
+            <div class="exec-profile-card chairman">
+                <div class="exec-header">
+                    <div class="exec-avatar-large chairman">AZ</div>
+                    <div class="exec-title-info">
+                        <h3>Aldo Zuccolillo</h3>
+                        <div class="role">Chairman / Presidente del Directorio</div>
+                        <div class="tenure">🏦 Grupo Zuccolillo founder • Fundador de ABC Color</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Ultimate Decision Maker</span>
+                            <span class="exec-tag media">Media Mogul</span>
+                            <span class="exec-tag budget">Budget Authority</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Background</h4>
+                        <ul>
+                            <li>Fundador de ABC Color (diario más grande de Paraguay)</li>
+                            <li>Líder de opinión nacional</li>
+                            <li>Empresario influyente en medios y finanzas</li>
+                            <li>Visión estratégica de largo plazo</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Strategic investments approval</li>
+                            <li>Major vendor relationships</li>
+                            <li>Board-level decisions</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Approach Notes</h4>
+                        <ul>
+                            <li>Values innovation and competitiveness</li>
+                            <li>Interested in matching Itaú capabilities</li>
+                            <li>Appreciates well-structured proposals</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="approach-box">
+                    <h4>🎪 Engagement Strategy</h4>
+                    <p>More accessible than Continental's Chairman. Can be engaged through CEO or directly for strategic discussions. Focus on how technology enables competitive positioning. His media background means he appreciates clear, compelling narratives.</p>
+                </div>
+            </div>
+
+            <div class="exec-profile-card ceo">
+                <div class="exec-header">
+                    <div class="exec-avatar-large ceo">AV</div>
+                    <div class="exec-title-info">
+                        <h3>Antonio Valinotti</h3>
+                        <div class="role">CEO / Gerente General</div>
+                        <div class="tenure">🏦 Sudameris Bank • Banking veteran</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag decision">Operational Decision Maker</span>
+                            <span class="exec-tag budget">Budget Recommender</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Background</h4>
+                        <ul>
+                            <li>Experienced banking executive</li>
+                            <li>Operationally focused</li>
+                            <li>Drives digital transformation agenda</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>💼 Decision Authority</h4>
+                        <ul>
+                            <li>Tech project prioritization</li>
+                            <li>Vendor selection process</li>
+                            <li>Budget recommendations</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Approach Notes</h4>
+                        <ul>
+                            <li>Key entry point for sales</li>
+                            <li>Receptive to digital transformation stories</li>
+                            <li>Competitive with Itaú resonates</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=Antonio%20Valinotti%20Sudameris%20Paraguay" target="_blank" class="linkedin-btn">🔗 Search LinkedIn</a>
+            </div>
+
+            <div class="exec-profile-card tech">
+                <div class="exec-header">
+                    <div class="exec-avatar-large tech">?</div>
+                    <div class="exec-title-info">
+                        <h3>CTO / Gerente de Tecnología</h3>
+                        <div class="role">⚠️ Position exists — name to verify</div>
+                        <div class="tenure">🔍 Research needed via LinkedIn</div>
+                        <div class="exec-tags">
+                            <span class="exec-tag tech">Technical Decision Maker</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="exec-details">
+                    <div class="exec-detail-section">
+                        <h4>📌 Expected Responsibilities</h4>
+                        <ul>
+                            <li>Technology roadmap owner</li>
+                            <li>Digital platform decisions</li>
+                            <li>Security infrastructure</li>
+                            <li>Core banking relationship (Bantotal)</li>
+                        </ul>
+                    </div>
+                    <div class="exec-detail-section">
+                        <h4>🎯 Why Important</h4>
+                        <ul>
+                            <li>First contact for tech sales</li>
+                            <li>Check Point renewal decision maker</li>
+                            <li>Digital platform RFP owner</li>
+                        </ul>
+                    </div>
+                </div>
+                <a href="https://www.linkedin.com/search/results/people/?keywords=CTO%20Sudameris%20Paraguay%20tecnologia" target="_blank" class="linkedin-btn">🔗 Search LinkedIn to Identify</a>
+            </div>
+        </section>
+
+        <section class="section-card">
+            <h2>🎯 Engagement Strategy Summary</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-green);">
+                    <h4 style="color: var(--accent-green);">✅ Do</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Lead with digital transformation value</li>
+                        <li>Use Itaú as competitive benchmark</li>
+                        <li>Engage CEO directly — accessible</li>
+                        <li>Package security + digital together</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid #ef4444;">
+                    <h4 style="color: #ef4444;">❌ Don't</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Ignore the Check Point renewal timing</li>
+                        <li>Overlook Bantotal integration needs</li>
+                        <li>Underestimate board involvement</li>
+                    </ul>
+                </div>
+                <div style="background: var(--surface); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--accent-blue);">
+                    <h4 style="color: var(--accent-blue);">📅 Timeline</h4>
+                    <ul style="font-size: 0.9rem;">
+                        <li>Security RFP: 2025 (Check Point)</li>
+                        <li>Digital initiative: Active 2025</li>
+                        <li>Decision cycle: 3-5 months</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <div class="exec-navigation">
+            <a href="banco_sudameris.html" class="btn-secondary">← Back to Bank Profile</a>
+            <a href="banco_atlas_executives.html" class="btn-primary">Next: Atlas Executives →</a>
+        </div>
+    </main>
+    <script src="../js/version.js"></script>
+</body>
+</html>
